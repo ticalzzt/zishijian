@@ -4,30 +4,271 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>世界时间线 | 藏子世间</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/timeline.css">
+    <style>
+        :root {
+            --ink-black: #0a0908;
+            --ancient-gold: #c9a227;
+            --dark-red: #8b0000;
+            --bronze-light: #d4a84b;
+            --bronze-dark: #8b6914;
+        }
+        body {
+            background: var(--ink-black);
+            font-family: 'Noto Serif SC', serif;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+        h1, h2, h3 { font-family: 'ZCOOL XiaoWei', serif; }
+        .top-nav {
+            background: linear-gradient(180deg, rgba(10,9,8,0.98) 0%, rgba(10,9,8,0.9) 100%);
+            border-bottom: 2px solid var(--ancient-gold);
+            box-shadow: 0 0 20px rgba(201, 162, 39, 0.3), inset 0 -1px 0 rgba(201, 162, 39, 0.2);
+        }
+        .back-btn, .nav-link { color: var(--ancient-gold); font-family: 'ZCOOL XiaoWei', serif; }
+        .back-btn:hover, .nav-link:hover { color: var(--bronze-light); text-shadow: 0 0 10px rgba(201, 162, 39, 0.8); }
+
+        .timeline-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(139, 0, 0, 0.1) 50%, transparent 100%);
+            border-bottom: 2px solid var(--ancient-gold);
+            margin-bottom: 2rem;
+        }
+        .timeline-header h1 {
+            color: var(--ancient-gold);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 
+                0 0 10px rgba(201, 162, 39, 0.8),
+                0 0 30px rgba(201, 162, 39, 0.5),
+                0 0 50px rgba(201, 162, 39, 0.3);
+            animation: goldShimmer 4s ease-in-out infinite;
+        }
+        @keyframes goldShimmer {
+            0%, 100% { text-shadow: 0 0 10px rgba(201, 162, 39, 0.8), 0 0 30px rgba(201, 162, 39, 0.5); }
+            50% { text-shadow: 0 0 15px rgba(201, 162, 39, 1), 0 0 40px rgba(201, 162, 39, 0.7), 0 0 60px rgba(201, 162, 39, 0.4); }
+        }
+        .timeline-header p {
+            color: var(--bronze-light);
+            font-size: 1.1rem;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--ancient-gold), var(--dark-red), var(--ancient-gold));
+            transform: translateX(-50%);
+            box-shadow: 0 0 15px rgba(201, 162, 39, 0.5);
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 45%;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        .timeline-item.left { margin-left: 0; }
+        .timeline-item.right { margin-left: 55%; }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .timeline-marker {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(145deg, var(--bronze-dark), var(--ink-black));
+            border: 2px solid var(--ancient-gold);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 0 20px rgba(201, 162, 39, 0.5),
+                inset 0 0 15px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+        .timeline-item.left .timeline-marker { right: -80px; }
+        .timeline-item.right .timeline-marker { left: -80px; }
+        
+        .timeline-marker.special {
+            background: linear-gradient(145deg, var(--dark-red), var(--ancient-gold));
+            animation: destinyPulse 2s ease-in-out infinite;
+        }
+        @keyframes destinyPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(201, 162, 39, 0.5), inset 0 0 15px rgba(0,0,0,0.5); }
+            50% { box-shadow: 0 0 35px rgba(201, 162, 39, 0.8), 0 0 50px rgba(139, 0, 0, 0.5), inset 0 0 15px rgba(0,0,0,0.5); }
+        }
+
+        .marker-icon {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--ancient-gold);
+        }
+        .timeline-marker.special .marker-icon { color: var(--ink-black); }
+        .marker-year {
+            font-size: 0.65rem;
+            color: var(--bronze-light);
+            font-family: 'ZCOOL XiaoWei', serif;
+        }
+
+        .timeline-content {
+            background: linear-gradient(145deg, rgba(20, 18, 15, 0.95), rgba(10, 9, 8, 0.98));
+            border: 2px solid var(--bronze-dark);
+            padding: 1.5rem;
+            position: relative;
+            box-shadow: 
+                inset 0 0 30px rgba(0, 0, 0, 0.7),
+                0 0 15px rgba(201, 162, 39, 0.15);
+            transition: all 0.3s ease;
+        }
+        .timeline-content:hover {
+            border-color: var(--ancient-gold);
+            box-shadow: 
+                inset 0 0 30px rgba(0, 0, 0, 0.7),
+                0 0 25px rgba(201, 162, 39, 0.3);
+        }
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px; right: -1px; bottom: -1px;
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            pointer-events: none;
+        }
+
+        .timeline-item.right .timeline-content::before { border-color: rgba(201, 162, 39, 0.3); }
+
+        .timeline-content h3 {
+            color: var(--ancient-gold);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 8px rgba(201, 162, 39, 0.4);
+        }
+        .timeline-content p {
+            color: #d4c8b5;
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+        }
+        .timeline-content p.highlight-text {
+            color: var(--ancient-gold);
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-shadow: 0 0 10px rgba(201, 162, 39, 0.5);
+        }
+        .timeline-details {
+            display: none;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-left: 2px solid var(--bronze-dark);
+        }
+        .timeline-details p {
+            color: #c9bda8;
+            font-size: 0.95rem;
+        }
+        .timeline-details.active { display: block; }
+
+        .expand-btn {
+            background: linear-gradient(135deg, var(--bronze-dark), var(--ink-black));
+            border: 1px solid var(--ancient-gold);
+            color: var(--ancient-gold);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-family: 'ZCOOL XiaoWei', serif;
+            transition: all 0.3s ease;
+        }
+        .expand-btn:hover {
+            background: linear-gradient(135deg, var(--ancient-gold), var(--bronze-dark));
+            color: var(--ink-black);
+        }
+
+        .timeline-item.future .timeline-content {
+            border-color: rgba(139, 0, 0, 0.5);
+            background: linear-gradient(145deg, rgba(25, 15, 10, 0.95), rgba(15, 8, 5, 0.98));
+        }
+        .timeline-item.future .timeline-marker {
+            background: linear-gradient(145deg, var(--dark-red), #4a0000);
+            border-color: var(--bronze-dark);
+        }
+
+        .timeline-legend {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background: linear-gradient(145deg, rgba(20, 18, 15, 0.9), rgba(10, 9, 8, 0.95));
+            border: 2px solid var(--bronze-dark);
+            text-align: center;
+        }
+        .timeline-legend h3 {
+            color: var(--ancient-gold);
+            margin-bottom: 1rem;
+            font-family: 'ZCOOL XiaoWei', serif;
+        }
+        .legend-items { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; }
+        .legend-marker {
+            width: 20px; height: 20px; border-radius: 50%;
+            background: var(--bronze-dark);
+            border: 1px solid var(--ancient-gold);
+        }
+        .legend-marker.special {
+            background: linear-gradient(135deg, var(--dark-red), var(--ancient-gold));
+            box-shadow: 0 0 10px rgba(201, 162, 39, 0.5);
+        }
+        .legend-marker.future { background: var(--dark-red); border-color: var(--bronze-dark); }
+        .legend-item span { color: var(--bronze-light); }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--ink-black); }
+        ::-webkit-scrollbar-thumb { background: var(--bronze-dark); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--ancient-gold); }
+
+        @media (max-width: 768px) {
+            .timeline-line { left: 30px; }
+            .timeline-item { width: calc(100% - 60px); margin-left: 60px !important; }
+            .timeline-marker { left: -45px !important; right: auto !important; width: 50px; height: 50px; }
+            .marker-icon { font-size: 1rem; }
+            .marker-year { font-size: 0.6rem; }
+        }
+    </style>
 </head>
 <body>
     <nav class="top-nav">
-        <a href="index.html" class="back-btn">← 返回首页</a>
-        <a href="character-wukong.html" class="nav-link">🐒 孙悟空</a>
-        <a href="character-puti.html" class="nav-link">🧙 菩提老祖</a>
-        <a href="character-player.html" class="nav-link">✨ 主角</a>
+        <a href="index.html" class="back-btn">&#8592; 返回首页</a>
+        <a href="character-wukong.html" class="nav-link">猴 孙悟空</a>
+        <a href="character-puti.html" class="nav-link">祖 菩提老祖</a>
+        <a href="character-player.html" class="nav-link">主 主角</a>
     </nav>
 
     <main class="timeline-page">
         <header class="timeline-header">
-            <h1>📜 诸天宇宙时间线</h1>
+            <h1>卷 轴 诸天宇宙时间线</h1>
             <p>从混沌初开到命运交汇，见证藏子世间的每一个关键时刻</p>
         </header>
 
         <div class="timeline-container">
             <div class="timeline-line"></div>
             
-            <!-- 时间节点 -->
             <div class="timeline-item left" data-year="天地初开">
                 <div class="timeline-marker">
-                    <span class="marker-icon">🌌</span>
+                    <span class="marker-icon">初</span>
                     <span class="marker-year">太初</span>
                 </div>
                 <div class="timeline-content">
@@ -42,7 +283,7 @@
 
             <div class="timeline-item right" data-year="方寸立宗">
                 <div class="timeline-marker">
-                    <span class="marker-icon">🏔️</span>
+                    <span class="marker-icon">山</span>
                     <span class="marker-year">远古</span>
                 </div>
                 <div class="timeline-content">
@@ -58,7 +299,7 @@
 
             <div class="timeline-item left" data-year="仙石孕育">
                 <div class="timeline-marker">
-                    <span class="marker-icon">🪨</span>
+                    <span class="marker-icon">石</span>
                     <span class="marker-year">商末周初</span>
                 </div>
                 <div class="timeline-content">
@@ -74,7 +315,7 @@
 
             <div class="timeline-item right" data-year="悟空出世">
                 <div class="timeline-marker">
-                    <span class="marker-icon">🐒</span>
+                    <span class="marker-icon">猴</span>
                     <span class="marker-year">战国</span>
                 </div>
                 <div class="timeline-content">
@@ -90,7 +331,7 @@
 
             <div class="timeline-item left" data-year="拜师学艺">
                 <div class="timeline-marker">
-                    <span class="marker-icon">📚</span>
+                    <span class="marker-icon">书</span>
                     <span class="marker-year">秦末汉初</span>
                 </div>
                 <div class="timeline-content">
@@ -106,7 +347,7 @@
 
             <div class="timeline-item right" data-year="大闹天宫">
                 <div class="timeline-marker">
-                    <span class="marker-icon">⚡</span>
+                    <span class="marker-icon">雷</span>
                     <span class="marker-year">西汉末年</span>
                 </div>
                 <div class="timeline-content">
@@ -122,7 +363,7 @@
 
             <div class="timeline-item left" data-year="五行山困">
                 <div class="timeline-marker">
-                    <span class="marker-icon">⛰️</span>
+                    <span class="marker-icon">压</span>
                     <span class="marker-year">王莽篡汉</span>
                 </div>
                 <div class="timeline-content">
@@ -138,7 +379,7 @@
 
             <div class="timeline-item right" data-year="主角穿越">
                 <div class="timeline-marker special">
-                    <span class="marker-icon">✨</span>
+                    <span class="marker-icon">觉</span>
                     <span class="marker-year">现代</span>
                 </div>
                 <div class="timeline-content">
@@ -156,7 +397,7 @@
 
             <div class="timeline-item left future" data-year="觉字圆满">
                 <div class="timeline-marker">
-                    <span class="marker-icon">🔮</span>
+                    <span class="marker-icon">终</span>
                     <span class="marker-year">未来</span>
                 </div>
                 <div class="timeline-content">
@@ -169,7 +410,6 @@
                     <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
                 </div>
             </div>
-
         </div>
 
         <div class="timeline-legend">
@@ -192,5 +432,14 @@
     </main>
 
     <script src="js/timeline.js"></script>
+    <script>
+        function toggleDetails(btn) {
+            const details = btn.previousElementSibling;
+            if (details && details.classList.contains('timeline-details')) {
+                details.classList.toggle('active');
+                btn.textContent = details.classList.contains('active') ? '收起详情' : '展开详情';
+            }
+        }
+    </script>
 </body>
 </html>
