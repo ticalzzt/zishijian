@@ -338,3 +338,252 @@
         gap: 0.8rem;
     }
 }
+
+/* 增强响应式设计 */
+
+/* 平板设备 */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .timeline-page {
+        padding: 7rem 1.5rem 3rem;
+    }
+    
+    .timeline-header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .timeline-header p {
+        font-size: 1rem;
+    }
+    
+    .timeline-container {
+        padding: 1.5rem 0;
+    }
+    
+    .timeline-marker {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .timeline-marker.special {
+        width: 65px;
+        height: 65px;
+    }
+    
+    .timeline-content {
+        padding: 1.2rem;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .legend-items {
+        gap: 1.5rem;
+    }
+}
+
+/* 桌面设备 */
+@media (min-width: 1024px) {
+    .timeline-page {
+        padding: 8rem 2rem 4rem;
+    }
+    
+    .timeline-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .timeline-line {
+        left: 50%;
+    }
+    
+    .timeline-item.left {
+        margin-left: 0;
+    }
+    
+    .timeline-item.right {
+        margin-left: 55%;
+    }
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .timeline-page {
+        padding: 5rem 0.8rem 2rem;
+    }
+    
+    .timeline-header {
+        margin-bottom: 2.5rem;
+    }
+    
+    .timeline-header h1 {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.8rem;
+    }
+    
+    .timeline-header p {
+        font-size: 0.9rem;
+        padding: 0 0.5rem;
+    }
+    
+    .timeline-container {
+        padding: 1rem 0;
+    }
+    
+    /* 中轴线移到左侧 */
+    .timeline-line {
+        left: 18px;
+        width: 2px;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        margin-left: 0 !important;
+        padding-left: 45px !important;
+        padding-right: 0 !important;
+        margin-bottom: 2rem;
+    }
+    
+    .timeline-item.left .timeline-marker,
+    .timeline-item.right .timeline-marker {
+        left: -5px !important;
+        right: auto !important;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .timeline-marker.special {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .marker-icon {
+        font-size: 1rem;
+    }
+    
+    .marker-year {
+        font-size: 0.45rem;
+    }
+    
+    .timeline-content {
+        padding: 0.8rem;
+        border-radius: 10px;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .timeline-content p {
+        font-size: 0.85rem;
+        line-height: 1.7;
+    }
+    
+    .highlight-text {
+        font-size: 0.95rem !important;
+        padding: 0.6rem;
+    }
+    
+    .expand-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+        margin-top: 0.8rem;
+    }
+    
+    .timeline-legend {
+        padding: 1rem;
+        margin-top: 2.5rem;
+    }
+    
+    .timeline-legend h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .legend-items {
+        flex-direction: column;
+        gap: 0.6rem;
+        align-items: flex-start;
+    }
+    
+    .legend-item {
+        font-size: 0.85rem;
+    }
+}
+
+/* 小屏移动设备 */
+@media (max-width: 480px) {
+    .timeline-page {
+        padding: 4.5rem 0.5rem 1.5rem;
+    }
+    
+    .timeline-header h1 {
+        font-size: 1.4rem;
+    }
+    
+    .timeline-header p {
+        font-size: 0.85rem;
+    }
+    
+    .timeline-line {
+        left: 15px;
+    }
+    
+    .timeline-item {
+        padding-left: 40px !important;
+        margin-bottom: 1.5rem;
+    }
+    
+    .timeline-item.left .timeline-marker,
+    .timeline-item.right .timeline-marker {
+        width: 35px;
+        height: 35px;
+        left: -2px !important;
+    }
+    
+    .timeline-marker.special {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .marker-icon {
+        font-size: 0.9rem;
+    }
+    
+    .marker-year {
+        display: none;
+    }
+    
+    .timeline-content {
+        padding: 0.7rem;
+    }
+    
+    .timeline-content h3 {
+        font-size: 0.95rem;
+    }
+    
+    .timeline-content p {
+        font-size: 0.8rem;
+    }
+}
+
+/* 横屏模式 */
+@media (max-height: 500px) and (orientation: landscape) {
+    .timeline-page {
+        padding-top: 4rem;
+    }
+    
+    .timeline-header h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .timeline-header p {
+        display: none;
+    }
+    
+    .timeline-item {
+        margin-bottom: 1.5rem;
+    }
+}

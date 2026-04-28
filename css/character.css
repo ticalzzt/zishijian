@@ -338,3 +338,216 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* 增强响应式设计 */
+
+/* 平板设备 */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .character-page {
+        max-width: 800px;
+        padding: 7rem 1.5rem 3rem;
+    }
+    
+    .char-name {
+        font-size: 2.2rem;
+    }
+    
+    .char-section {
+        padding: 1.2rem;
+    }
+    
+    .traits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .char-navigation {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+/* 桌面设备 */
+@media (min-width: 1024px) {
+    .character-page {
+        max-width: 900px;
+        padding: 8rem 2rem 4rem;
+    }
+    
+    .char-name {
+        font-size: 2.5rem;
+    }
+    
+    .char-section {
+        padding: 1.5rem;
+    }
+    
+    .traits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .top-nav {
+        padding: 0.6rem 0.8rem;
+        gap: 0.4rem;
+    }
+    
+    .top-nav .back-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .top-nav .nav-link {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.6rem;
+    }
+    
+    .character-page {
+        padding: 4.5rem 0.8rem 2rem;
+    }
+    
+    .char-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+    }
+    
+    .char-name {
+        font-size: 1.8rem;
+        letter-spacing: 0.15em;
+    }
+    
+    .char-subtitle {
+        font-size: 0.9rem;
+        letter-spacing: 0.2em;
+    }
+    
+    .char-section {
+        padding: 1rem 0.8rem;
+        margin-bottom: 1.5rem;
+        border-radius: 10px;
+    }
+    
+    .char-section h2 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .section-content p {
+        font-size: 0.9rem;
+        line-height: 1.8;
+    }
+    
+    .traits-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    
+    .trait-item {
+        padding: 0.8rem;
+    }
+    
+    .trait-icon {
+        font-size: 1.3rem;
+    }
+    
+    .trait-text {
+        font-size: 0.9rem;
+    }
+    
+    .abilities-list {
+        gap: 0.8rem;
+    }
+    
+    .ability-card {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .ability-icon {
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .ability-info h3 {
+        font-size: 1rem;
+    }
+    
+    .ability-info p {
+        font-size: 0.85rem;
+    }
+    
+    .char-navigation {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+    
+    .nav-char-card {
+        padding: 1rem;
+        flex-direction: row;
+        gap: 1rem;
+    }
+    
+    .nav-char-emoji {
+        font-size: 2.5rem;
+        margin-bottom: 0;
+    }
+    
+    .nav-char-info {
+        text-align: left;
+    }
+    
+    .nav-char-name {
+        font-size: 1rem;
+    }
+    
+    .nav-char-title {
+        font-size: 0.8rem;
+    }
+    
+    .quotes-list {
+        gap: 0.8rem;
+    }
+    
+    .quote-item {
+        padding: 1rem;
+    }
+    
+    .quote-item p {
+        font-size: 0.95rem;
+    }
+}
+
+/* 小屏移动设备 */
+@media (max-width: 480px) {
+    .top-nav {
+        padding: 0.5rem 0.6rem;
+    }
+    
+    .top-nav .back-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    
+    .character-page {
+        padding: 4rem 0.5rem 1.5rem;
+    }
+    
+    .char-name {
+        font-size: 1.5rem;
+    }
+    
+    .char-section {
+        padding: 0.8rem 0.6rem;
+    }
+    
+    .char-section h2 {
+        font-size: 1rem;
+    }
+    
+    .section-content p {
+        font-size: 0.85rem;
+    }
+}

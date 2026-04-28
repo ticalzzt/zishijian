@@ -415,3 +415,328 @@
         height: auto;
     }
 }
+
+/* 增强响应式设计 */
+
+/* 平板设备 */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .creator-page {
+        padding: 7rem 1.5rem 3rem;
+    }
+    
+    .creator-header h1 {
+        font-size: 2rem;
+    }
+    
+    .creator-container {
+        gap: 2rem;
+    }
+    
+    .form-section {
+        padding: 1.2rem;
+    }
+    
+    .form-section h2 {
+        font-size: 1.1rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .form-row {
+        gap: 1rem;
+    }
+    
+    .race-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .race-content {
+        padding: 1rem;
+    }
+    
+    .race-icon {
+        font-size: 2rem;
+    }
+    
+    .realm-selector {
+        gap: 0.6rem;
+    }
+    
+    .treasure-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .law-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .card-preview {
+        position: static;
+    }
+    
+    #identity-canvas {
+        max-width: 100%;
+    }
+}
+
+/* 桌面设备 */
+@media (min-width: 1024px) {
+    .creator-page {
+        padding: 8rem 2rem 4rem;
+    }
+    
+    .creator-header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .creator-container {
+        grid-template-columns: 1fr 480px;
+        gap: 3rem;
+    }
+    
+    .card-preview {
+        position: sticky;
+        top: 100px;
+    }
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .creator-page {
+        padding: 5rem 0.8rem 2rem;
+    }
+    
+    .creator-header {
+        margin-bottom: 2rem;
+    }
+    
+    .creator-header h1 {
+        font-size: 1.5rem;
+        letter-spacing: 0.1em;
+    }
+    
+    .creator-header p {
+        font-size: 0.9rem;
+    }
+    
+    .creator-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .form-section {
+        padding: 1rem 0.8rem;
+        border-radius: 12px;
+    }
+    
+    .form-section h2 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.6rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    
+    .form-group input[type="text"] {
+        padding: 12px 14px;
+        font-size: 16px; /* 防止iOS缩放 */
+        min-height: 44px;
+    }
+    
+    /* 种族选择网格 */
+    .race-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+    
+    .race-content {
+        padding: 0.8rem;
+        border-radius: 10px;
+    }
+    
+    .race-icon {
+        font-size: 1.8rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .race-name {
+        font-size: 0.9rem;
+    }
+    
+    .race-desc {
+        font-size: 0.7rem;
+    }
+    
+    /* 修为境界 */
+    .realm-selector {
+        gap: 0.5rem;
+    }
+    
+    .realm-item {
+        min-width: 80px;
+    }
+    
+    .realm-name {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    /* 法宝选择 */
+    .treasure-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+    }
+    
+    .treasure-content {
+        padding: 0.6rem 0.3rem;
+        border-radius: 8px;
+    }
+    
+    .treasure-icon {
+        font-size: 1.4rem;
+    }
+    
+    .treasure-name {
+        font-size: 0.7rem;
+    }
+    
+    /* 法则选择 */
+    .law-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+    }
+    
+    .law-content {
+        padding: 0.6rem 0.3rem;
+        border-radius: 8px;
+    }
+    
+    .law-icon {
+        font-size: 1.4rem;
+    }
+    
+    .law-name {
+        font-size: 0.7rem;
+    }
+    
+    /* 生成按钮 */
+    .generate-btn {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        min-height: 48px;
+        margin-top: 0.8rem;
+    }
+    
+    /* 卡片预览 */
+    .card-preview {
+        margin-top: 1.5rem;
+    }
+    
+    .preview-header {
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .preview-header h3 {
+        font-size: 1rem;
+    }
+    
+    .download-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .canvas-container {
+        padding: 0.8rem;
+        border-radius: 12px;
+    }
+    
+    #identity-canvas {
+        width: 100%;
+        height: auto;
+        max-width: 350px;
+    }
+}
+
+/* 小屏移动设备 */
+@media (max-width: 480px) {
+    .creator-page {
+        padding: 4.5rem 0.5rem 1.5rem;
+    }
+    
+    .creator-header h1 {
+        font-size: 1.3rem;
+    }
+    
+    .form-section {
+        padding: 0.8rem 0.6rem;
+    }
+    
+    .form-section h2 {
+        font-size: 0.95rem;
+    }
+    
+    .race-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+    }
+    
+    .race-content {
+        padding: 0.6rem;
+    }
+    
+    .race-icon {
+        font-size: 1.5rem;
+    }
+    
+    .race-name {
+        font-size: 0.85rem;
+    }
+    
+    .race-desc {
+        display: none;
+    }
+    
+    .treasure-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .treasure-icon {
+        font-size: 1.2rem;
+    }
+    
+    .treasure-name {
+        font-size: 0.65rem;
+    }
+    
+    .law-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .generate-btn {
+        padding: 0.9rem 1.2rem;
+        font-size: 0.95rem;
+    }
+    
+    #identity-canvas {
+        max-width: 280px;
+    }
+}
+
+/* 横屏模式 */
+@media (max-height: 500px) and (orientation: landscape) {
+    .creator-page {
+        padding-top: 4rem;
+    }
+    
+    .creator-header h1 {
+        font-size: 1.4rem;
+    }
+    
+    .creator-header p {
+        display: none;
+    }
+}
