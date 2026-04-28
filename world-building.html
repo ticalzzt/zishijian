@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界观设定 | 藏子世间</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .world-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        .world-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .world-header h1 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(218, 165, 32, 0.5);
+            margin-bottom: 0.5rem;
+        }
+        .world-header p {
+            color: #aaa;
+            font-size: 1.1rem;
+        }
+        .lore-card {
+            background: linear-gradient(145deg, rgba(40, 35, 25, 0.9), rgba(30, 25, 18, 0.95));
+            border: 1px solid var(--gold-dark);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .lore-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .lore-card h2 {
+            color: var(--gold);
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .lore-card h2 .lore-tag {
+            font-size: 0.75rem;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #000;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+        .lore-content {
+            color: #ddd;
+            line-height: 1.8;
+        }
+        .lore-content p {
+            margin-bottom: 1rem;
+        }
+        .lore-content strong {
+            color: var(--gold);
+        }
+        .ability-detail {
+            background: rgba(218, 165, 32, 0.1);
+            border-left: 3px solid var(--gold);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .quotes-section {
+            background: linear-gradient(145deg, rgba(50, 45, 35, 0.9), rgba(35, 30, 22, 0.95));
+            border: 1px solid var(--gold-dark);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .quotes-section h2 {
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .quote-item {
+            text-align: center;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #ccc;
+            font-size: 1.1rem;
+            position: relative;
+        }
+        .quote-item::before, .quote-item::after {
+            content: '"';
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+        .quote-divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 1rem auto;
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <button class="back-btn" onclick="goBack()">← 返回</button>
+        <a href="index.html" class="nav-link">🏠 首页</a>
+        <a href="timeline.html" class="nav-link">📜 时间线</a>
+    </nav>
+
+    <main class="world-container">
+        <div class="world-header">
+            <h1>🌍 世界观设定</h1>
+            <p>藏子世间 · 核心法则与奥秘</p>
+        </div>
+
+        <div class="lore-card">
+            <h2>✨ 圆字辈特殊能力 <span class="lore-tag">核心设定</span></h2>
+            <div class="lore-content">
+                <p><strong>【圆照】</strong>——圆字辈弟子结"圆印"，即可内视己身、外察天地。</p>
+                <div class="ability-detail">
+                    <p>短暂将五感延展至方圆一里，如掌上观纹，勘破虚妄、预判先机。</p>
+                    <p><em>代价：精神消耗巨大，过度使用会损伤神识。</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="lore-card">
+            <h2>🌟 觉字机缘本质 <span class="lore-tag">核心设定</span></h2>
+            <div class="lore-content">
+                <p><strong>【觉念】</strong>——非外物赐予，而是识海中"沉睡真灵"的瞬间觉醒。</p>
+                <div class="ability-detail">
+                    <p>受特定情绪或因果牵引，真灵破茧，赋予宿主改写局部现实的权限。</p>
+                    <p><em>代价：记忆碎片化，每一次觉醒都会失去部分过往。</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="lore-card">
+            <h2>👁️ 主角异能：双瞳异化 <span class="lore-tag">主角设定</span></h2>
+            <div class="lore-content">
+                <p>主角天生"重瞳"，实为贯通两界之隙。</p>
+                <div class="ability-detail">
+                    <p><strong>左瞳</strong>：映现当前宇宙的真实</p>
+                    <p><strong>右瞳</strong>：倒映平行宇宙的可能</p>
+                    <p>因幼时濒死体验，两瞳短暂融合，使他能主动窥视并踏入时间线的分岔点。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="quotes-section">
+            <h2>🧙 菩提老祖教诲</h2>
+            <div class="quote-item">心圆则法无碍，命随行转</div>
+            <div class="quote-divider"></div>
+            <div class="quote-item">空性观因果，莫执定数</div>
+            <div class="quote-divider"></div>
+            <div class="quote-item">步步觉即是道，运自天成</div>
+        </div>
+    </main>
+
+    <script>
+        function goBack() {
+            if (document.referrer) {
+                history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>
