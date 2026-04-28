@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>藏子世间 - 诸天宇宙</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 首页封面 -->
+    <section id="cover" class="full-screen">
+        <div class="cover-image"></div>
+        <div class="overlay"></div>
+        
+        <!-- 标题 -->
+        <div class="title-container">
+            <h1 class="main-title">
+                <span class="title-char">我</span>
+                <span class="title-char">是</span>
+                <span class="title-char">大</span>
+                <span class="title-char">圣</span>
+                <span class="title-char">小</span>
+                <span class="title-char">师</span>
+                <span class="title-char">弟</span>
+            </h1>
+            <p class="subtitle">诸天宇宙 · 觉字机缘</p>
+        </div>
+        
+        <!-- 点击提示 -->
+        <div class="hint">
+            <span>点击画面中的人物，选择你的宇宙</span>
+            <div class="hint-arrow"></div>
+        </div>
+        
+        <!-- 可点击区域 -->
+        <div class="click-zone wukong" data-universe="wukong" title="进入大圣宇宙">
+            <div class="zone-glow"></div>
+            <div class="zone-label">
+                <span class="label-icon">🐒</span>
+                <span class="label-text">大圣宇宙</span>
+            </div>
+        </div>
+        
+        <div class="click-zone create" data-universe="create" title="创建你的宇宙">
+            <div class="zone-glow"></div>
+            <div class="zone-label">
+                <span class="label-icon">✨</span>
+                <span class="label-text">创建宇宙</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 大圣宇宙页面 -->
+    <section id="wukong-universe" class="universe-page hidden">
+        <div class="page-header">
+            <button class="back-btn" onclick="goBack()">← 返回</button>
+            <h2>🐒 大圣宇宙</h2>
+        </div>
+        
+        <div class="content-container">
+            <div class="intro-card">
+                <h3>世界观</h3>
+                <p>菩提门下，辈分森严。悟字辈之前，皆是跨越时空的大神通者。</p>
+                <p>孙悟空，齐天大圣，命运节点。他的师弟们，正在等待——</p>
+                <p>等待那个"觉"字的出现。</p>
+            </div>
+            
+            <div class="character-grid">
+                <div class="character-card">
+                    <div class="char-avatar">🐒</div>
+                    <h4>孙悟空</h4>
+                    <p class="char-title">齐天大圣 · 悟字辈</p>
+                    <p class="char-desc">命运节点，你的接引者与护道人</p>
+                </div>
+                
+                <div class="character-card">
+                    <div class="char-avatar">⚡</div>
+                    <h4>菩提老祖</h4>
+                    <p class="char-title">方寸山主 · 大觉者</p>
+                    <p class="char-desc">你的"大觉"，与最后的"觉"一样，也不同</p>
+                </div>
+                
+                <div class="character-card">
+                    <div class="char-avatar">👤</div>
+                    <h4>你</h4>
+                    <p class="char-title">圆字辈 · 觉字机缘</p>
+                    <p class="char-desc">来自地球的普通人，却成为关键</p>
+                </div>
+            </div>
+            
+            <div class="chapter-preview">
+                <h3>📖 序章 · 悟道</h3>
+                <div class="chapter-content">
+                    <p>方寸山，斜月三星洞。</p>
+                    <p>你睁开眼，发现自己盘坐在石阶之上，面前是漫天仙佛。</p>
+                    <p>一个熟悉的背影挡在你身前——那是孙悟空，但他没有回头。</p>
+                    <p>他只是望着前方高台，轻声说了一句：</p>
+                    <p class="quote">"师弟，你终于来了。"</p>
+                </div>
+            </div>
+            
+            <button class="continue-btn" onclick="alert('更多内容即将上线，敬请期待！')">
+                继续阅读 →
+            </button>
+        </div>
+    </section>
+    
+    <!-- 创建宇宙页面 -->
+    <section id="create-universe" class="universe-page hidden">
+        <div class="page-header">
+            <button class="back-btn" onclick="goBack()">← 返回</button>
+            <h2>✨ 创建你的宇宙</h2>
+        </div>
+        
+        <div class="content-container">
+            <div class="create-intro">
+                <p>无数世界正在融合，你的宇宙也将诞生。</p>
+                <p>填写以下信息，获得你的宇宙身份卡：</p>
+            </div>
+            
+            <form id="universe-form" class="create-form">
+                <div class="form-group">
+                    <label>你的宇宙名称</label>
+                    <input type="text" id="universe-name" placeholder="例如：青云界、万星域..." required>
+                </div>
+                
+                <div class="form-group">
+                    <label>核心法则（选择一个）</label>
+                    <div class="radio-group">
+                        <label class="radio-item">
+                            <input type="radio" name="law" value="修仙" checked>
+                            <span>修仙问道</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="law" value="魔法">
+                            <span>魔法世界</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="law" value="科技">
+                            <span>科技文明</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="law" value="混沌">
+                            <span>混沌原初</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>你的身份</label>
+                    <input type="text" id="user-identity" placeholder="例如：穿越者、觉醒者、轮回者..." required>
+                </div>
+                
+                <button type="submit" class="create-btn">生成宇宙身份卡</button>
+            </form>
+            
+            <!-- 身份卡预览 -->
+            <div id="identity-card" class="identity-card hidden">
+                <div class="card-header">
+                    <span class="card-title">诸天宇宙 · 身份卡</span>
+                    <span class="card-number" id="card-number">NO.000001</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-row">
+                        <span class="card-label">宇宙名称</span>
+                        <span class="card-value" id="card-universe">-</span>
+                    </div>
+                    <div class="card-row">
+                        <span class="card-label">核心法则</span>
+                        <span class="card-value" id="card-law">-</span>
+                    </div>
+                    <div class="card-row">
+                        <span class="card-label">你的身份</span>
+                        <span class="card-value" id="card-identity">-</span>
+                    </div>
+                    <div class="card-row">
+                        <span class="card-label">世界融合度</span>
+                        <span class="card-value" id="card-fusion">-</span>
+                    </div>
+                    <div class="card-row">
+                        <span class="card-label">命运走向</span>
+                        <span class="card-value" id="card-destiny">-</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <p>大圣一脉，诸天见证</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
