@@ -605,3 +605,85 @@ body {
         justify-content: center;
     }
 }
+
+/* 番茄小说入口按钮 */
+.fanqie-entrance {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.fanqie-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #ff6b35 0%, #ff4444 100%);
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+    transition: all 0.3s ease;
+    animation: fanqiePulse 2s ease-in-out infinite;
+}
+
+.fanqie-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6);
+}
+
+.fanqie-icon {
+    font-size: 1.2rem;
+}
+
+.fanqie-text {
+    white-space: nowrap;
+}
+
+@keyframes fanqiePulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(255, 107, 53, 0.7);
+    }
+}
+
+/* 大圣宇宙页面的番茄链接 */
+.fanqie-link {
+    background: linear-gradient(135deg, #ff6b35 0%, #ff4444 100%);
+    border: none;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+}
+
+.fanqie-link:hover {
+    background: linear-gradient(135deg, #ff7b45 0%, #ff5555 100%);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .fanqie-entrance {
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .fanqie-btn {
+        padding: 10px 18px;
+        font-size: 0.85rem;
+    }
+    
+    .fanqie-text {
+        display: none;
+    }
+    
+    .fanqie-icon {
+        font-size: 1.4rem;
+    }
+}
