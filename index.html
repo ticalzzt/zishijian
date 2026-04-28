@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>藏子世间 - 诸天宇宙</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- 预加载字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
     <!-- 首页封面 -->
@@ -36,7 +39,7 @@
         <div class="click-zone wukong" data-universe="wukong" title="进入大圣宇宙">
             <div class="zone-glow"></div>
             <div class="zone-label">
-                <span class="label-icon">🐒</span>
+                <span class="label-icon"></span>
                 <span class="label-text">大圣宇宙</span>
             </div>
         </div>
@@ -44,47 +47,35 @@
         <div class="click-zone create" data-universe="create" title="创建你的宇宙">
             <div class="zone-glow"></div>
             <div class="zone-label">
-                <span class="label-icon">✨</span>
+                <span class="label-icon"></span>
                 <span class="label-text">创建宇宙</span>
             </div>
         </div>
 
-        <!-- 新增导航入口 -->
+        <!-- 导航入口 - 黑神话风格 -->
         <nav class="home-nav">
-            <a href="character-wukong.html" class="nav-item">
-                <span class="nav-icon">🐒</span>
+            <a href="character-wukong.html" class="nav-item" data-page="wukong">
+                <span class="nav-icon"></span>
                 <span class="nav-text">孙悟空</span>
             </a>
-            <a href="character-puti.html" class="nav-item">
-                <span class="nav-icon">🧙</span>
+            <a href="character-puti.html" class="nav-item" data-page="puti">
+                <span class="nav-icon"></span>
                 <span class="nav-text">菩提老祖</span>
             </a>
-            <a href="character-player.html" class="nav-item">
-                <span class="nav-icon">✨</span>
+            <a href="character-player.html" class="nav-item" data-page="player">
+                <span class="nav-icon"></span>
                 <span class="nav-text">主角档案</span>
             </a>
-            <a href="timeline.html" class="nav-item">
-            <a href="world-building.html" class="nav-item">
-                <span class="nav-icon">🌍</span>
-                <span class="nav-text">世界观</span>
-            </a>
-                <span class="nav-icon">📜</span>
-            <a href="world-building.html" class="nav-item">
-                <span class="nav-icon">🌍</span>
-                <span class="nav-text">世界观</span>
-            </a>
+            <a href="timeline.html" class="nav-item" data-page="timeline">
+                <span class="nav-icon"></span>
                 <span class="nav-text">世界时间线</span>
-            <a href="world-building.html" class="nav-item">
-                <span class="nav-icon">🌍</span>
+            </a>
+            <a href="world-building.html" class="nav-item" data-page="world">
+                <span class="nav-icon"></span>
                 <span class="nav-text">世界观</span>
             </a>
-            </a>
-            <a href="world-building.html" class="nav-item">
-                <span class="nav-icon">🌍</span>
-                <span class="nav-text">世界观</span>
-            </a>
-            <a href="enhanced-creator.html" class="nav-item highlight">
-                <span class="nav-icon">🎴</span>
+            <a href="enhanced-creator.html" class="nav-item highlight" data-page="creator">
+                <span class="nav-icon"></span>
                 <span class="nav-text">身份创建器</span>
             </a>
         </nav>
@@ -92,7 +83,7 @@
         <!-- 番茄小说入口 -->
         <div class="fanqie-entrance">
             <a href="https://changdunovel.com/t/rZqNw3D2iiw/" target="_blank" class="fanqie-btn">
-                <span class="fanqie-icon">📖</span>
+                <span class="fanqie-icon"></span>
                 <span class="fanqie-text">去番茄读完整小说</span>
             </a>
         </div>
@@ -101,8 +92,8 @@
     <!-- 大圣宇宙页面 -->
     <section id="wukong-universe" class="universe-page hidden">
         <div class="page-header">
-            <button class="back-btn" onclick="goBack()">← 返回</button>
-            <h2>🐒 大圣宇宙</h2>
+            <button class="back-btn" onclick="goBack()">返回</button>
+            <h2>大圣宇宙</h2>
         </div>
         
         <div class="content-container">
@@ -115,37 +106,37 @@
             
             <div class="character-grid">
                 <a href="character-wukong.html" class="character-card">
-                    <div class="char-avatar">🐒</div>
+                    <div class="char-avatar"></div>
                     <h4>孙悟空</h4>
                     <p class="char-title">齐天大圣 · 悟字辈</p>
                     <p class="char-desc">命运节点，你的接引者与护道人</p>
                 </a>
                 
                 <a href="character-puti.html" class="character-card">
-                    <div class="char-avatar">🧙</div>
+                    <div class="char-avatar"></div>
                     <h4>菩提老祖</h4>
                     <p class="char-title">方寸山主 · 大觉者</p>
                     <p class="char-desc">你的"大觉"，与最后的"觉"一样，也不同</p>
                 </a>
                 
                 <a href="character-player.html" class="character-card">
-                    <div class="char-avatar">✨</div>
+                    <div class="char-avatar"></div>
                     <h4>你</h4>
                     <p class="char-title">圆字辈 · 觉字机缘</p>
                     <p class="char-desc">来自地球的普通人，却成为关键</p>
                 </a>
             </div>
 
-            <!-- 新增时间线入口 -->
+            <!-- 时间线入口 -->
             <div class="timeline-entrance">
                 <a href="timeline.html" class="timeline-btn">
-                    <span class="btn-icon">📜</span>
+                    <span class="btn-icon"></span>
                     <span class="btn-text">探索世界时间线</span>
                 </a>
             </div>
             
             <div class="chapter-preview">
-                <h3>📖 序章 · 悟道</h3>
+                <h3>序章 · 悟道</h3>
                 <div class="chapter-content">
                     <p>方寸山，斜月三星洞。</p>
                     <p>你睁开眼，发现自己盘坐在石阶之上，面前是漫天仙佛。</p>
@@ -155,16 +146,16 @@
                 </div>
             </div>
             
-            <!-- 新增身份创建器入口 -->
+            <!-- 身份创建器入口 -->
             <div class="creator-entrance">
                 <a href="enhanced-creator.html" class="creator-btn">
-                    <span class="btn-icon">🎴</span>
+                    <span class="btn-icon"></span>
                     <span class="btn-text">创建你的宇宙身份</span>
                 </a>
             </div>
             
             <!-- 番茄小说阅读按钮 -->
-            <a href="https://changdunovel.com/t/rZqNw3D2iiw/" target="_blank" class="continue-btn fanqie-link">
+            <a href="https://changdunovel.com/t/rZqNw3D2iiw/" target="_blank" class="fanqie-link">
                 去番茄读完整小说 →
             </a>
         </div>
@@ -173,8 +164,8 @@
     <!-- 创建宇宙页面 -->
     <section id="create-universe" class="universe-page hidden">
         <div class="page-header">
-            <button class="back-btn" onclick="goBack()">← 返回</button>
-            <h2>✨ 创建你的宇宙</h2>
+            <button class="back-btn" onclick="goBack()">返回</button>
+            <h2>创建你的宇宙</h2>
         </div>
         
         <div class="content-container">
