@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>孙悟空 - 齐天大圣 | 藏子世间</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/character.css">
+    <style>
+        .char-portrait {
+            width: 200px;
+            height: 280px;
+            margin: 0 auto 2rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .portrait-emoji {
+            font-size: 8rem;
+            filter: drop-shadow(0 0 20px rgba(255, 200, 100, 0.6));
+            animation: wukongFloat 3s ease-in-out infinite;
+        }
+        .portrait-aura {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 180, 50, 0.3) 0%, transparent 70%);
+            animation: auraPulse 2s ease-in-out infinite;
+        }
+        @keyframes wukongFloat {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        @keyframes auraPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+        .char-identity-badge {
+            background: linear-gradient(135deg, #ffd700, #ff9500);
+            color: #0a0a0f;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <button class="back-btn" onclick="goBack()">← 返回</button>
+        <a href="timeline.html" class="nav-link">📜 世界时间线</a>
+        <a href="enhanced-creator.html" class="nav-link">✨ 身份创建器</a>
+    </nav>
+
+    <main class="character-page">
+        <div class="char-header">
+            <div class="char-portrait">
+                <div class="portrait-aura"></div>
+                <div class="portrait-emoji">🐒</div>
+            </div>
+            <h1 class="char-name">孙悟空</h1>
+            <div class="char-identity-badge">齐天大圣 · 悟字辈</div>
+            <p class="char-subtitle">大圣一脉 · 命运节点 · 接引者</p>
+        </div>
+
+        <section class="char-section">
+            <h2>📜 背景故事</h2>
+            <div class="section-content">
+                <p>混沌初开，天地分离。花果山巅，一颗仙石吸收日月精华，孕育出一只石猴。他天生灵慧，机敏过人，在群猴中脱颖而出，成为花果山美猴王。</p>
+                <p>为求长生不老之术，他漂洋过海，历经艰辛，终于来到方寸山斜月三星洞，拜入菩提祖师门下，赐名"悟空"，列"悟"字辈，成为主角的师兄。</p>
+                <p>学成归来后，他大闹龙宫取得如意金箍棒，大闹地府勾去生死簿，被天庭招安后又因不满封号而反下凡间。玉帝无奈，封他为"齐天大圣"。</p>
+                <p>后因蟠桃盛会之事再度反下天庭，在天宫大打出手，直至惊动如来佛祖，被压五行山五百年。五百年后，他成为唐僧的大徒弟，护送取经人西行取经。</p>
+                <p>然而在藏子世间，时间线发生了改变。菩提祖师的"觉"字辈弟子尚未集齐，而主角——这位来自地球的"觉字机缘"，将成为打破命运的关键。</p>
+            </div>
+        </section>
+
+        <section class="char-section">
+            <h2>🎭 性格特点</h2>
+            <div class="traits-grid">
+                <div class="trait-item">
+                    <span class="trait-icon">🔥</span>
+                    <span class="trait-text">桀骜不驯 - 不畏强权，敢挑战一切权威</span>
+                </div>
+                <div class="trait-item">
+                    <span class="trait-icon">⚔️</span>
+                    <span class="trait-text">智勇双全 - 七十二变与筋斗云相伴</span>
+                </div>
+                <div class="trait-item">
+                    <span class="trait-icon">🤝</span>
+                    <span class="trait-text">重情重义 - 对师弟们关怀备至</span>
+                </div>
+                <div class="trait-item">
+                    <span class="trait-icon">😤</span>
+                    <span class="trait-text">嫉恶如仇 - 见不得妖魔欺凌弱小</span>
+                </div>
+                <div class="trait-item">
+                    <span class="trait-icon">🧠</span>
+                    <span class="trait-text">足智多谋 - 善于变化，出奇制胜</span>
+                </div>
+                <div class="trait-item">
+                    <span class="trait-icon">🎯</span>
+                    <span class="trait-text">目标坚定 - 一旦决定，绝不回头</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="char-section">
+            <h2>⚡ 能力与神通</h2>
+            <div class="abilities-list">
+                <div class="ability-card">
+                    <div class="ability-icon">🪄</div>
+                    <div class="ability-info">
+                        <h3>七十二变</h3>
+                        <p>可变化为七十二种形态，上天入地，无所不能</p>
+                    </div>
+                </div>
+                <div class="ability-card">
+                    <div class="ability-icon">☁️</div>
+                    <div class="ability-info">
+                        <h3>筋斗云</h3>
+                        <p>一个筋斗十万八千里，速度无双</p>
+                    </div>
+                </div>
+                <div class="ability-card">
+                    <div class="ability-icon">🦾</div>
+                    <div class="ability-info">
+                        <h3>铜头铁臂</h3>
+                        <p>金刚不坏之身，刀枪不入，水火不侵</p>
+                    </div>
+                </div>
+                <div class="ability-card">
+                    <div class="ability-icon">👁️</div>
+                    <div class="ability-info">
+                        <h3>火眼金睛</h3>
+                        <p>能识破一切妖魔伪装，看穿虚妄</p>
+                    </div>
+                </div>
+                <div class="ability-card">
+                    <div class="ability-icon">⚡</div>
+                    <div class="ability-info">
+                        <h3>如意金箍棒</h3>
+                        <p>东海龙宫定海神针，可大可小，重达万斤</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="char-section">
+            <h2>🔗 与主角的关系</h2>
+            <div class="relationship-card">
+                <div class="relation-header">
+                    <span class="relation-type">师兄弟</span>
+                    <span class="relation-level">命运羁绊</span>
+                </div>
+                <div class="relation-content">
+                    <p>菩提祖师座下，悟字辈之前，皆是跨越时空的大神通者。孙悟空作为主角的引路人，是第一个认出主角潜力的人。</p>
+                    <p>"师弟，你终于来了。"</p>
+                    <p>这句话，是他们命运的起点。在无数轮回中，孙悟空始终守护着最后一位"觉"字辈师弟，直到觉字机缘真正觉醒。</p>
+                    <p>他是主角的接引者，也是护道人。在未来的道路上，他将陪伴主角，见证诸天宇宙的融合与重生。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="char-section">
+            <h2>💬 经典语录</h2>
+            <div class="quotes-list">
+                <blockquote class="quote-item">
+                    <p>"皇帝轮流做，明年到我家！"</p>
+                    <cite>—— 大闹天宫时</cite>
+                </blockquote>
+                <blockquote class="quote-item">
+                    <p>"俺老孙去也！"</p>
+                    <cite>—— 筋斗云起时</cite>
+                </blockquote>
+                <blockquote class="quote-item">
+                    <p>"师弟，你终于来了。"</p>
+                    <cite>—— 初见主角时</cite>
+                </blockquote>
+                <blockquote class="quote-item">
+                    <p>"俺虽一介石猴，却也知天地大道！"</p>
+                    <cite>—— 与菩提祖师的对话</cite>
+                </blockquote>
+                <blockquote class="quote-item">
+                    <p>"这一棒，叫你灰飞烟灭！"</p>
+                    <cite>—— 降妖除魔时</cite>
+                </blockquote>
+            </div>
+        </section>
+
+        <div class="char-navigation">
+            <a href="character-player.html" class="nav-char-card">
+                <span class="nav-char-emoji">👤</span>
+                <span class="nav-char-name">你（主角）</span>
+                <span class="nav-char-title">圆字辈 · 觉字机缘</span>
+            </a>
+            <a href="character-puti.html" class="nav-char-card">
+                <span class="nav-char-emoji">⚡</span>
+                <span class="nav-char-name">菩提老祖</span>
+                <span class="nav-char-title">方寸山主 · 大觉者</span>
+            </a>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

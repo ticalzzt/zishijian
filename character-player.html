@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>你 - 觉字机缘 | 藏子世间</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/character.css">
+    <style>
+        .char-portrait {
+            width: 200px;
+            height: 280px;
+            margin: 0 auto 2rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .portrait-emoji {
+            font-size: 8rem;
+            filter: drop-shadow(0 0 20px rgba(180, 100, 255, 0.6));
+            animation: playerFloat 3.5s ease-in-out infinite;
+        }
+        .portrait-aura {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(180, 100, 255, 0.3) 0%, rgba(100, 50, 200, 0.1) 50%, transparent 70%);
+            animation: auraPulse 2.5s ease-in-out infinite;
+        }
+        .portrait-stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: starsRotate 20s linear infinite;
+        }
+        @keyframes playerFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-12px) scale(1.03); }
+        }
+        @keyframes auraPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.4; }
+            50% { transform: scale(1.4) rotate(180deg); opacity: 0.7; }
+        }
+        @keyframes starsRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .char-identity-badge {
+            background: linear-gradient(135deg, #b464ff, #7c3aed);
+            color: #fff;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        .mystery-box {
+            background: linear-gradient(135deg, rgba(180, 100, 255, 0.1), rgba(100, 50, 200, 0.1));
+            border: 1px dashed rgba(180, 100, 255, 0.5);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .mystery-box p {
+            font-style: italic;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <button class="back-btn" onclick="goBack()">← 返回</button>
+        <a href="timeline.html" class="nav-link">📜 世界时间线</a>
+        <a href="enhanced-creator.html" class="nav-link">✨ 身份创建器</a>
+    </nav>
+
+    <main class="character-page">
+        <div class="char-header">
+            <div class="char-portrait">
+                <div class="portrait-aura"></div>
+                <div class="portrait-stars">
+                    <svg viewBox="0 0 200 200" width="100%" height="100%">
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(180, 100, 255, 0.2)" stroke-width="1" stroke-dasharray="5,5"/>
+                        <circle cx="100" cy="100" r="100" fill="none" stroke="rgba(180, 100, 255, 0.1)" stroke-width="1" stroke-dasharray="3,7"/>
+                    </svg>
+                </div>
+                <div class="portrait-emoji">✨</div>
+            </div>
+            <h1 class="char-name">你</h1>
+            <div class="char-identity-badge">圆字辈 · 觉字机缘</div>
+            <p class="char-subtitle">来自地球 · 命运的关键 · 最后的觉</p>
+        </div>
+
+        <section class="char-section">
+            <h2>📜 背景故事</h2>
+            <div class="section-content">
+                <p>你，只是一个普通人。来自地球，过着平凡的生活。没有显赫的身世，没有特殊的背景，每天为生活奔波，为琐事烦恼。</p>
+                <p>直到那一天，一切都变了。</p>
+                <p>当你的意识再次清明时，你发现自己盘坐在石阶之上。四周云雾缭绕，仙气氤氲。面前，是漫天仙佛的虚影；身后，是一个熟悉的背影——那是孙悟空，但他没有回头。</p>
+                <p>"师弟，你终于来了。"</p>
+                <p>那一刻，你明白了。你穿越了，穿越到了西游世界。更准确地说，是穿越到了"藏子世间"——一个时间线发生改变的西游世界。</p>
+                <p>菩提祖师的"觉"字辈弟子尚未集齐，而你，成为了最后一块拼图——"觉字机缘"。</p>
+                <p>从此刻起，你的命运将与诸天宇宙紧紧相连。你将见证大闹天宫的真相，体验被压五行山的孤寂，最终，与师兄们一起，揭开藏子世间的终极秘密。</p>
+            </div>
+        </section>
+
+        <section class="char-section">
+            <h2>🎭 性格特点</h2>
+            <div class="traits-grid">
+                <div class="trait-item">
+                    <span class="trait-icon">🌍</span>
+                    <span class="trait-text">现代思维 - 拥有超越时代的认知</span>
+                </div>
+                <div class="trait-item">
+                    <span class="trait-icon">💪</span>
+                    <span class="trait-text">坚韧不拔 - 面对困境绝不放弃</span>
+                </div>
+                <div class="trait-item">
+                    <span class="trait-icon">🤔</span>
+                    <span class="trait-text">求知若渴 - 对未知充满好奇</span>
+                </div>
+                <div class="trait-item">
+                    <span class="trait-icon">❤️</span>
+                    <span class="trait-text">重情重义 - 珍惜每一份羁绊</span>
+                </div>
+                <div class="trait-item">
+                    <span class="trait-icon">🎭</span>
+                    <span class="trait-text">适应力强 - 能快速融入新环境</span>
+                </div>
+                <div class="trait-item">
+                    <span class="trait-icon">✨</span>
+                    <span class="trait-text">无限可能 - 未被定义的命运</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="char-section">
+            <h2>⚡ 觉醒能力</h2>
+            <div class="abilities-list">
+                <div class="ability-card locked">
+                    <div class="ability-icon">❓</div>
+                    <div class="ability-info">
+                        <h3>【待觉醒】觉字真言</h3>
+                        <p>觉字辈弟子的核心神通，尚在沉睡中...</p>
+                        <span class="unlock-hint">完成初始试炼后可解锁</span>
+                    </div>
+                </div>
+                <div class="ability-card locked">
+                    <div class="ability-icon">❓</div>
+                    <div class="ability-info">
+                        <h3>【待觉醒】诸天感应</h3>
+                        <p>感知诸天宇宙的变化，尚未开启...</p>
+                        <span class="unlock-hint">与菩提老祖建立联系后可解锁</span>
+                    </div>
+                </div>
+                <div class="ability-card">
+                    <div class="ability-icon">🌐</div>
+                    <div class="ability-info">
+                        <h3>【已觉醒】跨界思维</h3>
+                        <p>来自现代世界的知识与思维方式</p>
+                    </div>
+                </div>
+                <div class="ability-card">
+                    <div class="ability-icon">📚</div>
+                    <div class="ability-info">
+                        <h3>【已觉醒】速学之才</h3>
+                        <p>学习能力超越常人，能快速掌握新技能</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="char-section">
+            <h2>🔗 与众角色的关系</h2>
+            <div class="relationship-card">
+                <div class="relation-header">
+                    <span class="relation-type">核心</span>
+                    <span class="relation-level">命运交汇点</span>
+                </div>
+                <div class="relation-content">
+                    <h4>孙悟空（师兄）</h4>
+                    <p>"师弟，你终于来了。"这句话，是他等待了无数岁月的期盼。作为悟字辈的大师兄，他将是你最坚实的依靠。</p>
+                    
+                    <h4>菩提老祖（师父）</h4>
+                    <p>你的师父，神秘的方寸山主。他的"大觉"与你的"觉"，将共同编织诸天宇宙的未来。</p>
+                    
+                    <h4>其他悟字辈师兄</h4>
+                    <p>在你之前，已有无数悟字辈弟子。他们分散在诸天宇宙各处，等待着觉字辈师弟的觉醒。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="char-section">
+            <h2>💬 你的起点</h2>
+            <div class="mystery-box">
+                <p>"方寸山，斜月三星洞。<br>你睁开眼，发现自己盘坐在石阶之上，<br>面前是漫天仙佛。<br>一个熟悉的背影挡在你身前——<br>那是孙悟空，但他没有回头。<br>他只是望着前方高台，轻声说了一句：<br><strong>师弟，你终于来了。</strong>"</p>
+            </div>
+            <div class="quotes-list" style="margin-top: 1.5rem;">
+                <blockquote class="quote-item">
+                    <p>"我...这是哪里？" <em>—— 初醒时的困惑</em></p>
+                </blockquote>
+                <blockquote class="quote-item">
+                    <p>"既然来了，就没有回头路。" <em>—— 命运的宣言</em></p>
+                </blockquote>
+            </div>
+        </section>
+
+        <div class="char-navigation">
+            <a href="character-wukong.html" class="nav-char-card">
+                <span class="nav-char-emoji">🐒</span>
+                <span class="nav-char-name">孙悟空</span>
+                <span class="nav-char-title">齐天大圣 · 悟字辈</span>
+            </a>
+            <a href="character-puti.html" class="nav-char-card">
+                <span class="nav-char-emoji">🧙</span>
+                <span class="nav-char-name">菩提老祖</span>
+                <span class="nav-char-title">方寸山主 · 大觉者</span>
+            </a>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

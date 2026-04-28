@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>身份创建器 | 藏子世间</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/enhanced-creator.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="back-btn">← 返回首页</a>
+        <a href="timeline.html" class="nav-link">📜 世界时间线</a>
+        <a href="character-wukong.html" class="nav-link">🐒 孙悟空</a>
+    </nav>
+
+    <main class="creator-page">
+        <header class="creator-header">
+            <h1>✨ 诸天身份创建器</h1>
+            <p>选择你的种族、修为、法宝，生成独属于你的宇宙身份卡</p>
+        </header>
+
+        <div class="creator-container">
+            <form id="enhanced-form" class="enhanced-form">
+                <!-- 基础信息 -->
+                <section class="form-section">
+                    <h2>📝 基础信息</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>宇宙名称</label>
+                            <input type="text" id="universe-name" placeholder="例如：青云界、万星域..." required>
+                        </div>
+                        <div class="form-group">
+                            <label>你的名号</label>
+                            <input type="text" id="player-title" placeholder="例如：逍遥子、星河剑圣..." required>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 种族选择 -->
+                <section class="form-section">
+                    <h2>🎭 种族选择</h2>
+                    <div class="race-grid">
+                        <label class="race-card">
+                            <input type="radio" name="race" value="human" checked>
+                            <div class="race-content">
+                                <span class="race-icon">👤</span>
+                                <span class="race-name">人族</span>
+                                <span class="race-desc">智慧第一，学习最快</span>
+                            </div>
+                        </label>
+                        <label class="race-card">
+                            <input type="radio" name="race" value="demon">
+                            <div class="race-content">
+                                <span class="race-icon">👹</span>
+                                <span class="race-name">妖族</span>
+                                <span class="race-desc">天赋异禀，寿命悠长</span>
+                            </div>
+                        </label>
+                        <label class="race-card">
+                            <input type="radio" name="race" value="immortal">
+                            <div class="race-content">
+                                <span class="race-icon">🧚</span>
+                                <span class="race-name">仙族</span>
+                                <span class="race-desc">血脉高贵，掌控法则</span>
+                            </div>
+                        </label>
+                        <label class="race-card">
+                            <input type="radio" name="race" value="buddha">
+                            <div class="race-content">
+                                <span class="race-icon">🙏</span>
+                                <span class="race-name">佛门</span>
+                                <span class="race-desc">心境澄明，万法不侵</span>
+                            </div>
+                        </label>
+                        <label class="race-card">
+                            <input type="radio" name="race" value="ghost">
+                            <div class="race-content">
+                                <span class="race-icon">👻</span>
+                                <span class="race-name">鬼族</span>
+                                <span class="race-desc">穿行阴阳，来去无踪</span>
+                            </div>
+                        </label>
+                        <label class="race-card">
+                            <input type="radio" name="race" value="divine">
+                            <div class="race-content">
+                                <span class="race-icon">⚡</span>
+                                <span class="race-name">神族</span>
+                                <span class="race-desc">天生神力，掌管天地</span>
+                            </div>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- 修为境界 -->
+                <section class="form-section">
+                    <h2>⚡ 修为境界</h2>
+                    <div class="realm-selector">
+                        <label class="realm-item">
+                            <input type="radio" name="realm" value="mortal" checked>
+                            <span class="realm-name">凡境</span>
+                            <span class="realm-desc">肉体凡胎</span>
+                        </label>
+                        <label class="realm-item">
+                            <input type="radio" name="realm" value="qi-gathering">
+                            <span class="realm-name">聚气境</span>
+                            <span class="realm-desc">初窥门径</span>
+                        </label>
+                        <label class="realm-item">
+                            <input type="radio" name="realm" value="foundation">
+                            <span class="realm-name">筑基境</span>
+                            <span class="realm-desc">奠定根基</span>
+                        </label>
+                        <label class="realm-item">
+                            <input type="radio" name="realm" value="core">
+                            <span class="realm-name">金丹境</span>
+                            <span class="realm-desc">凝结金丹</span>
+                        </label>
+                        <label class="realm-item">
+                            <input type="radio" name="realm" value="nascent">
+                            <span class="realm-name">元婴境</span>
+                            <span class="realm-desc">元神初成</span>
+                        </label>
+                        <label class="realm-item">
+                            <input type="radio" name="realm" value="transcendent">
+                            <span class="realm-name">化神境</span>
+                            <span class="realm-desc">超凡入圣</span>
+                        </label>
+                        <label class="realm-item special">
+                            <input type="radio" name="realm" value="enlightened">
+                            <span class="realm-name">大觉境</span>
+                            <span class="realm-desc">觉字辈·觉者</span>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- 法宝选择 -->
+                <section class="form-section">
+                    <h2>🔮 法宝选择</h2>
+                    <div class="treasure-grid">
+                        <label class="treasure-card">
+                            <input type="checkbox" name="treasure" value="sword">
+                            <div class="treasure-content">
+                                <span class="treasure-icon">⚔️</span>
+                                <span class="treasure-name">剑</span>
+                            </div>
+                        </label>
+                        <label class="treasure-card">
+                            <input type="checkbox" name="treasure" value="staff">
+                            <div class="treasure-content">
+                                <span class="treasure-icon">� sticks</span>
+                                <span class="treasure-name">杖</span>
+                            </div>
+                        </label>
+                        <label class="treasure-card">
+                            <input type="checkbox" name="treasure" value="fan">
+                            <div class="treasure-content">
+                                <span class="treasure-icon">🪭</span>
+                                <span class="treasure-name">扇</span>
+                            </div>
+                        </label>
+                        <label class="treasure-card">
+                            <input type="checkbox" name="treasure" value="bell">
+                            <div class="treasure-content">
+                                <span class="treasure-icon">🔔</span>
+                                <span class="treasure-name">铃</span>
+                            </div>
+                        </label>
+                        <label class="treasure-card">
+                            <input type="checkbox" name="treasure" value="pagoda">
+                            <div class="treasure-content">
+                                <span class="treasure-icon">🗼</span>
+                                <span class="treasure-name">塔</span>
+                            </div>
+                        </label>
+                        <label class="treasure-card">
+                            <input type="checkbox" name="treasure" value="bottle">
+                            <div class="treasure-content">
+                                <span class="treasure-icon">🏺</span>
+                                <span class="treasure-name">瓶</span>
+                            </div>
+                        </label>
+                        <label class="treasure-card">
+                            <input type="checkbox" name="treasure" value="scroll">
+                            <div class="treasure-content">
+                                <span class="treasure-icon">📜</span>
+                                <span class="treasure-name">卷轴</span>
+                            </div>
+                        </label>
+                        <label class="treasure-card">
+                            <input type="checkbox" name="treasure" value="mirror">
+                            <div class="treasure-content">
+                                <span class="treasure-icon">🪞</span>
+                                <span class="treasure-name">镜</span>
+                            </div>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- 核心法则 -->
+                <section class="form-section">
+                    <h2>🌟 核心法则</h2>
+                    <div class="law-grid">
+                        <label class="law-card">
+                            <input type="radio" name="law" value="cultivation" checked>
+                            <div class="law-content">
+                                <span class="law-icon">🧘</span>
+                                <span class="law-name">修仙问道</span>
+                            </div>
+                        </label>
+                        <label class="law-card">
+                            <input type="radio" name="law" value="magic">
+                            <div class="law-content">
+                                <span class="law-icon">✨</span>
+                                <span class="law-name">魔法世界</span>
+                            </div>
+                        </label>
+                        <label class="law-card">
+                            <input type="radio" name="law" value="technology">
+                            <div class="law-content">
+                                <span class="law-icon">⚙️</span>
+                                <span class="law-name">科技文明</span>
+                            </div>
+                        </label>
+                        <label class="law-card">
+                            <input type="radio" name="law" value="martial">
+                            <div class="law-content">
+                                <span class="law-icon">👊</span>
+                                <span class="law-name">武道至上</span>
+                            </div>
+                        </label>
+                        <label class="law-card">
+                            <input type="radio" name="law" value="chaos">
+                            <div class="law-content">
+                                <span class="law-icon">🌪️</span>
+                                <span class="law-name">混沌原初</span>
+                            </div>
+                        </label>
+                    </div>
+                </section>
+
+                <button type="submit" class="generate-btn">🎴 生成身份卡</button>
+            </form>
+
+            <!-- 身份卡预览区域 -->
+            <div id="card-preview" class="card-preview hidden">
+                <div class="preview-header">
+                    <h3>🎴 身份卡预览</h3>
+                    <button id="download-btn" class="download-btn">📥 下载图片</button>
+                </div>
+                <div class="canvas-container">
+                    <canvas id="identity-canvas" width="450" height="650"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/enhanced-creator.js"></script>
+</body>
+</html>

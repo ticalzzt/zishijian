@@ -687,3 +687,176 @@ body {
         font-size: 1.4rem;
     }
 }
+
+/* 首页导航入口 */
+.home-nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.8rem;
+    z-index: 100;
+    background: rgba(10, 10, 15, 0.8);
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 200, 100, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 0.8rem;
+    color: #e8d5b7;
+    text-decoration: none;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.nav-item:hover {
+    background: rgba(255, 200, 100, 0.1);
+    opacity: 1;
+}
+
+.nav-item.highlight {
+    background: rgba(255, 200, 100, 0.15);
+    border: 1px solid rgba(255, 200, 100, 0.3);
+}
+
+.nav-item.highlight:hover {
+    background: rgba(255, 200, 100, 0.25);
+}
+
+.nav-icon {
+    font-size: 1.3rem;
+    margin-bottom: 0.2rem;
+}
+
+.nav-text {
+    font-size: 0.7rem;
+    white-space: nowrap;
+}
+
+/* 时间线入口 */
+.timeline-entrance {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.timeline-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, rgba(100, 180, 255, 0.15), rgba(100, 180, 255, 0.1));
+    border: 1px solid rgba(100, 180, 255, 0.4);
+    border-radius: 30px;
+    color: #64b5f6;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+}
+
+.timeline-btn:hover {
+    background: linear-gradient(135deg, rgba(100, 180, 255, 0.25), rgba(100, 180, 255, 0.15));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(100, 180, 255, 0.2);
+}
+
+.btn-icon {
+    font-size: 1.3rem;
+}
+
+/* 身份创建器入口 */
+.creator-entrance {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.creator-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, rgba(180, 100, 255, 0.15), rgba(180, 100, 255, 0.1));
+    border: 1px solid rgba(180, 100, 255, 0.4);
+    border-radius: 30px;
+    color: #b464ff;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+}
+
+.creator-btn:hover {
+    background: linear-gradient(135deg, rgba(180, 100, 255, 0.25), rgba(180, 100, 255, 0.15));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(180, 100, 255, 0.2);
+}
+
+/* 升级提示 */
+.upgrade-notice {
+    text-align: center;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background: rgba(180, 100, 255, 0.1);
+    border: 1px dashed rgba(180, 100, 255, 0.3);
+    border-radius: 15px;
+}
+
+.upgrade-notice p {
+    margin-bottom: 0.8rem;
+    opacity: 0.8;
+}
+
+.upgrade-link {
+    color: #b464ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.upgrade-link:hover {
+    color: #d080ff;
+    text-decoration: underline;
+}
+
+/* 角色卡片链接样式 */
+.character-card {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .home-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 90%;
+        gap: 0.3rem;
+        padding: 0.4rem 0.6rem;
+    }
+    
+    .nav-item {
+        padding: 0.4rem 0.6rem;
+    }
+    
+    .nav-icon {
+        font-size: 1.1rem;
+    }
+    
+    .nav-text {
+        font-size: 0.6rem;
+    }
+    
+    .timeline-btn,
+    .creator-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}

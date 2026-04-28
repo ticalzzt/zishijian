@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界时间线 | 藏子世间</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/timeline.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="back-btn">← 返回首页</a>
+        <a href="character-wukong.html" class="nav-link">🐒 孙悟空</a>
+        <a href="character-puti.html" class="nav-link">🧙 菩提老祖</a>
+        <a href="character-player.html" class="nav-link">✨ 主角</a>
+    </nav>
+
+    <main class="timeline-page">
+        <header class="timeline-header">
+            <h1>📜 诸天宇宙时间线</h1>
+            <p>从混沌初开到命运交汇，见证藏子世间的每一个关键时刻</p>
+        </header>
+
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+            
+            <!-- 时间节点 -->
+            <div class="timeline-item left" data-year="天地初开">
+                <div class="timeline-marker">
+                    <span class="marker-icon">🌌</span>
+                    <span class="marker-year">太初</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>天地初开</h3>
+                    <p>混沌如鸡子，鸿蒙初判。盘古开天辟地，清气上升为天，浊气下沉为地。日月星辰，山川河流，万物始生。</p>
+                    <div class="timeline-details">
+                        <p>此时，菩提老祖已存在于世外之地，独立于三界之外，观察着天地的演变。他是超越时间的存在，见证了无数宇宙的诞生与毁灭。</p>
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
+                </div>
+            </div>
+
+            <div class="timeline-item right" data-year="方寸立宗">
+                <div class="timeline-marker">
+                    <span class="marker-icon">🏔️</span>
+                    <span class="marker-year">远古</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>方寸山立宗</h3>
+                    <p>菩提老祖于方寸山创立斜月三星洞，开始收纳弟子。门下弟子按辈分排序：广、大、智、慧、真、悟、如、圆、觉。</p>
+                    <div class="timeline-details">
+                        <p>方寸山看似寻常，实则是独立于三界之外的洞天福地。洞中时间流速与外界不同，一日等于外界一年。这种时间差，使得弟子们能够在短时间内完成漫长的修行。</p>
+                        <p>每一个辈分都有其特殊的意义。"悟"字辈代表着领悟天道，"圆"字辈代表着圆满自足，而"觉"字辈，则代表着觉醒真我——是修行的最高境界。</p>
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
+                </div>
+            </div>
+
+            <div class="timeline-item left" data-year="仙石孕育">
+                <div class="timeline-marker">
+                    <span class="marker-icon">🪨</span>
+                    <span class="marker-year">商末周初</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>仙石孕育</h3>
+                    <p>花果山巅，一块仙石矗立于天地之间。它吸收日月精华，蕴含九窍八孔，按天罡地煞之数排列，静待时机。</p>
+                    <div class="timeline-details">
+                        <p>这块仙石并非普通之物，而是菩提老祖亲手布置的"棋子"。它的存在，是菩提老祖无数年前布下的命运之局的一部分。</p>
+                        <p>仙石内部蕴含着"悟"字辈的力量精华，一旦孕育成功，将诞生出足以搅动三界的存在。这，是菩提老祖为对抗即将到来的"诸天融合"所做的准备。</p>
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
+                </div>
+            </div>
+
+            <div class="timeline-item right" data-year="悟空出世">
+                <div class="timeline-marker">
+                    <span class="marker-icon">🐒</span>
+                    <span class="marker-year">战国</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>孙悟空出世</h3>
+                    <p>一日，仙石迸裂，产一石卵，遇风化作一石猴。那石猴五官俱全，四肢皆备，目运两道金光，直冲斗府，惊动天庭。</p>
+                    <div class="timeline-details">
+                        <p>石猴降世，天现异象。然而这一切都在菩提老祖的预料之中。他早已推算出这一天的到来，并开始在诸天各处寻找合适的"觉"字辈弟子。</p>
+                        <p>石猴虽然强大，但他只是"悟"字辈，而非最终的"觉"字辈。真正能够改变命运的，是那个尚未出现的"觉字机缘"——一个来自异世界的灵魂。</p>
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
+                </div>
+            </div>
+
+            <div class="timeline-item left" data-year="拜师学艺">
+                <div class="timeline-marker">
+                    <span class="marker-icon">📚</span>
+                    <span class="marker-year">秦末汉初</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>孙悟空拜师</h3>
+                    <p>石猴为求长生，漂洋过海，历经十数个年头，终于找到方寸山斜月三星洞，拜入菩提祖师门下，赐名"孙悟空"，列"悟"字辈。</p>
+                    <div class="timeline-details">
+                        <p>菩提祖师教授孙悟空多种神通：七十二变、筋斗云、长生不老之术。然而，当孙悟空学成之后，菩提祖师却将他赶出师门，并告诫他不得提及师承。</p>
+                        <p>这不是无情，而是菩提老祖深知孙悟空的命运——他将成为"觉"字辈弟子的接引者。在未来的某一天，他将亲手迎接最后一位师弟的到来。</p>
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
+                </div>
+            </div>
+
+            <div class="timeline-item right" data-year="大闹天宫">
+                <div class="timeline-marker">
+                    <span class="marker-icon">⚡</span>
+                    <span class="marker-year">西汉末年</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>大闹天宫</h3>
+                    <p>孙悟空因不满弼马温之职，反下天宫，自封"齐天大圣"。后因蟠桃盛会之事再度反天宫，大闹天宫，直逼灵霄宝殿。</p>
+                    <div class="timeline-details">
+                        <p>大闹天宫，表面上是孙悟空的叛逆之举，实则是菩提老祖计划的一部分。他需要让孙悟空在天地间建立威名，为日后"觉"字辈的出现铺路。</p>
+                        <p>天庭无法降服孙悟空，只能请来如来佛祖。最终，孙悟空被压五行山五百年。这五百年，是天庭与佛门达成的某种默契，也是菩提老祖给予孙悟空的修炼。</p>
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
+                </div>
+            </div>
+
+            <div class="timeline-item left" data-year="五行山困">
+                <div class="timeline-marker">
+                    <span class="marker-icon">⛰️</span>
+                    <span class="marker-year">王莽篡汉</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>被压五行山</h3>
+                    <p>如来佛祖将孙悟空压于五行山（两界山）下，以五指山为封印，使其动弹不得。五百年间，孙悟空以铁丸为食，铜汁为饮，苦苦等待。</p>
+                    <div class="timeline-details">
+                        <p>这五百年，对孙悟空来说是煎熬，也是沉淀。他开始理解菩提祖师的深意——他的使命，不是成为斗战胜佛，而是成为"觉"字辈弟子的护道人。</p>
+                        <p>在五行山下，孙悟空第一次感应到了"觉"字机缘的气息——一个来自异世界的灵魂，正在穿越时空的壁障，向这个世界靠近。</p>
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
+                </div>
+            </div>
+
+            <div class="timeline-item right" data-year="主角穿越">
+                <div class="timeline-marker special">
+                    <span class="marker-icon">✨</span>
+                    <span class="marker-year">现代</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>主角穿越降临</h3>
+                    <p>一个来自地球的年轻人，在某个平凡的瞬间，意识突然陷入黑暗。当他再次睁开眼时，发现自己盘坐在方寸山的石阶之上。</p>
+                    <p class="highlight-text">"师弟，你终于来了。"</p>
+                    <div class="timeline-details">
+                        <p>主角的到来，打破了诸天宇宙的平衡。他携带着来自现代世界的知识和思维，这些"跨界之力"将成为觉醒的关键。</p>
+                        <p>菩提老祖的"觉"字辈计划，终于迎来了最后一位弟子。然而，主角的潜力远超想象——他不仅是"觉字机缘"，更可能是打破命运循环的变数。</p>
+                        <p>从此刻起，藏子世间的故事正式开始。诸天宇宙的命运，将因这个来自地球的年轻人而改变。</p>
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
+                </div>
+            </div>
+
+            <div class="timeline-item left future" data-year="觉字圆满">
+                <div class="timeline-marker">
+                    <span class="marker-icon">🔮</span>
+                    <span class="marker-year">未来</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>觉字辈圆满</h3>
+                    <p>当最后一位"觉"字辈弟子觉醒，九十九位觉者将汇聚于方寸山。届时，菩提老祖将打开通往永恒的大门——那是超越生死、超越时空的终极境界。</p>
+                    <div class="timeline-details">
+                        <p>然而，命运从不会一帆风顺。在觉字辈圆满的道路上，充满了艰难险阻。天道的压制、魔道的阻挠、诸天宇宙的反噬……一切都在等待着主角。</p>
+                        <p>但无论如何，命运的齿轮已经开始转动。大圣一脉的传说，将在觉字机缘的手中，书写出全新的篇章。</p>
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="timeline-legend">
+            <h3>图例说明</h3>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <span class="legend-marker"></span>
+                    <span>已发生事件</span>
+                </div>
+                <div class="legend-item special">
+                    <span class="legend-marker special"></span>
+                    <span>核心转折点</span>
+                </div>
+                <div class="legend-item future">
+                    <span class="legend-marker future"></span>
+                    <span>未来预言</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/timeline.js"></script>
+</body>
+</html>
