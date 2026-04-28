@@ -7,32 +7,50 @@
     <link rel="stylesheet" href="css/style.css">
     <style>
         .world-container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
         }
         .world-header {
             text-align: center;
             margin-bottom: 3rem;
+            position: relative;
+        }
+        .world-header::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+            z-index: -1;
         }
         .world-header h1 {
-            font-size: 2.5rem;
-            color: var(--gold);
-            text-shadow: 0 0 20px rgba(218, 165, 32, 0.5);
+            font-family: 'ZCOOL XiaoWei', 'Noto Serif SC', serif;
+            font-size: 2.8rem;
+            color: var(--gold-bright);
+            text-shadow: 0 0 30px rgba(201, 162, 39, 0.5);
             margin-bottom: 0.5rem;
+            background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .world-header p {
-            color: #aaa;
+            color: var(--text-secondary);
             font-size: 1.1rem;
+            letter-spacing: 0.2em;
         }
         .lore-card {
             background: linear-gradient(145deg, rgba(40, 35, 25, 0.9), rgba(30, 25, 18, 0.95));
-            border: 1px solid var(--gold-dark);
+            border: 1px solid var(--gold-dim);
             border-radius: 12px;
             padding: 2rem;
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
         .lore-card::before {
             content: '';
@@ -43,39 +61,252 @@
             height: 3px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
+        .lore-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top, rgba(201, 162, 39, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
         .lore-card h2 {
             color: var(--gold);
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
+            font-family: 'ZCOOL XiaoWei', 'Noto Serif SC', serif;
+        }
+        .lore-card h2 .lore-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+            border-radius: 8px;
+            font-size: 1.2rem;
+            color: #000;
+            font-weight: bold;
         }
         .lore-card h2 .lore-tag {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             background: linear-gradient(135deg, var(--gold), var(--gold-dark));
             color: #000;
-            padding: 0.2rem 0.6rem;
+            padding: 0.25rem 0.7rem;
             border-radius: 12px;
             font-weight: 700;
+            font-family: 'Noto Serif SC', serif;
+            letter-spacing: 0.1em;
         }
         .lore-content {
             color: #ddd;
-            line-height: 1.8;
+            line-height: 1.9;
         }
         .lore-content p {
             margin-bottom: 1rem;
         }
         .lore-content strong {
             color: var(--gold);
+            font-weight: 700;
         }
         .ability-detail {
-            background: rgba(218, 165, 32, 0.1);
+            background: rgba(201, 162, 39, 0.08);
             border-left: 3px solid var(--gold);
-            padding: 1rem 1.5rem;
+            padding: 1.2rem 1.5rem;
             margin: 1rem 0;
             border-radius: 0 8px 8px 0;
+            position: relative;
         }
+        .ability-detail::before {
+            content: '◆';
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            font-size: 0.8rem;
+        }
+        .ability-detail em {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+            margin: 2.5rem 0;
+        }
+        /* 七层境界样式 */
+        .realm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        .realm-item {
+            background: linear-gradient(145deg, rgba(30, 28, 22, 0.9), rgba(20, 18, 14, 0.95));
+            border: 1px solid rgba(139, 115, 21, 0.4);
+            border-radius: 10px;
+            padding: 1.2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .realm-item:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+        .realm-item::before {
+            content: attr(data-floor);
+            position: absolute;
+            top: -8px;
+            left: 15px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+        }
+        .realm-item h3 {
+            color: var(--gold-bright);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            margin-top: 0.3rem;
+        }
+        .realm-item .realm-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .realm-item ul {
+            margin-top: 0.8rem;
+            padding-left: 1.2rem;
+            color: #ccc;
+        }
+        .realm-item li {
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+        }
+        /* 九辈分样式 */
+        .generations-flow {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        .gen-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.8rem;
+            min-width: 70px;
+            transition: all 0.3s ease;
+        }
+        .gen-item:hover {
+            transform: scale(1.1);
+        }
+        .gen-char {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            text-shadow: 0 0 15px rgba(201, 162, 39, 0.5);
+        }
+        .gen-arrow {
+            color: var(--gold-dim);
+            font-size: 1.2rem;
+        }
+        .generations-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+        .generations-table th {
+            background: linear-gradient(180deg, rgba(201, 162, 39, 0.2), rgba(201, 162, 39, 0.1));
+            color: var(--gold);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 1px solid var(--gold-dim);
+        }
+        .generations-table td {
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid rgba(139, 115, 21, 0.2);
+            color: #ccc;
+        }
+        .generations-table tr:hover td {
+            background: rgba(201, 162, 39, 0.05);
+        }
+        .generations-table .highlight {
+            color: var(--gold-bright);
+            font-weight: 600;
+        }
+        /* 逆道真解样式 */
+        .technique-box {
+            background: linear-gradient(145deg, rgba(80, 30, 30, 0.6), rgba(40, 20, 20, 0.8));
+            border: 1px solid rgba(200, 80, 80, 0.4);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .technique-box::before {
+            content: '⚔';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            opacity: 0.1;
+        }
+        .technique-box h3 {
+            color: #e8a0a0;
+            margin-bottom: 0.8rem;
+        }
+        .technique-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .feature-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 2px solid #e8a0a0;
+        }
+        .feature-item h4 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        .feature-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        .technique-verse {
+            font-family: 'ZCOOL XiaoWei', 'Noto Serif SC', serif;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            text-align: center;
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 2;
+            letter-spacing: 0.2em;
+            border: 1px solid rgba(139, 115, 21, 0.2);
+        }
+        /* 菩提教诲样式 */
         .quotes-section {
             background: linear-gradient(145deg, rgba(50, 45, 35, 0.9), rgba(35, 30, 22, 0.95));
             border: 1px solid var(--gold-dark);
@@ -87,26 +318,96 @@
             color: var(--gold);
             text-align: center;
             margin-bottom: 1.5rem;
+            font-family: 'ZCOOL XiaoWei', 'Noto Serif SC', serif;
         }
         .quote-item {
             text-align: center;
-            padding: 1rem;
+            padding: 1.2rem;
             margin: 1rem 0;
-            font-style: italic;
-            color: #ccc;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            color: #ddd;
             position: relative;
         }
-        .quote-item::before, .quote-item::after {
+        .quote-item::before {
             content: '"';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
             color: var(--gold);
-            font-size: 1.5rem;
+            opacity: 0.3;
+            line-height: 1;
+        }
+        .quote-item em {
+            display: block;
+            margin-top: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
         .quote-divider {
             width: 60px;
             height: 1px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            margin: 1rem auto;
+            margin: 1.5rem auto;
+        }
+        .quotes-group {
+            margin: 2rem 0;
+        }
+        .quotes-group h3 {
+            color: var(--gold-dim);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            letter-spacing: 0.2em;
+        }
+        /* 页脚导航 */
+        .world-footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(139, 115, 21, 0.2);
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .footer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(180deg, rgba(30, 28, 22, 0.9), rgba(20, 18, 14, 0.95));
+            border: 1px solid var(--gold-dim);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer-link:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .world-header h1 {
+                font-size: 2rem;
+            }
+            .lore-card {
+                padding: 1.5rem;
+            }
+            .generations-flow {
+                padding: 1rem;
+            }
+            .gen-item {
+                min-width: 50px;
+                padding: 0.5rem;
+            }
+            .gen-char {
+                font-size: 1.4rem;
+            }
         }
     </style>
 </head>
@@ -123,47 +424,296 @@
             <p>藏子世间 · 核心法则与奥秘</p>
         </div>
 
+        <!-- 核心设定 -->
         <div class="lore-card">
-            <h2>✨ 圆字辈特殊能力 <span class="lore-tag">核心设定</span></h2>
+            <h2><span class="lore-icon">核</span> 核心设定 <span class="lore-tag">必读</span></h2>
             <div class="lore-content">
+                <h3 style="color: var(--gold); margin: 1.5rem 0 1rem;">✨ 圆字辈特殊能力：圆照</h3>
                 <p><strong>【圆照】</strong>——圆字辈弟子结"圆印"，即可内视己身、外察天地。</p>
                 <div class="ability-detail">
                     <p>短暂将五感延展至方圆一里，如掌上观纹，勘破虚妄、预判先机。</p>
                     <p><em>代价：精神消耗巨大，过度使用会损伤神识。</em></p>
                 </div>
-            </div>
-        </div>
 
-        <div class="lore-card">
-            <h2>🌟 觉字机缘本质 <span class="lore-tag">核心设定</span></h2>
-            <div class="lore-content">
+                <h3 style="color: var(--gold); margin: 1.5rem 0 1rem;">🌟 觉字机缘本质：觉念</h3>
                 <p><strong>【觉念】</strong>——非外物赐予，而是识海中"沉睡真灵"的瞬间觉醒。</p>
                 <div class="ability-detail">
                     <p>受特定情绪或因果牵引，真灵破茧，赋予宿主改写局部现实的权限。</p>
                     <p><em>代价：记忆碎片化，每一次觉醒都会失去部分过往。</em></p>
                 </div>
-            </div>
-        </div>
 
-        <div class="lore-card">
-            <h2>👁️ 主角异能：双瞳异化 <span class="lore-tag">主角设定</span></h2>
-            <div class="lore-content">
+                <h3 style="color: var(--gold); margin: 1.5rem 0 1rem;">👁️ 主角异能：双瞳异化</h3>
                 <p>主角天生"重瞳"，实为贯通两界之隙。</p>
                 <div class="ability-detail">
-                    <p><strong>左瞳</strong>：映现当前宇宙的真实</p>
-                    <p><strong>右瞳</strong>：倒映平行宇宙的可能</p>
+                    <p><strong>左瞳：</strong>映现当前宇宙的真实</p>
+                    <p><strong>右瞳：</strong>倒映平行宇宙的可能</p>
                     <p>因幼时濒死体验，两瞳短暂融合，使他能主动窥视并踏入时间线的分岔点。</p>
                 </div>
             </div>
         </div>
 
+        <div class="section-divider"></div>
+
+        <!-- 方寸山七层 -->
+        <div class="lore-card">
+            <h2><span class="lore-icon">⛰</span> 方寸山七层境界 <span class="lore-tag">修行</span></h2>
+            <div class="lore-content">
+                <p style="margin-bottom: 1rem;">方寸山斜月三星洞，菩提祖师传道之所。洞府分七层，对应修行之七个阶段。</p>
+                
+                <div class="realm-grid">
+                    <div class="realm-item" data-floor="第一层">
+                        <h3>心启</h3>
+                        <p class="realm-desc">入门之基：初入山门，洗净凡尘。明心见性，识己本真。</p>
+                        <ul>
+                            <li>修行者需在山门前叩首七日</li>
+                            <li>通过心性考验方可入内</li>
+                            <li>设有"问心石"，可映照内心执念</li>
+                        </ul>
+                    </div>
+                    <div class="realm-item" data-floor="第二层">
+                        <h3>气引</h3>
+                        <p class="realm-desc">感气入门：引气入体，初窥仙途。感天地之气，纳为己用。</p>
+                        <ul>
+                            <li>学习吐纳之法</li>
+                            <li>感应周身灵气流动</li>
+                            <li>进行基础法术启蒙</li>
+                        </ul>
+                    </div>
+                    <div class="realm-item" data-floor="第三层">
+                        <h3>形淬</h3>
+                        <p class="realm-desc">淬炼肉身：以气淬体，锤炼筋骨。身如精钢，方堪问道。</p>
+                        <ul>
+                            <li>修习基础炼体功法</li>
+                            <li>肉身强度大幅提升</li>
+                            <li>为后续法术修行奠定基础</li>
+                        </ul>
+                    </div>
+                    <div class="realm-item" data-floor="第四层">
+                        <h3>法通</h3>
+                        <p class="realm-desc">法术通玄：法术初成，变化万千。阴阳五行，皆可驱用。</p>
+                        <ul>
+                            <li>可修习基础法术</li>
+                            <li>七十二变入门功法开放</li>
+                            <li>掌握至少一门护身神通</li>
+                        </ul>
+                    </div>
+                    <div class="realm-item" data-floor="第五层">
+                        <h3>意凝</h3>
+                        <p class="realm-desc">意志凝练：心意合一，念动法随。意志坚定，诸邪不侵。</p>
+                        <ul>
+                            <li>精神力大幅提升</li>
+                            <li>可抵御心魔侵蚀</li>
+                            <li><strong style="color: var(--gold);">悟字辈弟子所在层次</strong></li>
+                        </ul>
+                    </div>
+                    <div class="realm-item" data-floor="第六层">
+                        <h3>神游</h3>
+                        <p class="realm-desc">元神出游：元神出窍，神游太虚。千里之遥，瞬息可至。</p>
+                        <ul>
+                            <li>元神可短暂脱离肉身</li>
+                            <li>感知范围扩展至方圆百里</li>
+                            <li><strong style="color: var(--gold);">圆字辈弟子所在层次</strong></li>
+                        </ul>
+                    </div>
+                    <div class="realm-item" data-floor="第七层">
+                        <h3>觉空</h3>
+                        <p class="realm-desc">大觉圆满：觉悟本空，返璞归真。真灵觉醒，触及本源。</p>
+                        <ul>
+                            <li>识海真灵完全觉醒</li>
+                            <li>可改写局部现实规则</li>
+                            <li><strong style="color: var(--gold-bright);">觉字辈 & 菩提祖师所在</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- 九辈分体系 -->
+        <div class="lore-card">
+            <h2><span class="lore-icon">📿</span> 九辈分体系 <span class="lore-tag">传承</span></h2>
+            <div class="lore-content">
+                <p style="margin-bottom: 1rem;">菩提祖师座下弟子无数，按入门顺序分为九辈，象征修行之九个境界。</p>
+                
+                <div class="generations-flow">
+                    <div class="gen-item"><span class="gen-char">广</span><small>首徒</small></div>
+                    <span class="gen-arrow">→</span>
+                    <div class="gen-item"><span class="gen-char">大</span><small>护法</small></div>
+                    <span class="gen-arrow">→</span>
+                    <div class="gen-item"><span class="gen-char">智</span><small>教习</small></div>
+                    <span class="gen-arrow">→</span>
+                    <div class="gen-item"><span class="gen-char">慧</span><small>典藏</small></div>
+                    <span class="gen-arrow">→</span>
+                    <div class="gen-item"><span class="gen-char">真</span><small>真仙</small></div>
+                    <span class="gen-arrow">→</span>
+                    <div class="gen-item"><span class="gen-char">悟</span><small>大神通</small></div>
+                    <span class="gen-arrow">→</span>
+                    <div class="gen-item"><span class="gen-char">如</span><small>隐世</small></div>
+                    <span class="gen-arrow">→</span>
+                    <div class="gen-item"><span class="gen-char">圆</span><small>大觉前</small></div>
+                    <span class="gen-arrow">→</span>
+                    <div class="gen-item"><span class="gen-char" style="color: var(--gold-bright);">觉</span><small style="color: var(--gold-bright);">机缘</small></div>
+                </div>
+
+                <table class="generations-table">
+                    <thead>
+                        <tr>
+                            <th>辈分</th>
+                            <th>代表</th>
+                            <th>境界</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="highlight">广辈</td>
+                            <td>历代首徒</td>
+                            <td>凡境巅峰</td>
+                            <td>开山弟子，传承道统</td>
+                        </tr>
+                        <tr>
+                            <td>大辈</td>
+                            <td>历代护法</td>
+                            <td>灵境初阶</td>
+                            <td>守护山门，传授新徒</td>
+                        </tr>
+                        <tr>
+                            <td>智辈</td>
+                            <td>教习师兄</td>
+                            <td>灵境中阶</td>
+                            <td>负责日常修行指导</td>
+                        </tr>
+                        <tr>
+                            <td>慧辈</td>
+                            <td>典籍管理者</td>
+                            <td>灵境高阶</td>
+                            <td>掌管洞府典籍秘法</td>
+                        </tr>
+                        <tr>
+                            <td>真辈</td>
+                            <td>修行有成者</td>
+                            <td>仙境初阶</td>
+                            <td>已证长生，可称真仙</td>
+                        </tr>
+                        <tr>
+                            <td class="highlight">悟辈</td>
+                            <td>孙悟空</td>
+                            <td>仙境高阶</td>
+                            <td>得七十二变、筋斗云</td>
+                        </tr>
+                        <tr>
+                            <td>如辈</td>
+                            <td>隐世高人</td>
+                            <td>神境初阶</td>
+                            <td>行事如风，来去无踪</td>
+                        </tr>
+                        <tr>
+                            <td class="highlight">圆辈</td>
+                            <td>主角</td>
+                            <td>神境中阶</td>
+                            <td>可内视己身、外察天地</td>
+                        </tr>
+                        <tr>
+                            <td style="color: var(--gold-bright); font-weight: bold;">觉辈</td>
+                            <td>觉字机缘</td>
+                            <td>神境圆满</td>
+                            <td>识海真灵觉醒，触及本源</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="ability-detail" style="margin-top: 1.5rem; background: rgba(201, 162, 39, 0.12);">
+                    <p><strong style="color: var(--gold-bright);">觉字辈特别说明：</strong></p>
+                    <p>觉字辈是最后的辈分，亦是菩提祖师最看重的一辈。</p>
+                    <p>传说集齐<strong>九十九位</strong>"觉"字辈弟子，便可打开通往永恒的大门。</p>
+                    <p>然而无数岁月过去，觉字辈始终未能圆满。直到主角的出现——这位来自地球的年轻人，承载着"觉字机缘"的命运。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- 金手指：逆道真解 -->
+        <div class="lore-card">
+            <h2><span class="lore-icon">⚔</span> 金手指：逆道真解 <span class="lore-tag">秘法</span></h2>
+            <div class="lore-content">
+                <p style="margin-bottom: 1rem;">主角所持之特殊能力，超越常规修行体系的逆天之法。</p>
+                
+                <div class="technique-box">
+                    <h3>📜 来历</h3>
+                    <p>据传为混沌初开时，某位不愿成圣的绝世强者所创，后流转至菩提祖师手中，代代相传，只待有缘人。</p>
+
+                    <h3 style="margin-top: 1.5rem;">✨ 核心特性</h3>
+                    <div class="technique-features">
+                        <div class="feature-item">
+                            <h4>逆行伐道</h4>
+                            <p>可越阶挑战，不受境界压制</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>时空窥探</h4>
+                            <p>短暂窥视过去未来片段</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>因果改写</h4>
+                            <p>局部改写因果律，代价极大</p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 1.5rem;">⚠️ 使用代价</h3>
+                    <div class="ability-detail">
+                        <p>每次使用都会加速"觉"字机缘的消耗</p>
+                        <p>使用过度将导致记忆永久丧失</p>
+                        <p>最严重时，可能失去自我意识</p>
+                    </div>
+
+                    <div class="technique-verse">
+                        逆天而行道自通<br>
+                        真解藏在有无中<br>
+                        不求长生不老术<br>
+                        但愿今朝破苍穹
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- 菩提教诲 -->
         <div class="quotes-section">
             <h2>🧙 菩提老祖教诲</h2>
-            <div class="quote-item">心圆则法无碍，命随行转</div>
-            <div class="quote-divider"></div>
-            <div class="quote-item">空性观因果，莫执定数</div>
-            <div class="quote-divider"></div>
-            <div class="quote-item">步步觉即是道，运自天成</div>
+            
+            <div class="quotes-group">
+                <h3>— 日常教诲 —</h3>
+                <div class="quote-item">心圆则法无碍，命随行转</div>
+                <div class="quote-divider"></div>
+                <div class="quote-item">空性观因果，莫执定数</div>
+                <div class="quote-divider"></div>
+                <div class="quote-item">步步觉即是道，运自天成</div>
+            </div>
+
+            <div class="quotes-group">
+                <h3>— 论修行 —</h3>
+                <div class="quote-item">难！难！难！道最玄，莫把金丹作等闲。<em>—— 菩提祖师</em></div>
+                <div class="quote-divider"></div>
+                <div class="quote-item">口开神气散，舌动是非生。<em>—— 告诫弟子</em></div>
+            </div>
+
+            <div class="quotes-group">
+                <h3>— 觉字机缘预言 —</h3>
+                <div class="quote-item">你的觉，与我的觉，终将交汇于命运的终点。</div>
+                <div class="quote-divider"></div>
+                <div class="quote-item">觉字机缘，非你莫属。诸天宇宙的命运，皆系于你身。<em>—— 命运的预言</em></div>
+            </div>
+        </div>
+
+        <div class="world-footer">
+            <div class="footer-links">
+                <a href="character-wukong.html" class="footer-link">🐒 孙悟空</a>
+                <a href="character-puti.html" class="footer-link">🧘 菩提老祖</a>
+                <a href="character-player.html" class="footer-link">👤 主角</a>
+                <a href="timeline.html" class="footer-link">📜 世界时间线</a>
+            </div>
         </div>
     </main>
 
