@@ -4,9 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>孙悟空 - 齐天大圣 | 藏子世间</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/character.css">
     <style>
+        /* 黑神话风格基础变量 */
+        :root {
+            --ink-black: #0a0908;
+            --ancient-gold: #c9a227;
+            --dark-red: #8b0000;
+            --bronze-light: #d4a84b;
+            --bronze-dark: #8b6914;
+        }
+
+        body {
+            background: var(--ink-black);
+            font-family: 'Noto Serif SC', serif;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+
+        h1, h2, h3, .char-name {
+            font-family: 'ZCOOL XiaoWei', serif;
+        }
+
+        /* 导航栏黑神话风格 */
+        .top-nav {
+            background: linear-gradient(180deg, rgba(10,9,8,0.98) 0%, rgba(10,9,8,0.9) 100%);
+            border-bottom: 2px solid var(--ancient-gold);
+            box-shadow: 0 0 20px rgba(201, 162, 39, 0.3), inset 0 -1px 0 rgba(201, 162, 39, 0.2);
+        }
+
+        .back-btn, .nav-link {
+            color: var(--ancient-gold);
+            font-family: 'ZCOOL XiaoWei', serif;
+        }
+        .back-btn:hover, .nav-link:hover {
+            color: var(--bronze-light);
+            text-shadow: 0 0 10px rgba(201, 162, 39, 0.8);
+        }
+
+        /* 人物头像区域 */
         .char-portrait {
             width: 200px;
             height: 280px;
@@ -16,43 +56,271 @@
             align-items: center;
             justify-content: center;
         }
-        .portrait-emoji {
-            font-size: 8rem;
-            filter: drop-shadow(0 0 20px rgba(255, 200, 100, 0.6));
-            animation: wukongFloat 3s ease-in-out infinite;
-        }
         .portrait-aura {
             position: absolute;
             width: 250px;
             height: 250px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 180, 50, 0.3) 0%, transparent 70%);
-            animation: auraPulse 2s ease-in-out infinite;
+            background: radial-gradient(circle, rgba(201, 162, 39, 0.4) 0%, rgba(139, 0, 0, 0.2) 40%, transparent 70%);
+            animation: fireGlow 3s ease-in-out infinite;
         }
-        @keyframes wukongFloat {
-            0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-10px) rotate(2deg); }
+        @keyframes fireGlow {
+            0%, 100% { transform: scale(1); opacity: 0.6; filter: blur(10px); }
+            50% { transform: scale(1.15); opacity: 0.9; filter: blur(15px); }
         }
-        @keyframes auraPulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.2); opacity: 0.8; }
+
+        /* 青铜器边框 */
+        .char-header, .char-section, .relationship-card, .quote-item {
+            border: 2px solid var(--ancient-gold);
+            background: linear-gradient(145deg, rgba(20, 18, 15, 0.95) 0%, rgba(10, 9, 8, 0.98) 100%);
+            box-shadow: 
+                inset 0 0 30px rgba(0, 0, 0, 0.8),
+                inset 0 0 60px rgba(139, 0, 0, 0.1),
+                0 0 15px rgba(201, 162, 39, 0.2);
+            position: relative;
         }
+        .char-header::before, .char-section::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px; right: -1px; bottom: -1px;
+            border: 1px solid rgba(201, 162, 39, 0.3);
+            pointer-events: none;
+        }
+
+        /* 标题金光效果 */
+        .char-name {
+            color: var(--ancient-gold);
+            text-shadow: 
+                0 0 10px rgba(201, 162, 39, 0.8),
+                0 0 20px rgba(201, 162, 39, 0.5),
+                0 0 40px rgba(201, 162, 39, 0.3);
+            animation: goldShimmer 4s ease-in-out infinite;
+        }
+        @keyframes goldShimmer {
+            0%, 100% { text-shadow: 0 0 10px rgba(201, 162, 39, 0.8), 0 0 20px rgba(201, 162, 39, 0.5); }
+            50% { text-shadow: 0 0 15px rgba(201, 162, 39, 1), 0 0 30px rgba(201, 162, 39, 0.7), 0 0 50px rgba(201, 162, 39, 0.4); }
+        }
+
         .char-identity-badge {
-            background: linear-gradient(135deg, #ffd700, #ff9500);
-            color: #0a0a0f;
+            background: linear-gradient(135deg, var(--bronze-dark), var(--ancient-gold), var(--bronze-dark));
+            color: var(--ink-black);
             padding: 0.3rem 1rem;
-            border-radius: 20px;
+            border-radius: 0;
             font-weight: 600;
             display: inline-block;
             margin-bottom: 0.5rem;
+            border: 1px solid var(--ancient-gold);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+            font-family: 'ZCOOL XiaoWei', serif;
+        }
+
+        .char-subtitle {
+            color: var(--bronze-light);
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        /* 章节标题 */
+        .char-section h2 {
+            color: var(--ancient-gold);
+            font-family: 'ZCOOL XiaoWei', serif;
+            border-bottom: 1px solid var(--ancient-gold);
+            padding-bottom: 0.5rem;
+            text-shadow: 0 0 8px rgba(201, 162, 39, 0.5);
+        }
+
+        /* 性格特点 - 青铜卡片 */
+        .traits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .trait-item {
+            background: linear-gradient(145deg, rgba(30, 25, 20, 0.9), rgba(15, 12, 10, 0.95));
+            border: 1px solid var(--bronze-dark);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 
+                inset 0 0 15px rgba(0,0,0,0.5),
+                0 0 8px rgba(201, 162, 39, 0.15);
+            transition: all 0.3s ease;
+        }
+        .trait-item:hover {
+            border-color: var(--ancient-gold);
+            box-shadow: 
+                inset 0 0 20px rgba(0,0,0,0.6),
+                0 0 15px rgba(201, 162, 39, 0.3);
+        }
+        .trait-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bronze-dark), var(--ancient-gold));
+            color: var(--ink-black);
+            font-weight: bold;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .trait-text {
+            color: #e8dcc8;
+            font-size: 0.95rem;
+        }
+
+        /* 能力卡片 */
+        .abilities-list {
+            display: grid;
+            gap: 1rem;
+        }
+        .ability-card {
+            background: linear-gradient(145deg, rgba(25, 20, 15, 0.95), rgba(10, 9, 8, 0.98));
+            border: 1px solid var(--bronze-dark);
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            box-shadow: 
+                inset 0 0 20px rgba(0,0,0,0.6),
+                0 0 10px rgba(139, 0, 0, 0.2);
+        }
+        .ability-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--dark-red), #5a0000);
+            border: 1px solid var(--ancient-gold);
+            color: var(--ancient-gold);
+            font-weight: bold;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
+        }
+        .ability-info h3 {
+            color: var(--ancient-gold);
+            font-family: 'ZCOOL XiaoWei', serif;
+            margin-bottom: 0.3rem;
+        }
+        .ability-info p {
+            color: #c9bda8;
+        }
+
+        /* 关系卡片 */
+        .relationship-card {
+            border: 2px solid var(--ancient-gold);
+            background: linear-gradient(145deg, rgba(30, 15, 10, 0.95), rgba(15, 8, 5, 0.98));
+            padding: 1.5rem;
+        }
+        .relation-header {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .relation-type, .relation-level {
+            background: linear-gradient(135deg, var(--dark-red), #4a0000);
+            color: var(--ancient-gold);
+            padding: 0.3rem 1rem;
+            border: 1px solid var(--ancient-gold);
+            font-family: 'ZCOOL XiaoWei', serif;
+        }
+        .relation-content p {
+            color: #e0d5c5;
+            line-height: 1.8;
+        }
+
+        /* 语录引用 */
+        .quotes-list {
+            display: grid;
+            gap: 1rem;
+        }
+        .quote-item {
+            padding: 1.5rem;
+            border-left: 3px solid var(--ancient-gold);
+            background: linear-gradient(90deg, rgba(139, 0, 0, 0.15), transparent);
+        }
+        .quote-item p {
+            color: #f0e6d8;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+        .quote-item cite {
+            color: var(--bronze-light);
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        /* 人物导航 */
+        .char-navigation {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .nav-char-card {
+            background: linear-gradient(145deg, rgba(20, 15, 10, 0.95), rgba(10, 8, 5, 0.98));
+            border: 1px solid var(--bronze-dark);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .nav-char-card:hover {
+            border-color: var(--ancient-gold);
+            box-shadow: 0 0 20px rgba(201, 162, 39, 0.3);
+            transform: translateY(-3px);
+        }
+        .nav-char-emoji {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bronze-dark), var(--ancient-gold));
+            color: var(--ink-black);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .nav-char-name {
+            color: var(--ancient-gold);
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 1.1rem;
+        }
+        .nav-char-title {
+            color: var(--bronze-light);
+            font-size: 0.85rem;
+        }
+
+        /* 内容文字 */
+        .section-content p {
+            color: #d4c8b5;
+            line-height: 1.9;
+        }
+
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--ink-black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bronze-dark);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--ancient-gold);
         }
     </style>
 </head>
 <body>
     <nav class="top-nav">
-        <button class="back-btn" onclick="goBack()">← 返回</button>
-        <a href="timeline.html" class="nav-link">📜 世界时间线</a>
-        <a href="enhanced-creator.html" class="nav-link">✨ 身份创建器</a>
+        <button class="back-btn" onclick="goBack()">&#8592; 返回</button>
+        <a href="timeline.html" class="nav-link">卷 轴 世界时间线</a>
+        <a href="enhanced-creator.html" class="nav-link">炼 器 身份创建器</a>
     </nav>
 
     <main class="character-page">
@@ -62,12 +330,12 @@
                 <img src="images/wukong-portrait_0.jpg" alt="孙悟空" class="portrait-image" style="width:100%;height:100%;object-fit:cover;border-radius:8px;filter:sepia(0.2);">
             </div>
             <h1 class="char-name">孙悟空</h1>
-            <div class="char-identity-badge">齐天大圣 · 悟字辈</div>
-            <p class="char-subtitle">大圣一脉 · 命运节点 · 接引者</p>
+            <div class="char-identity-badge">齐天大圣 &#183; 悟字辈</div>
+            <p class="char-subtitle">大圣一脉 &#183; 命运节点 &#183; 接引者</p>
         </div>
 
         <section class="char-section">
-            <h2>📜 背景故事</h2>
+            <h2>卷一 背景故事</h2>
             <div class="section-content">
                 <p>混沌初开，天地分离。花果山巅，一颗仙石吸收日月精华，孕育出一只石猴。他天生灵慧，机敏过人，在群猴中脱颖而出，成为花果山美猴王。</p>
                 <p>为求长生不老之术，他漂洋过海，历经艰辛，终于来到方寸山斜月三星洞，拜入菩提祖师门下，赐名"悟空"，列"悟"字辈，成为主角的师兄。</p>
@@ -78,68 +346,68 @@
         </section>
 
         <section class="char-section">
-            <h2>🎭 性格特点</h2>
+            <h2>卷二 性格特点</h2>
             <div class="traits-grid">
                 <div class="trait-item">
-                    <span class="trait-icon">🔥</span>
+                    <span class="trait-icon">烈</span>
                     <span class="trait-text">桀骜不驯 - 不畏强权，敢挑战一切权威</span>
                 </div>
                 <div class="trait-item">
-                    <span class="trait-icon">⚔️</span>
+                    <span class="trait-icon">智</span>
                     <span class="trait-text">智勇双全 - 七十二变与筋斗云相伴</span>
                 </div>
                 <div class="trait-item">
-                    <span class="trait-icon">🤝</span>
+                    <span class="trait-icon">义</span>
                     <span class="trait-text">重情重义 - 对师弟们关怀备至</span>
                 </div>
                 <div class="trait-item">
-                    <span class="trait-icon">😤</span>
+                    <span class="trait-icon">正</span>
                     <span class="trait-text">嫉恶如仇 - 见不得妖魔欺凌弱小</span>
                 </div>
                 <div class="trait-item">
-                    <span class="trait-icon">🧠</span>
+                    <span class="trait-icon">谋</span>
                     <span class="trait-text">足智多谋 - 善于变化，出奇制胜</span>
                 </div>
                 <div class="trait-item">
-                    <span class="trait-icon">🎯</span>
+                    <span class="trait-icon">坚</span>
                     <span class="trait-text">目标坚定 - 一旦决定，绝不回头</span>
                 </div>
             </div>
         </section>
 
         <section class="char-section">
-            <h2>⚡ 能力与神通</h2>
+            <h2>卷三 能力与神通</h2>
             <div class="abilities-list">
                 <div class="ability-card">
-                    <div class="ability-icon">🪄</div>
+                    <div class="ability-icon">变</div>
                     <div class="ability-info">
                         <h3>七十二变</h3>
                         <p>可变化为七十二种形态，上天入地，无所不能</p>
                     </div>
                 </div>
                 <div class="ability-card">
-                    <div class="ability-icon">☁️</div>
+                    <div class="ability-icon">云</div>
                     <div class="ability-info">
                         <h3>筋斗云</h3>
                         <p>一个筋斗十万八千里，速度无双</p>
                     </div>
                 </div>
                 <div class="ability-card">
-                    <div class="ability-icon">🦾</div>
+                    <div class="ability-icon">金</div>
                     <div class="ability-info">
                         <h3>铜头铁臂</h3>
                         <p>金刚不坏之身，刀枪不入，水火不侵</p>
                     </div>
                 </div>
                 <div class="ability-card">
-                    <div class="ability-icon">👁️</div>
+                    <div class="ability-icon">睛</div>
                     <div class="ability-info">
                         <h3>火眼金睛</h3>
                         <p>能识破一切妖魔伪装，看穿虚妄</p>
                     </div>
                 </div>
                 <div class="ability-card">
-                    <div class="ability-icon">⚡</div>
+                    <div class="ability-icon">棒</div>
                     <div class="ability-info">
                         <h3>如意金箍棒</h3>
                         <p>东海龙宫定海神针，可大可小，重达万斤</p>
@@ -149,7 +417,7 @@
         </section>
 
         <section class="char-section">
-            <h2>🔗 与主角的关系</h2>
+            <h2>卷四 与主角的关系</h2>
             <div class="relationship-card">
                 <div class="relation-header">
                     <span class="relation-type">师兄弟</span>
@@ -165,7 +433,7 @@
         </section>
 
         <section class="char-section">
-            <h2>💬 经典语录</h2>
+            <h2>卷五 经典语录</h2>
             <div class="quotes-list">
                 <blockquote class="quote-item">
                     <p>"皇帝轮流做，明年到我家！"</p>
@@ -192,14 +460,14 @@
 
         <div class="char-navigation">
             <a href="character-player.html" class="nav-char-card">
-                <span class="nav-char-emoji">👤</span>
+                <span class="nav-char-emoji">主</span>
                 <span class="nav-char-name">你（主角）</span>
-                <span class="nav-char-title">圆字辈 · 觉字机缘</span>
+                <span class="nav-char-title">圆字辈 &#183; 觉字机缘</span>
             </a>
             <a href="character-puti.html" class="nav-char-card">
-                <span class="nav-char-emoji">⚡</span>
+                <span class="nav-char-emoji">祖</span>
                 <span class="nav-char-name">菩提老祖</span>
-                <span class="nav-char-title">方寸山主 · 大觉者</span>
+                <span class="nav-char-title">方寸山主 &#183; 大觉者</span>
             </a>
         </div>
     </main>
