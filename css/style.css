@@ -95,20 +95,17 @@ body::before {
     overflow: hidden;
 }
 
-/* 背景图 - 三段式无缝衔接 */
+/* 背景图 - 无缝长图 */
 .cover-image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-        url('../images/universe_top.jpg') center top / contain no-repeat,
-        url('../images/universe_cosmos_0.jpg') center center / contain no-repeat,
-        url('../images/universe_bottom.jpg') center bottom / contain no-repeat,
-        var(--bg-deep);
-    background-size: 100% 33.33%, 100% 33.33%, 100% 33.33%;
-    background-position: center top, center center, center bottom;
+    background-image: url('../images/universe_full.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     transition: transform 15s ease-out;
 }
 
@@ -116,14 +113,16 @@ body::before {
 @media (max-width: 768px) {
     .cover-image {
         background-size: cover;
+        background-position: center 40%;
     }
 }
 
 /* 手机竖屏 - 显示完整画面 */
 @media (max-width: 768px) and (orientation: portrait) {
     .cover-image {
-        background-size: cover;
-        background-position: center;
+        background-size: contain;
+        background-position: center center;
+        background-color: #0a0908;
     }
 }
 
@@ -131,7 +130,7 @@ body::before {
 @media (max-width: 768px) and (orientation: landscape) {
     .cover-image {
         background-size: cover;
-        background-position: center;
+        background-position: center center;
     }
 }
 
