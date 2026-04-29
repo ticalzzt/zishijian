@@ -7,8 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/character.css">
     <style>
         :root {
             --ink-black: #0a0908;
@@ -17,351 +15,291 @@
             --bronze-light: #d4a84b;
             --bronze-dark: #8b6914;
         }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             background: var(--ink-black);
-            font-family: 'Noto Serif SC', 'Songti SC', SimSun, serif;
-            background-image: 
-                linear-gradient(rgba(10, 9, 8, 0.88), rgba(10, 9, 8, 0.92)),
-                url('images/player_bg.jpg');
+            font-family: 'Noto Serif SC', serif;
+        }
+        
+        /* 导航栏 */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 9, 8, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--ancient-gold);
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: background 0.3s;
+        }
+        
+        .top-nav.scrolled {
+            background: rgba(10, 9, 8, 0.95);
+        }
+        
+        .back-btn, .nav-link {
+            color: var(--ancient-gold);
+            font-family: 'ZCOOL XiaoWei', serif;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .back-btn { border-color: rgba(201, 162, 39, 0.4); }
+        
+        .back-btn:hover, .nav-link:hover {
+            color: var(--bronze-light);
+            text-shadow: 0 0 10px rgba(201, 162, 39, 0.8);
+        }
+        
+        /* 全屏人物封面 */
+        .hero-cover {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            background-image: url('images/player_bg.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-repeat: no-repeat;
         }
-        h1, h2, h3, .char-name { font-family: 'ZCOOL XiaoWei', 'KaiTi', 'STKaiti', serif; }
-        .top-nav {
-            background: linear-gradient(180deg, rgba(10,9,8,0.98) 0%, rgba(10,9,8,0.9) 100%);
-            border-bottom: 2px solid var(--ancient-gold);
-            box-shadow: 0 0 20px rgba(201, 162, 39, 0.3), inset 0 -1px 0 rgba(201, 162, 39, 0.2);
+        
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .hero-cover {
+                background-size: cover;
+                background-position: center top;
+            }
         }
-        .back-btn, .nav-link { color: var(--ancient-gold); font-family: 'ZCOOL XiaoWei', 'KaiTi', 'STKaiti', serif; }
-        .back-btn:hover, .nav-link:hover { color: var(--bronze-light); text-shadow: 0 0 10px rgba(201, 162, 39, 0.8); }
-        .char-portrait {
-            width: 200px; height: 280px; margin: 0 auto 2rem;
-            position: relative; display: flex; align-items: center; justify-content: center;
+        
+        @media (min-width: 769px) {
+            .hero-cover {
+                background-position: center;
+            }
         }
-        .portrait-aura {
-            position: absolute; width: 250px; height: 250px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(139, 0, 0, 0.4) 0%, rgba(201, 162, 39, 0.2) 50%, transparent 70%);
-            animation: destinyAura 3s ease-in-out infinite;
+        
+        @media (orientation: landscape) and (max-height: 500px) {
+            .hero-cover {
+                background-size: cover;
+                background-position: center;
+            }
         }
-        .portrait-stars {
-            position: absolute; width: 100%; height: 100%;
-            animation: starsRotate 20s linear infinite;
+        
+        .hero-cover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(transparent, var(--ink-black));
         }
-        @keyframes destinyAura {
-            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.5; filter: blur(8px); }
-            50% { transform: scale(1.3) rotate(180deg); opacity: 0.8; filter: blur(12px); }
+        
+        .hero-content {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 2;
         }
-        @keyframes starsRotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        
+        .hero-title {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 4rem;
+            color: var(--ancient-gold);
+            text-shadow: 0 0 30px rgba(201, 162, 39, 0.8);
+            margin-bottom: 0.5rem;
         }
-        .portrait-emoji {
-            width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--bronze-light);
+            margin-bottom: 1rem;
+        }
+        
+        .hero-badge {
+            display: inline-block;
             background: linear-gradient(135deg, var(--dark-red), var(--bronze-dark));
             border: 2px solid var(--ancient-gold);
-            color: var(--ancient-gold); font-weight: bold; font-size: 2rem;
-            animation: destinyGlow 2s ease-in-out infinite;
-            box-shadow: 0 0 20px rgba(201, 162, 39, 0.5);
-        }
-        @keyframes destinyGlow {
-            0%, 100% { box-shadow: 0 0 20px rgba(201, 162, 39, 0.5); }
-            50% { box-shadow: 0 0 35px rgba(201, 162, 39, 0.8), 0 0 50px rgba(139, 0, 0, 0.4); }
-        }
-        .char-header, .char-section, .relationship-card, .quote-item, .mystery-box {
-            border: 2px solid var(--ancient-gold);
-            background: linear-gradient(145deg, rgba(20, 18, 15, 0.95) 0%, rgba(10, 9, 8, 0.98) 100%);
-            box-shadow: 
-                inset 0 0 30px rgba(0, 0, 0, 0.8),
-                inset 0 0 60px rgba(139, 0, 0, 0.1),
-                0 0 15px rgba(201, 162, 39, 0.2);
-            position: relative;
-        }
-        .char-header::before, .char-section::before {
-            content: ''; position: absolute; top: -1px; left: -1px; right: -1px; bottom: -1px;
-            border: 1px solid rgba(201, 162, 39, 0.3); pointer-events: none;
-        }
-        .char-name {
             color: var(--ancient-gold);
-            text-shadow: 
-                0 0 10px rgba(201, 162, 39, 0.8),
-                0 0 20px rgba(201, 162, 39, 0.5),
-                0 0 40px rgba(201, 162, 39, 0.3);
-            animation: goldShimmer 3.5s ease-in-out infinite;
+            padding: 0.5rem 1.5rem;
+            font-family: 'ZCOOL XiaoWei', serif;
         }
-        @keyframes goldShimmer {
-            0%, 100% { text-shadow: 0 0 10px rgba(201, 162, 39, 0.8), 0 0 20px rgba(201, 162, 39, 0.5); }
-            50% { text-shadow: 0 0 15px rgba(201, 162, 39, 1), 0 0 30px rgba(201, 162, 39, 0.7), 0 0 50px rgba(201, 162, 39, 0.4); }
+        
+        /* 滚动提示 */
+        .scroll-hint {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            text-align: center;
+            color: var(--bronze-light);
+            animation: bounce 2s infinite;
         }
-        .char-identity-badge {
-            background: linear-gradient(135deg, var(--bronze-dark), var(--ancient-gold), var(--bronze-dark));
-            color: var(--ink-black); padding: 0.3rem 1rem; border-radius: 0;
-            font-weight: 600; display: inline-block; margin-bottom: 0.5rem;
-            border: 1px solid var(--ancient-gold); box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
-            font-family: 'ZCOOL XiaoWei', 'KaiTi', 'STKaiti', serif;
+        
+        .scroll-arrow {
+            width: 24px;
+            height: 24px;
+            border-right: 2px solid var(--ancient-gold);
+            border-bottom: 2px solid var(--ancient-gold);
+            transform: rotate(45deg);
+            margin: 0 auto;
         }
-        .char-subtitle { color: var(--bronze-light); font-family: 'Noto Serif SC', serif; }
-        .char-section h2 {
-            color: var(--ancient-gold); font-family: 'ZCOOL XiaoWei', 'KaiTi', 'STKaiti', serif;
-            border-bottom: 1px solid var(--ancient-gold); padding-bottom: 0.5rem;
-            text-shadow: 0 0 8px rgba(201, 162, 39, 0.5);
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
         }
-        .traits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
-        .trait-item {
-            background: linear-gradient(145deg, rgba(30, 25, 20, 0.9), rgba(15, 12, 10, 0.95));
-            border: 1px solid var(--bronze-dark); padding: 1rem; display: flex;
-            align-items: center; gap: 1rem;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.5), 0 0 8px rgba(201, 162, 39, 0.15);
-            transition: all 0.3s ease;
+        
+        /* 内容区域 */
+        .content-section {
+            background: var(--ink-black);
+            padding: 3rem 1.5rem;
+            min-height: 100vh;
         }
-        .trait-item:hover {
-            border-color: var(--ancient-gold);
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.6), 0 0 15px rgba(201, 162, 39, 0.3);
+        
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
         }
-        .trait-icon {
-            width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
-            background: linear-gradient(135deg, var(--bronze-dark), var(--ancient-gold));
-            color: var(--ink-black); font-weight: bold; font-size: 0.9rem; flex-shrink: 0;
-        }
-        .trait-text { color: #e8dcc8; font-size: 0.95rem; }
-        .abilities-list { display: grid; gap: 1rem; }
-        .ability-card {
-            background: linear-gradient(145deg, rgba(25, 20, 15, 0.95), rgba(10, 9, 8, 0.98));
-            border: 1px solid var(--bronze-dark); padding: 1.5rem; display: flex; gap: 1rem;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.6), 0 0 10px rgba(139, 0, 0, 0.2);
-        }
-        .ability-card.locked {
-            border-color: rgba(139, 0, 0, 0.5);
-            opacity: 0.7;
-        }
-        .ability-icon {
-            width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
-            background: linear-gradient(135deg, var(--dark-red), #5a0000); border: 1px solid var(--ancient-gold);
-            color: var(--ancient-gold); font-weight: bold; font-size: 1.1rem; flex-shrink: 0;
-            box-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
-        }
-        .ability-card.locked .ability-icon {
-            background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
-            border-color: var(--bronze-dark);
-            color: var(--bronze-dark);
-        }
-        .ability-info h3 { color: var(--ancient-gold); font-family: 'ZCOOL XiaoWei', 'KaiTi', 'STKaiti', serif; margin-bottom: 0.3rem; }
-        .ability-info p { color: #c9bda8; }
-        .unlock-hint {
-            display: block; color: var(--bronze-dark); font-size: 0.85rem; margin-top: 0.5rem;
-            font-style: italic;
-        }
-        .relationship-card {
+        
+        h1, h2, h3 { font-family: 'ZCOOL XiaoWei', serif; }
+        
+        .char-section {
             border: 2px solid var(--ancient-gold);
-            background: linear-gradient(145deg, rgba(30, 15, 10, 0.95), rgba(15, 8, 5, 0.98)); padding: 1.5rem;
+            background: rgba(20, 18, 15, 0.8);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
         }
-        .relation-header { display: flex; gap: 1rem; margin-bottom: 1rem; }
-        .relation-type, .relation-level {
-            background: linear-gradient(135deg, var(--dark-red), #4a0000); color: var(--ancient-gold);
-            padding: 0.3rem 1rem; border: 1px solid var(--ancient-gold); font-family: 'ZCOOL XiaoWei', 'KaiTi', 'STKaiti', serif;
+        
+        .char-section h2 {
+            color: var(--ancient-gold);
+            border-bottom: 1px solid var(--ancient-gold);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
-        .relation-content p, .relation-content h4 { color: #e0d5c5; line-height: 1.8; }
-        .relation-content h4 { 
-            color: var(--ancient-gold); font-family: 'ZCOOL XiaoWei', 'KaiTi', 'STKaiti', serif; 
-            margin: 1.5rem 0 0.5rem; border-bottom: 1px solid var(--bronze-dark); padding-bottom: 0.3rem;
+        
+        .section-content p {
+            color: #d4c8b5;
+            line-height: 1.9;
+            margin-bottom: 1rem;
         }
-        .relation-content h4:first-child { margin-top: 0; }
-        .mystery-box {
-            background: linear-gradient(145deg, rgba(30, 15, 10, 0.9), rgba(15, 8, 5, 0.95));
-            padding: 2rem; margin-top: 1rem; text-align: center;
-            border: 2px solid var(--bronze-dark);
+        
+        .traits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
         }
-        .mystery-box p {
-            font-style: italic; opacity: 0.95; line-height: 2; color: #f0e6d8;
-            font-size: 1.05rem;
+        
+        .trait-item {
+            background: rgba(30, 25, 20, 0.7);
+            border: 1px solid var(--bronze-dark);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
-        .quotes-list { display: grid; gap: 1rem; }
-        .quote-item {
-            padding: 1.5rem; border-left: 3px solid var(--ancient-gold);
-            background: linear-gradient(90deg, rgba(139, 0, 0, 0.15), transparent);
-        }
-        .quote-item p { color: #f0e6d8; font-style: italic; font-size: 1.1rem; }
-        .quote-item em { color: var(--bronze-light); }
-        .char-navigation { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
-        .nav-char-card {
-            background: linear-gradient(145deg, rgba(20, 15, 10, 0.95), rgba(10, 8, 5, 0.98));
-            border: 1px solid var(--bronze-dark); padding: 1.5rem; display: flex; flex-direction: column;
-            align-items: center; gap: 0.5rem; transition: all 0.3s ease; text-decoration: none;
-        }
-        .nav-char-card:hover {
-            border-color: var(--ancient-gold); box-shadow: 0 0 20px rgba(201, 162, 39, 0.3); transform: translateY(-3px);
-        }
-        .nav-char-emoji {
-            width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
+        
+        .trait-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: linear-gradient(135deg, var(--bronze-dark), var(--ancient-gold));
-            color: var(--ink-black); font-weight: bold; font-size: 1.2rem;
+            color: var(--ink-black);
+            font-weight: bold;
         }
-        .nav-char-name { color: var(--ancient-gold); font-family: 'ZCOOL XiaoWei', 'KaiTi', 'STKaiti', serif; font-size: 1.1rem; }
-        .nav-char-title { color: var(--bronze-light); font-size: 0.85rem; }
-        .section-content p { color: #d4c8b5; line-height: 1.9; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--ink-black); }
-        ::-webkit-scrollbar-thumb { background: var(--bronze-dark); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--ancient-gold); }
+        
+        .trait-text { color: #e8dcc8; }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .top-nav { padding: 0.5rem 1rem; gap: 0.8rem; }
+            .nav-link { font-size: 0.85rem; }
+            .content-section { padding: 2rem 1rem; }
+            .traits-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-    <nav class="top-nav">
-        <button class="back-btn" onclick="goBack()">&#8592; 返回</button>
-        <a href="timeline.html" class="nav-link">卷 轴 世界时间线</a>
-        <a href="enhanced-creator.html" class="nav-link">炼 器 身份创建器</a>
+    <nav class="top-nav" id="topNav">
+        <button class="back-btn" onclick="goBack()">← 返回</button>
+        <a href="timeline.html" class="nav-link">世界时间线</a>
+        <a href="enhanced-creator.html" class="nav-link">身份创建器</a>
     </nav>
 
-    <main class="character-page">
-        <div class="char-header">
-            <div class="char-portrait">
-                <div class="portrait-aura"></div>
-                <div class="portrait-stars">
-                    <svg viewBox="0 0 200 200" width="100%" height="100%">
-                        <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(201, 162, 39, 0.2)" stroke-width="1" stroke-dasharray="5,5"/>
-                        <circle cx="100" cy="100" r="100" fill="none" stroke="rgba(201, 162, 39, 0.1)" stroke-width="1" stroke-dasharray="3,7"/>
-                    </svg>
-                </div>
-                <div class="portrait-emoji">觉</div>
-            </div>
-            <h1 class="char-name">你</h1>
-            <div class="char-identity-badge">圆字辈 &#183; 觉字机缘</div>
-            <p class="char-subtitle">来自地球 &#183; 命运的关键 &#183; 最后的觉</p>
+    <!-- 全屏人物封面 -->
+    <section class="hero-cover">
+        <div class="hero-content">
+            <h1 class="hero-title">你</h1>
+            <p class="hero-subtitle">觉字机缘 · 诸天见证者</p>
+            <div class="hero-badge">圆字辈 · 命运的关键</div>
         </div>
-
-        <section class="char-section">
-            <h2>卷一 背景故事</h2>
-            <div class="section-content">
-                <p>你，只是一个普通人。来自地球，过着平凡的生活。没有显赫的身世，没有特殊的背景，每天为生活奔波，为琐事烦恼。</p>
-                <p>直到那一天，一切都变了。</p>
-                <p>当你的意识再次清明时，你发现自己盘坐在石阶之上。四周云雾缭绕，仙气氤氲。面前，是漫天仙佛的虚影；身后，是一个熟悉的背影——那是孙悟空，但他没有回头。</p>
-                <p>"师弟，你终于来了。"</p>
-                <p>那一刻，你明白了。你穿越了，穿越到了西游世界。更准确地说，是穿越到了"藏子世间"——一个时间线发生改变的西游世界。</p>
-                <p>菩提祖师的"觉"字辈弟子尚未集齐，而你，成为了最后一块拼图——"觉字机缘"。</p>
-                <p>从此刻起，你的命运将与诸天宇宙紧紧相连。你将见证大闹天宫的真相，体验被压五行山的孤寂，最终，与师兄们一起，揭开藏子世间的终极秘密。</p>
-            </div>
-        </section>
-
-        <section class="char-section">
-            <h2>卷二 性格特点</h2>
-            <div class="traits-grid">
-                <div class="trait-item">
-                    <span class="trait-icon">新</span>
-                    <span class="trait-text">现代思维 - 拥有超越时代的认知</span>
-                </div>
-                <div class="trait-item">
-                    <span class="trait-icon">韧</span>
-                    <span class="trait-text">坚韧不拔 - 面对困境绝不放弃</span>
-                </div>
-                <div class="trait-item">
-                    <span class="trait-icon">探</span>
-                    <span class="trait-text">求知若渴 - 对未知充满好奇</span>
-                </div>
-                <div class="trait-item">
-                    <span class="trait-icon">情</span>
-                    <span class="trait-text">重情重义 - 珍惜每一份羁绊</span>
-                </div>
-                <div class="trait-item">
-                    <span class="trait-icon">适</span>
-                    <span class="trait-text">适应力强 - 能快速融入新环境</span>
-                </div>
-                <div class="trait-item">
-                    <span class="trait-icon">潜</span>
-                    <span class="trait-text">无限可能 - 未被定义的命运</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="char-section">
-            <h2>卷三 觉醒能力</h2>
-            <div class="abilities-list">
-                <div class="ability-card locked">
-                    <div class="ability-icon">?</div>
-                    <div class="ability-info">
-                        <h3>【待觉醒】觉字真言</h3>
-                        <p>觉字辈弟子的核心神通，尚在沉睡中...</p>
-                        <span class="unlock-hint">完成初始试炼后可解锁</span>
-                    </div>
-                </div>
-                <div class="ability-card locked">
-                    <div class="ability-icon">?</div>
-                    <div class="ability-info">
-                        <h3>【待觉醒】诸天感应</h3>
-                        <p>感知诸天宇宙的变化，尚未开启...</p>
-                        <span class="unlock-hint">与菩提老祖建立联系后可解锁</span>
-                    </div>
-                </div>
-                <div class="ability-card">
-                    <div class="ability-icon">界</div>
-                    <div class="ability-info">
-                        <h3>【已觉醒】跨界思维</h3>
-                        <p>来自现代世界的知识与思维方式</p>
-                    </div>
-                </div>
-                <div class="ability-card">
-                    <div class="ability-icon">学</div>
-                    <div class="ability-info">
-                        <h3>【已觉醒】速学之才</h3>
-                        <p>学习能力超越常人，能快速掌握新技能</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="char-section">
-            <h2>卷四 与众角色的关系</h2>
-            <div class="relationship-card">
-                <div class="relation-header">
-                    <span class="relation-type">核心</span>
-                    <span class="relation-level">命运交汇点</span>
-                </div>
-                <div class="relation-content">
-                    <h4>孙悟空（师兄）</h4>
-                    <p>"师弟，你终于来了。"这句话，是他等待了无数岁月的期盼。作为悟字辈的大师兄，他将是你最坚实的依靠。</p>
-                    
-                    <h4>菩提老祖（师父）</h4>
-                    <p>你的师父，神秘的方寸山主。他的"大觉"与你的"觉"，将共同编织诸天宇宙的未来。</p>
-                    
-                    <h4>其他悟字辈师兄</h4>
-                    <p>在你之前，已有无数悟字辈弟子。他们分散在诸天宇宙各处，等待着觉字辈师弟的觉醒。</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="char-section">
-            <h2>卷五 你的起点</h2>
-            <div class="mystery-box">
-                <p>"方寸山，斜月三星洞。<br>你睁开眼，发现自己盘坐在石阶之上，<br>面前是漫天仙佛。<br>一个熟悉的背影挡在你身前——<br>那是孙悟空，但他没有回头。<br>他只是望着前方高台，轻声说了一句：<br><strong>师弟，你终于来了。</strong>"</p>
-            </div>
-            <div class="quotes-list" style="margin-top: 1.5rem;">
-                <blockquote class="quote-item">
-                    <p>"我...这是哪里？" <em>—— 初醒时的困惑</em></p>
-                </blockquote>
-                <blockquote class="quote-item">
-                    <p>"既然来了，就没有回头路。" <em>—— 命运的宣言</em></p>
-                </blockquote>
-            </div>
-        </section>
-
-        <div class="char-navigation">
-            <a href="character-wukong.html" class="nav-char-card">
-                <span class="nav-char-emoji">猴</span>
-                <span class="nav-char-name">孙悟空</span>
-                <span class="nav-char-title">齐天大圣 &#183; 悟字辈</span>
-            </a>
-            <a href="character-puti.html" class="nav-char-card">
-                <span class="nav-char-emoji">祖</span>
-                <span class="nav-char-name">菩提老祖</span>
-                <span class="nav-char-title">方寸山主 &#183; 大觉者</span>
-            </a>
+        <div class="scroll-hint">
+            <div class="scroll-arrow"></div>
         </div>
-    </main>
+    </section>
 
-    <script src="js/main.js"></script>
+    <!-- 下滑内容区域 -->
+    <section class="content-section">
+        <div class="content-container">
+            <div class="char-section">
+                <h2>卷一 背景故事</h2>
+                <div class="section-content">
+                    <p>你，只是一个普通人。来自地球，过着平凡的生活。没有显赫的身世，没有特殊的背景，每天为生活奔波，为琐事烦恼。</p>
+                    <p>直到那一天，一切都变了。</p>
+                    <p>当你的意识再次清明时，你发现自己盘坐在石阶之上。四周云雾缭绕，仙气氤氲。面前，是漫天仙佛的虚影；身后，是一个熟悉的背影——那是孙悟空，但他没有回头。</p>
+                    <p>"师弟，你终于来了。"</p>
+                </div>
+            </div>
+
+            <div class="char-section">
+                <h2>卷二 性格特点</h2>
+                <div class="traits-grid">
+                    <div class="trait-item">
+                        <span class="trait-icon">新</span>
+                        <span class="trait-text">现代思维 - 拥有超越时代的认知</span>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-icon">韧</span>
+                        <span class="trait-text">坚韧不拔 - 面对困境绝不放弃</span>
+                    </div>
+                    <div class="trait-item">
+                        <span class="trait-icon">探</span>
+                        <span class="trait-text">求知若渴 - 对未知充满好奇</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script>
         function goBack() {
-            window.location.href = 'index.html';
+            window.history.back() || (window.location.href = 'index.html');
         }
+        
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('topNav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
     </script>
 </body>
 </html>
