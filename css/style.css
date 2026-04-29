@@ -110,14 +110,6 @@ body::before {
     transition: transform 15s ease-out;
 }
 
-/* 手机端使用竖屏专用背景图 */
-@media (max-width: 768px) and (orientation: portrait) {
-    .cover-image {
-        background-image: url('../images/universe_mobile.jpg');
-        background-position: center center;
-    }
-}
-
 .cover-image:hover {
     transform: scale(1.03);
 }
