@@ -1617,3 +1617,240 @@ body::before {
     0%, 100% { transform: translateY(0) scale(1); }
     50% { transform: translateY(-20px) scale(1.05); }
 }
+
+/* ========================================
+   首页重构 - 叙事入口样式
+   ======================================== */
+
+/* 宇宙介绍文字 */
+.universe-intro {
+    position: absolute;
+    top: 28%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease-out 0.5s forwards;
+}
+
+.universe-intro p {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--text-secondary);
+    letter-spacing: 0.4em;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(201, 162, 39, 0.2);
+}
+
+.universe-intro p:last-child {
+    color: var(--gold-dim);
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+}
+
+/* CTA 按钮容器 */
+.cta-container {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 15;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease-out 0.8s forwards;
+}
+
+/* 开始探索按钮 */
+.explore-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 48px;
+    background: linear-gradient(180deg, 
+        rgba(201, 162, 39, 0.15) 0%, 
+        rgba(139, 115, 21, 0.1) 50%,
+        rgba(100, 80, 15, 0.2) 100%
+    );
+    border: 2px solid var(--gold);
+    border-radius: 4px;
+    color: var(--gold-bright);
+    text-decoration: none;
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-weight: 700;
+    letter-spacing: 0.5em;
+    margin-right: -0.5em;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    box-shadow: 
+        0 0 30px rgba(201, 162, 39, 0.3),
+        0 0 60px rgba(201, 162, 39, 0.1),
+        inset 0 0 30px rgba(201, 162, 39, 0.1);
+}
+
+.explore-btn .btn-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(245, 212, 66, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+}
+
+.explore-btn:hover .btn-glow {
+    width: 300px;
+    height: 300px;
+}
+
+.explore-btn .btn-text {
+    position: relative;
+    z-index: 1;
+}
+
+.explore-btn .btn-arrow {
+    position: relative;
+    z-index: 1;
+    font-size: 1.4em;
+    transition: transform 0.3s ease;
+}
+
+.explore-btn:hover {
+    background: linear-gradient(180deg, 
+        rgba(201, 162, 39, 0.25) 0%, 
+        rgba(139, 115, 21, 0.2) 50%,
+        rgba(100, 80, 15, 0.3) 100%
+    );
+    border-color: var(--gold-bright);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 0 50px rgba(201, 162, 39, 0.5),
+        0 0 100px rgba(201, 162, 39, 0.2),
+        inset 0 0 40px rgba(201, 162, 39, 0.15);
+}
+
+.explore-btn:hover .btn-arrow {
+    transform: translateX(8px);
+}
+
+.explore-btn:active {
+    transform: translateY(-1px);
+}
+
+/* CTA 提示文字 */
+.cta-hint {
+    margin-top: 1.2rem;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+    color: var(--text-muted);
+    letter-spacing: 0.3em;
+}
+
+/* 淡入上移动画 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* 移除旧的点击提示样式 */
+.hint {
+    display: none;
+}
+
+/* 移除旧的可点击区域 */
+.click-zone {
+    display: none;
+}
+
+/* ========================================
+   响应式调整 - 首页
+   ======================================== */
+@media (max-width: 768px) {
+    .universe-intro {
+        top: 24%;
+    }
+    
+    .universe-intro p {
+        font-size: 0.9rem;
+        letter-spacing: 0.25em;
+    }
+    
+    .cta-container {
+        top: 42%;
+    }
+    
+    .explore-btn {
+        padding: 14px 36px;
+        font-size: 1rem;
+        letter-spacing: 0.3em;
+    }
+    
+    .cta-hint {
+        font-size: 0.7rem;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .universe-intro {
+        top: 20%;
+    }
+    
+    .universe-intro p {
+        font-size: 0.8rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .cta-container {
+        top: 38%;
+    }
+    
+    .explore-btn {
+        padding: 12px 28px;
+        font-size: 0.9rem;
+    }
+    
+    .cta-hint {
+        font-size: 0.65rem;
+    }
+    
+    .home-nav {
+        padding: 6px 8px;
+        gap: 3px;
+        bottom: 3px;
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .universe-intro {
+        top: 15%;
+    }
+    
+    .universe-intro p {
+        font-size: 0.85rem;
+    }
+    
+    .cta-container {
+        top: 35%;
+    }
+    
+    .explore-btn {
+        padding: 10px 30px;
+        font-size: 1rem;
+    }
+    
+    .cta-hint {
+        margin-top: 0.6rem;
+        font-size: 0.7rem;
+    }
+}
+/* cache bust: 1777460000 */
