@@ -68,30 +68,26 @@
             height: 100vh;
             width: 100%;
             position: relative;
-            background-image: url('images/player_bg.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--ink-black);
         }
         
-        /* 响应式适配 */
-        @media (max-width: 768px) {
-            .hero-cover {
-                background-size: cover;
-                background-position: center top;
-            }
+        .hero-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
         
-        @media (min-width: 769px) {
-            .hero-cover {
-                background-position: center;
-            }
-        }
-        
-        @media (orientation: landscape) and (max-height: 500px) {
-            .hero-cover {
-                background-size: cover;
-                background-position: center;
+        /* 横屏时用cover填充 */
+        @media (orientation: landscape) {
+            .hero-cover img {
+                object-fit: cover;
             }
         }
         
@@ -101,8 +97,9 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 40%;
+            height: 30%;
             background: linear-gradient(transparent, var(--ink-black));
+            z-index: 1;
         }
         
         .hero-content {
@@ -244,6 +241,7 @@
 
     <!-- 全屏人物封面 -->
     <section class="hero-cover">
+        <img src="images/player_bg.jpg" alt="角色选择">
         <div class="hero-content">
             <h1 class="hero-title">你</h1>
             <p class="hero-subtitle">觉字机缘 · 诸天见证者</p>
