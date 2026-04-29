@@ -3,7 +3,7 @@
 ---
 
 **Project Name**: Zishijian (藏子世间)
-**Project Positioning**: AI-Powered Interactive Novel Universe Platform
+**Project Positioning**: AI-Powered Interactive Novel Universe Platform (Global-First Strategy)
 **Contact Email**: tical@coze.email
 **Official Repository**: https://github.com/ticalzzt/zishijian
 **Website**: https://zishijian.com/ | https://ticalzzt.github.io/zishijian/
@@ -14,6 +14,9 @@
 ## Executive Summary
 
 Zishijian (藏子世间) is an innovative AI-powered interactive novel universe platform that creates immersive, user-participatory storytelling experiences. Built upon the foundation of Chinese classical mythology "Journey to the West" (西游记), the platform integrates AI content generation, multi-universe parallel narratives, and user co-creation mechanisms.
+
+> **Go-to-Market Strategy: Global-First**
+> Zishijian deliberately pursues a global-first market entry strategy. While the company is incorporated in mainland China (藏子世间公司) with full ICP compliance and filing (备案), we prioritize international users as our primary market. The domestic Chinese content market is hyper-competitive with entrenched platforms that replicate rather than acquire innovation. By establishing brand, revenue, and user base globally first, we create defensible value before entering the China market from a position of strength.
 
 **Why Invest in Zishijian:**
 
@@ -352,8 +355,8 @@ Month 6:     Full platform launch with subscription system
    - Creator incentive and rating system
 
 4. **Mobile Applications**
-   - iOS and Android native apps
-   - WeChat Mini Program for China market
+   - iOS and Android native apps (global launch)
+   - WeChat Mini Program for China market (Phase 2, after global validation)
 
 #### 6.2.2 Mid-term Milestones
 
@@ -378,10 +381,12 @@ Month 18:  100,000 MAU milestone
    - Film/TV cooperation (short dramas, animations)
    - Merchandise products ("GuZi" economy)
 
-3. **Global Expansion**
-   - English language support
-   - Japanese, Korean, Vietnamese market entry
+3. **Global Expansion (Core Strategy)**
+   - English language support (Day 1 priority)
+   - Japanese, Korean, Vietnamese, Thai market entry
+   - Southeast Asia as beachhead (high mobile engagement, growing AI adoption)
    - Localization of content creation tools
+   - China market entry only after establishing global brand and revenue base
 
 4. **Distributed Node Network**
    - Creator node program launch
@@ -988,7 +993,7 @@ Zishijian (藏子世间) represents a compelling investment opportunity at the i
 - ✅ **Proven Execution**: Working MVP with 5 core modules live
 - ✅ **Multi-AI Strategy**: Not dependent on single vendor; supports MiMo, xAI, and custom keys
 - ✅ **Strong Unit Economics**: Freemium model with clear conversion path
-- ✅ **Cultural Alignment**: Capitalizing on Black Myth: Wukong success and growing Chinese cultural exports
+- ✅ **Global-First Strategy**: Prioritize international markets to build defensible brand and revenue before entering hyper-competitive China market
 
 ### Call to Action
 
@@ -997,7 +1002,7 @@ We are seeking **$500K - $2M in seed funding** to:
 1. Complete AI integration across all features
 2. Launch mobile applications for iOS and Android
 3. Build creator ecosystem with incentives
-4. Execute go-to-market strategy in China and global markets
+4. Execute global-first go-to-market strategy (international markets as primary battlefield)
 
 **Join us** in building the future of interactive storytelling, where every user becomes both reader and creator in an infinite universe of Chinese mythology and original content.
 
