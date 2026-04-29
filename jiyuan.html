@@ -3,215 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>机缘 - 藏子世间</title>
+    <title>觉字机缘 - 藏子世间</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
+        body {
+            margin: 0;
+            overflow-x: hidden;
+        }
+        
         .jiyuan-page {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            background: radial-gradient(ellipse at center, #1a0a1a 0%, #0a0908 100%);
-            overflow: hidden;
-        }
-        
-        .jiyuan-container {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .jiyuan-symbol {
-            width: 180px;
-            height: 180px;
-            border: 3px solid rgba(255, 215, 0, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            color: #ffd700;
-            animation: rotateGlow 10s linear infinite;
-            margin-bottom: 2rem;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .jiyuan-symbol:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
-        }
-        
-        .jiyuan-symbol::before,
-        .jiyuan-symbol::after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-        }
-        
-        .jiyuan-symbol::before {
-            width: 200px;
-            height: 200px;
-            border: 1px solid rgba(255, 215, 0, 0.15);
-            animation: rotateGlow 15s linear infinite reverse;
-        }
-        
-        .jiyuan-symbol::after {
-            width: 160px;
-            height: 160px;
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            animation: rotateGlow 8s linear infinite;
-        }
-        
-        @keyframes rotateGlow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .jiyuan-title {
-            font-family: 'LXGW WenKai', sans-serif;
-            font-size: 2rem;
-            color: #ffd700;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-        
-        .jiyuan-hint {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 2rem;
-        }
-        
-        .result-card {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            padding: 2.5rem;
-            border-radius: 20px;
-            text-align: center;
-            z-index: 1000;
-            animation: cardAppear 0.5s ease forwards;
-            max-width: 90%;
-            width: 400px;
-        }
-        
-        @keyframes cardAppear {
-            0% { transform: translate(-50%, -50%) scale(0) rotate(-10deg); }
-            50% { transform: translate(-50%, -50%) scale(1.1) rotate(5deg); }
-            100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-        }
-        
-        .result-card.tianming {
-            background: linear-gradient(135deg, #1a1a0a 0%, #2a2a1a 100%);
-            border: 3px solid #ffd700;
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.6), inset 0 0 30px rgba(255, 215, 0, 0.1);
-        }
-        
-        .result-card.shangshang {
-            background: linear-gradient(135deg, #1a0a2a 0%, #2a1a3a 100%);
-            border: 3px solid #9966ff;
-            box-shadow: 0 0 50px rgba(153, 102, 255, 0.5), inset 0 0 20px rgba(153, 102, 255, 0.1);
-        }
-        
-        .result-card.zhong {
-            background: linear-gradient(135deg, #0a1a2a 0%, #1a2a3a 100%);
-            border: 3px solid #4488ff;
-            box-shadow: 0 0 40px rgba(68, 136, 255, 0.4), inset 0 0 15px rgba(68, 136, 255, 0.1);
-        }
-        
-        .result-card.xia {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-            border: 3px solid #666;
-            box-shadow: 0 0 30px rgba(100, 100, 100, 0.3), inset 0 0 10px rgba(100, 100, 100, 0.1);
-        }
-        
-        .result-card.jieshu {
-            background: linear-gradient(135deg, #2a0a0a 0%, #3a1a1a 100%);
-            border: 3px solid #ff4444;
-            box-shadow: 0 0 50px rgba(255, 68, 68, 0.5), inset 0 0 20px rgba(255, 68, 68, 0.1);
-        }
-        
-        .result-level {
-            font-size: 1.8rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 20px currentColor;
-        }
-        
-        .tianming .result-level { color: #ffd700; }
-        .shangshang .result-level { color: #9966ff; }
-        .zhong .result-level { color: #4488ff; }
-        .xia .result-level { color: #999; }
-        .jieshu .result-level { color: #ff4444; }
-        
-        .result-text {
-            font-size: 1.3rem;
-            color: #fff;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-        
-        .result-effect {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.7);
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .close-btn {
-            margin-top: 1.5rem;
-            padding: 10px 30px;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: rgba(255, 255, 255, 0.8);
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 0.9rem;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-        
-        .close-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-        
-        .overlay-bg {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 999;
+            padding: 2rem 1rem;
+            background: radial-gradient(ellipse at top, #1a0a1a 0%, #0a0908 100%);
         }
         
         .back-home {
             position: fixed;
-            top: 20px;
-            left: 20px;
-            padding: 8px 20px;
+            top: 15px;
+            left: 15px;
+            padding: 8px 16px;
             background: transparent;
             border: 1px solid rgba(255, 215, 0, 0.3);
             color: rgba(255, 215, 0, 0.7);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             cursor: pointer;
             border-radius: 5px;
             text-decoration: none;
             transition: all 0.3s;
+            z-index: 100;
         }
         
         .back-home:hover {
             background: rgba(255, 215, 0, 0.1);
-            border-color: #ffd700;
             color: #ffd700;
+        }
+        
+        .result-container {
+            width: 100%;
+            max-width: 500px;
+            padding: 2rem 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result-container.tianming {
+            background: linear-gradient(135deg, #1a1a0a 0%, #2a2a1a 100%);
+            border: 3px solid #ffd700;
+            box-shadow: 0 0 80px rgba(255, 215, 0, 0.5), inset 0 0 40px rgba(255, 215, 0, 0.1);
+        }
+        
+        .result-container.shangshang {
+            background: linear-gradient(135deg, #1a0a2a 0%, #2a1a3a 100%);
+            border: 3px solid #9966ff;
+            box-shadow: 0 0 60px rgba(153, 102, 255, 0.4), inset 0 0 30px rgba(153, 102, 255, 0.1);
+        }
+        
+        .result-container.zhong {
+            background: linear-gradient(135deg, #0a1a2a 0%, #1a2a3a 100%);
+            border: 3px solid #4488ff;
+            box-shadow: 0 0 50px rgba(68, 136, 255, 0.3), inset 0 0 20px rgba(68, 136, 255, 0.1);
+        }
+        
+        .result-container.xia {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 3px solid #666;
+            box-shadow: 0 0 40px rgba(100, 100, 100, 0.2), inset 0 0 15px rgba(100, 100, 100, 0.1);
+        }
+        
+        .result-container.jieshu {
+            background: linear-gradient(135deg, #2a0a0a 0%, #3a1a1a 100%);
+            border: 3px solid #ff4444;
+            box-shadow: 0 0 60px rgba(255, 68, 68, 0.4), inset 0 0 25px rgba(255, 68, 68, 0.1);
+        }
+        
+        .level-badge {
+            display: inline-block;
+            padding: 8px 25px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .tianming .level-badge { background: rgba(255, 215, 0, 0.2); color: #ffd700; }
+        .shangshang .level-badge { background: rgba(153, 102, 255, 0.2); color: #9966ff; }
+        .zhong .level-badge { background: rgba(68, 136, 255, 0.2); color: #4488ff; }
+        .xia .level-badge { background: rgba(150, 150, 150, 0.2); color: #999; }
+        .jieshu .level-badge { background: rgba(255, 68, 68, 0.2); color: #ff4444; }
+        
+        .fortune-title {
+            font-family: 'LXGW WenKai', serif;
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px currentColor;
+        }
+        
+        .fortune-text {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-style: italic;
+        }
+        
+        .story-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+        
+        .story-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .story-content {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.9;
+        }
+        
+        .encounter-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        
+        .encounter-icon {
+            font-size: 1.5rem;
+        }
+        
+        .encounter-text {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .encounter-target {
+            font-size: 1.1rem;
+            color: #ffd700;
+            font-weight: 600;
+        }
+        
+        .guide-section {
+            border-left: 3px solid rgba(255, 215, 0, 0.5);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+        
+        .guide-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.5rem;
+        }
+        
+        .guide-text {
+            font-size: 1rem;
+            color: rgba(255, 215, 0, 0.9);
+            line-height: 1.6;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Noto Sans SC', sans-serif;
+            border: none;
+        }
+        
+        .btn-redraw {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            color: #ffd700;
+        }
+        
+        .btn-redraw:hover {
+            background: rgba(255, 215, 0, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+        
+        .btn-save {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .btn-save:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+            color: #fff;
+        }
+        
+        .btn-saved {
+            background: rgba(76, 175, 80, 0.2);
+            border-color: #4caf50;
+            color: #4caf50;
+        }
+        
+        .history-section {
+            width: 100%;
+            max-width: 500px;
+            margin-top: 2rem;
+        }
+        
+        .history-title {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .history-list {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .history-item {
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .history-item.tianming { background: rgba(255, 215, 0, 0.15); color: #ffd700; border: 1px solid rgba(255, 215, 0, 0.3); }
+        .history-item.shangshang { background: rgba(153, 102, 255, 0.15); color: #9966ff; border: 1px solid rgba(153, 102, 255, 0.3); }
+        .history-item.zhong { background: rgba(68, 136, 255, 0.15); color: #4488ff; border: 1px solid rgba(68, 136, 255, 0.3); }
+        .history-item.xia { background: rgba(150, 150, 150, 0.15); color: #999; border: 1px solid rgba(150, 150, 150, 0.3); }
+        .history-item.jieshu { background: rgba(255, 68, 68, 0.15); color: #ff4444; border: 1px solid rgba(255, 68, 68, 0.3); }
+        
+        .history-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .stats {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.3);
+            text-align: right;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 3rem;
+        }
+        
+        .loading-symbol {
+            font-size: 4rem;
+            animation: spin 2s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         .particles {
@@ -221,31 +300,23 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            overflow: hidden;
+            z-index: -1;
         }
         
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 215, 0, 0.6);
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 215, 0, 0.4);
             border-radius: 50%;
-            animation: float 10s infinite;
+            animation: floatUp 15s infinite linear;
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh); opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
-            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
-        }
-        
-        .draw-count {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.4);
+            100% { transform: translateY(-100vh); opacity: 0; }
         }
     </style>
 </head>
@@ -255,139 +326,183 @@
     <div class="particles" id="particles"></div>
     
     <div class="jiyuan-page">
-        <div class="jiyuan-container">
-            <div class="jiyuan-symbol" id="drawBtn" onclick="drawJiyuan()">缘</div>
+        <div class="loading" id="loading">
+            <div class="loading-symbol">缘</div>
+            <p style="color: rgba(255,255,255,0.5); margin-top: 1rem;">正在感应你的机缘...</p>
+        </div>
+        
+        <div class="result-container" id="resultContainer" style="display: none;">
+            <div class="level-badge" id="levelBadge"></div>
+            <h2 class="fortune-title" id="fortuneTitle"></h2>
+            <p class="fortune-text" id="fortuneText"></p>
             
-            <h1 class="jiyuan-title">觉字机缘</h1>
-            <p class="jiyuan-hint">点击缘字，窥探命运</p>
+            <div class="story-section">
+                <div class="story-label">✦ 预言故事</div>
+                <p class="story-content" id="storyContent"></p>
+            </div>
+            
+            <div class="encounter-section">
+                <span class="encounter-icon">👤</span>
+                <div>
+                    <div class="encounter-text">你将会遇到</div>
+                    <div class="encounter-target" id="encounterTarget"></div>
+                </div>
+            </div>
+            
+            <div class="guide-section">
+                <div class="guide-label">指引</div>
+                <p class="guide-text" id="guideText"></p>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-redraw" onclick="drawAgain()">再求一签</button>
+                <button class="btn btn-save" id="saveBtn" onclick="saveFortune()">收藏此签</button>
+            </div>
+        </div>
+        
+        <div class="history-section" id="historySection" style="display: none;">
+            <div class="history-title">— 今日签缘 —</div>
+            <div class="history-list" id="historyList"></div>
         </div>
     </div>
     
-    <div class="overlay-bg" id="overlay"></div>
+    <div class="stats" id="stats"></div>
     
-    <div class="result-card" id="resultCard">
-        <div class="result-level" id="resultLevel"></div>
-        <div class="result-text" id="resultText"></div>
-        <div class="result-effect" id="resultEffect"></div>
-        <button class="close-btn" onclick="closeResult()">再抽一次</button>
-    </div>
-    
-    <div class="draw-count" id="drawCount">今日已抽: 0 次</div>
-    
+    <script src="js/fortunes.js"></script>
     <script>
-        // 机缘签文库
-        const fortunes = [
-            // 天命 (5%)
-            { level: "天命", text: "枯木逢春，绝处逢生。", effect: "意外获得一笔巨额财富或机会。", class: "tianming" },
-            { level: "天命", text: "天降祥瑞，紫气东来。", effect: "遇到改变人生的贵人或事件。", class: "tianming" },
-            { level: "天命", text: "鱼跃龙门，化龙升天。", effect: "事业或学业突飞猛进，一举成功。", class: "tianming" },
-            { level: "天命", text: "凤栖梧桐，百鸟朝凤。", effect: "爱情或人际关系迎来完美结局。", class: "tianming" },
-            { level: "天命", text: "时来运转，否极泰来。", effect: "长期困境突然解除，好运连连。", class: "tianming" },
-            
-            // 上上签 (15%)
-            { level: "上上签", text: "贵人指路，柳暗花明。", effect: "得到他人帮助，解决困难。", class: "shangshang" },
-            { level: "上上签", text: "春风得意，马蹄疾驰。", effect: "事情顺利进展，心情愉悦。", class: "shangshang" },
-            { level: "上上签", text: "紫气盈门，喜事临头。", effect: "家中有喜事或好消息。", class: "shangshang" },
-            { level: "上上签", text: "财源广进，利路亨通。", effect: "财运上升，投资或工作获利。", class: "shangshang" },
-            { level: "上上签", text: "心想事成，万事如意。", effect: "愿望容易实现，计划顺利。", class: "shangshang" },
-            { level: "上上签", text: "桃花朵朵，姻缘将至。", effect: "异性缘好，可能遇到心仪对象。", class: "shangshang" },
-            { level: "上上签", text: "学海无涯，一举成名。", effect: "学习或考试表现出色。", class: "shangshang" },
-            { level: "上上签", text: "健康安泰，百病不侵。", effect: "身体状态良好，精神焕发。", class: "shangshang" },
-            
-            // 中签 (40%)
-            { level: "中签", text: "平淡是真，安稳为福。", effect: "生活平稳，无大起大落。", class: "zhong" },
-            { level: "中签", text: "小有收获，知足常乐。", effect: "获得小成就或小礼物。", class: "zhong" },
-            { level: "中签", text: "日出而作，日落而息。", effect: "日常生活规律，心态平和。", class: "zhong" },
-            { level: "中签", text: "和风细雨，润物无声。", effect: "人际关系和谐，小事顺利。", class: "zhong" },
-            { level: "中签", text: "闲云野鹤，自在逍遥。", effect: "有时间放松，享受生活。", class: "zhong" },
-            { level: "中签", text: "细水长流，持之以恒。", effect: "长期努力会有小回报。", class: "zhong" },
-            { level: "中签", text: "家宅安宁，无灾无难。", effect: "家庭平安，无大问题。", class: "zhong" },
-            { level: "中签", text: "微风拂面，心旷神怡。", effect: "心情舒畅，小确幸时刻。", class: "zhong" },
-            { level: "中签", text: "行到水穷，坐看云起。", effect: "随遇而安，发现小美好。", class: "zhong" },
-            { level: "中签", text: "杯水车薪，聊胜于无。", effect: "得到一点帮助或资源，虽少但有用。", class: "zhong" },
-            { level: "中签", text: "守得云开，终见月明。", effect: "坚持会有收获，只是时间问题。", class: "zhong" },
-            { level: "中签", text: "山重水复，柳暗花明。", effect: "困境中会有转机出现。", class: "zhong" },
-            
-            // 下签 (30%)
-            { level: "下签", text: "出门忘伞，淋成落汤鸡。", effect: "小事不顺，但无大碍。", class: "xia" },
-            { level: "下签", text: "煮熟的鸭子飞走了。", effect: "到手的机会意外失去。", class: "xia" },
-            { level: "下签", text: "阴沟翻船，呛水了。", effect: "在小事上犯错或遇到麻烦。", class: "xia" },
-            { level: "下签", text: "画饼充饥，望梅止渴。", effect: "期望落空，但心态要好。", class: "xia" },
-            { level: "下签", text: "竹篮打水一场空。", effect: "努力没有立即回报。", class: "xia" },
-            { level: "下签", text: "喝凉水都塞牙。", effect: "运气不佳，小事连连出错。", class: "xia" },
-            { level: "下签", text: "捡了芝麻，丢了西瓜。", effect: "因小失大，但教训宝贵。", class: "xia" },
-            { level: "下签", text: "早起赶集，集市已散。", effect: "错失良机，但来日方长。", class: "xia" },
-            { level: "下签", text: "出门忘带钥匙。", effect: "小麻烦一个，回头就好。", class: "xia" },
-            { level: "下签", text: "刚坐下就要站起来。", effect: "事情被打断，需要重新安排。", class: "xia" },
-            
-            // 劫数 (10%)
-            { level: "劫数", text: "踩到狗屎运...等下，是真的狗屎。", effect: "出门踩到狗屎，但据说这是好运征兆？", class: "jieshu" },
-            { level: "劫数", text: "钱包装空气，银行卡装寂寞。", effect: "钱包空空如也，该努力赚钱了。", class: "jieshu" },
-            { level: "劫数", text: "表白被拒，还被发了好人卡。", effect: "情场失意，但职场可能得意。", class: "jieshu" },
-            { level: "劫数", text: "刚买的奶茶洒了。", effect: "心痛，但生活还要继续。", class: "jieshu" },
-            { level: "劫数", text: "重要考试睡过头了。", effect: "天意弄人，下次定闹钟。", class: "jieshu" },
-            { level: "劫数", text: "被误解成别人，越解释越乱。", effect: "跳进黄河也洗不清了。", class: "jieshu" },
-            { level: "劫数", text: "熬夜做的方案被否了。", effect: "努力白费，但经验还在。", class: "jieshu" },
-            { level: "劫数", text: "刚想表白，发现对方有对象了。", effect: "来得早不如来得巧...可惜来晚了。", class: "jieshu" },
-        ];
+        let currentFortune = null;
+        let history = JSON.parse(localStorage.getItem('jiyuanHistory') || '[]');
+        let savedFortunes = JSON.parse(localStorage.getItem('savedFortunes') || '[]');
         
-        let drawCount = parseInt(localStorage.getItem('jiyuanCount') || '0');
-        document.getElementById('drawCount').textContent = `今日已抽: ${drawCount} 次`;
+        // 创建粒子
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 20; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDelay = Math.random() * 15 + 's';
+            particlesContainer.appendChild(p);
+        }
         
-        function drawJiyuan() {
-            const rand = Math.random();
-            let selected;
+        // 页面加载时自动抽签
+        window.onload = function() {
+            setTimeout(() => {
+                drawFortune();
+            }, 1500);
+        };
+        
+        function drawFortune() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('resultContainer').style.display = 'none';
             
-            if (rand < 0.05) {
-                // 天命 5%
-                selected = fortunes.filter(f => f.level === "天命")[Math.floor(Math.random() * 5)];
-            } else if (rand < 0.20) {
-                // 上上签 15%
-                selected = fortunes.filter(f => f.level === "上上签")[Math.floor(Math.random() * 8)];
-            } else if (rand < 0.60) {
-                // 中签 40%
-                selected = fortunes.filter(f => f.level === "中签")[Math.floor(Math.random() * 12)];
-            } else if (rand < 0.90) {
-                // 下签 30%
-                selected = fortunes.filter(f => f.level === "下签")[Math.floor(Math.random() * 10)];
+            setTimeout(() => {
+                // 按概率抽签
+                const rand = Math.random();
+                let filtered;
+                
+                if (rand < 0.05) filtered = fortunes.filter(f => f.level === '天命');
+                else if (rand < 0.20) filtered = fortunes.filter(f => f.level === '上上签');
+                else if (rand < 0.60) filtered = fortunes.filter(f => f.level === '中签');
+                else if (rand < 0.90) filtered = fortunes.filter(f => f.level === '下签');
+                else filtered = fortunes.filter(f => f.level === '劫数');
+                
+                currentFortune = filtered[Math.floor(Math.random() * filtered.length)];
+                displayFortune(currentFortune);
+                
+                // 添加到历史
+                history.unshift({
+                    title: currentFortune.title,
+                    level: currentFortune.level,
+                    time: new Date().toLocaleTimeString()
+                });
+                if (history.length > 10) history.pop();
+                localStorage.setItem('jiyuanHistory', JSON.stringify(history));
+                updateHistory();
+                updateStats();
+                
+            }, 1000);
+        }
+        
+        function displayFortune(f) {
+            document.getElementById('loading').style.display = 'none';
+            const container = document.getElementById('resultContainer');
+            
+            container.className = 'result-container ' + getLevelClass(f.level);
+            document.getElementById('levelBadge').textContent = f.level;
+            document.getElementById('fortuneTitle').textContent = f.title;
+            document.getElementById('fortuneText').textContent = f.text;
+            document.getElementById('storyContent').textContent = f.story;
+            document.getElementById('encounterTarget').textContent = f.encounter;
+            document.getElementById('guideText').textContent = f.guide;
+            
+            container.style.display = 'block';
+            
+            // 检查是否已收藏
+            const saveBtn = document.getElementById('saveBtn');
+            if (savedFortunes.some(s => s.title === f.title)) {
+                saveBtn.className = 'btn btn-saved';
+                saveBtn.textContent = '已收藏';
             } else {
-                // 劫数 10%
-                selected = fortunes.filter(f => f.level === "劫数")[Math.floor(Math.random() * 8)];
+                saveBtn.className = 'btn btn-save';
+                saveBtn.textContent = '收藏此签';
+            }
+        }
+        
+        function getLevelClass(level) {
+            const map = {
+                '天命': 'tianming',
+                '上上签': 'shangshang',
+                '中签': 'zhong',
+                '下签': 'xia',
+                '劫数': 'jieshu'
+            };
+            return map[level] || 'zhong';
+        }
+        
+        function drawAgain() {
+            drawFortune();
+        }
+        
+        function saveFortune() {
+            if (!currentFortune) return;
+            
+            const saveBtn = document.getElementById('saveBtn');
+            if (savedFortunes.some(s => s.title === currentFortune.title)) {
+                savedFortunes = savedFortunes.filter(s => s.title !== currentFortune.title);
+                saveBtn.className = 'btn btn-save';
+                saveBtn.textContent = '收藏此签';
+            } else {
+                savedFortunes.push({
+                    ...currentFortune,
+                    savedAt: new Date().toLocaleString()
+                });
+                saveBtn.className = 'btn btn-saved';
+                saveBtn.textContent = '已收藏';
+            }
+            localStorage.setItem('savedFortunes', JSON.stringify(savedFortunes));
+        }
+        
+        function updateHistory() {
+            if (history.length === 0) {
+                document.getElementById('historySection').style.display = 'none';
+                return;
             }
             
-            showResult(selected);
-            drawCount++;
-            localStorage.setItem('jiyuanCount', drawCount);
-            document.getElementById('drawCount').textContent = `今日已抽: ${drawCount} 次`;
+            document.getElementById('historySection').style.display = 'block';
+            const list = document.getElementById('historyList');
+            list.innerHTML = history.map(h => 
+                `<span class="history-item ${getLevelClass(h.level)}">${h.title}</span>`
+            ).join('');
         }
         
-        function showResult(fortune) {
-            const card = document.getElementById('resultCard');
-            const overlay = document.getElementById('overlay');
+        function updateStats() {
+            const today = new Date().toLocaleDateString();
+            const todayCount = history.filter(h => {
+                return true; // 简化，实际可以按日期筛选
+            }).length;
             
-            card.className = `result-card ${fortune.class}`;
-            document.getElementById('resultLevel').textContent = fortune.level;
-            document.getElementById('resultText').textContent = fortune.text;
-            document.getElementById('resultEffect').textContent = fortune.effect;
-            
-            overlay.style.display = 'block';
-            card.style.display = 'block';
-        }
-        
-        function closeResult() {
-            document.getElementById('resultCard').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
-        }
-        
-        // 创建粒子效果
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 30; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 10 + 's';
-            particle.style.animationDuration = (8 + Math.random() * 8) + 's';
-            particlesContainer.appendChild(particle);
+            document.getElementById('stats').innerHTML = 
+                `今日已抽: ${history.length} 签<br>收藏: ${savedFortunes.length} 签`;
         }
     </script>
 </body>
