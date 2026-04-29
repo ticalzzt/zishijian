@@ -900,17 +900,15 @@ Requirement Collection → Solution Design → Development → Testing → Gray 
 
 **Timeline**: 3-5 years
 
-**Potential Acquirers** (Strategic partners who benefit from our innovation without incentive to replicate):
+**Potential Acquirers**:
 
-| Acquirer Type | Examples | Strategic Value |
-|--------------|----------|-----------------|
-| **Korean/Japanese Game Companies** | Nexon, Netmarble, Neowiz, Square Enix | AI content innovation, new interactive format expansion |
-| **Global AI-Focused Funds** | Griffin Gaming, BITKRAFT, a16z Games | Portfolio company consolidation, category leadership |
-| **AI Infrastructure Companies** | Zhipu, MiniMax, Xiaomi AI | Application showcase for AI models, ecosystem expansion |
-| **International Gaming Studios** | miHoYo (global), Kuro Games | Chinese mythology IP development, game adaptation |
-| **Tech Companies (Non-Content)** | Hardware/cloud companies seeking content verticals | Content ecosystem differentiation |
-
-> **Note**: We deliberately exclude domestic Chinese content/entertainment platforms (reading apps, short-video platforms) from our acquisition strategy. These platforms have a track record of replicating innovative content models rather than acquiring them. Our distributed architecture and creator IP protection mechanisms are designed to prevent unauthorized appropriation.
+| Acquirer Type | Strategic Value |
+|--------------|-----------------|
+| **International Game Studios** | AI interactive content expansion, new format diversification |
+| **AI Infrastructure Companies** | Application showcase for AI models, ecosystem expansion |
+| **Cross-Border Entertainment Groups** | Chinese mythology IP development, global content pipeline |
+| **Technology Companies** | Content vertical integration, creator economy expansion |
+| **Gaming & Interactive Funds** | Portfolio consolidation, category leadership |
 
 **Acquisition Value Estimates**:
 - Strategic buyer: $50-200M (3-5x revenue multiple)
