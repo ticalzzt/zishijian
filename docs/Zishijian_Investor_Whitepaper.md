@@ -895,15 +895,17 @@ Requirement Collection → Solution Design → Development → Testing → Gray 
 
 **Timeline**: 3-5 years
 
-**Potential Acquirers**:
+**Potential Acquirers** (Strategic partners who benefit from our innovation without incentive to replicate):
 
 | Acquirer Type | Examples | Strategic Value |
 |--------------|----------|-----------------|
-| **Tech Giants** | Tencent, ByteDance, Alibaba | Content ecosystem expansion |
-| **Gaming Companies** | NetEase, miHoYo, Perfect World | IP development, game adaptation |
-| **Reading Platforms** |阅文, 番茄小说, 七猫 | Technology upgrade, user engagement |
-| **AI Companies** | ByteDance AI, Baidu | Application showcase for AI models |
-| **Media Companies** | Bilibili, iQiyi | Content production, IP licensing |
+| **Korean/Japanese Game Companies** | Nexon, Netmarble, Neowiz, Square Enix | AI content innovation, new interactive format expansion |
+| **Global AI-Focused Funds** | Griffin Gaming, BITKRAFT, a16z Games | Portfolio company consolidation, category leadership |
+| **AI Infrastructure Companies** | Zhipu, MiniMax, Xiaomi AI | Application showcase for AI models, ecosystem expansion |
+| **International Gaming Studios** | miHoYo (global), Kuro Games | Chinese mythology IP development, game adaptation |
+| **Tech Companies (Non-Content)** | Hardware/cloud companies seeking content verticals | Content ecosystem differentiation |
+
+> **Note**: We deliberately exclude domestic Chinese content/entertainment platforms (reading apps, short-video platforms) from our acquisition strategy. These platforms have a track record of replicating innovative content models rather than acquiring them. Our distributed architecture and creator IP protection mechanisms are designed to prevent unauthorized appropriation.
 
 **Acquisition Value Estimates**:
 - Strategic buyer: $50-200M (3-5x revenue multiple)
