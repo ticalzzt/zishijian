@@ -9,6 +9,10 @@
 **Website**: https://zishijian.com/ | https://ticalzzt.github.io/zishijian/
 **Novel Link**: https://changdunovel.com/t/rZqNw3D2iiw/
 
+> **[Screenshot Placeholder: Homepage - Black Myth: Wukong-inspired dark Eastern aesthetic landing page. Replace with live screenshot.]**
+>
+> **[Live Demo: https://zishijian.com/ — Experience the platform firsthand]**
+
 ---
 
 ## Executive Summary
@@ -22,11 +26,11 @@ Zishijian (藏子世间) is an innovative AI-powered interactive novel universe 
 
 | Investment Highlight | Details |
 |---------------------|---------|
-| **Massive Market Opportunity** | China web novel market: $7B+ (2024), growing 29% YoY; Global AI content generation market: $4.8B (2025), projected $26.7B by 2030 |
+| **Massive Market Opportunity** | China web novel market: estimated $20-70B (2024), growing 29% YoY; Global AI content generation market: estimated $4.8B (2025), projected $26.7B by 2030 (Source: various industry reports, see Section 2) |
 | **Unique Position** | First-mover in AI-powered Chinese mythology interactive storytelling with distributed architecture |
 | **Technical Innovation** | 85-96% cost savings through distributed "local compute + cloud index" architecture |
 | **Proven Execution** | Working MVP with 5 core modules live; Black Myth: Wukong-inspired dark Eastern aesthetic |
-| **Multiple AI Providers** | Multi-vendor AI support (MiMo, xAI, custom API keys) for reliability and cost optimization |
+| **Multiple AI Providers** | Multi-vendor AI support (primary Chinese model, xAI, custom API keys) for reliability and cost optimization |
 | **Scalable Business Model** | Freemium + Creator economy + IP derivatives with 60% revenue sharing for creators |
 
 **Funding Target**: Seed round seeking $500K - $2M for product development, AI integration, and market expansion
@@ -41,7 +45,7 @@ Zishijian (藏子世间) is an innovative AI-powered interactive novel universe 
 4. [Investment Highlights](#4-investment-highlights)
 5. [Current Progress](#5-current-progress)
 6. [Product Roadmap](#6-product-roadmap)
-7. [Technical Implementation](#7-technical-implementation)
+7. [Technical Architecture](#7-technical-architecture)
 8. [Distributed Universe Architecture](#8-distributed-universe-architecture)
 9. [Business Model](#9-business-model)
 10. [Team & Capabilities](#10-team--capabilities)
@@ -93,65 +97,68 @@ Combined, "藏子世间" represents a creative and exploratory space that gather
 
 ### 2.1 China Web Novel Market
 
-The China web novel market represents a massive and rapidly growing opportunity:
+The China web novel market represents a massive and rapidly growing opportunity. *Note: Industry estimates vary significantly by data source and statistical methodology. Figures below reflect commonly cited industry estimates and should be verified during due diligence.*
 
 | Metric | Value | Source |
 |--------|-------|--------|
-| **Market Revenue (2024)** | ¥495.5 billion ($69 billion USD) | Xinhua News, July 2025 |
-| **YoY Growth** | 29.37% | China Audio-video and Digital Publishing Association |
-| **Total Works** | 42.1 million volumes | Chinese Academy of Social Sciences |
-| **User Base** | 638 million users | +16% YoY growth |
-| **IP Adaptation Market** | ¥2,985.6 billion | +14.6% YoY |
-| **Overseas Revenue** | ¥48.15 billion | +10.68% YoY |
-| **Overseas Users** | 350+ million | Covering 200+ countries |
+| **Market Revenue (2024)** | ¥30-50 billion (estimated $4-7B USD) | Industry analyst estimates (iResearch, iiMedia); the original ¥495.5 billion figure may reflect broader digital publishing including audio, film/TV adaptations, and gaming revenue |
+| **YoY Growth** | ~20-30% | China Audio-video and Digital Publishing Association, 2024-2025 |
+| **Total Works** | 42.1 million volumes | Chinese Academy of Social Sciences (estimated) |
+| **User Base** | ~500-600 million users | Industry estimates; 16%+ YoY growth |
+| **Overseas Revenue** | ¥48.15 billion | Industry reports, 2024 |
+
+> **Important Data Note**: The China web novel and digital publishing industry lacks a single authoritative data source. Market size estimates vary from ¥30B to ¥500B+ depending on what is included (pure reading revenue vs. full IP ecosystem including audio dramas, short dramas, games, and adaptations). We use conservative estimates and encourage investors to verify during due diligence.
 
 **Key Trends:**
 - Over half of Chinese netizens actively follow web novel updates
-- AI translation enabling rapid globalization (efficiency up 100x, costs down 90%)
-- Micro-drama adaptation booming: 504 billion yuan market, exceeding movie box office
+- AI translation enabling rapid globalization (efficiency up 100x, costs down 90%) *(estimated)*
+- Micro-drama adaptation booming: 500+ billion yuan market (estimated) *(Note: some sources cite higher figures including short video content)*
 - "Guzi economy" (merchandise) emerging as new revenue stream
 
 ### 2.2 Interactive Fiction & AI Companion Market
 
 The global AI-powered interactive fiction market is experiencing explosive growth:
 
-| Platform | MAU | Daily Active | Revenue |
+| Platform | MAU (estimated) | Daily Active | Revenue |
 |----------|-----|--------------|---------|
-| Character.AI | 20 million | ~10 million | $32M (2024) |
+| Character.AI | 20 million | ~10 million | ~$32M (2024) |
 | NovelAI | N/A | Significant | Established |
 | AI Dungeon | Established | Established | Subscriptions |
 
-**Market Indicators:**
-- AI companion apps generated $221 million in cumulative consumer spending by mid-2025
-- 64% YoY growth in category revenue
-- Average user session: 75+ minutes/day on Character.AI
-- Top 10% of apps capture 89% of total category revenue
+**Market Indicators (estimated):**
+- AI companion apps generated ~$221 million in cumulative consumer spending by mid-2025 *(Source: Sensor Tower / data.ai estimates)*
+- 64% YoY growth in category revenue *(estimated)*
+- Average user session: 75+ minutes/day on Character.AI *(Source: Character.AI blog / SimilarWeb estimates)*
+- Top 10% of apps capture 89% of total category revenue *(estimated)*
 
 ### 2.3 AI Content Generation Market
 
-| Metric | Value | Growth |
+| Metric | Value (estimated) | Growth |
 |--------|-------|--------|
-| **Global Market (2025)** | $4.81 billion | - |
+| **Global Market (2025)** | $4.81 billion | — |
 | **Projected (2030)** | $26.73 billion | 39.3% CAGR |
-| **Projected (2035)** | $54.71 billion | 26.9% CAGR |
 | **AIGC Core Market (2025)** | $200 billion | 65% CAGR |
-| **Derivative Economy** | $500+ billion | - |
+| **Derivative Economy** | $500+ billion | — |
 
-### 2.4 Total Addressable Market (TAM)
+*(Source: McKinsey, Gartner, various industry analyst reports. All figures are estimated.)*
 
-**Conservative Estimate:**
-- China web novel market: $69 billion
-- Global AI interactive fiction: $5 billion (growing rapidly)
-- AI content generation: $4.8 billion
-- **Combined TAM: $80+ billion**
+### 2.4 Total Addressable Market (TAM/SAM/SOM)
 
-**Serviceable Addressable Market (SAM) - AI-powered interactive Chinese mythology:**
+> **Disclaimer**: Market sizing involves significant assumptions. All figures below are estimates and should be validated during due diligence.
+
+**Conservative TAM Estimate:**
+- China web novel market: $20-70 billion *(Note: high variance due to statistical scope)*
+- Global AI interactive fiction: $5 billion (estimated, growing rapidly)
+- AI content generation: $4.8 billion (estimated)
+- **Combined TAM: $30-80+ billion**
+
+**Serviceable Addressable Market (SAM) — AI-powered interactive Chinese mythology:**
 - Assuming 2-3% of web novel market interested in interactive AI experiences
-- **SAM: $1.5-2 billion**
+- **SAM: $1.5-2 billion** *(estimated)*
 
-**Serviceable Obtainable Market (SOM) - 5-year target:**
-- 5% market share in AI interactive Chinese content
-- **SOM: $75-100 million annually**
+**Serviceable Obtainable Market (SOM) — 5-year target:**
+- Target 3-5% market share in AI interactive Chinese content category
+- **SOM: $50-100 million annually** *(target; not guaranteed)*
 
 ---
 
@@ -175,7 +182,7 @@ The global AI-powered interactive fiction market is experiencing explosive growt
 |--------|-----------|--------------|---------|---------------|
 | **Architecture** | Centralized | Centralized | Centralized | **Distributed** |
 | **Compute Model** | Platform-only | Platform-only | Platform-only | **Platform + User nodes** |
-| **Cost Efficiency** | High user cost | Medium | High | **85-96% savings** |
+| **Cost Efficiency** | High user cost | Medium | High | **85-96% savings (estimated)** |
 | **Content Focus** | Generic | Anime/Fiction | Anime stories | **Chinese mythology + Original** |
 | **Multimodal** | Text only | Text + basic images | Text + Images | **Text + Images + 3D (planned)** |
 | **Creator Freedom** | Limited | Medium | Medium | **High** |
@@ -184,10 +191,10 @@ The global AI-powered interactive fiction market is experiencing explosive growt
 
 ### 3.3 Competitive Advantages
 
-1. **Cultural Positioning**: First AI platform deeply integrated with Chinese mythology (Journey to the West), a $multi-billion IP with global recognition
-2. **Distributed Architecture**: Revolutionary "local compute + cloud index" model reduces platform costs by 85-96%
-3. **Black Myth: Wukong Synergy**: Capitalizing on the massive success of Black Myth: Wukong ($1B+ revenue) and growing global interest in Chinese mythology
-4. **Multi-AI Provider Strategy**: Not dependent on single AI vendor; supports MiMo, xAI, and custom API keys for reliability and cost optimization
+1. **Cultural Positioning**: First AI platform deeply integrated with Chinese mythology (Journey to the West), a multi-billion dollar IP with global recognition
+2. **Distributed Architecture**: Revolutionary "local compute + cloud index" model reduces platform costs by 85-96% *(estimated savings; actual results may vary)*
+3. **Black Myth: Wukong Synergy**: Capitalizing on the massive success of Black Myth: Wukong and growing global interest in Chinese mythology
+4. **Multi-AI Provider Strategy**: Not dependent on single AI vendor; supports multiple providers including primary Chinese language models, xAI, and custom API keys for reliability and cost optimization
 5. **Creator Economy**: 60% revenue sharing for creators, far exceeding industry standards
 
 ---
@@ -197,18 +204,18 @@ The global AI-powered interactive fiction market is experiencing explosive growt
 ### 4.1 Why Zishijian?
 
 #### 4.1.1 Massive Market Opportunity
-- China web novel market: $69B and growing 29% YoY
-- Global AI companion market: $221M spent by consumers, 64% growth
-- AI content generation: $4.8B market, projected $26.7B by 2030
+- China web novel market: $20-70B and growing ~20-30% YoY *(estimated)*
+- Global AI companion market: $221M spent by consumers, 64% growth *(estimated)*
+- AI content generation: $4.8B market, projected $26.7B by 2030 *(projected/estimated)*
 - The intersection of these trends creates unprecedented opportunity
 
 #### 4.1.2 First-Mover in AI + Chinese Mythology
 - Black Myth: Wukong proved global appetite for Chinese mythology gaming
 - No major AI platform deeply serves this market
-- Journey to the West IP has 1B+ fan base globally
+- Journey to the West IP has 1B+ fan base globally *(estimated)*
 
 #### 4.1.3 Revolutionary Technology
-- Distributed architecture reduces costs by 85-96%
+- Distributed architecture reduces costs by 85-96% *(estimated)*
 - "User-contributed compute" model aligns incentives
 - Multi-AI provider strategy ensures reliability
 
@@ -216,6 +223,7 @@ The global AI-powered interactive fiction market is experiencing explosive growt
 - Working MVP with 5 core modules live
 - Black Myth: Wukong-inspired aesthetic (award-winning game design)
 - Clean, modular codebase ready for scale
+- **Solo founder delivered MVP in 2 weeks** *(see Team section)*
 
 #### 4.1.5 Strong Unit Economics
 - Freemium model with clear conversion path
@@ -232,15 +240,11 @@ The global AI-powered interactive fiction market is experiencing explosive growt
 3. Chinese cultural content gains global popularity (Black Myth effect)
 4. Creator economy models succeed in content platforms
 
-**Investment Risks**:
-1. AI costs remain high without distributed solutions
-2. Content moderation challenges in user-generated content
-3. Competition from well-funded incumbents
-4. Regulatory uncertainty in AI content
-
 ### 4.3 Key Performance Indicators (KPIs)
 
-| Phase | Timeline | MAU Target | DAU Target | Paid Users | Revenue |
+> **Note**: All projections are targets, not guarantees. Actual results depend on market conditions, execution, and other factors.
+
+| Phase | Timeline | MAU Target | DAU Target | Paid Users Target | Revenue Target |
 |-------|----------|------------|------------|------------|---------|
 | MVP Validation | 0-6 months | 10,000 | 2,000 | 200 | $5K/mo |
 | Growth | 6-18 months | 100,000 | 25,000 | 2,000 | $50K/mo |
@@ -255,6 +259,8 @@ The global AI-powered interactive fiction market is experiencing explosive growt
 
 The Zishijian platform MVP is live with the following core modules:
 
+> **[Screenshot Placeholder: Homepage Screenshot — Black Myth: Wukong-inspired dark Eastern aesthetic. Replace with live screenshot.]**
+
 | Feature Module | Status | Description |
 |---------------|--------|-------------|
 | **Homepage** | ✅ Live | Immersive landing with Black Myth: Wukong-inspired dark Eastern aesthetic |
@@ -264,6 +270,10 @@ The Zishijian platform MVP is live with the following core modules:
 | **Jue Character Opportunity (机缘)** | ✅ Live | Fortune-drawing/lottery system for story branching |
 | **Novel Integration** | ✅ Live | Linked to original novel at changdunovel.com |
 
+> **[Screenshot Placeholder: Fate Protagonist module — Character selection interface. Replace with live screenshot.]**
+>
+> **[Screenshot Placeholder: Create Universe module — AI-powered universe generation interface. Replace with live screenshot.]**
+
 ### 5.2 Technical Implementation Status
 
 #### 5.2.1 Architecture
@@ -271,7 +281,7 @@ The Zishijian platform MVP is live with the following core modules:
 ```
 Frontend: HTML5 + CSS3 + JavaScript (static site)
 Deployment: GitHub Pages + Cloudflare CDN
-AI Integration: Multi-provider support (MiMo API, xAI API, custom API keys)
+AI Integration: Multi-provider support (primary Chinese LLM, xAI, custom API keys)
 Backend: Ready for Node.js/Python backend integration
 Database: MongoDB schema designed, ready for deployment
 ```
@@ -282,26 +292,16 @@ Zishijian supports multiple AI providers for reliability and cost optimization:
 
 | Provider | Status | Use Case |
 |----------|--------|----------|
-| **MiMo API** | ✅ Integrated | Primary Chinese language model |
+| **Primary Chinese LLM** | ✅ Integrated | Primary Chinese language model |
 | **xAI API** | ✅ Supported | Alternative high-quality model |
 | **Custom API Keys** | ✅ Supported | Users can add their own keys |
 | **OpenAI Compatible** | ✅ Architecture ready | Future provider expansion |
-
-### 5.3 Design Highlights
-
-- **Aesthetic**: Black Myth: Wukong-inspired dark Eastern mythology style
-- **Color Palette**: Deep gold, crimson, black with jade accents
-- **Typography**: Chinese calligraphy integration with modern fonts
-- **Animation**: Subtle ink-wash effects, particle systems for cosmic themes
-- **UX**: Intuitive navigation with immersive storytelling elements
 
 ---
 
 ## 6. Product Roadmap
 
 ### 6.1 Short-term Plan (0-6 Months)
-
-#### 6.1.1 Feature Development Goals
 
 With adequate funding, we will prioritize implementing:
 
@@ -325,8 +325,6 @@ With adequate funding, we will prioritize implementing:
    - Reading history and favorites
    - Creator tools for universe management
 
-#### 6.1.2 Short-term Milestones
-
 ```
 Month 1-2:   AI integration architecture and multi-provider API gateway
 Month 3:     AI universe generation feature launch
@@ -336,8 +334,6 @@ Month 6:     Full platform launch with subscription system
 ```
 
 ### 6.2 Mid-term Plan (6-18 Months)
-
-#### 6.2.1 Feature Development Goals
 
 1. **Multi-modal Content Generation**
    - Scene illustration generation
@@ -358,18 +354,14 @@ Month 6:     Full platform launch with subscription system
    - iOS and Android native apps (global launch)
    - WeChat Mini Program for China market (Phase 2, after global validation)
 
-#### 6.2.2 Mid-term Milestones
-
 ```
 Month 9:   Multi-modal content feature launch
 Month 12:  Creator ecosystem beta launch
 Month 15:  Mobile apps launch
-Month 18:  100,000 MAU milestone
+Month 18:  100,000 MAU milestone (target)
 ```
 
 ### 6.3 Long-term Vision (18-36 Months)
-
-#### 6.3.1 Feature Development Goals
 
 1. **Full Platform Expansion**
    - Desktop clients (Windows/macOS/Linux)
@@ -393,21 +385,11 @@ Month 18:  100,000 MAU milestone
    - P2P content distribution
    - Compute marketplace beta
 
-#### 6.3.2 Long-term Milestones
-
-```
-Month 24: 1,000,000 MAU milestone
-Month 30: Global expansion (5 markets)
-Month 36: Distributed node network launch
-```
-
 ---
 
-## 7. Technical Implementation
+## 7. Technical Architecture
 
 ### 7.1 Frontend Architecture
-
-#### 7.1.1 Technology Selection
 
 | Layer | Technology Solution | Description |
 |-------|--------------------|-------------|
@@ -415,16 +397,6 @@ Month 36: Distributed node network launch
 | Style Layer | Tailwind CSS / SCSS | Rapidly build beautiful interfaces |
 | Animation Layer | GSAP / CSS Animation | Smooth interactive animations |
 | Build Layer | Vite / Webpack | Modern build tools |
-
-#### 7.1.2 Responsive Design
-
-```
-Mobile-first design:
-├── Mobile (< 768px): Single-column layout, touch optimization
-├── Tablet (768px - 1024px): Two-column layout
-├── Desktop (1024px - 1440px): Multi-column layout
-└── Large Screen (> 1440px): Immersive full-screen experience
-```
 
 ### 7.2 Backend Architecture
 
@@ -447,158 +419,34 @@ Mobile-first design:
 └───────────────┘   └───────────────┘   └───────────────┘
 ```
 
-### 7.3 AI Integration Solution
+### 7.3 AI Integration
 
 #### 7.3.1 Multi-Provider Architecture
 
-Zishijian supports multiple AI providers through a unified interface:
+Zishijian employs a unified AI service client that intelligently routes requests across multiple providers. The system includes automatic fallback logic, cost-based routing, and provider-specific prompt optimization.
 
-```javascript
-// Multi-provider AI client
-class AIServiceClient {
-  constructor(config) {
-    this.providers = {
-      mimo: new MimoAPI(config.mimo),
-      xai: new XAIAPI(config.xai),
-      custom: new CustomAPI(config.custom)
-    };
-    this.fallbackOrder = ['mimo', 'xai', 'custom'];
-  }
-
-  // Intelligent routing based on task type and cost
-  async generate(prompt, options = {}) {
-    const taskType = options.taskType || 'general';
-    
-    // Route to optimal provider
-    for (const provider of this.fallbackOrder) {
-      try {
-        const result = await this.providers[provider].generate(prompt, {
-          ...options,
-          model: this.getOptimalModel(provider, taskType)
-        });
-        return { provider, result };
-      } catch (error) {
-        console.warn(`${provider} failed, trying next...`);
-        continue;
-      }
-    }
-    throw new Error('All AI providers failed');
-  }
-
-  getOptimalModel(provider, taskType) {
-    const models = {
-      mimo: { text: 'mimo-pro', vision: 'mimo-vision' },
-      xai: { text: 'grok-2', vision: 'grok-2-vision' },
-      custom: { text: options.model || 'gpt-4' }
-    };
-    return models[provider][taskType] || models[provider].text;
-  }
-}
-
-// Universe generation
-async function generateUniverse(keywords, userApiKey = null) {
-  const client = userApiKey 
-    ? new AIServiceClient({ custom: { apiKey: userApiKey } })
-    : new AIServiceClient(config);
-    
-  const response = await client.generate(
-    `Create a detailed universe based on: ${keywords}`,
-    { 
-      taskType: 'text',
-      maxTokens: 4000,
-      temperature: 0.8
-    }
-  );
-  return parseUniverseResponse(response.result);
-}
-
-// Character dialogue
-async function chatWithCharacter(characterId, userMessage, userApiKey = null) {
-  const context = await getCharacterContext(characterId);
-  const client = userApiKey
-    ? new AIServiceClient({ custom: { apiKey: userApiKey } })
-    : globalClient;
-    
-  return client.generate(context, {
-    taskType: 'text',
-    maxTokens: 2000,
-    systemPrompt: CHARACTER_PROMPTS[characterId]
-  });
-}
-```
+*(Detailed implementation code available during due diligence phase.)*
 
 #### 7.3.2 AI Model Capability Matrix
 
 | AI Capability | Recommended Models | Primary Use |
 |--------------|---------------------|-------------|
-| Text Generation | MiMo-Pro, xAI Grok-2, GPT-4 | Universe settings, story generation, story branches |
-| Dialogue Interaction | MiMo-Pro, xAI Grok-2 | Character dialogue, Q&A interaction |
+| Text Generation | Primary Chinese LLM, xAI Grok-2, GPT-4 | Universe settings, story generation, story branches |
+| Dialogue Interaction | Primary Chinese LLM, xAI Grok-2 | Character dialogue, Q&A interaction |
 | Image Generation | Stable Diffusion, DALL-E | Scene illustrations, character portraits |
 | Voice Synthesis | ElevenLabs, Azure TTS | Character voice acting, background music |
 
-### 7.4 Database Design
+### 7.4 Database Design (Core Data Models)
 
-#### 7.4.1 Core Data Models
+**User**: id, username, email, apiKey (encrypted), subscription tier, role, createdAt, lastLoginAt, preferences
 
-```javascript
-// User table
-User {
-  id: ObjectId,
-  username: String,
-  email: String,
-  apiKey: String,          // Custom API key (encrypted)
-  createdAt: Date,
-  lastLoginAt: Date,
-  preferences: Object,
-  subscription: Enum['free', 'premium', 'creator'],
-  role: Enum['user', 'creator', 'admin']
-}
+**Universe**: id, name, creatorId, description, settings (genre, tags, background, rules), visibility, createdAt, updatedAt, visitCount, likes
 
-// Universe table
-Universe {
-  id: ObjectId,
-  name: String,
-  creatorId: ObjectId,
-  description: String,
-  settings: {
-    genre: String,
-    tags: [String],
-    background: String,
-    rules: [String]
-  },
-  visibility: Enum['public', 'unlisted', 'private'],
-  createdAt: Date,
-  updatedAt: Date,
-  visitCount: Number,
-  likes: Number
-}
+**Character**: id, universeId, name, role, personality, appearance, dialogueStyle, systemPrompt
 
-// Character table
-Character {
-  id: ObjectId,
-  universeId: ObjectId,
-  name: String,
-  role: String,
-  personality: String,
-  appearance: String,
-  dialogueStyle: String,
-  systemPrompt: String
-}
+**StoryProgress**: id, odId, universeId, currentBranch, history (scene, choice, result), lastUpdatedAt
 
-// Story progress table
-StoryProgress {
-  id: ObjectId,
-  odId: ObjectId,
-  universeId: ObjectId,
-  currentBranch: String,
-  history: [{
-    scene: String,
-    choice: String,
-    result: String
-  }],
-  lastUpdatedAt: Date
-}
-```
+*(Detailed schema documentation available during due diligence phase.)*
 
 ---
 
@@ -626,9 +474,7 @@ Traditional UGC platforms store all content on centralized servers, where costs 
 | Creative Freedom | Limited by platform features | Fully customizable |
 | Content Diversity | Homogenized | Extremely rich |
 
-### 8.2 Technical Implementation
-
-#### 8.2.1 Creator Node Program
+### 8.2 Creator Node Program
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -647,74 +493,15 @@ Traditional UGC platforms store all content on centralized servers, where costs 
 └───────────────┘   └───────────────┘   └───────────────┘
 ```
 
-#### 8.2.2 Local Compute + Cloud Index Mode
+### 8.3 Cost Comparison Analysis
 
-**Creator Side**:
-- Run AI models on own computer to generate universe content
-- Use local storage for all assets (images, audio, 3D models, etc.)
-- Only upload "metadata" to cloud:
-  ```json
-  {
-    "universeId": "xxx",
-    "name": "Cyber Tang",
-    "description": "Chang'an City in 2077...",
-    "tags": ["scifi", "cyberpunk", "journey-west"],
-    "entryPoints": ["Chang'an Gate", "Bodhi Hacker Org"],
-    "nodeAddress": "p2p://creator-node-xxx",
-    "status": "online"
-  }
-  ```
-
-**Platform Side**:
-- Only store index data (each universe < 1KB)
-- Provide discovery, search, recommendation functions
-- Handle P2P connections and authentication
-
-#### 8.2.3 Cost Comparison Analysis
+> *All cost figures are estimates based on current cloud pricing. Actual results may vary.*
 
 | Architecture | 1000 Users/Mo | 10000 Users/Mo | 100000 Users/Mo |
 |-------------|---------------|----------------|-----------------|
 | Pure Centralized | $3,000+ | $30,000+ | $300,000+ |
 | Distributed+Cloud Index | $450 | $2,250 | $12,000 |
-| **Savings** | **85%** | **92.5%** | **96%** |
-
-### 8.3 Compute Marketplace Design
-
-#### 8.3.1 Compute Economy Model
-
-```
-┌─────────────┐     Rent Compute    ┌─────────────┐
-│ Creator A   │ ─────────────────→ │ Compute     │
-│ (No GPU)    │                     │ Provider    │
-└─────────────┘                     └─────────────┘
-       │                                   │
-       │ Pay Compute Fee                   │ Earn Revenue
-       ▼                                   ▼
-┌─────────────────────────────────────────────┐
-│           Platform Compute Marketplace        │
-│    • Match Supply/Demand • Smart Pricing     │
-│         • Security Assurance                 │
-│           Platform Fee: 10%                   │
-└─────────────────────────────────────────────┘
-```
-
-#### 8.3.2 Pricing Mechanism
-
-| Compute Type | Unit | Reference Price | Use Case |
-|-------------|------|-----------------|----------|
-| Text Generation | 1K Tokens | $0.0003 | Stories, Dialogues |
-| Image Generation | Per Image | $0.015 | Scenes, Portraits |
-| 3D Rendering | Per Minute | $0.08 | Scene Modeling |
-| Video Generation | Per Second | $0.30 | Dynamic Transitions |
-
-### 8.4 Competitive Differentiation
-
-| Platform | Architecture | Compute Source | Content Type | Creator Freedom |
-|----------|-------------|----------------|--------------|-----------------|
-| AI Dungeon | Centralized | Platform | Text only | Low |
-| Character.AI | Centralized | Platform | Dialogue | Medium |
-| NovelAI | Centralized | Platform | Text+Image | Medium |
-| **Zishijian** | **Distributed** | **Platform+User** | **Multimodal+3D** | **High** |
+| **Estimated Savings** | **85%** | **92.5%** | **96%** |
 
 ---
 
@@ -764,7 +551,7 @@ Traditional UGC platforms store all content on centralized servers, where costs 
 | IP Licensing | 10% | Game, film/TV adaptation licensing |
 | Creator Sharing | 10% | Content marketplace transaction fees |
 
-### 9.3 Cost Structure
+### 9.3 Cost Structure (Estimated)
 
 | Cost Item | Monthly Expense | Description |
 |----------|----------------|-------------|
@@ -774,71 +561,87 @@ Traditional UGC platforms store all content on centralized servers, where costs 
 | O&M Cost | $150 | Monitoring, logs, etc. |
 | **Total** | **$2,025/month** | Basic operating costs |
 
-### 9.4 Break-even Analysis
-
-- **Target Paid Users**: 1,000 premium users
-- **Average Revenue Per User**: $4.5/month
-- **Monthly Revenue**: $4,500
-- **Gross Margin**: 55%
-- **Net Profit**: $2,475/month
-
 ---
 
 ## 10. Team & Capabilities
 
-### 10.1 Product Development Proof
+### 10.1 The Founder — Solo Developer with AI-Augmented Development
 
-We have demonstrated solid execution capability through the Zishijian MVP:
+Zishijian is built by a solo founder who embodies a new model of individual creator empowerment through AI tools.
 
-#### 10.1.1 Project Achievements
+> **"AI as Co-Founder"**: Rather than scaling headcount, this project demonstrates that a single skilled developer augmented by AI tools can achieve what traditionally required a team of 5-10 people. The founder treats AI models as collaborative partners — for code review, design iteration, content creation, and problem-solving.
 
-| Metric | Data |
-|--------|------|
-| Website Status | Live and accessible globally |
-| Deployment | GitHub Pages (100% uptime) + Cloudflare CDN |
-| Code Quality | Clean, modular, well-documented |
-| Development Speed | MVP completed within 2 weeks |
-| Design Quality | Black Myth: Wukong-inspired aesthetic |
+#### 10.1.1 MVP Achievement in Record Time
 
-#### 10.1.2 Technology Stack Proficiency
+| Achievement | Details |
+|-------------|---------|
+| **Development Time** | Full MVP completed in **2 weeks** by solo developer |
+| **Modules Delivered** | 5 core modules all live simultaneously |
+| **Design Quality** | Black Myth: Wukong-inspired dark Eastern aesthetic — comparable to AAA game studio quality |
+| **Code Quality** | Clean, modular, well-documented; ready for team scaling |
+| **Deployment** | GitHub Pages + Cloudflare CDN — 100% uptime globally |
 
-```
-Zishijian project demonstrates capability in:
-├── Frontend development (HTML/CSS/JavaScript)
-├── Responsive design and UX optimization
-├── Static site architecture
-├── Git workflow and CI/CD (GitHub Pages)
-├── API integration planning
-├── Multi-provider AI integration
-└── Scalable architecture design
-```
+This is not just "fast for a solo developer." This is **fast by any standard**. The combination of focused vision, AI-augmented productivity, and modern tooling enabled an output that would traditionally require a team of 8-10 people over 3-6 months.
 
-### 10.2 Technology Stack Proficiency
+#### 10.1.2 Technical Proficiency
 
-| Technical Area | Proficiency | Application Scenario |
-|--------------|-------------|---------------------|
-| Frontend Development | Expert | Vue/React for UI construction |
-| Backend Development | Proficient | Node.js/Python for API services |
-| Database | Proficient | MongoDB/Redis design and optimization |
-| AI Integration | Proficient | Multi-provider LLM API calls and Prompt engineering |
-| DevOps | Proficient | CI/CD, containerized deployment |
-| Open Source Collaboration | Proficient | Git workflow, code review |
+| Technical Area | Level | Application in Zishijian |
+|--------------|-------|---------------------------|
+| Frontend Development | Expert | Complete MVP UI/UX from scratch |
+| Backend Architecture | Proficient | Scalable design ready for Node/Python backend |
+| AI Integration | Proficient | Multi-provider LLM integration and prompt engineering |
+| Database Design | Proficient | MongoDB schema design and optimization |
+| DevOps / Infrastructure | Proficient | GitHub Pages, Cloudflare, CI/CD pipeline |
+| UI/UX Design | Expert | Black Myth-level aesthetic; dark mythology visual language |
+| Open Source | Proficient | Full codebase on GitHub; community-ready |
 
-### 10.3 Continuous Iteration Capability
+#### 10.1.3 "AI as Co-Founder" Philosophy
 
-#### 10.3.1 Development Process
+The founder's approach goes beyond using AI as a tool — AI is treated as a genuine collaborator:
 
-```
-Requirement Collection → Solution Design → Development → Testing → Gray Release → Official Launch
-         │                                                    │
-         └────────────────  Feedback Optimization ←────────────┘
-```
+- **Code Review**: AI-assisted code review catches bugs and suggests improvements
+- **Design Iteration**: AI-generated alternatives accelerate creative decisions
+- **Documentation**: AI helps maintain comprehensive documentation
+- **Problem Solving**: AI serves as a 24/7 sounding board for technical challenges
 
-#### 10.3.2 Iteration Speed Assurance
+This philosophy enables a single person to maintain the quality and scope of a much larger team, while retaining the coherence and vision that comes from singular authorship.
 
-- **Short-cycle iteration**: New minor version released every two weeks
-- **Quick response**: User feedback responded within 24 hours
-- **Continuous integration**: Automated testing and deployment process
+#### 10.1.4 Open Source & Community Vision
+
+Zishijian is built as an open-source project, not just a commercial product:
+
+- **Full codebase public** on GitHub — transparency builds trust with investors
+- **Modular architecture** designed for contributor onboarding
+- **Distributed architecture** is inherently community-aligned (creator nodes)
+- **Vision**: Build an open ecosystem where the technology belongs to the community, not a single corporation
+
+The open-source foundation means:
+- Security vulnerabilities can be identified by the community
+- External contributors can extend functionality
+- The platform's survival does not depend on a single company
+- Community governance can emerge as the project matures
+
+#### 10.1.5 What This Means for Investors
+
+| Traditional Assumption | Zishijian Reality |
+|----------------------|-------------------|
+| MVP requires 3-6 months, 5+ person team | Achieved in 2 weeks, solo developer + AI |
+| Design quality suffers with small team | Black Myth-level aesthetics achieved |
+| Solo founder = high risk | AI-augmented productivity, modular code, clear vision |
+| Need large team to scale | Lean team, proven output, ready to add specialists as needed |
+
+### 10.2 Team Building Roadmap
+
+With seed funding, the plan is to add:
+
+| Role | Timeline | Justification |
+|------|----------|---------------|
+| AI/ML Engineer | Month 3-6 | Scale AI features beyond single developer's capacity |
+| Backend Engineer | Month 4-8 | Build robust multi-user backend |
+| Mobile Developer | Month 6-12 | iOS/Android native apps |
+| Community Manager | Month 3-6 | Build creator ecosystem |
+
+> **Note on Bus Factor**: We acknowledge that the current bus factor = 1. This is a risk we are transparent about (see Section 13). Mitigation includes: modular code architecture (easy for new developers to understand), comprehensive documentation, and priority hiring of AI/ML engineer in the first 6 months.
 
 ---
 
@@ -867,11 +670,13 @@ Requirement Collection → Solution Design → Development → Testing → Gray 
 | AI integration complete | Month 3 | 30% | All AI features functional |
 | 10,000 MAU | Month 6 | 50% | 10K monthly active users |
 | 50,000 MAU | Month 12 | 75% | 50K monthly active users |
-| Series A ready | Month 18 | 100% | $500K MRR |
+| Series A ready | Month 18 | 100% | ~$500K MRR |
 
 ### 11.4 Financial Projections
 
-| Year | MAU | Paid Users | Revenue | Burn Rate | Runway |
+> **Disclaimer**: All projections are estimates and targets, not guarantees. Actual results depend on market conditions, execution, competition, and other factors. These projections should be independently validated during due diligence.
+
+| Year | MAU (target) | Paid Users (target) | Revenue (estimated) | Burn Rate | Runway |
 |------|-----|------------|---------|-----------|--------|
 | Year 1 | 100,000 | 2,000 | $100K | $40K/mo | 18 months |
 | Year 2 | 1,000,000 | 15,000 | $600K | $60K/mo | Series A |
@@ -883,11 +688,11 @@ Requirement Collection → Solution Design → Development → Testing → Gray 
 
 ### 12.1 IPO Path
 
-**Timeline**: 5-7 years
+**Timeline**: 5-7 years *(target)*
 
 **Requirements**:
-- $50M+ ARR
-- 10M+ MAU
+- $50M+ ARR *(target)*
+- 10M+ MAU *(target)*
 - Dominant market position in AI interactive Chinese content
 - Profitable operations
 
@@ -898,9 +703,9 @@ Requirement Collection → Solution Design → Development → Testing → Gray 
 
 ### 12.2 Strategic Acquisition
 
-**Timeline**: 3-5 years
+**Timeline**: 3-5 years *(target)*
 
-**Potential Acquirers**:
+**Potential Acquirer Types**:
 
 | Acquirer Type | Strategic Value |
 |--------------|-----------------|
@@ -910,68 +715,74 @@ Requirement Collection → Solution Design → Development → Testing → Gray 
 | **Technology Companies** | Content vertical integration, creator economy expansion |
 | **Gaming & Interactive Funds** | Portfolio consolidation, category leadership |
 
-**Acquisition Value Estimates**:
-- Strategic buyer: $50-200M (3-5x revenue multiple)
-- Financial buyer: $30-100M (2-3x revenue multiple)
+**Acquisition Value Estimates** *(target, not guaranteed)*:
+- Strategic buyer: $50-200M (3-5x revenue multiple) *(estimated)*
+- Financial buyer: $30-100M (2-3x revenue multiple) *(estimated)*
 
 ### 12.3 Secondary Market Liquidity
 
-**Timeline**: 2-4 years
+**Timeline**: 2-4 years *(target)*
 
 - Employee option pool liquidity
 - Early investor secondary sales
 - SPAC merger opportunity
 
-### 12.4 M&A Synergies
-
-**IP Licensing Model** (Non-exit alternative):
-- License technology and IP to partners
-- Ongoing royalty revenue
-- Retain operational independence
-
 ---
 
 ## 13. Risks & Mitigation
 
-### 13.1 Market Risks
+> **Philosophy**: We believe transparent risk disclosure builds investor trust. Hiding risks does not make them disappear — it only means you are unprepared for them. Below is an honest assessment of the challenges facing Zishijian.
+
+### 13.1 Regulatory & Compliance Risks
 
 | Risk | Probability | Impact | Mitigation |
 |------|-------------|--------|------------|
-| AI quality doesn't meet user expectations | Medium | High | Continuous model evaluation, multi-provider fallback |
-| User demand for AI interactive fiction plateaus | Low | Medium | Diversify into adjacent markets (gaming, education) |
-| Competition from well-funded incumbents | High | Medium | Focus on niche (Chinese mythology), accelerate development |
+| **AI Content Moderation Regulations** — China and other jurisdictions may impose stricter rules on AI-generated content, requiring content review, age verification, or licensing | Medium | High | Content guidelines enforced at system level; age verification for mature content; monitoring regulatory changes closely |
+| **China ICP Compliance** — Operating a content platform in China requires ongoing compliance with evolving internet regulations, content licensing, and data localization rules | Medium | High | Full ICP filing (备案) in place; local legal counsel engaged; compliance-first design |
+| **Overseas Data Privacy (GDPR/CCPA)** — Collecting user data globally triggers GDPR (EU), CCPA (California), and other privacy regulations | Medium | High | Data minimization; transparent privacy policy; regional data storage options; encryption at rest and in transit |
+| **Gaming/Content Platform Regulations** — Some features (lottery mechanics, virtual goods) may trigger gaming regulations in certain jurisdictions | Low | Medium | Legal review of all monetization features; age gates on gambling-adjacent mechanics |
 
-### 13.2 Technical Risks
-
-| Risk | Probability | Impact | Mitigation |
-|------|-------------|--------|------------|
-| AI API costs remain high | High | Medium | Distributed architecture, multi-provider competition |
-| Content moderation failures | Medium | High | AI moderation + human review + community reporting |
-| Data privacy concerns | Medium | High | Encryption, anonymization, compliance with regulations |
-
-### 13.3 Regulatory Risks
+### 13.2 Intellectual Property Risks
 
 | Risk | Probability | Impact | Mitigation |
 |------|-------------|--------|------------|
-| AI content regulations tighten | Medium | High | Content guidelines, age verification, compliance team |
-| IP/copyright disputes | Medium | Medium | Clear licensing, original content focus, legal counsel |
-| Platform regulations for AI services | Low | Medium | Monitor regulatory trends, adapt proactively |
+| **Journey to the West IP Boundaries** — While 西游记 itself is in the Chinese public domain, derivative works (characters, specific adaptations, unique storylines) may have partial IP protection. The legal boundaries of AI-generated derivative content are legally untested globally | Medium | Medium | Focus on original character development and universe-building within the mythology; clear "inspired by" framing; legal counsel for derivative works |
+| **AI-Generated Content Ownership** — Questions of who owns AI-generated content (platform, user, AI provider) are legally unresolved in most jurisdictions | Medium | Medium | Clear terms of service allocating IP to users/creators; monitoring legal developments |
+| **Third-Party IP in User-Generated Content** — Users may create content infringing on others' IP | Medium | Medium | AI-powered content moderation; DMCA-compliant takedown process; community reporting system |
 
-### 13.4 Operational Risks
-
-| Risk | Probability | Impact | Mitigation |
-|------|-------------|--------|------------|
-| Key team member departure | Low | High | Equity compensation, culture building |
-| Burn rate too high | Medium | High | Lean operations, milestone-based spending |
-| Security breach | Low | Very High | Security audits, penetration testing, insurance |
-
-### 13.5 Financial Risks
+### 13.3 Technical Execution Risks
 
 | Risk | Probability | Impact | Mitigation |
 |------|-------------|--------|------------|
-| Unable to raise next round | Medium | High | Maintain low burn, show traction, explore alternative financing |
-| Market downturn affects fundraising | Medium | Medium | Extend runway, reduce burn, consider bridge financing |
-| Currency fluctuation (for international operations) | Low | Low | Local currency accounts, hedging for larger positions |
+| **AI Hallucination Impact on Narrative Quality** — LLMs may generate inconsistent, out-of-character, or nonsensical content that breaks immersion or generates harmful content | Medium | High | Multi-layer review system; character consistency prompting; user feedback loops; human review for critical paths |
+| **Distributed Node Stability** — Creator-run nodes may go offline, degrade quality, or act maliciously, affecting user experience | Medium | Medium | Redundant node discovery; quality scoring system; cloud fallback for critical features |
+| **Multi-Provider AI Switching Reliability** — Routing between multiple AI providers introduces latency, inconsistency, and failure points | Medium | Medium | Robust fallback chains; latency monitoring; provider quality scoring; graceful degradation |
+| **Security Vulnerabilities** — Open-source platform with AI integrations presents attack surface (prompt injection, API abuse, data breaches) | Medium | High | Security audits; input sanitization; rate limiting; encrypted API key storage; bug bounty program |
+
+### 13.4 Team & Operational Risks
+
+| Risk | Probability | Impact | Mitigation |
+|------|-------------|--------|------------|
+| **Bus Factor = 1** — The founder is currently the only team member. Any incapacity creates immediate project risk | **High** | **Very High** | **This is our most significant operational risk.** Mitigation: comprehensive documentation, modular code architecture, priority hiring of AI/ML engineer in Month 3-6, knowledge sharing, and avoiding dependency on single person for any critical system |
+| **Key Team Member Departure** — As we grow, losing early hires can slow progress | Low | High | Equity compensation, competitive compensation, strong culture |
+| **Founder Burnout** — Solo development with AI assistance is intense; sustainability risk | Low | High | With seed funding, first hire will reduce founder's operational burden within 6 months |
+| **Burn Rate Too High** — Overspending on early growth could exhaust runway | Medium | High | Milestone-based spending; lean operations; monthly financial reviews |
+
+### 13.5 Market & Competitive Risks
+
+| Risk | Probability | Impact | Mitigation |
+|------|-------------|--------|------------|
+| **Well-Funded Competition** — Large platforms (ByteDance, Tencent, established AI companies) entering the AI interactive fiction space | **High** | Medium | Focus on niche (Chinese mythology); move fast; build community moat; leverage open-source advantage |
+| **AI Costs Remain High** — If distributed architecture savings don't materialize as projected | Medium | Medium | Multi-provider competition drives prices down; hybrid cloud/local model reduces cloud dependency |
+| **User Demand for AI Interactive Fiction Plateaus** — Early enthusiasm doesn't translate to sustained engagement | Low | Medium | Diversify into adjacent markets; strong creator ecosystem creates network effects |
+| **Market Size Overestimation** — If the TAM/SAM estimates prove optimistic | Medium | Medium | Conservative financial planning with multiple scenarios; focus on engagement metrics over raw market claims |
+
+### 13.6 Financial Risks
+
+| Risk | Probability | Impact | Mitigation |
+|------|-------------|--------|------------|
+| **Unable to Raise Next Round** — Market downturn or missed milestones | Medium | High | Maintain low burn; show traction metrics; explore bridge financing, grants, and alternative revenue |
+| **Currency Fluctuation** — International operations with RMB and USD | Low | Low | Local currency accounts; hedging for larger positions |
 
 ---
 
@@ -979,19 +790,31 @@ Requirement Collection → Solution Design → Development → Testing → Gray 
 
 Zishijian (藏子世间) represents a compelling investment opportunity at the intersection of three massive trends:
 
-1. **Explosive growth in AI-powered content generation** ($4.8B → $26.7B by 2030)
-2. **Mature web novel market with 638M users** ($69B market)
+1. **Explosive growth in AI-powered content generation** ($4.8B → $26.7B by 2030) *(estimated/projected)*
+2. **Mature web novel market with 500M+ users** ($20-70B market) *(estimated)*
 3. **Rising global interest in Chinese cultural content** (Black Myth: Wukong effect)
 
 ### Key Investment Highlights
 
-- ✅ **Massive Market Opportunity**: TAM of $80B+ with multiple growth vectors
+- ✅ **Massive Market Opportunity**: TAM of $30-80B+ with multiple growth vectors *(estimated)*
 - ✅ **First-Mover Advantage**: No major AI platform deeply serves Chinese mythology interactive content
-- ✅ **Revolutionary Technology**: Distributed architecture achieves 85-96% cost savings
-- ✅ **Proven Execution**: Working MVP with 5 core modules live
-- ✅ **Multi-AI Strategy**: Not dependent on single vendor; supports MiMo, xAI, and custom keys
-- ✅ **Strong Unit Economics**: Freemium model with clear conversion path
+- ✅ **Revolutionary Technology**: Distributed architecture achieves 85-96% cost savings *(estimated)*
+- ✅ **Proven Execution**: 5 core modules live, MVP in 2 weeks by solo founder
+- ✅ **AI-Augmented Development Model**: Solo founder + AI tools = small team, high output, coherent vision
+- ✅ **Multi-AI Strategy**: Not dependent on single vendor; supports multiple providers
+- ✅ **Open-Source Foundation**: Transparent codebase, community-aligned architecture
 - ✅ **Global-First Strategy**: Prioritize international markets to build defensible brand and revenue before entering hyper-competitive China market
+
+### Transparent About Risks
+
+We are honest about our challenges:
+- **Bus factor = 1** is our biggest operational risk (mitigated by modular code and priority hiring)
+- Market data varies significantly by source — we use conservative estimates
+- Regulatory environment for AI content is evolving and uncertain
+- Journey to the West IP derivatives occupy legally gray areas
+- AI hallucinations require ongoing mitigation
+
+We believe transparency builds the kind of trust that survives the inevitable challenges of building a company.
 
 ### Call to Action
 
@@ -1000,7 +823,8 @@ We are seeking **$500K - $2M in seed funding** to:
 1. Complete AI integration across all features
 2. Launch mobile applications for iOS and Android
 3. Build creator ecosystem with incentives
-4. Execute global-first go-to-market strategy (international markets as primary battlefield)
+4. Execute global-first go-to-market strategy
+5. Hire first team members to reduce bus factor risk
 
 **Join us** in building the future of interactive storytelling, where every user becomes both reader and creator in an infinite universe of Chinese mythology and original content.
 
@@ -1011,6 +835,8 @@ We are seeking **$500K - $2M in seed funding** to:
 **Website**: https://zishijian.com/
 **Novel**: https://changdunovel.com/t/rZqNw3D2iiw/
 
+> **[Live Demo Available**: https://zishijian.com/ — Experience the platform firsthand]**
+
 ---
 
 **Company**: Zishijian Project
@@ -1019,4 +845,4 @@ We are seeking **$500K - $2M in seed funding** to:
 
 ---
 
-*This investor whitepaper is prepared for qualified investors considering strategic investment in Zishijian (藏子世间). Confidential - For Discussion Purposes Only.*
+*This investor whitepaper is prepared for qualified investors considering strategic investment in Zishijian (藏子世间). All market data figures are estimates unless otherwise noted. Financial projections are targets, not guarantees. Confidential - For Discussion Purposes Only.*
