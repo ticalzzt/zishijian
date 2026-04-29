@@ -562,9 +562,37 @@ body::before {
    ======================================== */
 .universe-page {
     min-height: 100vh;
-    background: 
-        linear-gradient(180deg, var(--bg-deep) 0%, #0f0d0a 50%, var(--bg-deep) 100%);
+    position: relative;
     padding: 2rem;
+}
+
+.universe-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(180deg, rgba(10, 9, 8, 0.7) 0%, rgba(10, 9, 8, 0.5) 50%, rgba(10, 9, 8, 0.8) 100%);
+    z-index: 0;
+}
+
+/* 创建宇宙页面专属背景 */
+#create-universe {
+    background: url('../images/create_universe_bg.jpg') center center / cover no-repeat;
+}
+
+/* 悟道页面背景 */
+#wukong-universe {
+    background: linear-gradient(rgba(10, 9, 8, 0.6), rgba(10, 9, 8, 0.7)), 
+                url('../images/wukong_bg.jpg') center center / cover no-repeat;
+}
+
+/* 确保内容在背景之上 */
+.universe-page > * {
+    position: relative;
+    z-index: 1;
 }
 
 .page-header {
