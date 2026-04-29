@@ -5,591 +5,815 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>觉字机缘 - 藏子世间</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            margin: 0;
+            font-family: 'Noto Serif SC', 'Noto Sans SC', serif;
+            background: #0a0908;
+            color: #e8e4dc;
+            min-height: 100vh;
             overflow-x: hidden;
         }
         
-        .jiyuan-page {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 2rem 1rem;
+        /* 背景 */
+        .jiyuan-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: 
-                linear-gradient(rgba(10, 9, 8, 0.55), rgba(10, 9, 8, 0.65)),
-                url('images/jiyuan_fortune_0.jpg') center/cover no-repeat;
+                linear-gradient(135deg, rgba(20,15,10,0.9) 0%, rgba(10,9,8,0.95) 100%),
+                url('images/jiyuan_fortune_1.jpg') center/cover;
+            z-index: -1;
         }
         
-        .back-home {
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            padding: 8px 16px;
-            background: transparent;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            color: rgba(255, 215, 0, 0.7);
-            font-size: 0.8rem;
-            cursor: pointer;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: all 0.3s;
-            z-index: 100;
-        }
-        
-        .back-home:hover {
-            background: rgba(255, 215, 0, 0.1);
-            color: #ffd700;
-        }
-        
-        .result-container {
-            width: 100%;
-            max-width: 500px;
-            padding: 2rem 1.5rem;
-            border-radius: 20px;
-            text-align: center;
-            position: relative;
-            animation: fadeIn 0.8s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .result-container.tianming {
-            background: linear-gradient(135deg, rgba(26, 26, 10, 0.75) 0%, rgba(42, 42, 26, 0.8) 100%);
-            border: 3px solid #ffd700;
-            box-shadow: 0 0 80px rgba(255, 215, 0, 0.5), inset 0 0 40px rgba(255, 215, 0, 0.1);
-        }
-        
-        .result-container.shangshang {
-            background: linear-gradient(135deg, rgba(26, 10, 42, 0.75) 0%, rgba(42, 26, 58, 0.8) 100%);
-            border: 3px solid #9966ff;
-            box-shadow: 0 0 60px rgba(153, 102, 255, 0.4), inset 0 0 30px rgba(153, 102, 255, 0.1);
-        }
-        
-        .result-container.zhong {
-            background: linear-gradient(135deg, rgba(10, 26, 42, 0.75) 0%, rgba(26, 42, 58, 0.8) 100%);
-            border: 3px solid #4488ff;
-            box-shadow: 0 0 50px rgba(68, 136, 255, 0.3), inset 0 0 20px rgba(68, 136, 255, 0.1);
-        }
-        
-        .result-container.xia {
-            background: linear-gradient(135deg, rgba(26, 26, 26, 0.75) 0%, rgba(42, 42, 42, 0.8) 100%);
-            border: 3px solid #666;
-            box-shadow: 0 0 40px rgba(100, 100, 100, 0.2), inset 0 0 15px rgba(100, 100, 100, 0.1);
-        }
-        
-        .result-container.jieshu {
-            background: linear-gradient(135deg, rgba(42, 10, 10, 0.75) 0%, rgba(58, 26, 26, 0.8) 100%);
-            border: 3px solid #ff4444;
-            box-shadow: 0 0 60px rgba(255, 68, 68, 0.4), inset 0 0 25px rgba(255, 68, 68, 0.1);
-        }
-        
-        .level-badge {
-            display: inline-block;
-            padding: 8px 25px;
-            border-radius: 20px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: 0.1em;
-        }
-        
-        .tianming .level-badge { background: rgba(255, 215, 0, 0.2); color: #ffd700; }
-        .shangshang .level-badge { background: rgba(153, 102, 255, 0.2); color: #9966ff; }
-        .zhong .level-badge { background: rgba(68, 136, 255, 0.2); color: #4488ff; }
-        .xia .level-badge { background: rgba(150, 150, 150, 0.2); color: #999; }
-        .jieshu .level-badge { background: rgba(255, 68, 68, 0.2); color: #ff4444; }
-        
-        .fortune-title {
-            font-family: 'LXGW WenKai', serif;
-            font-size: 1.8rem;
-            color: #fff;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 20px currentColor;
-        }
-        
-        .fortune-text {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            font-style: italic;
-        }
-        
-        .story-section {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            text-align: left;
-        }
-        
-        .story-label {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 0.8rem;
-            letter-spacing: 0.1em;
-        }
-        
-        .story-content {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.9;
-        }
-        
-        .encounter-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 1.5rem 0;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-        }
-        
-        .encounter-icon {
-            font-size: 1.5rem;
-        }
-        
-        .encounter-text {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .encounter-target {
-            font-size: 1.1rem;
-            color: #ffd700;
-            font-weight: 600;
-        }
-        
-        .guide-section {
-            border-left: 3px solid rgba(255, 215, 0, 0.5);
-            padding-left: 1rem;
-            margin: 1.5rem 0;
-            text-align: left;
-        }
-        
-        .guide-label {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 0.5rem;
-        }
-        
-        .guide-text {
-            font-size: 1rem;
-            color: rgba(255, 215, 0, 0.9);
-            line-height: 1.6;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .btn {
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: 'Noto Sans SC', sans-serif;
-            border: none;
-        }
-        
-        .btn-redraw {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
-            border: 1px solid rgba(255, 215, 0, 0.5);
-            color: #ffd700;
-        }
-        
-        .btn-redraw:hover {
-            background: rgba(255, 215, 0, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
-        }
-        
-        .btn-save {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .btn-save:hover {
-            border-color: rgba(255, 255, 255, 0.5);
-            color: #fff;
-        }
-        
-        .btn-saved {
-            background: rgba(76, 175, 80, 0.2);
-            border-color: #4caf50;
-            color: #4caf50;
-        }
-        
-        .history-section {
-            width: 100%;
-            max-width: 500px;
-            margin-top: 2rem;
-        }
-        
-        .history-title {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        
-        .history-list {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .history-item {
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .history-item.tianming { background: rgba(255, 215, 0, 0.15); color: #ffd700; border: 1px solid rgba(255, 215, 0, 0.3); }
-        .history-item.shangshang { background: rgba(153, 102, 255, 0.15); color: #9966ff; border: 1px solid rgba(153, 102, 255, 0.3); }
-        .history-item.zhong { background: rgba(68, 136, 255, 0.15); color: #4488ff; border: 1px solid rgba(68, 136, 255, 0.3); }
-        .history-item.xia { background: rgba(150, 150, 150, 0.15); color: #999; border: 1px solid rgba(150, 150, 150, 0.3); }
-        .history-item.jieshu { background: rgba(255, 68, 68, 0.15); color: #ff4444; border: 1px solid rgba(255, 68, 68, 0.3); }
-        
-        .history-item:hover {
-            transform: scale(1.05);
-        }
-        
-        .stats {
-            position: fixed;
-            bottom: 15px;
-            right: 15px;
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.3);
-            text-align: right;
-        }
-        
-        .loading {
-            text-align: center;
-            padding: 3rem;
-        }
-        
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(99, 102, 241, 0.2);
-            border-top-color: #6366f1;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1.5rem;
-        }
-        
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
+        /* 粒子效果 */
         .particles {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             pointer-events: none;
-            z-index: -1;
+            z-index: 1;
+            overflow: hidden;
         }
         
         .particle {
             position: absolute;
-            width: 3px;
-            height: 3px;
-            background: rgba(255, 215, 0, 0.4);
+            width: 3px; height: 3px;
+            background: radial-gradient(circle, rgba(201,162,39,0.8), transparent);
             border-radius: 50%;
-            animation: floatUp 15s infinite linear;
+            animation: floatUp 15s linear infinite;
         }
         
         @keyframes floatUp {
-            0% { transform: translateY(100vh); opacity: 0; }
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
-            100% { transform: translateY(-100vh); opacity: 0; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
         }
         
-        /* =====================
-           响应式设计
-           ===================== */
-        
-        /* 平板设备 */
-        @media (max-width: 768px) {
-            .jiyuan-page {
-                padding: 1.5rem 0.8rem;
-                background-size: contain;
-                background-position: center center;
-                background-color: #0a0908;
-            }
-            
-            .back-home {
-                top: 10px;
-                left: 10px;
-                padding: 10px 14px;
-                font-size: 0.75rem;
-                min-width: 44px;
-                min-height: 44px;
-                display: flex;
-                align-items: center;
-            }
-            
-            .result-container {
-                padding: 1.5rem 1rem;
-                border-radius: 15px;
-                margin: 0 0.5rem;
-            }
-            
-            .fortune-title {
-                font-size: 1.5rem;
-            }
-            
-            .fortune-text {
-                font-size: 1rem;
-            }
-            
-            .story-section {
-                padding: 1rem;
-            }
-            
-            .story-content {
-                font-size: 0.95rem;
-                line-height: 1.8;
-            }
-            
-            .level-badge {
-                padding: 6px 18px;
-                font-size: 1rem;
-            }
-            
-            .action-buttons {
-                gap: 10px;
-            }
-            
-            .btn {
-                padding: 12px 20px;
-                font-size: 0.85rem;
-                min-width: 44px;
-                min-height: 44px;
-            }
-            
-            .stats {
-                bottom: 10px;
-                right: 10px;
-                font-size: 0.7rem;
-            }
+        /* 返回按钮 */
+        .back-home {
+            position: fixed;
+            top: 15px; left: 15px;
+            padding: 10px 18px;
+            background: rgba(0,0,0,0.6);
+            border: 1px solid rgba(201,162,39,0.4);
+            color: #c9a227;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s;
+            z-index: 100;
+            backdrop-filter: blur(10px);
         }
         
-        /* 小屏移动设备 */
+        .back-home:hover {
+            background: rgba(201,162,39,0.15);
+            border-color: #c9a227;
+        }
+        
+        /* 主容器 */
+        .jiyuan-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 80px 20px 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* 标题区 */
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f5d442;
+            text-shadow: 0 0 30px rgba(245,212,66,0.5);
+            letter-spacing: 0.3em;
+            margin-bottom: 8px;
+        }
+        
+        .page-subtitle {
+            font-size: 0.85rem;
+            color: rgba(232,228,220,0.5);
+            letter-spacing: 0.2em;
+        }
+        
+        /* 能量条区域 */
+        .energy-display {
+            width: 100%;
+            margin-bottom: 30px;
+            padding: 15px 20px;
+            background: rgba(26,24,21,0.8);
+            border: 1px solid rgba(201,162,39,0.2);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .energy-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .energy-row:last-child { margin-bottom: 0; }
+        
+        .energy-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .energy-icon { font-size: 1.1rem; }
+        
+        .positive .energy-label { color: #f5d442; }
+        .negative .energy-label { color: #9966ff; }
+        
+        .energy-value {
+            font-size: 0.85rem;
+            color: rgba(232,228,220,0.7);
+        }
+        
+        .energy-bar {
+            flex: 1;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            margin-left: 15px;
+            overflow: hidden;
+        }
+        
+        .energy-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+        
+        .positive .energy-fill {
+            background: linear-gradient(90deg, #c9a227, #f5d442);
+            box-shadow: 0 0 10px rgba(245,212,66,0.5);
+        }
+        
+        .negative .energy-fill {
+            background: linear-gradient(90deg, #6633aa, #9966ff);
+            box-shadow: 0 0 10px rgba(153,102,255,0.5);
+        }
+        
+        /* 抽签区域 */
+        .draw-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        
+        /* 签筒 */
+        .lottery-container {
+            position: relative;
+            width: 200px;
+            height: 280px;
+            margin-bottom: 30px;
+        }
+        
+        .lottery-tube {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 160px;
+            background: linear-gradient(180deg, #2a2520 0%, #1a1815 50%, #0a0908 100%);
+            border: 2px solid rgba(201,162,39,0.5);
+            border-radius: 8px 8px 20px 20px;
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.5),
+                inset 0 -20px 40px rgba(0,0,0,0.3),
+                0 0 20px rgba(201,162,39,0.2);
+            overflow: hidden;
+        }
+        
+        .lottery-tube::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 120px;
+            background: linear-gradient(180deg, 
+                rgba(201,162,39,0.1) 0%,
+                rgba(201,162,39,0.3) 50%,
+                rgba(201,162,39,0.1) 100%
+            );
+            border-radius: 4px;
+        }
+        
+        .lottery-sticks {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 100px;
+        }
+        
+        .stick {
+            position: absolute;
+            width: 3px;
+            background: linear-gradient(180deg, #f5d442, #c9a227);
+            border-radius: 2px;
+            box-shadow: 0 0 5px rgba(245,212,66,0.5);
+        }
+        
+        /* 抽签按钮 */
+        .draw-btn {
+            padding: 15px 50px;
+            font-size: 1.1rem;
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 700;
+            color: #f5d442;
+            background: linear-gradient(135deg, rgba(201,162,39,0.2) 0%, rgba(139,115,21,0.3) 100%);
+            border: 2px solid rgba(201,162,39,0.6);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 0.2em;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .draw-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(245,212,66,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .draw-btn:hover::before { left: 100%; }
+        
+        .draw-btn:hover {
+            background: linear-gradient(135deg, rgba(201,162,39,0.4) 0%, rgba(139,115,21,0.5) 100%);
+            box-shadow: 0 0 30px rgba(201,162,39,0.4);
+            transform: translateY(-2px);
+        }
+        
+        .draw-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .draw-btn:disabled:hover::before { left: -100%; }
+        
+        /* 冷却提示 */
+        .cooldown-hint {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: rgba(232,228,220,0.5);
+        }
+        
+        .cooldown-hint span {
+            color: #f5d442;
+        }
+        
+        /* 签文展示区 */
+        .fortune-result {
+            width: 100%;
+            padding: 30px 25px;
+            background: linear-gradient(135deg, rgba(26,24,21,0.95) 0%, rgba(15,14,12,0.98) 100%);
+            border: 1px solid rgba(201,162,39,0.3);
+            border-radius: 16px;
+            text-align: center;
+            display: none;
+            animation: fadeSlideUp 0.6s ease;
+            backdrop-filter: blur(20px);
+        }
+        
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fortune-result.show { display: block; }
+        
+        /* 签等级标签 */
+        .fortune-level {
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            margin-bottom: 20px;
+        }
+        
+        .level-tianming {
+            background: rgba(245,212,66,0.2);
+            color: #f5d442;
+            border: 1px solid rgba(245,212,66,0.5);
+            box-shadow: 0 0 20px rgba(245,212,66,0.3);
+        }
+        
+        .level-shangshang {
+            background: rgba(153,102,255,0.2);
+            color: #9966ff;
+            border: 1px solid rgba(153,102,255,0.5);
+            box-shadow: 0 0 20px rgba(153,102,255,0.3);
+        }
+        
+        .level-zhong {
+            background: rgba(68,136,255,0.2);
+            color: #4488ff;
+            border: 1px solid rgba(68,136,255,0.5);
+            box-shadow: 0 0 20px rgba(68,136,255,0.3);
+        }
+        
+        .level-xia {
+            background: rgba(150,150,150,0.2);
+            color: #999;
+            border: 1px solid rgba(150,150,150,0.5);
+        }
+        
+        .level-jieshu {
+            background: rgba(255,68,68,0.2);
+            color: #ff4444;
+            border: 1px solid rgba(255,68,68,0.5);
+            box-shadow: 0 0 20px rgba(255,68,68,0.3);
+        }
+        
+        /* 签题 */
+        .fortune-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #f5d442;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(245,212,66,0.3);
+            letter-spacing: 0.1em;
+        }
+        
+        /* 签诗 */
+        .fortune-text {
+            font-size: 1.1rem;
+            color: rgba(232,228,220,0.9);
+            margin-bottom: 25px;
+            line-height: 1.8;
+            font-style: italic;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            border-left: 3px solid rgba(201,162,39,0.5);
+        }
+        
+        /* 分隔线 */
+        .fortune-divider {
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201,162,39,0.5), transparent);
+            margin: 20px auto;
+        }
+        
+        /* 签文内容区 */
+        .fortune-content {
+            text-align: left;
+        }
+        
+        .content-section {
+            margin-bottom: 20px;
+        }
+        
+        .content-label {
+            font-size: 0.8rem;
+            color: rgba(232,228,220,0.5);
+            letter-spacing: 0.15em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .content-text {
+            font-size: 0.95rem;
+            color: rgba(232,228,220,0.85);
+            line-height: 1.8;
+        }
+        
+        /* 遭遇区域 */
+        .encounter-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 15px;
+            background: rgba(201,162,39,0.1);
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .encounter-icon { font-size: 1.5rem; }
+        
+        .encounter-label {
+            font-size: 0.85rem;
+            color: rgba(232,228,220,0.6);
+        }
+        
+        .encounter-target {
+            font-size: 1.1rem;
+            color: #f5d442;
+            font-weight: 600;
+        }
+        
+        /* 指引 */
+        .guide-box {
+            padding: 15px;
+            background: rgba(139,115,21,0.15);
+            border-radius: 10px;
+            border-left: 3px solid rgba(201,162,39,0.6);
+            margin-top: 20px;
+        }
+        
+        .guide-text {
+            font-size: 0.95rem;
+            color: rgba(232,228,220,0.9);
+            line-height: 1.7;
+        }
+        
+        /* 操作按钮 */
+        .fortune-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .action-btn {
+            padding: 12px 25px;
+            font-size: 0.9rem;
+            font-family: 'Noto Sans SC', sans-serif;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-redraw {
+            background: linear-gradient(135deg, rgba(201,162,39,0.2) 0%, rgba(139,115,21,0.3) 100%);
+            border: 1px solid rgba(201,162,39,0.5);
+            color: #f5d442;
+        }
+        
+        .btn-redraw:hover {
+            background: rgba(201,162,39,0.3);
+            box-shadow: 0 0 20px rgba(201,162,39,0.3);
+        }
+        
+        .btn-save {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(232,228,220,0.8);
+        }
+        
+        .btn-save:hover {
+            border-color: rgba(255,255,255,0.4);
+            color: #fff;
+        }
+        
+        .btn-saved {
+            background: rgba(76,175,80,0.2);
+            border-color: #4caf50;
+            color: #4caf50;
+        }
+        
+        /* 历史记录 */
+        .history-section {
+            width: 100%;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(26,24,21,0.6);
+            border-radius: 12px;
+            border: 1px solid rgba(201,162,39,0.15);
+        }
+        
+        .history-title {
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(232,228,220,0.5);
+            margin-bottom: 15px;
+            letter-spacing: 0.1em;
+        }
+        
+        .history-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        
+        .history-item {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .history-item.tianming { border-color: rgba(245,212,66,0.5); color: #f5d442; }
+        .history-item.shangshang { border-color: rgba(153,102,255,0.5); color: #9966ff; }
+        .history-item.zhong { border-color: rgba(68,136,255,0.5); color: #4488ff; }
+        .history-item.xia { border-color: rgba(150,150,150,0.5); color: #999; }
+        .history-item.jieshu { border-color: rgba(255,68,68,0.5); color: #ff4444; }
+        
+        /* 统计数据 */
+        .stats-bar {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            padding: 8px 15px;
+            background: rgba(0,0,0,0.7);
+            border: 1px solid rgba(201,162,39,0.3);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: rgba(232,228,220,0.6);
+            backdrop-filter: blur(10px);
+            z-index: 50;
+        }
+        
+        .stats-bar span { color: #c9a227; }
+        
+        /* 抽签动画 */
+        .drawing-animation {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+        
+        .drawing-animation.show { display: flex; }
+        
+        .shake-tube {
+            animation: shakeTube 0.1s ease-in-out infinite;
+        }
+        
+        @keyframes shakeTube {
+            0%, 100% { transform: translateX(-50%) rotate(-2deg); }
+            50% { transform: translateX(-50%) rotate(2deg); }
+        }
+        
+        .drawing-text {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: rgba(232,228,220,0.7);
+            animation: pulse 1s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        /* 移动端适配 */
         @media (max-width: 480px) {
-            .jiyuan-page {
-                padding: 1rem 0.5rem;
+            .jiyuan-container { padding: 70px 15px 80px; }
+            
+            .page-title { font-size: 1.6rem; }
+            
+            .lottery-container {
+                width: 160px;
+                height: 220px;
             }
             
-            .back-home {
-                padding: 8px 12px;
-                font-size: 0.7rem;
+            .lottery-tube {
+                width: 65px;
+                height: 130px;
             }
             
-            .result-container {
-                padding: 1.2rem 0.8rem;
-                border-radius: 12px;
-                margin: 0 0.3rem;
-            }
+            .fortune-result { padding: 25px 18px; }
             
-            .fortune-title {
-                font-size: 1.3rem;
-                margin-bottom: 0.8rem;
-            }
+            .fortune-title { font-size: 1.5rem; }
             
-            .fortune-text {
-                font-size: 0.95rem;
-                margin-bottom: 1rem;
-            }
+            .fortune-text { font-size: 1rem; }
             
-            .story-section {
-                padding: 0.8rem;
-                margin: 1rem 0;
-                border-radius: 8px;
-            }
+            .fortune-actions { flex-direction: column; }
             
-            .story-label {
-                font-size: 0.75rem;
-            }
+            .action-btn { width: 100%; }
             
-            .story-content {
-                font-size: 0.9rem;
-                line-height: 1.7;
-            }
-            
-            .encounter-section {
-                padding: 0.8rem;
-                flex-direction: column;
-                gap: 5px;
-            }
-            
-            .encounter-icon {
-                font-size: 1.2rem;
-            }
-            
-            .guide-section {
-                padding-left: 0.8rem;
-                margin: 1rem 0;
-            }
-            
-            .guide-text {
-                font-size: 0.9rem;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-                gap: 8px;
-            }
-            
-            .btn {
-                width: 100%;
-                padding: 14px 20px;
-                font-size: 0.9rem;
-            }
-            
-            .history-section {
-                margin-top: 1.5rem;
-            }
-            
-            .history-title {
-                font-size: 0.85rem;
-            }
-            
-            .history-item {
-                padding: 5px 10px;
-                font-size: 0.7rem;
-            }
-            
-            .stats {
-                position: static;
-                text-align: center;
-                margin-top: 1rem;
-                font-size: 0.7rem;
-            }
-        }
-        
-        /* 横屏模式 */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .jiyuan-page {
-                padding: 1rem;
-            }
-            
-            .result-container {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 1rem;
-                max-width: 90%;
-            }
-            
-            .result-container > * {
-                flex: 1 1 200px;
-            }
-            
-            .fortune-title {
-                font-size: 1.2rem;
-            }
-            
-            .action-buttons {
-                flex-direction: row;
-            }
+            .draw-btn { padding: 14px 40px; font-size: 1rem; }
         }
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-home">← 返回世间</a>
+    <div class="jiyuan-bg"></div>
     
     <div class="particles" id="particles"></div>
     
-    <div class="jiyuan-page">
-        <div class="loading" id="loading">
-            <div class="loading-spinner"></div>
-            <p style="color: rgba(255,255,255,0.5);">正在感应你的机缘...</p>
+    <a href="index.html" class="back-home">← 返回世间</a>
+    
+    <div class="jiyuan-container">
+        <div class="page-header">
+            <h1 class="page-title">觉字机缘</h1>
+            <p class="page-subtitle">每日一签，感知天命</p>
         </div>
         
-        <div class="result-container" id="resultContainer" style="display: none;">
-            <div class="level-badge" id="levelBadge"></div>
-            <h2 class="fortune-title" id="fortuneTitle"></h2>
-            <p class="fortune-text" id="fortuneText"></p>
-            
-            <div class="story-section">
-                <div class="story-label">✦ 预言故事</div>
-                <p class="story-content" id="storyContent"></p>
+        <!-- 能量显示 -->
+        <div class="energy-display" id="energyDisplay">
+            <div class="energy-row positive">
+                <div class="energy-label">
+                    <span class="energy-icon">✨</span>
+                    <span>福运灵力</span>
+                </div>
+                <div class="energy-bar">
+                    <div class="energy-fill" id="positiveFill" style="width: 0%"></div>
+                </div>
+                <span class="energy-value" id="positiveValue">0</span>
             </div>
-            
-            <div class="encounter-section">
-                <span class="encounter-icon">👤</span>
-                <div>
-                    <div class="encounter-text">你将会遇到</div>
-                    <div class="encounter-target" id="encounterTarget"></div>
+            <div class="energy-row negative">
+                <div class="energy-label">
+                    <span class="energy-icon">💀</span>
+                    <span>衰运灵力</span>
+                </div>
+                <div class="energy-bar">
+                    <div class="energy-fill" id="negativeFill" style="width: 0%"></div>
+                </div>
+                <span class="energy-value" id="negativeValue">0</span>
+            </div>
+        </div>
+        
+        <!-- 抽签区域 -->
+        <div class="draw-section" id="drawSection">
+            <div class="lottery-container" id="lotteryContainer">
+                <div class="lottery-tube" id="lotteryTube">
+                    <div class="lottery-sticks">
+                        <div class="stick" style="left: 10px; height: 80px; transform: rotate(-15deg);"></div>
+                        <div class="stick" style="left: 18px; height: 90px; transform: rotate(-5deg);"></div>
+                        <div class="stick" style="left: 26px; height: 85px; transform: rotate(5deg);"></div>
+                        <div class="stick" style="left: 34px; height: 75px; transform: rotate(12deg);"></div>
+                    </div>
                 </div>
             </div>
             
-            <div class="guide-section">
-                <div class="guide-label">指引</div>
-                <p class="guide-text" id="guideText"></p>
+            <button class="draw-btn" id="drawBtn" onclick="drawFortune()">
+                求取签文
+            </button>
+            
+            <p class="cooldown-hint" id="cooldownHint" style="display: none;">
+                今日已求签，明日 <span id="nextDrawTime">--:--</span> 可再求
+            </p>
+        </div>
+        
+        <!-- 抽签动画 -->
+        <div class="drawing-animation" id="drawingAnimation">
+            <div class="lottery-container">
+                <div class="lottery-tube shake-tube" id="shakeTube">
+                    <div class="lottery-sticks">
+                        <div class="stick" style="left: 10px; height: 80px; transform: rotate(-15deg);"></div>
+                        <div class="stick" style="left: 18px; height: 90px; transform: rotate(-5deg);"></div>
+                        <div class="stick" style="left: 26px; height: 85px; transform: rotate(5deg);"></div>
+                        <div class="stick" style="left: 34px; height: 75px; transform: rotate(12deg);"></div>
+                    </div>
+                </div>
+            </div>
+            <p class="drawing-text">命运转动中...</p>
+        </div>
+        
+        <!-- 签文结果 -->
+        <div class="fortune-result" id="fortuneResult">
+            <div class="fortune-level" id="fortuneLevel"></div>
+            <h2 class="fortune-title" id="fortuneTitle"></h2>
+            <p class="fortune-text" id="fortuneText"></p>
+            
+            <div class="fortune-divider"></div>
+            
+            <div class="fortune-content">
+                <div class="content-section">
+                    <div class="content-label">✦ 签文故事</div>
+                    <p class="content-text" id="storyContent"></p>
+                </div>
+                
+                <div class="encounter-box">
+                    <span class="encounter-icon">👤</span>
+                    <div>
+                        <div class="encounter-label">你将会遇到</div>
+                        <div class="encounter-target" id="encounterTarget"></div>
+                    </div>
+                </div>
+                
+                <div class="guide-box">
+                    <div class="content-label">📜 签文指引</div>
+                    <p class="guide-text" id="guideText"></p>
+                </div>
             </div>
             
-            <div class="action-buttons">
-                <button class="btn btn-redraw" onclick="drawAgain()">再求一签</button>
-                <button class="btn btn-save" id="saveBtn" onclick="saveFortune()">收藏此签</button>
+            <div class="fortune-actions">
+                <button class="action-btn btn-redraw" id="redrawBtn" onclick="drawAgain()">
+                    再求一签
+                </button>
+                <button class="action-btn btn-save" id="saveBtn" onclick="toggleSave()">
+                    收藏此签
+                </button>
             </div>
         </div>
         
+        <!-- 历史记录 -->
         <div class="history-section" id="historySection" style="display: none;">
             <div class="history-title">— 今日签缘 —</div>
             <div class="history-list" id="historyList"></div>
         </div>
     </div>
     
-    <div class="stats" id="stats"></div>
+    <div class="stats-bar" id="statsBar">
+        共抽 <span id="totalCount">0</span> 签 · 收藏 <span id="savedCount">0</span> 签
+    </div>
     
     <script src="js/fortunes.js"></script>
+    <script src="js/jiyuan-system.js"></script>
     <script>
         let currentFortune = null;
-        let history = JSON.parse(localStorage.getItem('jiyuanHistory') || '[]');
-        let savedFortunes = JSON.parse(localStorage.getItem('savedFortunes') || '[]');
+        let isDrawing = false;
         
-        // 创建粒子
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 20; i++) {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            p.style.left = Math.random() * 100 + '%';
-            p.style.animationDelay = Math.random() * 15 + 's';
-            particlesContainer.appendChild(p);
+        // 检查今日是否已抽签
+        function checkDailyLimit() {
+            const lastDrawDate = localStorage.getItem('jiyuanLastDrawDate');
+            const today = new Date().toDateString();
+            
+            if (lastDrawDate === today) {
+                document.getElementById('drawBtn').disabled = true;
+                document.getElementById('cooldownHint').style.display = 'block';
+                
+                const now = new Date();
+                const tomorrow = new Date(now);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                tomorrow.setHours(0, 0, 0, 0);
+                
+                const diff = tomorrow - now;
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                
+                document.getElementById('nextDrawTime').textContent = 
+                    `${hours}小时${minutes}分`;
+            }
         }
         
-        // 页面加载时自动抽签
-        window.onload = function() {
-            setTimeout(() => {
-                drawFortune();
-            }, 1500);
-        };
+        // 创建粒子
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 15; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDelay = Math.random() * 15 + 's';
+                p.style.animationDuration = (10 + Math.random() * 10) + 's';
+                container.appendChild(p);
+            }
+        }
         
+        // 更新能量显示
+        function updateEnergyDisplay() {
+            const data = JiyuanSystem.getPlayerData();
+            const maxEnergy = 500;
+            
+            const positivePct = Math.min(data.positiveEnergy / maxEnergy * 100, 100);
+            const negativePct = Math.min(data.negativeEnergy / maxEnergy * 100, 100);
+            
+            document.getElementById('positiveFill').style.width = positivePct + '%';
+            document.getElementById('negativeFill').style.width = negativePct + '%';
+            document.getElementById('positiveValue').textContent = data.positiveEnergy;
+            document.getElementById('negativeValue').textContent = data.negativeEnergy;
+            document.getElementById('totalCount').textContent = data.totalDraws;
+            document.getElementById('savedCount').textContent = 
+                JSON.parse(localStorage.getItem('savedFortunes') || '[]').length;
+        }
+        
+        // 抽签
         function drawFortune() {
-            document.getElementById('loading').style.display = 'block';
-            document.getElementById('resultContainer').style.display = 'none';
+            if (isDrawing) return;
+            isDrawing = true;
+            
+            const drawBtn = document.getElementById('drawBtn');
+            const drawSection = document.getElementById('drawSection');
+            const drawingAnim = document.getElementById('drawingAnimation');
+            const result = document.getElementById('fortuneResult');
+            
+            drawBtn.disabled = true;
+            drawSection.style.display = 'none';
+            drawingAnim.classList.add('show');
+            result.classList.remove('show');
+            
+            // 动画时间
+            const animDuration = 1500 + Math.random() * 1000;
             
             setTimeout(() => {
                 // 按概率抽签
@@ -603,48 +827,75 @@
                 else filtered = fortunes.filter(f => f.level === '劫数');
                 
                 currentFortune = filtered[Math.floor(Math.random() * filtered.length)];
-                displayFortune(currentFortune);
+                
+                // 更新能量
+                JiyuanSystem.updateEnergy(currentFortune.level);
+                
+                // 记录今日抽签
+                localStorage.setItem('jiyuanLastDrawDate', new Date().toDateString());
                 
                 // 添加到历史
+                const history = JSON.parse(localStorage.getItem('jiyuanHistory') || '[]');
                 history.unshift({
                     title: currentFortune.title,
                     level: currentFortune.level,
                     time: new Date().toLocaleTimeString()
                 });
-                if (history.length > 10) history.pop();
+                if (history.length > 20) history.pop();
                 localStorage.setItem('jiyuanHistory', JSON.stringify(history));
-                updateHistory();
-                updateStats();
                 
-            }, 1000);
+                // 显示结果
+                displayFortune(currentFortune);
+                
+                drawingAnim.classList.remove('show');
+                result.classList.add('show');
+                updateHistory();
+                updateEnergyDisplay();
+                checkDailyLimit();
+                
+                isDrawing = false;
+            }, animDuration);
         }
         
+        // 显示签文
         function displayFortune(f) {
-            document.getElementById('loading').style.display = 'none';
-            const container = document.getElementById('resultContainer');
+            const levelClass = getLevelClass(f.level);
+            const levelBadge = document.getElementById('fortuneLevel');
             
-            container.className = 'result-container ' + getLevelClass(f.level);
-            document.getElementById('levelBadge').textContent = f.level;
+            levelBadge.className = 'fortune-level ' + levelClass;
+            levelBadge.textContent = f.level;
+            
             document.getElementById('fortuneTitle').textContent = f.title;
             document.getElementById('fortuneText').textContent = f.text;
             document.getElementById('storyContent').textContent = f.story;
             document.getElementById('encounterTarget').textContent = f.encounter;
             document.getElementById('guideText').textContent = f.guide;
             
-            container.style.display = 'block';
-            
-            // 检查是否已收藏
+            // 检查收藏状态
+            const savedFortunes = JSON.parse(localStorage.getItem('savedFortunes') || '[]');
             const saveBtn = document.getElementById('saveBtn');
+            
             if (savedFortunes.some(s => s.title === f.title)) {
-                saveBtn.className = 'btn btn-saved';
-                saveBtn.textContent = '已收藏';
+                saveBtn.className = 'action-btn btn-saved';
+                saveBtn.textContent = '已收藏 ✓';
             } else {
-                saveBtn.className = 'btn btn-save';
+                saveBtn.className = 'action-btn btn-save';
                 saveBtn.textContent = '收藏此签';
             }
         }
         
         function getLevelClass(level) {
+            const map = {
+                '天命': 'level-tianming',
+                '上上签': 'level-shangshang',
+                '中签': 'level-zhong',
+                '下签': 'level-xia',
+                '劫数': 'level-jieshu'
+            };
+            return map[level] || 'level-zhong';
+        }
+        
+        function getHistoryClass(level) {
             const map = {
                 '天命': 'tianming',
                 '上上签': 'shangshang',
@@ -655,51 +906,65 @@
             return map[level] || 'zhong';
         }
         
+        // 再求一签
         function drawAgain() {
-            drawFortune();
+            const result = document.getElementById('fortuneResult');
+            result.classList.remove('show');
+            
+            setTimeout(() => {
+                drawFortune();
+            }, 300);
         }
         
-        function saveFortune() {
+        // 收藏切换
+        function toggleSave() {
             if (!currentFortune) return;
             
+            let savedFortunes = JSON.parse(localStorage.getItem('savedFortunes') || '[]');
             const saveBtn = document.getElementById('saveBtn');
-            if (savedFortunes.some(s => s.title === currentFortune.title)) {
-                savedFortunes = savedFortunes.filter(s => s.title !== currentFortune.title);
-                saveBtn.className = 'btn btn-save';
+            const idx = savedFortunes.findIndex(s => s.title === currentFortune.title);
+            
+            if (idx >= 0) {
+                savedFortunes.splice(idx, 1);
+                saveBtn.className = 'action-btn btn-save';
                 saveBtn.textContent = '收藏此签';
             } else {
                 savedFortunes.push({
                     ...currentFortune,
                     savedAt: new Date().toLocaleString()
                 });
-                saveBtn.className = 'btn btn-saved';
-                saveBtn.textContent = '已收藏';
+                saveBtn.className = 'action-btn btn-saved';
+                saveBtn.textContent = '已收藏 ✓';
             }
+            
             localStorage.setItem('savedFortunes', JSON.stringify(savedFortunes));
+            updateEnergyDisplay();
         }
         
+        // 更新历史
         function updateHistory() {
+            const history = JSON.parse(localStorage.getItem('jiyuanHistory') || '[]');
+            const section = document.getElementById('historySection');
+            const list = document.getElementById('historyList');
+            
             if (history.length === 0) {
-                document.getElementById('historySection').style.display = 'none';
+                section.style.display = 'none';
                 return;
             }
             
-            document.getElementById('historySection').style.display = 'block';
-            const list = document.getElementById('historyList');
-            list.innerHTML = history.map(h => 
-                `<span class="history-item ${getLevelClass(h.level)}">${h.title}</span>`
+            section.style.display = 'block';
+            list.innerHTML = history.slice(0, 10).map(h => 
+                `<span class="history-item ${getHistoryClass(h.level)}">${h.title}</span>`
             ).join('');
         }
         
-        function updateStats() {
-            const today = new Date().toLocaleDateString();
-            const todayCount = history.filter(h => {
-                return true; // 简化，实际可以按日期筛选
-            }).length;
-            
-            document.getElementById('stats').innerHTML = 
-                `今日已抽: ${history.length} 签<br>收藏: ${savedFortunes.length} 签`;
-        }
+        // 初始化
+        window.onload = function() {
+            createParticles();
+            updateEnergyDisplay();
+            updateHistory();
+            checkDailyLimit();
+        };
     </script>
 </body>
 </html>
