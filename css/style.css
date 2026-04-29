@@ -3,7 +3,10 @@
    ======================================== */
 
 /* 字体引入 */
-@import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai:wght@400;700@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=ZCOOL+XiaoWei&display=swap');family=Noto+Sans+SC:wght@400;500;700@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=ZCOOL+XiaoWei&display=swap');display=swap');
+@import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap');
 
 /* ========================================
    CSS变量 - 黑神话配色体系
@@ -1157,6 +1160,8 @@ body::before {
 /* ========================================
    响应式设计
    ======================================== */
+
+/* 平板设备 */
 @media (max-width: 768px) {
     .title-container {
         top: 8%;
@@ -1202,39 +1207,48 @@ body::before {
     .radio-item {
         width: 100%;
         justify-content: center;
+        min-height: 44px;
     }
     
     .home-nav {
         flex-wrap: wrap;
         justify-content: center;
-        max-width: 90%;
-        gap: 3px;
-        padding: 6px 10px;
+        max-width: 95%;
+        gap: 4px;
+        padding: 8px 12px;
+        bottom: 5px;
+        left: 50%;
+        transform: translateX(-50%);
     }
     
     .nav-item {
-        padding: 8px 10px;
-        min-width: 55px;
+        padding: 10px 12px;
+        min-width: 60px;
+        min-height: 44px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     
     .nav-icon {
-        width: 20px;
-        height: 20px;
-        margin-bottom: 4px;
+        width: 22px;
+        height: 22px;
+        margin-bottom: 3px;
     }
     
     .nav-text {
-        font-size: 0.6rem;
+        font-size: 0.65rem;
         letter-spacing: 0.05em;
     }
     
     .fanqie-entrance {
-        bottom: 15px;
-        right: 15px;
+        bottom: 70px;
+        right: 10px;
     }
     
     .fanqie-btn {
-        padding: 4px 6px;
+        padding: 8px 10px;
     }
     
     .fanqie-text {
@@ -1242,36 +1256,177 @@ body::before {
     }
     
     .fanqie-icon {
-        width: 22px;
-        height: 22px;
+        width: 24px;
+        height: 24px;
     }
     
     .timeline-btn,
     .creator-btn {
         padding: 12px 20px;
         font-size: 0.9rem;
+        min-height: 44px;
+    }
+    
+    /* 确保触摸目标足够大 */
+    .back-btn {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        padding: 10px 16px;
+    }
+    
+    /* 表单输入优化 */
+    .form-group input[type="text"] {
+        min-height: 44px;
+        font-size: 16px;
+    }
+    
+    /* 卡片样式优化 */
+    .intro-card,
+    .character-card,
+    .chapter-preview {
+        padding: 1.5rem 1rem;
+    }
+    
+    /* 身份卡优化 */
+    .identity-card {
+        margin: 1rem;
+    }
+    
+    /* 世界构建页面链接优化 */
+    .footer-links {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .footer-link {
+        padding: 12px 16px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 
+/* 小屏移动设备 */
 @media (max-width: 480px) {
+    .title-container {
+        top: 5%;
+    }
+    
+    .main-title {
+        font-size: clamp(2rem, 12vw, 3rem);
+        letter-spacing: 0.3em;
+    }
+    
     .home-nav {
-        top: 10px;
-        padding: 5px 8px;
+        max-width: 98%;
+        padding: 6px 8px;
+        gap: 3px;
+        bottom: 3px;
     }
     
     .nav-item {
         padding: 6px 8px;
-        min-width: 48px;
+        min-width: 50px;
+        min-height: 48px;
+    }
+    
+    .nav-icon {
+        width: 20px;
+        height: 20px;
     }
     
     .nav-text {
-        font-size: 0.55rem;
+        font-size: 0.6rem;
     }
     
     .intro-card,
     .character-card,
     .chapter-preview {
-        padding: 1.5rem 1rem;
+        padding: 1.2rem 0.8rem;
+        border-radius: 6px;
+    }
+    
+    .chapter-content p {
+        font-size: 0.95rem;
+        line-height: 1.8;
+    }
+    
+    .chapter-content .quote {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+    
+    /* 卡片网格更紧凑 */
+    .character-grid {
+        gap: 1rem;
+    }
+    
+    /* 表单优化 */
+    .create-form {
+        padding: 0 0.5rem;
+    }
+    
+    .form-group label {
+        font-size: 0.6rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    /* 按钮更大 */
+    .create-btn {
+        padding: 14px;
+        font-size: 1rem;
+        min-height: 48px;
+    }
+    
+    /* 时间线按钮 */
+    .timeline-btn,
+    .creator-btn {
+        padding: 14px 16px;
+        font-size: 0.85rem;
+        letter-spacing: 0.3em;
+    }
+    
+    /* 入口区域 */
+    .timeline-entrance,
+    .creator-entrance {
+        margin: 1.5rem 0;
+    }
+}
+
+/* 横屏模式 */
+@media (max-height: 500px) and (orientation: landscape) {
+    .title-container {
+        top: 5%;
+    }
+    
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .click-zone.wukong {
+        bottom: 5%;
+        width: 45%;
+        height: 70%;
+    }
+    
+    .click-zone.create {
+        top: 8%;
+        width: 40%;
+        height: 65%;
+    }
+    
+    .home-nav {
+        bottom: 5px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        max-width: 80%;
+    }
+    
+    .fanqie-entrance {
+        bottom: 50px;
     }
 }
 

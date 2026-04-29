@@ -320,6 +320,192 @@
             90% { opacity: 1; }
             100% { transform: translateY(-100vh); opacity: 0; }
         }
+        
+        /* =====================
+           响应式设计
+           ===================== */
+        
+        /* 平板设备 */
+        @media (max-width: 768px) {
+            .jiyuan-page {
+                padding: 1.5rem 0.8rem;
+            }
+            
+            .back-home {
+                top: 10px;
+                left: 10px;
+                padding: 10px 14px;
+                font-size: 0.75rem;
+                min-width: 44px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+            
+            .result-container {
+                padding: 1.5rem 1rem;
+                border-radius: 15px;
+                margin: 0 0.5rem;
+            }
+            
+            .fortune-title {
+                font-size: 1.5rem;
+            }
+            
+            .fortune-text {
+                font-size: 1rem;
+            }
+            
+            .story-section {
+                padding: 1rem;
+            }
+            
+            .story-content {
+                font-size: 0.95rem;
+                line-height: 1.8;
+            }
+            
+            .level-badge {
+                padding: 6px 18px;
+                font-size: 1rem;
+            }
+            
+            .action-buttons {
+                gap: 10px;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.85rem;
+                min-width: 44px;
+                min-height: 44px;
+            }
+            
+            .stats {
+                bottom: 10px;
+                right: 10px;
+                font-size: 0.7rem;
+            }
+        }
+        
+        /* 小屏移动设备 */
+        @media (max-width: 480px) {
+            .jiyuan-page {
+                padding: 1rem 0.5rem;
+            }
+            
+            .back-home {
+                padding: 8px 12px;
+                font-size: 0.7rem;
+            }
+            
+            .result-container {
+                padding: 1.2rem 0.8rem;
+                border-radius: 12px;
+                margin: 0 0.3rem;
+            }
+            
+            .fortune-title {
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .fortune-text {
+                font-size: 0.95rem;
+                margin-bottom: 1rem;
+            }
+            
+            .story-section {
+                padding: 0.8rem;
+                margin: 1rem 0;
+                border-radius: 8px;
+            }
+            
+            .story-label {
+                font-size: 0.75rem;
+            }
+            
+            .story-content {
+                font-size: 0.9rem;
+                line-height: 1.7;
+            }
+            
+            .encounter-section {
+                padding: 0.8rem;
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .encounter-icon {
+                font-size: 1.2rem;
+            }
+            
+            .guide-section {
+                padding-left: 0.8rem;
+                margin: 1rem 0;
+            }
+            
+            .guide-text {
+                font-size: 0.9rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .btn {
+                width: 100%;
+                padding: 14px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .history-section {
+                margin-top: 1.5rem;
+            }
+            
+            .history-title {
+                font-size: 0.85rem;
+            }
+            
+            .history-item {
+                padding: 5px 10px;
+                font-size: 0.7rem;
+            }
+            
+            .stats {
+                position: static;
+                text-align: center;
+                margin-top: 1rem;
+                font-size: 0.7rem;
+            }
+        }
+        
+        /* 横屏模式 */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .jiyuan-page {
+                padding: 1rem;
+            }
+            
+            .result-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+                max-width: 90%;
+            }
+            
+            .result-container > * {
+                flex: 1 1 200px;
+            }
+            
+            .fortune-title {
+                font-size: 1.2rem;
+            }
+            
+            .action-buttons {
+                flex-direction: row;
+            }
+        }
     </style>
 </head>
 <body>

@@ -392,21 +392,167 @@
             transform: translateY(-2px);
         }
         @media (max-width: 768px) {
+            .world-header {
+                padding: 2rem 0.5rem;
+            }
             .world-header h1 {
-                font-size: 2rem;
+                font-size: 1.6rem;
+                letter-spacing: 0.05em;
+            }
+            .world-header p {
+                font-size: 0.95rem;
             }
             .lore-card {
-                padding: 1.5rem;
+                padding: 1.2rem;
+                margin-bottom: 1.5rem;
+            }
+            .lore-card h2 {
+                font-size: 1.2rem;
+            }
+            .lore-card h2 .lore-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 1rem;
+            }
+            .lore-card h3 {
+                font-size: 1.1rem !important;
+                margin: 1rem 0 0.8rem !important;
+            }
+            .lore-content p {
+                font-size: 0.95rem;
+                line-height: 1.8;
+            }
+            .ability-detail {
+                padding: 1rem;
+                margin: 0.8rem 0;
             }
             .generations-flow {
-                padding: 1rem;
+                padding: 0.8rem;
+                gap: 0.3rem;
             }
             .gen-item {
-                min-width: 50px;
-                padding: 0.5rem;
+                min-width: 45px;
+                padding: 0.4rem;
             }
             .gen-char {
+                font-size: 1.3rem;
+            }
+            .gen-arrow {
+                font-size: 0.9rem;
+            }
+            .generations-table {
+                font-size: 0.85rem;
+            }
+            .generations-table th,
+            .generations-table td {
+                padding: 0.7rem 0.5rem;
+            }
+            .realm-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .realm-item {
+                padding: 1rem;
+            }
+            .realm-item h3 {
+                font-size: 1rem;
+            }
+            .technique-box {
+                padding: 1rem;
+            }
+            .technique-features {
+                grid-template-columns: 1fr;
+            }
+            .quotes-section {
+                padding: 1.2rem;
+            }
+            .quote-item {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+            .footer-links {
+                gap: 0.8rem;
+            }
+            .footer-link {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .world-header h1 {
                 font-size: 1.4rem;
+            }
+            .lore-card {
+                padding: 1rem;
+                border-radius: 8px;
+            }
+            .lore-card h2 {
+                font-size: 1.1rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            .lore-card h2 .lore-tag {
+                font-size: 0.65rem;
+            }
+            .lore-content p {
+                font-size: 0.9rem;
+            }
+            .ability-detail {
+                padding: 0.8rem;
+            }
+            .ability-detail::before {
+                display: none;
+            }
+            .generations-flow {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding: 0.5rem;
+                -webkit-overflow-scrolling: touch;
+            }
+            .generations-table {
+                font-size: 0.8rem;
+            }
+            .generations-table th,
+            .generations-table td {
+                padding: 0.5rem 0.3rem;
+            }
+            .technique-verse {
+                font-size: 0.95rem;
+                padding: 1rem;
+            }
+            .quotes-section {
+                padding: 1rem;
+            }
+            .quote-item {
+                font-size: 0.95rem;
+            }
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            .footer-link {
+                width: 100%;
+                max-width: 200px;
+                justify-content: center;
+            }
+        }
+        
+        /* 横屏模式 */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .world-header {
+                padding: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            .world-header h1 {
+                font-size: 1.4rem;
+            }
+            .lore-card {
+                padding: 1rem;
+            }
+            .realm-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             }
         }
     </style>
