@@ -34,14 +34,6 @@
                 <span class="label-text">大圣宇宙</span>
             </div>
         </div>
-        
-        <div class="click-zone create" data-universe="create" title="创造独立宇宙">
-            <div class="zone-glow"></div>
-            <div class="zone-label">
-                <span class="label-icon"></span>
-                <span class="label-text">创造独立宇宙</span>
-            </div>
-        </div>
 
         <!-- 导航入口 - 黑神话风格 -->
         <nav class="home-nav">
@@ -93,96 +85,6 @@
         </div>
     </section>
     
-    <!-- 创建宇宙页面 -->
-    <section id="create-universe" class="universe-page hidden" style="background: linear-gradient(rgba(10, 9, 8, 0.75), rgba(10, 9, 8, 0.65)), url('images/create_universe_bg.jpg') center center / cover no-repeat;">
-        <div class="page-header">
-            <button class="back-btn" onclick="goBack()">返回</button>
-            <h2>创造独立宇宙</h2>
-        </div>
-        
-        <div class="content-container">
-            <div class="create-intro">
-                <p>无数世界正在融合，你的宇宙也将诞生。</p>
-                <p>填写以下信息，获得你的宇宙身份卡：</p>
-            </div>
-            
-            <!-- 跳转新版本 -->
-            <div class="upgrade-notice">
-                <p>想要更多选项和精美的身份卡？</p>
-                <a href="enhanced-creator.html" class="upgrade-link">前往增强版身份创建器 →</a>
-            </div>
-            
-            <form id="universe-form" class="create-form">
-                <div class="form-group">
-                    <label>你的宇宙名称</label>
-                    <input type="text" id="universe-name" placeholder="例如：青云界、万星域..." required>
-                </div>
-                
-                <div class="form-group">
-                    <label>核心法则（选择一个）</label>
-                    <div class="radio-group">
-                        <label class="radio-item">
-                            <input type="radio" name="law" value="修仙" checked>
-                            <span>修仙问道</span>
-                        </label>
-                        <label class="radio-item">
-                            <input type="radio" name="law" value="魔法">
-                            <span>魔法世界</span>
-                        </label>
-                        <label class="radio-item">
-                            <input type="radio" name="law" value="科技">
-                            <span>科技文明</span>
-                        </label>
-                        <label class="radio-item">
-                            <input type="radio" name="law" value="混沌">
-                            <span>混沌原初</span>
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>你的身份</label>
-                    <input type="text" id="user-identity" placeholder="例如：穿越者、觉醒者、轮回者..." required>
-                </div>
-                
-                <button type="submit" class="create-btn">生成宇宙身份卡</button>
-            </form>
-            
-            <!-- 身份卡预览 -->
-            <div id="identity-card" class="identity-card hidden">
-                <div class="card-header">
-                    <span class="card-title">诸天宇宙 · 身份卡</span>
-                    <span class="card-number" id="card-number">NO.000001</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-row">
-                        <span class="card-label">宇宙名称</span>
-                        <span class="card-value" id="card-universe">-</span>
-                    </div>
-                    <div class="card-row">
-                        <span class="card-label">核心法则</span>
-                        <span class="card-value" id="card-law">-</span>
-                    </div>
-                    <div class="card-row">
-                        <span class="card-label">你的身份</span>
-                        <span class="card-value" id="card-identity">-</span>
-                    </div>
-                    <div class="card-row">
-                        <span class="card-label">世界融合度</span>
-                        <span class="card-value" id="card-fusion">-</span>
-                    </div>
-                    <div class="card-row">
-                        <span class="card-label">命运走向</span>
-                        <span class="card-value" id="card-destiny">-</span>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <p>大圣一脉，诸天见证</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <script src="js/main.js"></script>
 </body>
 </html>
