@@ -358,11 +358,11 @@ body::before {
 .home-nav {
     position: fixed;
     top: 50%;
-    right: 10px;
+    right: 8px;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 3px;
     z-index: 100;
     background: transparent;
     padding: 0;
@@ -371,12 +371,39 @@ body::before {
 .nav-item {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 8px 12px;
+    justify-content: center;
+    padding: 3px 5px;
     color: var(--text-secondary);
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 3px;
     transition: all 0.3s ease;
+    background: linear-gradient(135deg, rgba(26, 24, 21, 0.95) 0%, rgba(15, 13, 11, 0.98) 100%);
+    border: 1px solid rgba(201, 162, 39, 0.4);
+    font-size: 0.55rem;
+    letter-spacing: 0.05em;
+}
+
+.nav-item:hover {
+    background: linear-gradient(135deg, rgba(40, 35, 25, 0.95) 0%, rgba(25, 22, 18, 0.98) 100%);
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateX(-3px);
+}
+
+.nav-item.highlight {
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.4) 0%, rgba(100, 50, 25, 0.5) 100%);
+    border: 1px solid rgba(204, 34, 0, 0.5);
+}
+
+.nav-icon {
+    display: none;
+}
+
+.nav-text {
+    font-size: 0.55rem;
+    letter-spacing: 0.05em;
+}
+
     min-width: auto;
     background: linear-gradient(135deg, rgba(26, 24, 21, 0.95) 0%, rgba(15, 13, 11, 0.98) 100%);
     border: 1px solid rgba(201, 162, 39, 0.4);
@@ -417,14 +444,14 @@ body::before {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 4px;
     padding: 14px 32px;
     background: linear-gradient(180deg, rgba(37, 34, 25, 0.9) 0%, rgba(20, 18, 15, 0.95) 100%);
     border: 1px solid var(--gold-dim);
     border-radius: var(--radius-sm);
     color: var(--text-primary);
     font-family: 'Noto Serif SC', serif;
-    font-size: 0.8rem;
+    font-size: 0.65rem;
     letter-spacing: 0.2em;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -743,7 +770,7 @@ body::before {
 .form-group label {
     display: block;
     margin-bottom: 0.8rem;
-    font-size: 0.8rem;
+    font-size: 0.65rem;
     color: var(--gold);
     letter-spacing: 0.15em;
 }
@@ -896,7 +923,7 @@ body::before {
 
 .card-number {
     font-family: 'Courier New', monospace;
-    font-size: 0.8rem;
+    font-size: 0.65rem;
     color: var(--text-muted);
 }
 
@@ -1016,7 +1043,7 @@ body::before {
     position: relative;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     padding: 14px 24px;
     background: linear-gradient(135deg, #6b1a1a 0%, #4a1212 100%);
     border: 1px solid #8b2222;
@@ -1024,7 +1051,7 @@ body::before {
     color: #e8d5b7;
     text-decoration: none;
     font-family: 'Noto Serif SC', serif;
-    font-size: 0.8rem;
+    font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 0.1em;
     transition: all 0.3s ease;
@@ -1206,7 +1233,7 @@ body::before {
     }
     
     .fanqie-btn {
-        padding: 8px 12px;
+        padding: 4px 6px;
     }
     
     .fanqie-text {
