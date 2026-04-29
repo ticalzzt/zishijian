@@ -144,7 +144,7 @@ body::before {
     font-family: 'LXGW WenKai', 'Noto Sans SC', sans-serif;
     font-size: clamp(3rem, 10vw, 6rem);
     font-weight: 900;
-    letter-spacing: 0.5em;
+    letter-spacing: 0.8em;
     text-shadow: 
         0 0 30px var(--fire-glow),
         0 0 60px rgba(255, 100, 30, 0.4),
@@ -176,7 +176,7 @@ body::before {
 
 @keyframes charFloat {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+    50% { transform: translateY(-15px); }
 }
 
 @keyframes titleGlow {
@@ -349,7 +349,7 @@ body::before {
 .label-text {
     font-family: 'Noto Serif SC', serif;
     font-size: 1rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.4em;
     color: var(--text-primary);
 }
 
@@ -453,7 +453,7 @@ body::before {
     color: var(--text-primary);
     font-family: 'Noto Serif SC', serif;
     font-size: 0.65rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.4em;
     cursor: pointer;
     transition: all 0.3s ease;
     /* 石刻质感 */
@@ -553,7 +553,7 @@ body::before {
     color: var(--text-secondary);
     font-family: 'Noto Serif SC', serif;
     font-size: 0.9rem;
-    letter-spacing: 0.5em;
+    letter-spacing: 0.8em;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -625,7 +625,7 @@ body::before {
     font-size: 1.3rem;
     margin-bottom: 1.5rem;
     color: var(--gold);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.4em;
     text-shadow: 0 0 15px rgba(201, 162, 39, 0.2);
 }
 
@@ -700,7 +700,7 @@ body::before {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     color: var(--gold);
-    letter-spacing: 0.5em;
+    letter-spacing: 0.8em;
 }
 
 .char-title {
@@ -773,7 +773,7 @@ body::before {
     margin-bottom: 0.8rem;
     font-size: 0.65rem;
     color: var(--gold);
-    letter-spacing: 0.5em;
+    letter-spacing: 0.8em;
 }
 
 .form-group input[type="text"] {
@@ -918,7 +918,7 @@ body::before {
 .card-title {
     font-family: 'LXGW WenKai', 'Noto Sans SC', sans-serif;
     font-size: 0.9rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.4em;
     color: var(--gold);
 }
 
@@ -959,7 +959,7 @@ body::before {
     background: rgba(0, 0, 0, 0.3);
     font-size: 0.85rem;
     color: var(--text-muted);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.4em;
 }
 
 /* ========================================
@@ -985,7 +985,7 @@ body::before {
     text-decoration: none;
     font-family: 'Noto Serif SC', serif;
     font-size: 1rem;
-    letter-spacing: 0.5em;
+    letter-spacing: 0.8em;
     transition: all 0.3s ease;
     box-shadow: 
         inset 0 0 20px rgba(0, 0, 0, 0.4),
@@ -1054,7 +1054,7 @@ body::before {
     font-family: 'Noto Serif SC', serif;
     font-size: 0.65rem;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.4em;
     transition: all 0.3s ease;
     box-shadow: 
         0 4px 20px rgba(139, 0, 0, 0.4),
@@ -1109,7 +1109,7 @@ body::before {
     text-align: center;
     font-family: 'Noto Serif SC', serif;
     font-size: 1rem;
-    letter-spacing: 0.5em;
+    letter-spacing: 0.8em;
     transition: all 0.3s ease;
 }
 
@@ -1163,7 +1163,7 @@ body::before {
     }
     
     .main-title {
-        letter-spacing: 0.1em;
+        letter-spacing: 0.4em;
     }
     
     .subtitle {
@@ -1351,3 +1351,25 @@ body::before {
     box-shadow: 0 0 30px rgba(139, 0, 0, 1), 0 0 50px rgba(75, 0, 130, 0.8);
 }
 
+
+/* 强制标题样式 - 覆盖所有响应式 */
+.main-title {
+    font-size: clamp(3.5rem, 12vw, 7rem) !important;
+    letter-spacing: 0.8em !important;
+}
+
+.title-char {
+    display: inline-block !important;
+    animation: charFloat 2.5s ease-in-out infinite !important;
+    animation-delay: calc(var(--char-index, 0) * 0.2s) !important;
+}
+
+.title-char:nth-child(1) { animation-delay: 0s !important; }
+.title-char:nth-child(2) { animation-delay: 0.2s !important; }
+.title-char:nth-child(3) { animation-delay: 0.4s !important; }
+.title-char:nth-child(4) { animation-delay: 0.6s !important; }
+
+@keyframes charFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+}
