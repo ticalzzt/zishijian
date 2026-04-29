@@ -8,8 +8,37 @@
     <!-- 预加载字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- 预加载过渡动画图片 -->
+    <link rel="preload" href="images/cosmos-transition/kael_v3_lookback_v2_1.jpg" as="image">
+    <link rel="preload" href="images/cosmos-transition/kael_story_discover.jpg" as="image">
+    <link rel="preload" href="images/cosmos-transition/kael_story_crack.jpg" as="image">
 </head>
 <body>
+    <!-- 交互锁定层 -->
+    <div class="transition-lock" id="transitionLock"></div>
+    
+    <!-- 过渡动画容器 -->
+    <div class="cosmos-transition" id="cosmosTransition">
+        <!-- 第一张图：回眸 -->
+        <div class="transition-layer layer-1">
+            <img src="images/cosmos-transition/kael_v3_lookback_v2_1.jpg" alt="回眸">
+        </div>
+        <!-- 第二张图：触碰 -->
+        <div class="transition-layer layer-2">
+            <img src="images/cosmos-transition/kael_story_discover.jpg" alt="触碰">
+        </div>
+        <!-- 第三张图：碎裂 -->
+        <div class="transition-layer layer-3">
+            <img src="images/cosmos-transition/kael_story_crack.jpg" alt="碎裂">
+        </div>
+        <!-- 能量爆发效果 -->
+        <div class="energy-burst" id="energyBurst"></div>
+        <!-- 碎裂遮罩 -->
+        <div class="shatter-overlay" id="shatterOverlay"></div>
+        <!-- 碎裂碎片 -->
+        <div class="shatter-container" id="shatterContainer"></div>
+    </div>
+    
     <!-- 首页封面 -->
     <section id="cover" class="full-screen">
         <div class="cover-image"></div>
@@ -45,7 +74,7 @@
                 <span class="nav-icon"></span>
                 <span class="nav-text">世界时间线</span>
             </a>
-            <a href="enhanced-creator.html" class="nav-item highlight" data-page="creator">
+            <a href="enhanced-creator.html" class="nav-item highlight transition-btn" data-page="creator" id="createUniverseBtn">
                 <span class="nav-icon"></span>
                 <span class="nav-text">创造独立宇宙</span>
             </a>
@@ -86,6 +115,7 @@
     </section>
     
     <script src="js/main.js"></script>
+    <script src="js/transition.js"></script>
 </body>
 </html>
 <!-- cache: 1777453376 -->
