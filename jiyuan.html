@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>机缘 - 藏子世间</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .jiyuan-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: radial-gradient(ellipse at center, #1a0a1a 0%, #0a0908 100%);
+        }
+        
+        .jiyuan-symbol {
+            width: 200px;
+            height: 200px;
+            border: 3px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #ffd700;
+            animation: rotateGlow 10s linear infinite;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .jiyuan-symbol::before {
+            content: '';
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            animation: rotateGlow 15s linear infinite reverse;
+        }
+        
+        @keyframes rotateGlow {
+            0% {
+                transform: rotate(0deg);
+                box-shadow: 0 0 20px rgba(139, 0, 0, 0.5), 0 0 40px rgba(75, 0, 130, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(139, 0, 0, 0.8), 0 0 60px rgba(75, 0, 130, 0.5);
+            }
+            100% {
+                transform: rotate(360deg);
+                box-shadow: 0 0 20px rgba(139, 0, 0, 0.5), 0 0 40px rgba(75, 0, 130, 0.3);
+            }
+        }
+        
+        .jiyuan-title {
+            font-family: 'LXGW WenKai', sans-serif;
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .jiyuan-message {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            max-width: 600px;
+            line-height: 2;
+            margin-bottom: 2rem;
+        }
+        
+        .jiyuan-card {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.2) 0%, rgba(75, 0, 130, 0.3) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 500px;
+            margin-top: 2rem;
+        }
+        
+        .jiyuan-card h3 {
+            color: #ffd700;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .jiyuan-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+        
+        .back-home {
+            margin-top: 3rem;
+            padding: 10px 30px;
+            background: transparent;
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            color: #ffd700;
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .back-home:hover {
+            background: rgba(255, 215, 0, 0.1);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="jiyuan-page">
+        <div class="jiyuan-symbol">缘</div>
+        
+        <h1 class="jiyuan-title">觉字机缘</h1>
+        
+        <p class="jiyuan-message">
+            你找到了隐藏的机缘之门<br>
+            这里藏着未知的秘密与可能<br>
+            每一次相遇，都是命运的安排
+        </p>
+        
+        <div class="jiyuan-card">
+            <h3>今日机缘</h3>
+            <p id="fortune-text">正在感应宇宙能量...</p>
+        </div>
+        
+        <a href="index.html" class="back-home">返回世间</a>
+    </div>
+    
+    <script>
+        const fortunes = [
+            "命里有时终须有，命里无时莫强求。",
+            "诸事顺遂，宜静不宜动。",
+            "贵人相助，前路光明。",
+            "水到渠成，不必强求。",
+            "机遇将至，保持初心。",
+            "观天之道，执天之行，尽矣。",
+            "心有猛虎，细嗅蔷薇。",
+            "世事如棋，落子无悔。",
+            "万法皆空，因果不空。",
+            "一切有为法，如梦幻泡影。"
+        ];
+        
+        setTimeout(() => {
+            const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+            document.getElementById('fortune-text').textContent = randomFortune;
+        }, 1500);
+    </script>
+</body>
+</html>
