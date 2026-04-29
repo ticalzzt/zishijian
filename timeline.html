@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/timeline.css">
     <style>
         :root {
             --ink-black: #0a0908;
@@ -19,431 +18,258 @@
         }
         body {
             background: var(--ink-black);
-            font-family: 'Noto Serif SC', 'Songti SC', SimSun, serif;
-            background-image: 
-                linear-gradient(rgba(10, 9, 8, 0.75), rgba(10, 9, 8, 0.7)),
-                url('images/timeline_bg.jpg');
+            font-family: 'Noto Serif SC', serif;
+            background-image: linear-gradient(rgba(10, 9, 8, 0.75), rgba(10, 9, 8, 0.7)), url('images/timeline_bg.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            margin: 0;
         }
-        h1, h2, h3 { font-family: 'ZCOOL XiaoWei', 'KaiTi', 'STKaiti', serif; }
+        h1, h2, h3 { font-family: 'ZCOOL XiaoWei', serif; }
+        
         .top-nav {
-            background: linear-gradient(180deg, rgba(10,9,8,0.98) 0%, rgba(10,9,8,0.9) 100%);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10,9,8,0.9);
+            backdrop-filter: blur(10px);
             border-bottom: 2px solid var(--ancient-gold);
-            box-shadow: 0 0 20px rgba(201, 162, 39, 0.3), inset 0 -1px 0 rgba(201, 162, 39, 0.2);
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
         }
-        .back-btn, .nav-link { color: var(--ancient-gold); font-family: 'ZCOOL XiaoWei', 'KaiTi', 'STKaiti', serif; }
+        .back-btn, .nav-link {
+            color: var(--ancient-gold);
+            font-family: 'ZCOOL XiaoWei', serif;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .back-btn { border-color: rgba(201, 162, 39, 0.4); }
         .back-btn:hover, .nav-link:hover { color: var(--bronze-light); text-shadow: 0 0 10px rgba(201, 162, 39, 0.8); }
-
-        .timeline-header {
+        
+        .page-header {
             text-align: center;
-            padding: 3rem 1rem;
-            background: linear-gradient(180deg, transparent 0%, rgba(139, 0, 0, 0.1) 50%, transparent 100%);
+            padding: 5rem 1rem 3rem;
             border-bottom: 2px solid var(--ancient-gold);
-            margin-bottom: 2rem;
         }
-        .timeline-header h1 {
+        .page-header h1 {
             color: var(--ancient-gold);
             font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 
-                0 0 10px rgba(201, 162, 39, 0.8),
-                0 0 30px rgba(201, 162, 39, 0.5),
-                0 0 50px rgba(201, 162, 39, 0.3);
-            animation: goldShimmer 4s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(201, 162, 39, 0.6);
         }
-        @keyframes goldShimmer {
-            0%, 100% { text-shadow: 0 0 10px rgba(201, 162, 39, 0.8), 0 0 30px rgba(201, 162, 39, 0.5); }
-            50% { text-shadow: 0 0 15px rgba(201, 162, 39, 1), 0 0 40px rgba(201, 162, 39, 0.7), 0 0 60px rgba(201, 162, 39, 0.4); }
-        }
-        .timeline-header p {
-            color: var(--bronze-light);
-            font-size: 1.1rem;
-        }
-
-        .timeline-container {
-            position: relative;
-            max-width: 1000px;
+        .page-header p { color: var(--bronze-light); font-size: 1.1rem; }
+        
+        .characters-section {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 2rem 1.5rem 3rem;
         }
-        .timeline-line {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, var(--ancient-gold), var(--dark-red), var(--ancient-gold));
-            transform: translateX(-50%);
-            box-shadow: 0 0 15px rgba(201, 162, 39, 0.5);
+        .section-title {
+            color: var(--ancient-gold);
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--bronze-dark);
         }
-
-        .timeline-item {
-            position: relative;
-            width: 45%;
-            margin-bottom: 3rem;
-            opacity: 0;
-            animation: fadeInUp 0.6s ease forwards;
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
         }
-        .timeline-item.left { margin-left: 0; }
-        .timeline-item.right { margin-left: 55%; }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .timeline-marker {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(145deg, var(--bronze-dark), var(--ink-black));
+        .character-card {
+            background: linear-gradient(145deg, rgba(20, 18, 15, 0.9), rgba(10, 9, 8, 0.95));
             border: 2px solid var(--ancient-gold);
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 
-                0 0 20px rgba(201, 162, 39, 0.5),
-                inset 0 0 15px rgba(0,0,0,0.5);
-            z-index: 10;
+            overflow: hidden;
+            transition: all 0.3s;
         }
-        .timeline-item.left .timeline-marker { right: -80px; }
-        .timeline-item.right .timeline-marker { left: -80px; }
-        
-        .timeline-marker.special {
-            background: linear-gradient(145deg, var(--dark-red), var(--ancient-gold));
-            animation: destinyPulse 2s ease-in-out infinite;
+        .character-card:hover {
+            box-shadow: 0 0 30px rgba(201, 162, 39, 0.4);
+            transform: translateY(-5px);
         }
-        @keyframes destinyPulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(201, 162, 39, 0.5), inset 0 0 15px rgba(0,0,0,0.5); }
-            50% { box-shadow: 0 0 35px rgba(201, 162, 39, 0.8), 0 0 50px rgba(139, 0, 0, 0.5), inset 0 0 15px rgba(0,0,0,0.5); }
+        .char-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--ancient-gold);
         }
-
-        .marker-icon {
-            font-size: 1.3rem;
-            font-weight: bold;
+        .char-info { padding: 1.5rem; }
+        .char-name {
             color: var(--ancient-gold);
-        }
-        .timeline-marker.special .marker-icon { color: var(--ink-black); }
-        .marker-year {
-            font-size: 0.65rem;
-            color: var(--bronze-light);
-            font-family: 'ZCOOL XiaoWei', 'KaiTi', 'STKaiti', serif;
-        }
-
-        .timeline-content {
-            background: linear-gradient(145deg, rgba(20, 18, 15, 0.95), rgba(10, 9, 8, 0.98));
-            border: 2px solid var(--bronze-dark);
-            padding: 1.5rem;
-            position: relative;
-            box-shadow: 
-                inset 0 0 30px rgba(0, 0, 0, 0.7),
-                0 0 15px rgba(201, 162, 39, 0.15);
-            transition: all 0.3s ease;
-        }
-        .timeline-content:hover {
-            border-color: var(--ancient-gold);
-            box-shadow: 
-                inset 0 0 30px rgba(0, 0, 0, 0.7),
-                0 0 25px rgba(201, 162, 39, 0.3);
-        }
-        .timeline-content::before {
-            content: '';
-            position: absolute;
-            top: -1px; left: -1px; right: -1px; bottom: -1px;
-            border: 1px solid rgba(201, 162, 39, 0.2);
-            pointer-events: none;
-        }
-
-        .timeline-item.right .timeline-content::before { border-color: rgba(201, 162, 39, 0.3); }
-
-        .timeline-content h3 {
-            color: var(--ancient-gold);
-            margin-bottom: 0.8rem;
-            font-size: 1.3rem;
-            text-shadow: 0 0 8px rgba(201, 162, 39, 0.4);
-        }
-        .timeline-content p {
-            color: #d4c8b5;
-            line-height: 1.8;
-            margin-bottom: 0.8rem;
-        }
-        .timeline-content p.highlight-text {
-            color: var(--ancient-gold);
-            font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
             text-shadow: 0 0 10px rgba(201, 162, 39, 0.5);
         }
-        .timeline-details {
-            display: none;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 1rem;
-            margin-top: 1rem;
-            border-left: 2px solid var(--bronze-dark);
-        }
-        .timeline-details p {
-            color: #c9bda8;
-            font-size: 0.95rem;
-        }
-        .timeline-details.active { display: block; }
-
-        .expand-btn {
-            background: linear-gradient(135deg, var(--bronze-dark), var(--ink-black));
+        .char-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--dark-red), var(--bronze-dark));
             border: 1px solid var(--ancient-gold);
             color: var(--ancient-gold);
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            font-family: 'ZCOOL XiaoWei', 'KaiTi', 'STKaiti', serif;
-            transition: all 0.3s ease;
-        }
-        .expand-btn:hover {
-            background: linear-gradient(135deg, var(--ancient-gold), var(--bronze-dark));
-            color: var(--ink-black);
-        }
-
-        .timeline-item.future .timeline-content {
-            border-color: rgba(139, 0, 0, 0.5);
-            background: linear-gradient(145deg, rgba(25, 15, 10, 0.95), rgba(15, 8, 5, 0.98));
-        }
-        .timeline-item.future .timeline-marker {
-            background: linear-gradient(145deg, var(--dark-red), #4a0000);
-            border-color: var(--bronze-dark);
-        }
-
-        .timeline-legend {
-            margin-top: 3rem;
-            padding: 1.5rem;
-            background: linear-gradient(145deg, rgba(20, 18, 15, 0.9), rgba(10, 9, 8, 0.95));
-            border: 2px solid var(--bronze-dark);
-            text-align: center;
-        }
-        .timeline-legend h3 {
-            color: var(--ancient-gold);
+            padding: 0.3rem 1rem;
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 0.9rem;
             margin-bottom: 1rem;
-            font-family: 'ZCOOL XiaoWei', 'KaiTi', 'STKaiti', serif;
         }
-        .legend-items { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
-        .legend-item { display: flex; align-items: center; gap: 0.5rem; }
-        .legend-marker {
-            width: 20px; height: 20px; border-radius: 50%;
-            background: var(--bronze-dark);
-            border: 1px solid var(--ancient-gold);
+        .char-desc { color: #d4c8b5; line-height: 1.8; margin-bottom: 0.8rem; }
+        .char-traits { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+        .trait-tag {
+            background: rgba(201, 162, 39, 0.15);
+            border: 1px solid var(--bronze-dark);
+            color: var(--bronze-light);
+            padding: 0.3rem 0.8rem;
+            font-size: 0.85rem;
         }
-        .legend-marker.special {
-            background: linear-gradient(135deg, var(--dark-red), var(--ancient-gold));
-            box-shadow: 0 0 10px rgba(201, 162, 39, 0.5);
+        
+        .timeline-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
         }
-        .legend-marker.future { background: var(--dark-red); border-color: var(--bronze-dark); }
-        .legend-item span { color: var(--bronze-light); }
-
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--ink-black); }
-        ::-webkit-scrollbar-thumb { background: var(--bronze-dark); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--ancient-gold); }
-
+        .timeline-line {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--ancient-gold), var(--dark-red), var(--ancient-gold));
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(201, 162, 39, 0.2);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem; top: 0;
+            width: 12px; height: 12px;
+            background: var(--ancient-gold);
+            border-radius: 50%;
+            transform: translateX(-4.5px);
+            box-shadow: 0 0 10px rgba(201, 162, 39, 0.6);
+        }
+        .timeline-year {
+            color: var(--ancient-gold);
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-title { color: var(--bronze-light); font-size: 1.3rem; margin-bottom: 0.8rem; }
+        .timeline-content { color: #d4c8b5; line-height: 1.8; }
+        
         @media (max-width: 768px) {
-            .timeline-line { left: 30px; }
-            .timeline-item { width: calc(100% - 60px); margin-left: 60px !important; }
-            .timeline-marker { left: -45px !important; right: auto !important; width: 50px; height: 50px; }
-            .marker-icon { font-size: 1rem; }
-            .marker-year { font-size: 0.6rem; }
+            .page-header h1 { font-size: 2rem; }
+            .characters-grid { grid-template-columns: 1fr; }
+            .char-image { height: 220px; }
+            .top-nav { padding: 0.5rem 1rem; gap: 0.8rem; }
+            .nav-link { font-size: 0.85rem; padding: 0.4rem 0.8rem; }
         }
     </style>
 </head>
 <body>
     <nav class="top-nav">
-        <a href="index.html" class="back-btn">&#8592; 返回首页</a>
-        <a href="character-wukong.html" class="nav-link">猴 孙悟空</a>
-        <a href="character-puti.html" class="nav-link">祖 菩提老祖</a>
-        <a href="character-player.html" class="nav-link">主 主角</a>
+        <a href="index.html" class="back-btn">← 返回</a>
+        <a href="character-player.html" class="nav-link">主角档案</a>
+        <a href="world-building.html" class="nav-link">世界观</a>
+        <a href="enhanced-creator.html" class="nav-link">身份创建器</a>
     </nav>
 
-    <main class="timeline-page">
-        <header class="timeline-header">
-            <h1>卷 轴 诸天宇宙时间线</h1>
-            <p>从混沌初开到命运交汇，见证藏子世间的每一个关键时刻</p>
-        </header>
+    <header class="page-header">
+        <h1>世界时间线</h1>
+        <p>诸天宇宙的命运流转 · 关键人物的传奇轨迹</p>
+    </header>
 
-        <div class="timeline-container">
-            <div class="timeline-line"></div>
-            
-            <div class="timeline-item left" data-year="天地初开">
-                <div class="timeline-marker">
-                    <span class="marker-icon">初</span>
-                    <span class="marker-year">太初</span>
-                </div>
-                <div class="timeline-content">
-                    <h3>天地初开</h3>
-                    <p>混沌如鸡子，鸿蒙初判。盘古开天辟地，清气上升为天，浊气下沉为地。日月星辰，山川河流，万物始生。</p>
-                    <div class="timeline-details">
-                        <p>此时，菩提老祖已存在于世外之地，独立于三界之外，观察着天地的演变。他是超越时间的存在，见证了无数宇宙的诞生与毁灭。</p>
+    <main>
+        <section class="characters-section">
+            <h2 class="section-title">命运之轮 · 关键人物</h2>
+            <div class="characters-grid">
+                <div class="character-card">
+                    <img src="images/wukong_portrait_vertical.jpg" alt="孙悟空" class="char-image">
+                    <div class="char-info">
+                        <h3 class="char-name">孙悟空</h3>
+                        <span class="char-badge">齐天大圣 · 悟字辈</span>
+                        <p class="char-desc">花果山仙石孕育而生，天生灵慧。为求长生拜入菩提祖师门下，赐名"悟空"。大闹天宫后被压五行山五百年。</p>
+                        <p class="char-desc">在藏子世间，他挡在主角身前对抗漫天仙佛："师弟，你终于来了。"</p>
+                        <div class="char-traits">
+                            <span class="trait-tag">大圣一脉</span>
+                            <span class="trait-tag">命运节点</span>
+                            <span class="trait-tag">接引者</span>
+                        </div>
                     </div>
-                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
                 </div>
-            </div>
-
-            <div class="timeline-item right" data-year="方寸立宗">
-                <div class="timeline-marker">
-                    <span class="marker-icon">山</span>
-                    <span class="marker-year">远古</span>
-                </div>
-                <div class="timeline-content">
-                    <h3>方寸山立宗</h3>
-                    <p>菩提老祖于方寸山创立斜月三星洞，开始收纳弟子。门下弟子按辈分排序：广、大、智、慧、真、悟、如、圆、觉。</p>
-                    <div class="timeline-details">
-                        <p>方寸山看似寻常，实则是独立于三界之外的洞天福地。洞中时间流速与外界不同，一日等于外界一年。这种时间差，使得弟子们能够在短时间内完成漫长的修行。</p>
-                        <p>每一个辈分都有其特殊的意义。"悟"字辈代表着领悟天道，"圆"字辈代表着圆满自足，而"觉"字辈，则代表着觉醒真我——是修行的最高境界。</p>
+                
+                <div class="character-card">
+                    <img src="images/puti_portrait_vertical.jpg" alt="菩提老祖" class="char-image">
+                    <div class="char-info">
+                        <h3 class="char-name">菩提老祖</h3>
+                        <span class="char-badge">方寸之主 · 觉悟圆满</span>
+                        <p class="char-desc">方寸山斜月三星洞的主人，独立于三界之外，超脱于五行之中。超越时间的存在，见证无数宇宙的生灭。</p>
+                        <p class="char-desc">"你的觉，与我的觉，终将交汇于命运的终点。觉字机缘，非你莫属。"</p>
+                        <div class="char-traits">
+                            <span class="trait-tag">神秘导师</span>
+                            <span class="trait-tag">命运策划者</span>
+                            <span class="trait-tag">诸天万法</span>
+                        </div>
                     </div>
-                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
                 </div>
             </div>
+        </section>
 
-            <div class="timeline-item left" data-year="仙石孕育">
-                <div class="timeline-marker">
-                    <span class="marker-icon">石</span>
-                    <span class="marker-year">商末周初</span>
+        <section class="timeline-section">
+            <h2 class="section-title">时空流转 · 命运轨迹</h2>
+            <div class="timeline-line">
+                <div class="timeline-item">
+                    <div class="timeline-year">太初</div>
+                    <h3 class="timeline-title">天地初开</h3>
+                    <p class="timeline-content">混沌如鸡子，鸿蒙初判。菩提老祖已存在于世外之地，独立于三界之外。</p>
                 </div>
-                <div class="timeline-content">
-                    <h3>仙石孕育</h3>
-                    <p>花果山巅，一块仙石矗立于天地之间。它吸收日月精华，蕴含九窍八孔，按天罡地煞之数排列，静待时机。</p>
-                    <div class="timeline-details">
-                        <p>这块仙石并非普通之物，而是菩提老祖亲手布置的"棋子"。它的存在，是菩提老祖无数年前布下的命运之局的一部分。</p>
-                        <p>仙石内部蕴含着"悟"字辈的力量精华，一旦孕育成功，将诞生出足以搅动三界的存在。这，是菩提老祖为对抗即将到来的"诸天融合"所做的准备。</p>
-                    </div>
-                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
+                <div class="timeline-item">
+                    <div class="timeline-year">远古</div>
+                    <h3 class="timeline-title">方寸山立宗</h3>
+                    <p class="timeline-content">菩提老祖创立斜月三星洞，门下辈分：广、大、智、慧、真、悟、如、圆、觉。洞中一日等于外界一年。</p>
                 </div>
-            </div>
-
-            <div class="timeline-item right" data-year="悟空出世">
-                <div class="timeline-marker">
-                    <span class="marker-icon">猴</span>
-                    <span class="marker-year">战国</span>
+                <div class="timeline-item">
+                    <div class="timeline-year">上古</div>
+                    <h3 class="timeline-title">石猴出世</h3>
+                    <p class="timeline-content">花果山仙石孕育石猴，天生灵慧，成为美猴王。</p>
                 </div>
-                <div class="timeline-content">
-                    <h3>孙悟空出世</h3>
-                    <p>一日，仙石迸裂，产一石卵，遇风化作一石猴。那石猴五官俱全，四肢皆备，目运两道金光，直冲斗府，惊动天庭。</p>
-                    <div class="timeline-details">
-                        <p>石猴降世，天现异象。然而这一切都在菩提老祖的预料之中。他早已推算出这一天的到来，并开始在诸天各处寻找合适的"觉"字辈弟子。</p>
-                        <p>石猴虽然强大，但他只是"悟"字辈，而非最终的"觉"字辈。真正能够改变命运的，是那个尚未出现的"觉字机缘"——一个来自异世界的灵魂。</p>
-                    </div>
-                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
+                <div class="timeline-item">
+                    <div class="timeline-year">上古</div>
+                    <h3 class="timeline-title">拜师学艺</h3>
+                    <p class="timeline-content">石猴漂洋过海拜入菩提祖师门下，赐名"悟空"，列"悟"字辈。</p>
                 </div>
-            </div>
-
-            <div class="timeline-item left" data-year="拜师学艺">
-                <div class="timeline-marker">
-                    <span class="marker-icon">书</span>
-                    <span class="marker-year">秦末汉初</span>
+                <div class="timeline-item">
+                    <div class="timeline-year">上古</div>
+                    <h3 class="timeline-title">大闹天宫</h3>
+                    <p class="timeline-content">悟空大闹龙宫地府，被封"齐天大圣"，后因蟠桃盛会再度反下天庭。</p>
                 </div>
-                <div class="timeline-content">
-                    <h3>孙悟空拜师</h3>
-                    <p>石猴为求长生，漂洋过海，历经十数个年头，终于找到方寸山斜月三星洞，拜入菩提祖师门下，赐名"孙悟空"，列"悟"字辈。</p>
-                    <div class="timeline-details">
-                        <p>菩提祖师教授孙悟空多种神通：七十二变、筋斗云、长生不老之术。然而，当孙悟空学成之后，菩提祖师却将他赶出师门，并告诫他不得提及师承。</p>
-                        <p>这不是无情，而是菩提老祖深知孙悟空的命运——他将成为"觉"字辈弟子的接引者。在未来的某一天，他将亲手迎接最后一位师弟的到来。</p>
-                    </div>
-                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
+                <div class="timeline-item">
+                    <div class="timeline-year">五百年前</div>
+                    <h3 class="timeline-title">五行山下</h3>
+                    <p class="timeline-content">惊动如来佛祖，悟空被压五行山五百年。时间线开始改变。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">现在</div>
+                    <h3 class="timeline-title">觉字机缘</h3>
+                    <p class="timeline-content">主角穿越到藏子世间，成为"觉"字辈最后一人。孙悟空挡在身前："师弟，你终于来了。"</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">未来</div>
+                    <h3 class="timeline-title">诸天交汇</h3>
+                    <p class="timeline-content">无数世界正在融合，揭开藏子世间的终极秘密，一切都刚刚开始...</p>
                 </div>
             </div>
-
-            <div class="timeline-item right" data-year="大闹天宫">
-                <div class="timeline-marker">
-                    <span class="marker-icon">雷</span>
-                    <span class="marker-year">西汉末年</span>
-                </div>
-                <div class="timeline-content">
-                    <h3>大闹天宫</h3>
-                    <p>孙悟空因不满弼马温之职，反下天宫，自封"齐天大圣"。后因蟠桃盛会之事再度反天宫，大闹天宫，直逼灵霄宝殿。</p>
-                    <div class="timeline-details">
-                        <p>大闹天宫，表面上是孙悟空的叛逆之举，实则是菩提老祖计划的一部分。他需要让孙悟空在天地间建立威名，为日后"觉"字辈的出现铺路。</p>
-                        <p>天庭无法降服孙悟空，只能请来如来佛祖。最终，孙悟空被压五行山五百年。这五百年，是天庭与佛门达成的某种默契，也是菩提老祖给予孙悟空的修炼。</p>
-                    </div>
-                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
-                </div>
-            </div>
-
-            <div class="timeline-item left" data-year="五行山困">
-                <div class="timeline-marker">
-                    <span class="marker-icon">压</span>
-                    <span class="marker-year">王莽篡汉</span>
-                </div>
-                <div class="timeline-content">
-                    <h3>被压五行山</h3>
-                    <p>如来佛祖将孙悟空压于五行山（两界山）下，以五指山为封印，使其动弹不得。五百年间，孙悟空以铁丸为食，铜汁为饮，苦苦等待。</p>
-                    <div class="timeline-details">
-                        <p>这五百年，对孙悟空来说是煎熬，也是沉淀。他开始理解菩提祖师的深意——他的使命，不是成为斗战胜佛，而是成为"觉"字辈弟子的护道人。</p>
-                        <p>在五行山下，孙悟空第一次感应到了"觉"字机缘的气息——一个来自异世界的灵魂，正在穿越时空的壁障，向这个世界靠近。</p>
-                    </div>
-                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
-                </div>
-            </div>
-
-            <div class="timeline-item right" data-year="主角穿越">
-                <div class="timeline-marker special">
-                    <span class="marker-icon">觉</span>
-                    <span class="marker-year">现代</span>
-                </div>
-                <div class="timeline-content">
-                    <h3>主角穿越降临</h3>
-                    <p>一个来自地球的年轻人，在某个平凡的瞬间，意识突然陷入黑暗。当他再次睁开眼时，发现自己盘坐在方寸山的石阶之上。</p>
-                    <p class="highlight-text">"师弟，你终于来了。"</p>
-                    <div class="timeline-details">
-                        <p>主角的到来，打破了诸天宇宙的平衡。他携带着来自现代世界的知识和思维，这些"跨界之力"将成为觉醒的关键。</p>
-                        <p>菩提老祖的"觉"字辈计划，终于迎来了最后一位弟子。然而，主角的潜力远超想象——他不仅是"觉字机缘"，更可能是打破命运循环的变数。</p>
-                        <p>从此刻起，藏子世间的故事正式开始。诸天宇宙的命运，将因这个来自地球的年轻人而改变。</p>
-                    </div>
-                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
-                </div>
-            </div>
-
-            <div class="timeline-item left future" data-year="觉字圆满">
-                <div class="timeline-marker">
-                    <span class="marker-icon">终</span>
-                    <span class="marker-year">未来</span>
-                </div>
-                <div class="timeline-content">
-                    <h3>觉字辈圆满</h3>
-                    <p>当最后一位"觉"字辈弟子觉醒，九十九位觉者将汇聚于方寸山。届时，菩提老祖将打开通往永恒的大门——那是超越生死、超越时空的终极境界。</p>
-                    <div class="timeline-details">
-                        <p>然而，命运从不会一帆风顺。在觉字辈圆满的道路上，充满了艰难险阻。天道的压制、魔道的阻挠、诸天宇宙的反噬……一切都在等待着主角。</p>
-                        <p>但无论如何，命运的齿轮已经开始转动。大圣一脉的传说，将在觉字机缘的手中，书写出全新的篇章。</p>
-                    </div>
-                    <button class="expand-btn" onclick="toggleDetails(this)">展开详情</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="timeline-legend">
-            <h3>图例说明</h3>
-            <div class="legend-items">
-                <div class="legend-item">
-                    <span class="legend-marker"></span>
-                    <span>已发生事件</span>
-                </div>
-                <div class="legend-item special">
-                    <span class="legend-marker special"></span>
-                    <span>核心转折点</span>
-                </div>
-                <div class="legend-item future">
-                    <span class="legend-marker future"></span>
-                    <span>未来预言</span>
-                </div>
-            </div>
-        </div>
+        </section>
     </main>
-
-    <script src="js/timeline.js"></script>
-    <script>
-        function toggleDetails(btn) {
-            const details = btn.previousElementSibling;
-            if (details && details.classList.contains('timeline-details')) {
-                details.classList.toggle('active');
-                btn.textContent = details.classList.contains('active') ? '收起详情' : '展开详情';
-            }
-        }
-    </script>
 </body>
 </html>
