@@ -358,11 +358,11 @@ body::before {
 .home-nav {
     position: fixed;
     top: 50%;
-    right: 20px;
+    right: 10px;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
     z-index: 100;
     background: transparent;
     padding: 0;
@@ -371,13 +371,13 @@ body::before {
 .nav-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px 18px;
+    gap: 6px;
+    padding: 8px 12px;
     color: var(--text-secondary);
     text-decoration: none;
     border-radius: 8px;
     transition: all 0.3s ease;
-    min-width: 130px;
+    min-width: auto;
     background: linear-gradient(135deg, rgba(26, 24, 21, 0.95) 0%, rgba(15, 13, 11, 0.98) 100%);
     border: 1px solid rgba(201, 162, 39, 0.4);
     box-shadow: 
@@ -417,14 +417,14 @@ body::before {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 6px;
     padding: 14px 32px;
     background: linear-gradient(180deg, rgba(37, 34, 25, 0.9) 0%, rgba(20, 18, 15, 0.95) 100%);
     border: 1px solid var(--gold-dim);
     border-radius: var(--radius-sm);
     color: var(--text-primary);
     font-family: 'Noto Serif SC', serif;
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     letter-spacing: 0.2em;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -743,7 +743,7 @@ body::before {
 .form-group label {
     display: block;
     margin-bottom: 0.8rem;
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     color: var(--gold);
     letter-spacing: 0.15em;
 }
@@ -1016,7 +1016,7 @@ body::before {
     position: relative;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
     padding: 14px 24px;
     background: linear-gradient(135deg, #6b1a1a 0%, #4a1212 100%);
     border: 1px solid #8b2222;
@@ -1024,7 +1024,7 @@ body::before {
     color: #e8d5b7;
     text-decoration: none;
     font-family: 'Noto Serif SC', serif;
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.1em;
     transition: all 0.3s ease;
@@ -1206,7 +1206,7 @@ body::before {
     }
     
     .fanqie-btn {
-        padding: 12px 18px;
+        padding: 8px 12px;
     }
     
     .fanqie-text {
