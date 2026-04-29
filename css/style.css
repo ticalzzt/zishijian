@@ -99,7 +99,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../images/cover-new.png');
+    background-image: url('../images/fangcun-temple_0.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -134,7 +134,8 @@ body::before {
 .title-container {
     position: absolute;
     top: 6%;
-    right: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
     z-index: 10;
 }
@@ -209,7 +210,8 @@ body::before {
 .hint {
     position: absolute;
     bottom: 6%;
-    right: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
     z-index: 10;
     animation: hintFade 2.5s ease-in-out infinite;
@@ -280,7 +282,7 @@ body::before {
 .zone-glow {
     position: absolute;
     top: 50%;
-    right: 20px;
+    left: 50%;
     width: 150px;
     height: 150px;
     background: radial-gradient(circle, var(--fire-glow) 0%, transparent 70%);
@@ -299,12 +301,12 @@ body::before {
 .zone-label {
     position: absolute;
     bottom: -50px;
-    right: 20px;
+    left: 50%;
     transform: translateX(-50%) translateY(10px);
     background: linear-gradient(135deg, rgba(26, 24, 21, 0.95) 0%, rgba(15, 12, 10, 0.98) 100%);
     padding: 12px 28px;
     border: 1px solid var(--gold-dim);
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     white-space: nowrap;
     opacity: 0;
     transition: all 0.3s ease;
@@ -360,194 +362,56 @@ body::before {
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     z-index: 100;
-    /* 去掉背景和边框，让按钮独立 */
     background: transparent;
     padding: 0;
-    border: none;
-    box-shadow: none;
-    backdrop-filter: none;
-}
-
-/* 去掉装饰角 */
-.home-nav::before,
-.home-nav::after {
-    display: none;
 }
 
 .nav-item {
-    position: relative;
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 14px 20px;
+    padding: 12px 18px;
     color: var(--text-secondary);
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 8px;
     transition: all 0.3s ease;
-    min-width: 140px;
-    /* 每个按钮独立的背景和边框 */
+    min-width: 130px;
     background: linear-gradient(135deg, rgba(26, 24, 21, 0.95) 0%, rgba(15, 13, 11, 0.98) 100%);
-    border: 1px solid rgba(139, 115, 21, 0.5);
+    border: 1px solid rgba(201, 162, 39, 0.4);
     box-shadow: 
-        inset 0 0 20px rgba(0, 0, 0, 0.5),
-        0 4px 12px rgba(0, 0, 0, 0.4);
+        inset 0 0 15px rgba(0, 0, 0, 0.5),
+        0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .nav-item:hover {
     background: linear-gradient(135deg, rgba(40, 35, 25, 0.95) 0%, rgba(25, 22, 18, 0.98) 100%);
     border-color: var(--gold);
     color: var(--gold);
-    transform: translateX(-8px);
-    box-shadow: 
-        inset 0 0 20px rgba(0, 0, 0, 0.5),
-        0 4px 20px rgba(201, 162, 39, 0.3),
-        -4px 0 15px rgba(201, 162, 39, 0.2);
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-
-.home-nav::before,
-.home-nav::after {
-    content: '';
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border: 1px solid var(--gold-dim);
-    opacity: 0.6;
-}
-
-.home-nav::before {
-    top: -4px;
-    left: -4px;
-    border-right: none;
-    border-bottom: none;
-}
-
-.home-nav::after {
-    bottom: -4px;
-    right: -4px;
-    border-left: none;
-    border-top: none;
-}
-
-.nav-item {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-    padding: 12px 16px;
-    color: var(--text-secondary);
-    text-decoration: none;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    min-width: 140px;
-    background: linear-gradient(180deg, rgba(37, 34, 25, 0.5) 0%, rgba(26, 24, 21, 0.8) 100%);
-    border: 1px solid rgba(139, 115, 21, 0.2);
-}
-
-.nav-item:hover {
-    background: linear-gradient(180deg, rgba(60, 50, 30, 0.6) 0%, rgba(40, 35, 25, 0.9) 100%);
-    border-color: var(--gold-dim);
-    color: var(--text-primary);
     transform: translateX(-5px);
-}
-
-.nav-item:hover .nav-icon {
-    filter: drop-shadow(0 0 8px var(--fire-glow));
+    box-shadow: 
+        inset 0 0 15px rgba(0, 0, 0, 0.5),
+        0 2px 15px rgba(201, 162, 39, 0.2);
 }
 
 .nav-item.highlight {
-    background: linear-gradient(135deg, rgba(139, 0, 0, 0.3) 0%, rgba(80, 40, 20, 0.4) 100%);
-    border: 1px solid rgba(204, 34, 0, 0.4);
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.4) 0%, rgba(100, 50, 25, 0.5) 100%);
+    border: 1px solid rgba(204, 34, 0, 0.5);
 }
 
 .nav-item.highlight:hover {
-    background: linear-gradient(135deg, rgba(139, 0, 0, 0.5) 0%, rgba(100, 50, 25, 0.6) 100%);
-    border-color: var(--red-glow);
-    box-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.6) 0%, rgba(120, 60, 30, 0.7) 100%);
+    border-color: var(--gold);
 }
 
 .nav-icon {
-    width: 24px;
-    height: 24px;
-    margin-bottom: 6px;
-    transition: filter 0.3s ease;
-    /* 默认显示青铜色 */
-    filter: brightness(0.8) sepia(0.3) hue-rotate(10deg);
+    width: 20px;
+    height: 20px;
 }
 
 .nav-text {
-    font-family: 'Noto Serif SC', serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    white-space: nowrap;
-}
 
-/* 导航图标 - CSS绘制的简单图腾 */
-
-/* 孙悟空 - 猴子头轮廓 */
-.nav-item[data-page="wukong"] .nav-icon {
-    background: var(--text-secondary);
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C9.5 2 7.5 4 7.5 6.5c0 1.5.7 2.8 1.8 3.7-.5.3-.8.8-.8 1.3 0 .6.3 1.1.8 1.4-.3.6-.4 1.2-.4 1.9 0 2.5 2 4.5 4.5 4.5s4.5-2 4.5-4.5c0-.7-.1-1.3-.4-1.9.5-.3.8-.8.8-1.4 0-.5-.3-1-.8-1.3 1.1-.9 1.8-2.2 1.8-3.7C16.5 4 14.5 2 12 2zm-2 15c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm4 0c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z'/%3E%3C/svg%3E") center/contain no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C9.5 2 7.5 4 7.5 6.5c0 1.5.7 2.8 1.8 3.7-.5.3-.8.8-.8 1.3 0 .6.3 1.1.8 1.4-.3.6-.4 1.2-.4 1.9 0 2.5 2 4.5 4.5 4.5s4.5-2 4.5-4.5c0-.7-.1-1.3-.4-1.9.5-.3.8-.8.8-1.4 0-.5-.3-1-.8-1.3 1.1-.9 1.8-2.2 1.8-3.7C16.5 4 14.5 2 12 2zm-2 15c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm4 0c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z'/%3E%3C/svg%3E") center/contain no-repeat;
-}
-
-/* 菩提 - 莲花/禅意符号 */
-.nav-item[data-page="puti"] .nav-icon {
-    background: var(--text-secondary);
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M12 2v4m0 12v4M2 12h4m12 0h4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83' stroke='currentColor' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") center/contain no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M12 2v4m0 12v4M2 12h4m12 0h4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83' stroke='currentColor' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") center/contain no-repeat;
-}
-
-/* 主角 - 人物符号 */
-.nav-item[data-page="player"] .nav-icon {
-    background: var(--text-secondary);
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3Cpath d='M12 14c-5 0-9 2-9 5v2h18v-2c0-3-4-5-9-5z'/%3E%3C/svg%3E") center/contain no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3Cpath d='M12 14c-5 0-9 2-9 5v2h18v-2c0-3-4-5-9-5z'/%3E%3C/svg%3E") center/contain no-repeat;
-}
-
-/* 时间线 - 八卦/卷轴 */
-.nav-item[data-page="timeline"] .nav-icon {
-    background: var(--text-secondary);
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='2' width='18' height='20' rx='2' fill='none' stroke='currentColor' stroke-width='2'/%3E%3Cline x1='7' y1='8' x2='17' y2='8' stroke='currentColor' stroke-width='1.5'/%3E%3Cline x1='7' y1='12' x2='17' y2='12' stroke='currentColor' stroke-width='1.5'/%3E%3Cline x1='7' y1='16' x2='13' y2='16' stroke='currentColor' stroke-width='1.5'/%3E%3C/svg%3E") center/contain no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='2' width='18' height='20' rx='2' fill='none' stroke='currentColor' stroke-width='2'/%3E%3Cline x1='7' y1='8' x2='17' y2='8' stroke='currentColor' stroke-width='1.5'/%3E%3Cline x1='7' y1='12' x2='17' y2='12' stroke='currentColor' stroke-width='1.5'/%3E%3Cline x1='7' y1='16' x2='13' y2='16' stroke='currentColor' stroke-width='1.5'/%3E%3C/svg%3E") center/contain no-repeat;
-}
-
-/* 世界观 - 地球/世界 */
-.nav-item[data-page="world"] .nav-icon {
-    background: var(--text-secondary);
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='currentColor' stroke-width='2'/%3E%3Cpath d='M2 12h20M12 2c-3 4-3 14 0 20M12 2c3 4 3 14 0 20' stroke='currentColor' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") center/contain no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='currentColor' stroke-width='2'/%3E%3Cpath d='M2 12h20M12 2c-3 4-3 14 0 20M12 2c3 4 3 14 0 20' stroke='currentColor' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") center/contain no-repeat;
-}
-
-/* 身份创建器 - 印章/符咒 */
-.nav-item[data-page="creator"] .nav-icon {
-    background: var(--text-secondary);
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5' fill='none' stroke='currentColor' stroke-width='2'/%3E%3C/svg%3E") center/contain no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5' fill='none' stroke='currentColor' stroke-width='2'/%3E%3C/svg%3E") center/contain no-repeat;
-}
-
-/* ========================================
-   按钮样式 - 青铜器/石刻风格
-   ======================================== */
 .btn-bronze {
     position: relative;
     display: inline-flex;
@@ -557,7 +421,7 @@ body::before {
     padding: 14px 32px;
     background: linear-gradient(180deg, rgba(37, 34, 25, 0.9) 0%, rgba(20, 18, 15, 0.95) 100%);
     border: 1px solid var(--gold-dim);
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     color: var(--text-primary);
     font-family: 'Noto Serif SC', serif;
     font-size: 0.95rem;
@@ -589,7 +453,7 @@ body::before {
 
 .btn-bronze:hover {
     border-color: var(--gold);
-    transform: translateX(-5px);
+    transform: translateY(-2px);
     box-shadow: 
         inset 0 1px 0 rgba(201, 162, 39, 0.3),
         inset 0 -2px 10px rgba(0, 0, 0, 0.4),
@@ -642,7 +506,6 @@ body::before {
 
 .page-header {
     display: flex;
-    flex-direction: row;
     align-items: center;
     gap: 2rem;
     margin-bottom: 3rem;
@@ -653,13 +516,12 @@ body::before {
 .back-btn {
     position: relative;
     display: flex;
-    flex-direction: row;
     align-items: center;
     gap: 8px;
     padding: 10px 20px;
     background: transparent;
     border: 1px solid rgba(139, 115, 21, 0.4);
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     color: var(--text-secondary);
     font-family: 'Noto Serif SC', serif;
     font-size: 0.9rem;
@@ -891,7 +753,7 @@ body::before {
     padding: 14px 18px;
     background: linear-gradient(180deg, rgba(26, 24, 21, 0.9) 0%, rgba(15, 12, 10, 0.95) 100%);
     border: 1px solid rgba(139, 115, 21, 0.4);
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     color: var(--text-primary);
     font-family: 'Noto Serif SC', serif;
     font-size: 1rem;
@@ -913,19 +775,17 @@ body::before {
 /* 单选按钮组 */
 .radio-group {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     gap: 0.8rem;
 }
 
 .radio-item {
     display: flex;
-    flex-direction: row;
     align-items: center;
     padding: 10px 18px;
     background: linear-gradient(180deg, rgba(26, 24, 21, 0.7) 0%, rgba(15, 12, 10, 0.9) 100%);
     border: 1px solid rgba(139, 115, 21, 0.3);
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -953,7 +813,7 @@ body::before {
     padding: 16px;
     background: linear-gradient(180deg, #8b6914 0%, #5c4610 50%, #3d2e0a 100%);
     border: 1px solid var(--gold);
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     color: var(--text-primary);
     font-family: 'Noto Serif SC', serif;
     font-size: 1.1rem;
@@ -1020,7 +880,6 @@ body::before {
 
 .card-header {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
@@ -1047,7 +906,6 @@ body::before {
 
 .card-row {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     padding: 0.8rem 0;
     border-bottom: 1px solid rgba(139, 115, 21, 0.15);
@@ -1094,7 +952,7 @@ body::before {
     padding: 14px 28px;
     background: linear-gradient(180deg, rgba(26, 24, 21, 0.9) 0%, rgba(15, 12, 10, 0.95) 100%);
     border: 1px solid rgba(100, 150, 200, 0.4);
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     color: #8ab4d4;
     text-decoration: none;
     font-family: 'Noto Serif SC', serif;
@@ -1157,13 +1015,12 @@ body::before {
 .fanqie-btn {
     position: relative;
     display: flex;
-    flex-direction: row;
     align-items: center;
     gap: 10px;
     padding: 14px 24px;
     background: linear-gradient(135deg, #6b1a1a 0%, #4a1212 100%);
     border: 1px solid #8b2222;
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     color: #e8d5b7;
     text-decoration: none;
     font-family: 'Noto Serif SC', serif;
@@ -1218,7 +1075,7 @@ body::before {
     padding: 1rem 2rem;
     background: linear-gradient(135deg, #6b1a1a 0%, #4a1212 100%);
     border: 1px solid #8b2222;
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     color: #e8d5b7;
     text-decoration: none;
     text-align: center;
@@ -1301,7 +1158,7 @@ body::before {
     }
     
     .page-header {
-        flex-direction: row;
+        flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
     }
@@ -1311,7 +1168,7 @@ body::before {
     }
     
     .radio-group {
-        flex-direction: row;
+        flex-direction: column;
     }
     
     .radio-item {
@@ -1419,545 +1276,4 @@ body::before {
 ::selection {
     background: rgba(201, 162, 39, 0.3);
     color: var(--text-primary);
-}
-
-/* ========================================
-   增强响应式设计 - 移动优先
-   ======================================== */
-
-/* 平板设备 (769px - 1024px) */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .main-title {
-        letter-spacing: 0.3em;
-    }
-    
-    .subtitle {
-        letter-spacing: 0.4em;
-        font-size: 1.1rem;
-    }
-    
-    .click-zone.wukong {
-        left: 2%;
-        width: 35%;
-        height: 50%;
-    }
-    
-    .click-zone.create {
-        right: 2%;
-        width: 40%;
-        height: 40%;
-    }
-    
-    .zone-label {
-        padding: 10px 20px;
-        font-size: 0.95rem;
-    }
-    
-    .intro-card, .character-card, .chapter-preview {
-        padding: 2rem 1.5rem;
-    }
-    
-    .character-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-    
-    .timeline-btn, .creator-btn {
-        padding: 14px 24px;
-    }
-    
-    .fanqie-btn {
-        padding: 12px 20px;
-    }
-    
-    .fanqie-text {
-        font-size: 0.9rem;
-    }
-}
-
-/* 桌面设备 (min-width: 1024px) */
-@media (min-width: 1024px) {
-    .main-title {
-        letter-spacing: 0.4em;
-    }
-    
-    .subtitle {
-        font-size: 1.2rem;
-    }
-    
-    .click-zone.wukong {
-        left: 5%;
-        bottom: 12%;
-        width: 30%;
-        height: 55%;
-    }
-    
-    .click-zone.create {
-        right: 8%;
-        top: 18%;
-        width: 35%;
-        height: 42%;
-    }
-    
-    .intro-card, .character-card, .chapter-preview {
-        padding: 2.5rem 2rem;
-    }
-    
-    .character-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-    }
-    
-    /* 悬停效果仅在有悬停能力的设备上显示 */
-    .click-zone:hover .zone-glow {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.3);
-    }
-    
-    .click-zone:hover .zone-label {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-}
-
-/* 超大屏幕 (min-width: 1440px) */
-@media (min-width: 1440px) {
-    html {
-        font-size: 18px;
-    }
-    
-    .main-title {
-        font-size: 5rem;
-    }
-    
-    .intro-card, .character-card, .chapter-preview {
-        padding: 3rem 2.5rem;
-    }
-    
-    .character-grid {
-        gap: 2.5rem;
-    }
-}
-
-/* 移动端优化 (max-width: 768px) */
-@media (max-width: 768px) {
-    html {
-        font-size: 14px;
-    }
-    
-    /* 导航栏优化 */
-    .home-nav {
-        position: fixed;
-        top: 10px;
-        right: 20px;
-        z-index: 1000;
-        background: rgba(10, 9, 8, 0.9);
-        border: 1px solid rgba(201, 162, 39, 0.3);
-        border-radius: 25px;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        max-width: 95%;
-    }
-    
-    .nav-item {
-        display: flex;
-    flex-direction: row;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        padding: 8px 12px;
-        min-width: 50px;
-        transition: all 0.3s ease;
-    }
-    
-    .nav-icon {
-        width: 22px;
-        height: 22px;
-        margin-bottom: 3px;
-    }
-    
-    .nav-text {
-        font-size: 0.65rem;
-        letter-spacing: 0.05em;
-    }
-    
-    /* 标题优化 */
-    .title-container {
-        top: 10%;
-        width: 90%;
-    }
-    
-    .main-title {
-        letter-spacing: 0.15em;
-        font-size: 2.2rem;
-    }
-    
-    .title-char {
-        font-size: 2.2rem;
-    }
-    
-    .subtitle {
-        letter-spacing: 0.2em;
-        font-size: 0.85rem;
-        margin-top: 1rem;
-    }
-    
-    /* 点击区域优化 */
-    .click-zone.wukong {
-        left: 0;
-        bottom: 5%;
-        width: 50%;
-        height: 40%;
-    }
-    
-    .click-zone.create {
-        right: 0;
-        top: 15%;
-        width: 50%;
-        height: 35%;
-    }
-    
-    .zone-label {
-        bottom: -40px;
-        padding: 12px;
-        font-size: 0.8rem;
-    }
-    
-    /* 卡片优化 */
-    .intro-card, .character-card, .chapter-preview {
-        padding: 1.2rem 0.8rem;
-        border-radius: 8px;
-    }
-    
-    .card-title {
-        font-size: 1.1rem;
-        letter-spacing: 0.15em;
-    }
-    
-    .card-content p {
-        font-size: 0.9rem;
-        line-height: 1.7;
-    }
-    
-    /* 按钮优化 - 触摸友好 */
-    .timeline-btn, .creator-btn {
-        display: flex;
-    flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        padding: 14px 20px;
-        min-height: 44px;
-        font-size: 0.9rem;
-    }
-    
-    .btn-icon {
-        width: 18px;
-        height: 18px;
-    }
-    
-    /* 番茄入口优化 */
-    .fanqie-entrance {
-        bottom: 15px;
-        right: 15px;
-    }
-    
-    .fanqie-btn {
-        padding: 12px;
-        border-radius: 50%;
-    }
-    
-    .fanqie-text {
-        display: none;
-    }
-    
-    .fanqie-icon {
-        width: 24px;
-        height: 24px;
-    }
-    
-    /* 表格优化 */
-    .table-wrapper {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    table {
-        font-size: 0.85rem;
-    }
-    
-    /* 图片优化 */
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-    
-    /* 页面头部优化 */
-    .page-header {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 1rem;
-        padding: 1rem;
-    }
-    
-    .page-title {
-        font-size: 1.6rem;
-    }
-    
-    /* 角色网格单列 */
-    .character-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    /* 表单优化 */
-    .create-form {
-        padding: 0 0.5rem;
-    }
-    
-    .form-group input[type="text"] {
-        padding: 12px 14px;
-        font-size: 16px; /* 防止iOS缩放 */
-    }
-    
-    .radio-group {
-        flex-direction: row;
-        gap: 0.5rem;
-    }
-    
-    .radio-item {
-        width: 100%;
-        justify-content: center;
-        padding: 12px;
-        min-height: 44px;
-    }
-    
-    .create-btn {
-        padding: 14px 16px;
-        min-height: 48px;
-        font-size: 1rem;
-    }
-    
-    /* 身份卡优化 */
-    .identity-card {
-        margin: 1rem 0.5rem;
-        border-radius: 8px;
-    }
-    
-    .card-header {
-        padding: 0.8rem 1rem;
-    }
-    
-    .card-body {
-        padding: 1rem;
-    }
-    
-    /* 弹窗优化 */
-    .modal-content {
-        margin: 10% auto;
-        padding: 1rem;
-        border-radius: 8px;
-        max-width: 95%;
-    }
-}
-
-/* 小屏移动设备 (max-width: 480px) */
-@media (max-width: 480px) {
-    html {
-        font-size: 13px;
-    }
-    
-    .main-title {
-        font-size: 1.8rem;
-        letter-spacing: 0.1em;
-    }
-    
-    .title-char {
-        font-size: 1.8rem;
-    }
-    
-    .subtitle {
-        font-size: 0.75rem;
-        letter-spacing: 0.15em;
-    }
-    
-    .home-nav {
-        top: 8px;
-        padding: 6px 8px;
-    }
-    
-    .nav-item {
-        padding: 6px 8px;
-        min-width: 45px;
-    }
-    
-    .nav-icon {
-        width: 18px;
-        height: 18px;
-    }
-    
-    .nav-text {
-        font-size: 0.55rem;
-    }
-    
-    .click-zone.wukong {
-        left: 0;
-        bottom: 3%;
-        width: 55%;
-        height: 35%;
-    }
-    
-    .click-zone.create {
-        right: 0;
-        top: 12%;
-        width: 50%;
-        height: 30%;
-    }
-    
-    .zone-label {
-        bottom: -35px;
-        padding: 6px 12px;
-        font-size: 0.75rem;
-    }
-    
-    .intro-card, .character-card, .chapter-preview {
-        padding: 1rem 0.6rem;
-    }
-    
-    .card-title {
-        font-size: 1rem;
-    }
-    
-    .card-content p {
-        font-size: 0.85rem;
-    }
-    
-    .timeline-btn, .creator-btn {
-        padding: 12px 16px;
-        font-size: 0.85rem;
-    }
-    
-    .page-title {
-        font-size: 1.4rem;
-    }
-}
-
-/* 横屏模式优化 */
-@media (max-height: 500px) and (orientation: landscape) {
-    .title-container {
-        top: 5%;
-    }
-    
-    .main-title {
-        font-size: 1.8rem;
-    }
-    
-    .subtitle {
-        display: none;
-    }
-    
-    .click-zone.wukong {
-        left: 5%;
-        bottom: 5%;
-        width: 30%;
-        height: 60%;
-    }
-    
-    .click-zone.create {
-        right: 5%;
-        top: 5%;
-        width: 35%;
-        height: 50%;
-    }
-    
-    .hint {
-        bottom: 2%;
-    }
-}
-
-/* 高对比度模式支持 */
-@media (prefers-contrast: high) {
-    :root {
-        --text-primary: #ffffff;
-        --text-secondary: #e0e0e0;
-        --gold: #ffcc00;
-    }
-    
-    .intro-card, .character-card {
-        border-width: 2px;
-    }
-}
-
-/* 减少动画支持 */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-    
-    .title-char {
-        animation: none;
-    }
-    
-    .zone-glow {
-        animation: none;
-    }
-    
-    .cover-image:hover {
-        transform: none;
-    }
-}
-
-/* 触摸设备优化 */
-@media (hover: none) and (pointer: coarse) {
-    .click-zone:active .zone-glow {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.3);
-    }
-    
-    .click-zone:active .zone-label {
-        opacity: 1;
-    }
-    
-    /* 移除悬停效果的依赖 */
-    .click-zone:hover .zone-glow,
-    .click-zone:hover .zone-label {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(1);
-    }
-    
-    /* 为触摸设备添加 active 状态 */
-    .timeline-btn:active,
-    .creator-btn:active,
-    .fanqie-btn:active,
-    .create-btn:active {
-        transform: scale(0.98);
-    }
-    
-    /* 表单元素触摸友好 */
-    input, button, select, textarea {
-        min-height: 44px;
-    }
-}
-
-/* 打印样式 */
-@media print {
-    body {
-        background: white;
-        color: black;
-    }
-    
-    .home-nav,
-    .fanqie-entrance,
-    .hint,
-    .overlay {
-        display: none;
-    }
-    
-    .intro-card, .character-card {
-        break-inside: avoid;
-        border: 1px solid #ccc;
-    }
 }
