@@ -150,6 +150,7 @@ body::before {
         0 0 60px rgba(255, 100, 30, 0.4),
         2px 2px 4px rgba(0, 0, 0, 0.8);
     animation: titleGlow 4s ease-in-out infinite;
+    white-space: nowrap;
     /* 去除白色底色，让文字更通透 */
     background: transparent;
     -webkit-background-clip: unset;
@@ -158,7 +159,7 @@ body::before {
 }
 
 .title-char {
-    display: inline-block;
+    display: inline;
     animation: charFloat 3s ease-in-out infinite;
     text-shadow: 
         0 0 20px var(--fire-glow),
@@ -341,7 +342,7 @@ body::before {
     width: 20px;
     height: 20px;
     margin-right: 10px;
-    display: inline-block;
+    display: inline;
     vertical-align: middle;
 }
 
