@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>第一章：封印之门 | 藏子世间</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --ink-black: #0a0908;
+            --ancient-gold: #c9a227;
+            --dark-red: #8b0000;
+            --bronze-light: #d4a84b;
+            --bronze-dark: #8b6914;
+            --deep-purple: #2d1b4e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background: var(--ink-black);
+            color: #e8e0d5;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: 'ZCOOL XiaoWei', serif; }
+
+        /* 导航栏 */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 9, 8, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--ancient-gold);
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .back-btn, .nav-link {
+            color: var(--ancient-gold);
+            font-family: 'ZCOOL XiaoWei', serif;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .back-btn { border-color: rgba(201, 162, 39, 0.4); }
+        .back-btn:hover, .nav-link:hover {
+            color: var(--bronze-light);
+            text-shadow: 0 0 10px rgba(201, 162, 39, 0.8);
+        }
+
+        .chapter-badge {
+            margin-left: auto;
+            background: linear-gradient(135deg, var(--deep-purple), #1a1025);
+            border: 1px solid var(--ancient-gold);
+            color: var(--ancient-gold);
+            padding: 0.4rem 1.2rem;
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 0.9rem;
+        }
+
+        /* 全屏场景容器 */
+        .scene-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .scene-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .scene-background.active {
+            opacity: 1;
+        }
+
+        /* 场景渐变遮罩 */
+        .scene-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(
+                to bottom,
+                rgba(10, 9, 8, 0) 0%,
+                rgba(10, 9, 8, 0.3) 20%,
+                rgba(10, 9, 8, 0.85) 50%,
+                rgba(10, 9, 8, 0.98) 80%,
+                rgba(10, 9, 8, 1) 100%
+            );
+            pointer-events: none;
+            transition: opacity 0.8s;
+        }
+
+        /* 内容区域 */
+        .scene-content {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            padding: 0 1.5rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .scene-content.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scene-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .scene-number {
+            background: linear-gradient(135deg, var(--dark-red), #5a0000);
+            border: 2px solid var(--ancient-gold);
+            color: var(--ancient-gold);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 1.4rem;
+            box-shadow: 0 0 20px rgba(201, 162, 39, 0.3);
+        }
+
+        .scene-title {
+            color: var(--ancient-gold);
+            font-size: 2.2rem;
+            text-shadow: 0 0 30px rgba(201, 162, 39, 0.5);
+        }
+
+        .scene-text {
+            background: rgba(10, 9, 8, 0.85);
+            border: 1px solid rgba(201, 162, 39, 0.3);
+            border-radius: 8px;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            line-height: 2;
+            font-size: 1.1rem;
+            color: #e8e0d5;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 选择按钮 */
+        .choices-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .choice-btn {
+            background: linear-gradient(135deg, rgba(30, 25, 20, 0.9), rgba(15, 12, 10, 0.95));
+            border: 2px solid var(--ancient-gold);
+            color: var(--bronze-light);
+            padding: 1.2rem 2rem;
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .choice-btn::before {
+            content: '▸';
+            margin-right: 1rem;
+            color: var(--ancient-gold);
+            transition: transform 0.3s;
+        }
+
+        .choice-btn:hover {
+            background: linear-gradient(135deg, rgba(45, 35, 25, 0.95), rgba(25, 20, 15, 0.98));
+            border-color: var(--bronze-light);
+            color: var(--ancient-gold);
+            box-shadow: 0 0 25px rgba(201, 162, 39, 0.4), inset 0 0 20px rgba(201, 162, 39, 0.1);
+            transform: translateX(5px);
+        }
+
+        .choice-btn:hover::before {
+            transform: translateX(5px);
+        }
+
+        /* 章节结束页面 */
+        .chapter-end {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 50;
+            background: radial-gradient(ellipse at center, rgba(45, 27, 78, 0.3), var(--ink-black));
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .chapter-end.active {
+            display: flex;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .chapter-end h2 {
+            color: var(--ancient-gold);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 40px rgba(201, 162, 39, 0.6);
+        }
+
+        .chapter-end .subtitle {
+            color: var(--bronze-light);
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+        }
+
+        .chapter-end .next-chapter {
+            background: linear-gradient(135deg, var(--deep-purple), #1a1025);
+            border: 2px solid var(--ancient-gold);
+            color: var(--ancient-gold);
+            padding: 1rem 3rem;
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1.5rem;
+        }
+
+        .chapter-end .next-chapter:hover {
+            background: linear-gradient(135deg, #3d2860, #251535);
+            box-shadow: 0 0 30px rgba(201, 162, 39, 0.5);
+        }
+
+        .chapter-end .back-home {
+            color: rgba(201, 162, 39, 0.6);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .chapter-end .back-home:hover {
+            color: var(--ancient-gold);
+        }
+
+        /* 加载屏幕 */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 200;
+            background: var(--ink-black);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-screen h1 {
+            color: var(--ancient-gold);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 30px rgba(201, 162, 39, 0.5);
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 4px;
+            background: rgba(201, 162, 39, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--ancient-gold), var(--bronze-light));
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .loading-text {
+            color: var(--bronze-light);
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* 进度指示器 */
+        .progress-indicator {
+            position: fixed;
+            top: 70px;
+            right: 1.5rem;
+            z-index: 50;
+            display: flex;
+            gap: 8px;
+        }
+
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(201, 162, 39, 0.3);
+            border: 1px solid rgba(201, 162, 39, 0.5);
+            transition: all 0.3s;
+        }
+
+        .progress-dot.active {
+            background: var(--ancient-gold);
+            box-shadow: 0 0 10px rgba(201, 162, 39, 0.8);
+        }
+
+        .progress-dot.visited {
+            background: rgba(201, 162, 39, 0.6);
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .scene-title { font-size: 1.6rem; }
+            .scene-text { 
+                padding: 1.2rem; 
+                font-size: 1rem;
+                line-height: 1.9;
+            }
+            .choice-btn {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+            .chapter-end h2 { font-size: 2rem; }
+            .chapter-end .subtitle { font-size: 1.1rem; }
+            .progress-indicator { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 加载屏幕 -->
+    <div class="loading-screen" id="loadingScreen">
+        <h1>第一章：封印之门</h1>
+        <div class="loading-bar">
+            <div class="loading-progress" id="loadingProgress"></div>
+        </div>
+        <p class="loading-text">正在加载命运...</p>
+    </div>
+
+    <!-- 场景容器 -->
+    <div class="scene-container">
+        <div class="scene-background active" id="bg-scene1"></div>
+    </div>
+    <div class="scene-overlay"></div>
+
+    <!-- 进度指示器 -->
+    <div class="progress-indicator" id="progressIndicator"></div>
+
+    <!-- 导航 -->
+    <nav class="top-nav">
+        <a href="index.html" class="back-btn">← 返回首页</a>
+        <a href="timeline.html" class="nav-link">世界时间线</a>
+        <span class="chapter-badge">第一章 · 封印之门</span>
+    </nav>
+
+    <!-- 场景内容 -->
+    <div class="scene-content active" id="sceneContent">
+        <div class="scene-header">
+            <div class="scene-number" id="sceneNumber">1</div>
+            <h2 class="scene-title" id="sceneTitle">觉醒</h2>
+        </div>
+        <div class="scene-text" id="sceneText">
+            你在一片混沌中醒来，眼前是一道刻满符文的石门。你隐约记得——你是菩提座下最小的弟子，但记忆模糊如雾。
+        </div>
+        <div class="choices-container" id="choicesContainer">
+        </div>
+    </div>
+
+    <!-- 章节结束 -->
+    <div class="chapter-end" id="chapterEnd">
+        <h2>第一章 · 完</h2>
+        <p class="subtitle">即将开启：第二章 · 大圣之踪</p>
+        <button class="next-chapter" onclick="alert('第二章开发中，敬请期待...')">继续探索</button>
+        <a href="index.html" class="back-home">← 返回首页</a>
+    </div>
+
+    <script>
+        // 场景数据结构
+        const storyData = {
+            scenes: {
+                scene1: {
+                    id: 'scene1',
+                    title: '觉醒',
+                    text: '你在一片混沌中醒来，眼前是一道刻满符文的石门。你隐约记得——你是菩提座下最小的弟子，但记忆模糊如雾。',
+                    image: 'images/story/scene_0.jpg',
+                    choices: [
+                        { text: '推开石门', next: 'scene2a' },
+                        { text: '凝视符文寻找线索', next: 'scene2b' }
+                    ]
+                },
+                scene2a: {
+                    id: 'scene2a',
+                    title: '石门开启',
+                    text: '石门轰然开启，山风裹着灵气扑面而来。远处传来修炼的钟声，一道身影在云端一闪而过——那身形，像极了传说中的大师兄。',
+                    image: 'images/story/scene_2.jpg',
+                    choices: [
+                        { text: '追上去', next: 'scene3a1' },
+                        { text: '沿山道向下走', next: 'scene3a2' }
+                    ]
+                },
+                scene2b: {
+                    id: 'scene2b',
+                    title: '符文觉醒',
+                    text: '符文在你眼前活了过来，它们组成一段古老的文字："大道三千，你只走其一。"你的指尖触碰到符文的瞬间，一股记忆涌入——你曾是这山中的弟子。',
+                    image: 'images/story/scene_3.jpg',
+                    choices: [
+                        { text: '接受记忆', next: 'scene3b1' },
+                        { text: '抵抗这股力量', next: 'scene3b2' }
+                    ]
+                },
+                scene3a1: {
+                    id: 'scene3a1',
+                    title: '云端邂逅',
+                    text: '你御风追去，云层中看到了那道身影——金色铠甲，凤翅紫金冠。他回头看了你一眼，眼中闪过一丝惊讶："小师弟？你怎么……"',
+                    image: 'images/story/scene_5.jpg',
+                    choices: [
+                        { text: '"大师兄！发生了什么？"', next: 'scene4' },
+                        { text: '"你认识我？"', next: 'scene4' }
+                    ]
+                },
+                scene3a2: {
+                    id: 'scene3a2',
+                    title: '竹林小径',
+                    text: '你沿着蜿蜒的山道向下，穿过一片灵气充沛的竹林。竹叶上凝结着露珠，每一滴都映照着不同的天象。前方，一间古朴的茅屋中透出暖光。',
+                    image: 'images/story/scene_6.jpg',
+                    choices: [
+                        { text: '推门进入', next: 'scene4' },
+                        { text: '在门外观察', next: 'scene4' }
+                    ]
+                },
+                scene3b1: {
+                    id: 'scene3b1',
+                    title: '记忆洪流',
+                    text: '记忆如潮水般涌来——你想起自己在灵台方寸山的修行岁月，想起师父菩提的教诲，想起大师兄离开的那天。但这些记忆中，有一段是空白的。',
+                    image: 'images/story/scene_1.jpg',
+                    choices: [
+                        { text: '寻找空白记忆', next: 'scene4' },
+                        { text: '先下山探查', next: 'scene4' }
+                    ]
+                },
+                scene3b2: {
+                    id: 'scene3b2',
+                    title: '符文碎裂',
+                    text: '你拼命抵抗，符文碎裂成金色粉尘。但有一丝力量还是渗入了你的意识——一个声音："别忘了我。"你喘息着，发现自己站在石门前，但门已经开了。',
+                    image: 'images/story/scene_4.jpg',
+                    choices: [
+                        { text: '走出石门', next: 'scene4' },
+                        { text: '在原地恢复', next: 'scene4' }
+                    ]
+                },
+                scene4: {
+                    id: 'scene4',
+                    title: '修行道场',
+                    text: '无论走了哪条路，你都来到了灵台方寸山的修行道场。但这里空无一人，往日的师兄弟都不见了。只有师父的讲法台上，留着一卷经文。',
+                    image: 'images/story/scene_7.jpg',
+                    choices: [
+                        { text: '拿起经文', next: 'chapter_end' },
+                        { text: '离开道场', next: 'chapter_end' }
+                    ]
+                }
+            }
+        };
+
+        // 预加载图片
+        const imagesToPreload = [
+            'images/story/scene_0.jpg',
+            'images/story/scene_1.jpg',
+            'images/story/scene_2.jpg',
+            'images/story/scene_3.jpg',
+            'images/story/scene_4.jpg',
+            'images/story/scene_5.jpg',
+            'images/story/scene_6.jpg',
+            'images/story/scene_7.jpg'
+        ];
+
+        let loadedImages = 0;
+        let currentScene = 'scene1';
+        let visitedScenes = new Set();
+
+        // 预加载图片
+        function preloadImages() {
+            const progress = document.getElementById('loadingProgress');
+            const loadingText = document.querySelector('.loading-text');
+            
+            imagesToPreload.forEach(src => {
+                const img = new Image();
+                img.onload = () => {
+                    loadedImages++;
+                    const percent = Math.round((loadedImages / imagesToPreload.length) * 100);
+                    progress.style.width = percent + '%';
+                    loadingText.textContent = '正在加载命运... ' + percent + '%';
+                    
+                    if (loadedImages === imagesToPreload.length) {
+                        setTimeout(() => {
+                            document.getElementById('loadingScreen').classList.add('hidden');
+                            initProgressIndicator();
+                        }, 500);
+                    }
+                };
+                img.onerror = () => {
+                    loadedImages++;
+                    if (loadedImages === imagesToPreload.length) {
+                        setTimeout(() => {
+                            document.getElementById('loadingScreen').classList.add('hidden');
+                            initProgressIndicator();
+                        }, 500);
+                    }
+                };
+                img.src = src;
+            });
+        }
+
+        // 初始化进度指示器
+        function initProgressIndicator() {
+            const indicator = document.getElementById('progressIndicator');
+            const totalScenes = 8;
+            for (let i = 0; i < totalScenes; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'progress-dot';
+                if (i === 0) dot.classList.add('active');
+                indicator.appendChild(dot);
+            }
+        }
+
+        // 更新进度指示器
+        function updateProgress(sceneIndex) {
+            const dots = document.querySelectorAll('.progress-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.remove('active');
+                if (i < sceneIndex) dot.classList.add('visited');
+                if (i === sceneIndex) dot.classList.add('active');
+            });
+        }
+
+        // 计算场景索引
+        function getSceneIndex(sceneId) {
+            const order = ['scene1', 'scene2a', 'scene2b', 'scene3a1', 'scene3a2', 'scene3b1', 'scene3b2', 'scene4'];
+            return order.indexOf(sceneId);
+        }
+
+        // 切换场景
+        function goToScene(sceneId) {
+            if (sceneId === 'chapter_end') {
+                showChapterEnd();
+                return;
+            }
+
+            const scene = storyData.scenes[sceneId];
+            if (!scene) return;
+
+            visitedScenes.add(sceneId);
+            currentScene = sceneId;
+
+            // 更新进度
+            updateProgress(getSceneIndex(sceneId));
+
+            // 淡出当前内容
+            const content = document.getElementById('sceneContent');
+            content.classList.remove('active');
+
+            // 切换背景
+            const backgrounds = document.querySelectorAll('.scene-background');
+            backgrounds.forEach(bg => bg.classList.remove('active'));
+
+            // 创建新背景或复用
+            let newBg = document.getElementById('bg-' + sceneId);
+            if (!newBg) {
+                newBg = document.createElement('div');
+                newBg.className = 'scene-background';
+                newBg.id = 'bg-' + sceneId;
+                newBg.style.backgroundImage = "url('" + scene.image + "')";
+                document.querySelector('.scene-container').appendChild(newBg);
+            }
+
+            // 延迟切换以实现淡入淡出效果
+            setTimeout(() => {
+                newBg.classList.add('active');
+                
+                // 更新内容
+                document.getElementById('sceneTitle').textContent = scene.title;
+                document.getElementById('sceneText').textContent = scene.text;
+                
+                // 更新场景编号
+                const sceneNum = document.getElementById('sceneNumber');
+                const sceneIndex = getSceneIndex(sceneId);
+                sceneNum.textContent = sceneIndex + 1;
+
+                // 更新选择按钮
+                const choicesContainer = document.getElementById('choicesContainer');
+                choicesContainer.innerHTML = '';
+                scene.choices.forEach(choice => {
+                    const btn = document.createElement('button');
+                    btn.className = 'choice-btn';
+                    btn.textContent = choice.text;
+                    btn.onclick = () => goToScene(choice.next);
+                    choicesContainer.appendChild(btn);
+                });
+
+                // 淡入内容
+                content.classList.add('active');
+            }, 600);
+        }
+
+        // 显示章节结束
+        function showChapterEnd() {
+            document.getElementById('sceneContent').classList.remove('active');
+            document.querySelector('.scene-overlay').style.opacity = '0';
+            document.getElementById('chapterEnd').classList.add('active');
+            document.getElementById('progressIndicator').style.display = 'none';
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            // 设置初始场景的背景
+            const initialBg = document.getElementById('bg-scene1');
+            initialBg.style.backgroundImage = "url('" + storyData.scenes.scene1.image + "')";
+
+            // 初始化选择按钮
+            const choicesContainer = document.getElementById('choicesContainer');
+            storyData.scenes.scene1.choices.forEach(choice => {
+                const btn = document.createElement('button');
+                btn.className = 'choice-btn';
+                btn.textContent = choice.text;
+                btn.onclick = () => goToScene(choice.next);
+                choicesContainer.appendChild(btn);
+            });
+
+            // 开始预加载
+            preloadImages();
+        });
+    </script>
+</body>
+</html>
