@@ -99,7 +99,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../images/fangcun-temple_0.jpg');
+    background-image: url('../images/cover-new.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -134,8 +134,7 @@ body::before {
 .title-container {
     position: absolute;
     top: 6%;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 20px;
     text-align: center;
     z-index: 10;
 }
@@ -210,8 +209,7 @@ body::before {
 .hint {
     position: absolute;
     bottom: 6%;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 20px;
     text-align: center;
     z-index: 10;
     animation: hintFade 2.5s ease-in-out infinite;
@@ -282,7 +280,7 @@ body::before {
 .zone-glow {
     position: absolute;
     top: 50%;
-    left: 50%;
+    right: 20px;
     width: 150px;
     height: 150px;
     background: radial-gradient(circle, var(--fire-glow) 0%, transparent 70%);
@@ -301,12 +299,12 @@ body::before {
 .zone-label {
     position: absolute;
     bottom: -50px;
-    left: 50%;
+    right: 20px;
     transform: translateX(-50%) translateY(10px);
     background: linear-gradient(135deg, rgba(26, 24, 21, 0.95) 0%, rgba(15, 12, 10, 0.98) 100%);
     padding: 12px 28px;
     border: 1px solid var(--gold-dim);
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
     white-space: nowrap;
     opacity: 0;
     transition: all 0.3s ease;
@@ -358,14 +356,14 @@ body::before {
 .home-nav {
     position: fixed;
     top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 20px;
     display: flex;
-    gap: 4px;
+    flex-direction: row;
+    gap: 8px;
     z-index: 100;
     background: linear-gradient(135deg, rgba(26, 24, 21, 0.92) 0%, rgba(10, 9, 8, 0.95) 100%);
-    padding: 8px 16px;
-    border-radius: var(--radius-sm);
+    padding: 12px;
+    border-radius: 12px;
     border: 1px solid rgba(139, 115, 21, 0.4);
     /* 青铜器质感边框 */
     box-shadow: 
@@ -402,15 +400,16 @@ body::before {
 .nav-item {
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 10px;
+    flex-direction: row;
     align-items: center;
-    padding: 10px 16px;
+    padding: 12px 16px;
     color: var(--text-secondary);
     text-decoration: none;
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
     transition: all 0.3s ease;
-    min-width: 70px;
-    /* 石刻质感 */
+    min-width: 140px;
     background: linear-gradient(180deg, rgba(37, 34, 25, 0.5) 0%, rgba(26, 24, 21, 0.8) 100%);
     border: 1px solid rgba(139, 115, 21, 0.2);
 }
@@ -419,7 +418,7 @@ body::before {
     background: linear-gradient(180deg, rgba(60, 50, 30, 0.6) 0%, rgba(40, 35, 25, 0.9) 100%);
     border-color: var(--gold-dim);
     color: var(--text-primary);
-    transform: translateY(-2px);
+    transform: translateX(-5px);
 }
 
 .nav-item:hover .nav-icon {
@@ -509,7 +508,7 @@ body::before {
     padding: 14px 32px;
     background: linear-gradient(180deg, rgba(37, 34, 25, 0.9) 0%, rgba(20, 18, 15, 0.95) 100%);
     border: 1px solid var(--gold-dim);
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
     color: var(--text-primary);
     font-family: 'Noto Serif SC', serif;
     font-size: 0.95rem;
@@ -541,7 +540,7 @@ body::before {
 
 .btn-bronze:hover {
     border-color: var(--gold);
-    transform: translateY(-2px);
+    transform: translateX(-5px);
     box-shadow: 
         inset 0 1px 0 rgba(201, 162, 39, 0.3),
         inset 0 -2px 10px rgba(0, 0, 0, 0.4),
@@ -594,6 +593,7 @@ body::before {
 
 .page-header {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 2rem;
     margin-bottom: 3rem;
@@ -604,12 +604,13 @@ body::before {
 .back-btn {
     position: relative;
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 8px;
     padding: 10px 20px;
     background: transparent;
     border: 1px solid rgba(139, 115, 21, 0.4);
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
     color: var(--text-secondary);
     font-family: 'Noto Serif SC', serif;
     font-size: 0.9rem;
@@ -841,7 +842,7 @@ body::before {
     padding: 14px 18px;
     background: linear-gradient(180deg, rgba(26, 24, 21, 0.9) 0%, rgba(15, 12, 10, 0.95) 100%);
     border: 1px solid rgba(139, 115, 21, 0.4);
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
     color: var(--text-primary);
     font-family: 'Noto Serif SC', serif;
     font-size: 1rem;
@@ -863,17 +864,19 @@ body::before {
 /* 单选按钮组 */
 .radio-group {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 0.8rem;
 }
 
 .radio-item {
     display: flex;
+    flex-direction: row;
     align-items: center;
     padding: 10px 18px;
     background: linear-gradient(180deg, rgba(26, 24, 21, 0.7) 0%, rgba(15, 12, 10, 0.9) 100%);
     border: 1px solid rgba(139, 115, 21, 0.3);
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -901,7 +904,7 @@ body::before {
     padding: 16px;
     background: linear-gradient(180deg, #8b6914 0%, #5c4610 50%, #3d2e0a 100%);
     border: 1px solid var(--gold);
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
     color: var(--text-primary);
     font-family: 'Noto Serif SC', serif;
     font-size: 1.1rem;
@@ -968,6 +971,7 @@ body::before {
 
 .card-header {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
@@ -994,6 +998,7 @@ body::before {
 
 .card-row {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     padding: 0.8rem 0;
     border-bottom: 1px solid rgba(139, 115, 21, 0.15);
@@ -1040,7 +1045,7 @@ body::before {
     padding: 14px 28px;
     background: linear-gradient(180deg, rgba(26, 24, 21, 0.9) 0%, rgba(15, 12, 10, 0.95) 100%);
     border: 1px solid rgba(100, 150, 200, 0.4);
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
     color: #8ab4d4;
     text-decoration: none;
     font-family: 'Noto Serif SC', serif;
@@ -1103,12 +1108,13 @@ body::before {
 .fanqie-btn {
     position: relative;
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 10px;
     padding: 14px 24px;
     background: linear-gradient(135deg, #6b1a1a 0%, #4a1212 100%);
     border: 1px solid #8b2222;
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
     color: #e8d5b7;
     text-decoration: none;
     font-family: 'Noto Serif SC', serif;
@@ -1163,7 +1169,7 @@ body::before {
     padding: 1rem 2rem;
     background: linear-gradient(135deg, #6b1a1a 0%, #4a1212 100%);
     border: 1px solid #8b2222;
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
     color: #e8d5b7;
     text-decoration: none;
     text-align: center;
@@ -1246,7 +1252,7 @@ body::before {
     }
     
     .page-header {
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-start;
         gap: 1rem;
     }
@@ -1256,7 +1262,7 @@ body::before {
     }
     
     .radio-group {
-        flex-direction: column;
+        flex-direction: row;
     }
     
     .radio-item {
@@ -1494,8 +1500,7 @@ body::before {
     .home-nav {
         position: fixed;
         top: 10px;
-        left: 50%;
-        transform: translateX(-50%);
+        right: 20px;
         z-index: 1000;
         background: rgba(10, 9, 8, 0.9);
         border: 1px solid rgba(201, 162, 39, 0.3);
@@ -1507,7 +1512,8 @@ body::before {
     
     .nav-item {
         display: flex;
-        flex-direction: column;
+    flex-direction: row;
+        flex-direction: row;
         align-items: center;
         justify-content: center;
         padding: 8px 12px;
@@ -1564,7 +1570,7 @@ body::before {
     
     .zone-label {
         bottom: -40px;
-        padding: 8px 16px;
+        padding: 12px;
         font-size: 0.8rem;
     }
     
@@ -1587,6 +1593,7 @@ body::before {
     /* 按钮优化 - 触摸友好 */
     .timeline-btn, .creator-btn {
         display: flex;
+    flex-direction: row;
         align-items: center;
         justify-content: center;
         padding: 14px 20px;
@@ -1637,7 +1644,7 @@ body::before {
     
     /* 页面头部优化 */
     .page-header {
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-start;
         gap: 1rem;
         padding: 1rem;
@@ -1664,7 +1671,7 @@ body::before {
     }
     
     .radio-group {
-        flex-direction: column;
+        flex-direction: row;
         gap: 0.5rem;
     }
     
