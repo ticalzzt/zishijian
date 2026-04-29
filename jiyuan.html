@@ -14,142 +14,381 @@
             justify-content: center;
             padding: 2rem;
             background: radial-gradient(ellipse at center, #1a0a1a 0%, #0a0908 100%);
+            overflow: hidden;
+        }
+        
+        .jiyuan-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .jiyuan-symbol {
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             border: 3px solid rgba(255, 215, 0, 0.3);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: #ffd700;
             animation: rotateGlow 10s linear infinite;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .jiyuan-symbol:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+        }
+        
+        .jiyuan-symbol::before,
+        .jiyuan-symbol::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
         }
         
         .jiyuan-symbol::before {
-            content: '';
-            position: absolute;
-            width: 220px;
-            height: 220px;
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            border: 1px solid rgba(255, 215, 0, 0.15);
             animation: rotateGlow 15s linear infinite reverse;
         }
         
+        .jiyuan-symbol::after {
+            width: 160px;
+            height: 160px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            animation: rotateGlow 8s linear infinite;
+        }
+        
         @keyframes rotateGlow {
-            0% {
-                transform: rotate(0deg);
-                box-shadow: 0 0 20px rgba(139, 0, 0, 0.5), 0 0 40px rgba(75, 0, 130, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(139, 0, 0, 0.8), 0 0 60px rgba(75, 0, 130, 0.5);
-            }
-            100% {
-                transform: rotate(360deg);
-                box-shadow: 0 0 20px rgba(139, 0, 0, 0.5), 0 0 40px rgba(75, 0, 130, 0.3);
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         .jiyuan-title {
             font-family: 'LXGW WenKai', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: #ffd700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
         
-        .jiyuan-message {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.7);
-            text-align: center;
-            max-width: 600px;
-            line-height: 2;
+        .jiyuan-hint {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
             margin-bottom: 2rem;
         }
         
-        .jiyuan-card {
-            background: linear-gradient(135deg, rgba(139, 0, 0, 0.2) 0%, rgba(75, 0, 130, 0.3) 100%);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 12px;
-            padding: 2rem;
-            max-width: 500px;
-            margin-top: 2rem;
+        .result-card {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            z-index: 1000;
+            animation: cardAppear 0.5s ease forwards;
+            max-width: 90%;
+            width: 400px;
         }
         
-        .jiyuan-card h3 {
-            color: #ffd700;
-            font-size: 1.3rem;
+        @keyframes cardAppear {
+            0% { transform: translate(-50%, -50%) scale(0) rotate(-10deg); }
+            50% { transform: translate(-50%, -50%) scale(1.1) rotate(5deg); }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+        }
+        
+        .result-card.tianming {
+            background: linear-gradient(135deg, #1a1a0a 0%, #2a2a1a 100%);
+            border: 3px solid #ffd700;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.6), inset 0 0 30px rgba(255, 215, 0, 0.1);
+        }
+        
+        .result-card.shangshang {
+            background: linear-gradient(135deg, #1a0a2a 0%, #2a1a3a 100%);
+            border: 3px solid #9966ff;
+            box-shadow: 0 0 50px rgba(153, 102, 255, 0.5), inset 0 0 20px rgba(153, 102, 255, 0.1);
+        }
+        
+        .result-card.zhong {
+            background: linear-gradient(135deg, #0a1a2a 0%, #1a2a3a 100%);
+            border: 3px solid #4488ff;
+            box-shadow: 0 0 40px rgba(68, 136, 255, 0.4), inset 0 0 15px rgba(68, 136, 255, 0.1);
+        }
+        
+        .result-card.xia {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 3px solid #666;
+            box-shadow: 0 0 30px rgba(100, 100, 100, 0.3), inset 0 0 10px rgba(100, 100, 100, 0.1);
+        }
+        
+        .result-card.jieshu {
+            background: linear-gradient(135deg, #2a0a0a 0%, #3a1a1a 100%);
+            border: 3px solid #ff4444;
+            box-shadow: 0 0 50px rgba(255, 68, 68, 0.5), inset 0 0 20px rgba(255, 68, 68, 0.1);
+        }
+        
+        .result-level {
+            font-size: 1.8rem;
+            font-weight: 900;
             margin-bottom: 1rem;
+            text-shadow: 0 0 20px currentColor;
         }
         
-        .jiyuan-card p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
+        .tianming .result-level { color: #ffd700; }
+        .shangshang .result-level { color: #9966ff; }
+        .zhong .result-level { color: #4488ff; }
+        .xia .result-level { color: #999; }
+        .jieshu .result-level { color: #ff4444; }
+        
+        .result-text {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.6;
         }
         
-        .back-home {
-            margin-top: 3rem;
+        .result-effect {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .close-btn {
+            margin-top: 1.5rem;
             padding: 10px 30px;
             background: transparent;
-            border: 1px solid rgba(255, 215, 0, 0.5);
-            color: #ffd700;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.8);
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 0.9rem;
             cursor: pointer;
             border-radius: 5px;
             transition: all 0.3s;
+        }
+        
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .overlay-bg {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+        }
+        
+        .back-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 8px 20px;
+            background: transparent;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            color: rgba(255, 215, 0, 0.7);
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-radius: 5px;
             text-decoration: none;
+            transition: all 0.3s;
         }
         
         .back-home:hover {
             background: rgba(255, 215, 0, 0.1);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+            color: #ffd700;
+        }
+        
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 215, 0, 0.6);
+            border-radius: 50%;
+            animation: float 10s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+        
+        .draw-count {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
         }
     </style>
 </head>
 <body>
+    <a href="index.html" class="back-home">← 返回世间</a>
+    
+    <div class="particles" id="particles"></div>
+    
     <div class="jiyuan-page">
-        <div class="jiyuan-symbol">缘</div>
-        
-        <h1 class="jiyuan-title">觉字机缘</h1>
-        
-        <p class="jiyuan-message">
-            你找到了隐藏的机缘之门<br>
-            这里藏着未知的秘密与可能<br>
-            每一次相遇，都是命运的安排
-        </p>
-        
-        <div class="jiyuan-card">
-            <h3>今日机缘</h3>
-            <p id="fortune-text">正在感应宇宙能量...</p>
+        <div class="jiyuan-container">
+            <div class="jiyuan-symbol" id="drawBtn" onclick="drawJiyuan()">缘</div>
+            
+            <h1 class="jiyuan-title">觉字机缘</h1>
+            <p class="jiyuan-hint">点击缘字，窥探命运</p>
         </div>
-        
-        <a href="index.html" class="back-home">返回世间</a>
     </div>
     
+    <div class="overlay-bg" id="overlay"></div>
+    
+    <div class="result-card" id="resultCard">
+        <div class="result-level" id="resultLevel"></div>
+        <div class="result-text" id="resultText"></div>
+        <div class="result-effect" id="resultEffect"></div>
+        <button class="close-btn" onclick="closeResult()">再抽一次</button>
+    </div>
+    
+    <div class="draw-count" id="drawCount">今日已抽: 0 次</div>
+    
     <script>
+        // 机缘签文库
         const fortunes = [
-            "命里有时终须有，命里无时莫强求。",
-            "诸事顺遂，宜静不宜动。",
-            "贵人相助，前路光明。",
-            "水到渠成，不必强求。",
-            "机遇将至，保持初心。",
-            "观天之道，执天之行，尽矣。",
-            "心有猛虎，细嗅蔷薇。",
-            "世事如棋，落子无悔。",
-            "万法皆空，因果不空。",
-            "一切有为法，如梦幻泡影。"
+            // 天命 (5%)
+            { level: "天命", text: "枯木逢春，绝处逢生。", effect: "意外获得一笔巨额财富或机会。", class: "tianming" },
+            { level: "天命", text: "天降祥瑞，紫气东来。", effect: "遇到改变人生的贵人或事件。", class: "tianming" },
+            { level: "天命", text: "鱼跃龙门，化龙升天。", effect: "事业或学业突飞猛进，一举成功。", class: "tianming" },
+            { level: "天命", text: "凤栖梧桐，百鸟朝凤。", effect: "爱情或人际关系迎来完美结局。", class: "tianming" },
+            { level: "天命", text: "时来运转，否极泰来。", effect: "长期困境突然解除，好运连连。", class: "tianming" },
+            
+            // 上上签 (15%)
+            { level: "上上签", text: "贵人指路，柳暗花明。", effect: "得到他人帮助，解决困难。", class: "shangshang" },
+            { level: "上上签", text: "春风得意，马蹄疾驰。", effect: "事情顺利进展，心情愉悦。", class: "shangshang" },
+            { level: "上上签", text: "紫气盈门，喜事临头。", effect: "家中有喜事或好消息。", class: "shangshang" },
+            { level: "上上签", text: "财源广进，利路亨通。", effect: "财运上升，投资或工作获利。", class: "shangshang" },
+            { level: "上上签", text: "心想事成，万事如意。", effect: "愿望容易实现，计划顺利。", class: "shangshang" },
+            { level: "上上签", text: "桃花朵朵，姻缘将至。", effect: "异性缘好，可能遇到心仪对象。", class: "shangshang" },
+            { level: "上上签", text: "学海无涯，一举成名。", effect: "学习或考试表现出色。", class: "shangshang" },
+            { level: "上上签", text: "健康安泰，百病不侵。", effect: "身体状态良好，精神焕发。", class: "shangshang" },
+            
+            // 中签 (40%)
+            { level: "中签", text: "平淡是真，安稳为福。", effect: "生活平稳，无大起大落。", class: "zhong" },
+            { level: "中签", text: "小有收获，知足常乐。", effect: "获得小成就或小礼物。", class: "zhong" },
+            { level: "中签", text: "日出而作，日落而息。", effect: "日常生活规律，心态平和。", class: "zhong" },
+            { level: "中签", text: "和风细雨，润物无声。", effect: "人际关系和谐，小事顺利。", class: "zhong" },
+            { level: "中签", text: "闲云野鹤，自在逍遥。", effect: "有时间放松，享受生活。", class: "zhong" },
+            { level: "中签", text: "细水长流，持之以恒。", effect: "长期努力会有小回报。", class: "zhong" },
+            { level: "中签", text: "家宅安宁，无灾无难。", effect: "家庭平安，无大问题。", class: "zhong" },
+            { level: "中签", text: "微风拂面，心旷神怡。", effect: "心情舒畅，小确幸时刻。", class: "zhong" },
+            { level: "中签", text: "行到水穷，坐看云起。", effect: "随遇而安，发现小美好。", class: "zhong" },
+            { level: "中签", text: "杯水车薪，聊胜于无。", effect: "得到一点帮助或资源，虽少但有用。", class: "zhong" },
+            { level: "中签", text: "守得云开，终见月明。", effect: "坚持会有收获，只是时间问题。", class: "zhong" },
+            { level: "中签", text: "山重水复，柳暗花明。", effect: "困境中会有转机出现。", class: "zhong" },
+            
+            // 下签 (30%)
+            { level: "下签", text: "出门忘伞，淋成落汤鸡。", effect: "小事不顺，但无大碍。", class: "xia" },
+            { level: "下签", text: "煮熟的鸭子飞走了。", effect: "到手的机会意外失去。", class: "xia" },
+            { level: "下签", text: "阴沟翻船，呛水了。", effect: "在小事上犯错或遇到麻烦。", class: "xia" },
+            { level: "下签", text: "画饼充饥，望梅止渴。", effect: "期望落空，但心态要好。", class: "xia" },
+            { level: "下签", text: "竹篮打水一场空。", effect: "努力没有立即回报。", class: "xia" },
+            { level: "下签", text: "喝凉水都塞牙。", effect: "运气不佳，小事连连出错。", class: "xia" },
+            { level: "下签", text: "捡了芝麻，丢了西瓜。", effect: "因小失大，但教训宝贵。", class: "xia" },
+            { level: "下签", text: "早起赶集，集市已散。", effect: "错失良机，但来日方长。", class: "xia" },
+            { level: "下签", text: "出门忘带钥匙。", effect: "小麻烦一个，回头就好。", class: "xia" },
+            { level: "下签", text: "刚坐下就要站起来。", effect: "事情被打断，需要重新安排。", class: "xia" },
+            
+            // 劫数 (10%)
+            { level: "劫数", text: "踩到狗屎运...等下，是真的狗屎。", effect: "出门踩到狗屎，但据说这是好运征兆？", class: "jieshu" },
+            { level: "劫数", text: "钱包装空气，银行卡装寂寞。", effect: "钱包空空如也，该努力赚钱了。", class: "jieshu" },
+            { level: "劫数", text: "表白被拒，还被发了好人卡。", effect: "情场失意，但职场可能得意。", class: "jieshu" },
+            { level: "劫数", text: "刚买的奶茶洒了。", effect: "心痛，但生活还要继续。", class: "jieshu" },
+            { level: "劫数", text: "重要考试睡过头了。", effect: "天意弄人，下次定闹钟。", class: "jieshu" },
+            { level: "劫数", text: "被误解成别人，越解释越乱。", effect: "跳进黄河也洗不清了。", class: "jieshu" },
+            { level: "劫数", text: "熬夜做的方案被否了。", effect: "努力白费，但经验还在。", class: "jieshu" },
+            { level: "劫数", text: "刚想表白，发现对方有对象了。", effect: "来得早不如来得巧...可惜来晚了。", class: "jieshu" },
         ];
         
-        setTimeout(() => {
-            const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
-            document.getElementById('fortune-text').textContent = randomFortune;
-        }, 1500);
+        let drawCount = parseInt(localStorage.getItem('jiyuanCount') || '0');
+        document.getElementById('drawCount').textContent = `今日已抽: ${drawCount} 次`;
+        
+        function drawJiyuan() {
+            const rand = Math.random();
+            let selected;
+            
+            if (rand < 0.05) {
+                // 天命 5%
+                selected = fortunes.filter(f => f.level === "天命")[Math.floor(Math.random() * 5)];
+            } else if (rand < 0.20) {
+                // 上上签 15%
+                selected = fortunes.filter(f => f.level === "上上签")[Math.floor(Math.random() * 8)];
+            } else if (rand < 0.60) {
+                // 中签 40%
+                selected = fortunes.filter(f => f.level === "中签")[Math.floor(Math.random() * 12)];
+            } else if (rand < 0.90) {
+                // 下签 30%
+                selected = fortunes.filter(f => f.level === "下签")[Math.floor(Math.random() * 10)];
+            } else {
+                // 劫数 10%
+                selected = fortunes.filter(f => f.level === "劫数")[Math.floor(Math.random() * 8)];
+            }
+            
+            showResult(selected);
+            drawCount++;
+            localStorage.setItem('jiyuanCount', drawCount);
+            document.getElementById('drawCount').textContent = `今日已抽: ${drawCount} 次`;
+        }
+        
+        function showResult(fortune) {
+            const card = document.getElementById('resultCard');
+            const overlay = document.getElementById('overlay');
+            
+            card.className = `result-card ${fortune.class}`;
+            document.getElementById('resultLevel').textContent = fortune.level;
+            document.getElementById('resultText').textContent = fortune.text;
+            document.getElementById('resultEffect').textContent = fortune.effect;
+            
+            overlay.style.display = 'block';
+            card.style.display = 'block';
+        }
+        
+        function closeResult() {
+            document.getElementById('resultCard').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+        
+        // 创建粒子效果
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 10 + 's';
+            particle.style.animationDuration = (8 + Math.random() * 8) + 's';
+            particlesContainer.appendChild(particle);
+        }
     </script>
 </body>
 </html>
