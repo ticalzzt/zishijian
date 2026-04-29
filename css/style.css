@@ -110,6 +110,38 @@ body::before {
     transition: transform 15s ease-out;
 }
 
+/* 手机端调整背景定位，显示核心内容 */
+@media (max-width: 768px) {
+    .cover-image {
+        background-position: 50% 30%;
+    }
+}
+
+/* 手机竖屏专门适配 - 显示完整画面 */
+@media (max-width: 768px) and (orientation: portrait) {
+    .cover-image {
+        background-size: contain;
+        background-position: center center;
+        background-color: #0a0908;
+    }
+}
+
+/* 手机横屏 */
+@media (max-width: 768px) and (orientation: landscape) {
+    .cover-image {
+        background-position: center center;
+        background-size: cover;
+    }
+}
+
+/* 超宽屏幕显示完整画面 */
+@media (min-width: 1400px) {
+    .cover-image {
+        background-size: contain;
+        background-color: #0a0908;
+    }
+}
+
 .cover-image:hover {
     transform: scale(1.03);
 }
