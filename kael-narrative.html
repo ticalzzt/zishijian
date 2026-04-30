@@ -168,11 +168,14 @@
         }
         
         .scene-image {
-            width: 100%;
-            height: auto;
+            width: auto;
+            max-width: 100%;
+            max-height: 50vh;
             border-radius: 12px;
             box-shadow: 
                 0 0 40px rgba(212, 168, 75, 0.15);
+            display: block;
+            margin: 0 auto;
         }
         
         /* 场景标题 */
@@ -386,7 +389,7 @@
                 padding: 1.1rem 1.5rem;
             }
             .scene-image {
-                max-width: 280px;
+                max-height: 40vh;
             }
             .top-nav { 
                 padding: 0.6rem 1rem; 
