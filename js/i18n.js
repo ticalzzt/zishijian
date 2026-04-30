@@ -1013,7 +1013,7 @@ function createLangSwitcher() {
     z-index: 9999;
     background: linear-gradient(135deg, rgba(10, 9, 8, 0.9), rgba(20, 18, 15, 0.95));
     border: 1px solid rgba(201, 162, 39, 0.35);
-    border-radius: 20px;
+    border-radius: 12px;
     padding: 6px 10px;
     display: flex;
     gap: 2px;
@@ -1036,10 +1036,10 @@ function createLangSwitcher() {
       background: transparent;
       border: 1px solid transparent;
       color: ${opt.code === currentLang ? '#c9a227' : '#9a958a'};
-      padding: 6px 14px;
+      padding: 3px 8px;
       border-radius: 14px;
       cursor: pointer;
-      font-size: 15px; font-family: 'Inter', sans-serif; letter-spacing: 0.5px;
+      font-size: 11px; font-family: 'Inter', sans-serif; letter-spacing: 0.3px;
       font-weight: ${opt.code === currentLang ? '600' : '400'};
       transition: all 0.3s ease;
       opacity: ${opt.code === currentLang ? '1' : '0.7'};
