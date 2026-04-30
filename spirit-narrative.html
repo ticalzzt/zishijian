@@ -963,7 +963,7 @@
 
         // ========== 打字机效果 ==========
         async function typeWriter(element, html, speed) {
-            if (speed === undefined) speed = 40;
+            if (speed === undefined) speed = 20;
             isTyping = true;
             element.innerHTML = '';
 
@@ -998,7 +998,7 @@
                         element.innerHTML = currentHtml + '<span class="typing-cursor"></span>';
                         i++;
 
-                        var delay = inTag ? 0 : (char === '。' || char === '，' || char === '"' ? 150 : speed);
+                        var delay = inTag ? 0 : (char === '。' || char === '，' || char === '"' ? 60 : speed);
                         setTimeout(type, delay);
                     } else {
                         element.innerHTML = currentHtml;
@@ -1018,7 +1018,7 @@
             // 转场效果
             sceneWrapper.classList.add('transitioning');
 
-            await new Promise(function(r) { setTimeout(r, 600); });
+            await new Promise(function(r) { setTimeout(r, 200); });
 
             // 重置状态
             sceneWrapper.classList.remove('visible', 'transitioning');
