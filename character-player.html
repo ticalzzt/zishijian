@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>你 - 觉字机缘 | 藏子世间</title>
+    <title>选择你的命运 - 藏子世间</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
@@ -11,9 +11,13 @@
         :root {
             --ink-black: #0a0908;
             --ancient-gold: #c9a227;
-            --dark-red: #8b0000;
             --bronze-light: #d4a84b;
             --bronze-dark: #8b6914;
+            --dark-purple: #2d1f3d;
+            --deep-purple: #1a1128;
+            --purple-glow: rgba(138, 100, 180, 0.4);
+            --text-primary: #e8e4dc;
+            --text-secondary: #9a958a;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,6 +25,7 @@
         body {
             background: var(--ink-black);
             font-family: 'Noto Serif SC', serif;
+            min-height: 100vh;
         }
         
         /* 导航栏 */
@@ -30,7 +35,7 @@
             left: 0;
             right: 0;
             z-index: 100;
-            background: rgba(10, 9, 8, 0.7);
+            background: rgba(10, 9, 8, 0.85);
             backdrop-filter: blur(10px);
             border-bottom: 2px solid var(--ancient-gold);
             padding: 0.8rem 1.5rem;
@@ -41,7 +46,7 @@
         }
         
         .top-nav.scrolled {
-            background: rgba(10, 9, 8, 0.95);
+            background: rgba(10, 9, 8, 0.98);
         }
         
         .back-btn, .nav-link {
@@ -69,28 +74,88 @@
             width: 100%;
             position: relative;
             background: var(--ink-black);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(to bottom, 
+                    rgba(10, 9, 8, 0.3) 0%,
+                    rgba(10, 9, 8, 0.5) 60%,
+                    rgba(10, 9, 8, 0.9) 100%
+                );
+            z-index: 1;
         }
         
         .hero-cover img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .hero-title {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: var(--ancient-gold);
+            text-shadow: 
+                0 0 30px rgba(201, 162, 39, 0.6),
+                0 0 60px rgba(201, 162, 39, 0.3),
+                2px 2px 4px rgba(0, 0, 0, 0.8);
+            letter-spacing: 0.3em;
+            margin-right: -0.3em;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+        
+        .hero-subtitle {
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            color: var(--text-secondary);
+            margin-top: 1rem;
+            letter-spacing: 0.5em;
+        }
+        
+        @keyframes titleGlow {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 30px rgba(201, 162, 39, 0.6),
+                    0 0 60px rgba(201, 162, 39, 0.3),
+                    2px 2px 4px rgba(0, 0, 0, 0.8);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 50px rgba(201, 162, 39, 0.8),
+                    0 0 80px rgba(201, 162, 39, 0.5),
+                    2px 2px 4px rgba(0, 0, 0, 0.8);
+            }
         }
         
         .scroll-hint {
-            position: fixed;
+            position: absolute;
             bottom: 2rem;
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
             animation: bounce 2s infinite;
-            opacity: 1;
-            transition: opacity 0.3s;
-        }
-        
-        .scroll-hint.hidden {
-            opacity: 0;
-            pointer-events: none;
         }
         
         .scroll-arrow {
@@ -106,120 +171,302 @@
             50% { transform: translateX(-50%) translateY(10px); }
         }
         
-        /* 内容区域 */
-        .content-section {
+        /* 角色选择区域 */
+        .character-selection {
             background: var(--ink-black);
-            padding: 3rem 1.5rem;
+            padding: 4rem 1.5rem;
             min-height: 100vh;
         }
         
-        .content-container {
-            max-width: 900px;
+        .selection-container {
+            max-width: 1200px;
             margin: 0 auto;
         }
         
-        h1, h2, h3 { font-family: 'ZCOOL XiaoWei', serif; }
-        
-        .char-section {
-            border: 2px solid var(--ancient-gold);
-            background: rgba(20, 18, 15, 0.8);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
+        .selection-intro {
+            text-align: center;
+            margin-bottom: 3rem;
         }
         
-        .char-section h2 {
-            color: var(--ancient-gold);
-            border-bottom: 1px solid var(--ancient-gold);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
+        .selection-intro p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
         }
         
-        .section-content p {
-            color: #d4c8b5;
-            line-height: 1.9;
-            margin-bottom: 1rem;
-        }
-        
-        .traits-grid {
+        /* 角色卡片网格 */
+        .character-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-        
-        .trait-item {
-            background: rgba(30, 25, 20, 0.7);
-            border: 1px solid var(--bronze-dark);
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
             padding: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
         }
         
-        .trait-icon {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* 角色卡片 */
+        .character-card {
+            background: linear-gradient(145deg, var(--dark-purple), var(--deep-purple));
+            border: 2px solid var(--bronze-dark);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        
+        .character-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .character-card:hover {
+            border-color: var(--ancient-gold);
+            transform: translateY(-5px);
+            box-shadow: 
+                0 0 30px rgba(201, 162, 39, 0.3),
+                0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .character-card:hover .card-glow {
+            opacity: 1;
+        }
+        
+        .card-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 120%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(ellipse at center, var(--purple-glow) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .card-content {
+            position: relative;
+            z-index: 2;
+            padding: 1.5rem;
+            background: linear-gradient(to bottom, transparent, rgba(10, 9, 8, 0.9));
+        }
+        
+        .card-title {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 1.6rem;
+            color: var(--ancient-gold);
+            margin-bottom: 0.8rem;
+            text-shadow: 0 0 10px rgba(201, 162, 39, 0.4);
+        }
+        
+        .card-desc {
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+        }
+        
+        .card-btn {
+            display: inline-block;
+            padding: 0.7rem 2rem;
             background: linear-gradient(135deg, var(--bronze-dark), var(--ancient-gold));
             color: var(--ink-black);
-            font-weight: bold;
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
         
-        .trait-text { color: #e8dcc8; }
+        .card-btn:hover {
+            background: linear-gradient(135deg, var(--ancient-gold), var(--bronze-light));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 162, 39, 0.4);
+        }
+        
+        /* Coming Soon 卡片 */
+        .character-card.coming-soon {
+            cursor: not-allowed;
+            opacity: 0.6;
+            filter: grayscale(40%);
+        }
+        
+        .character-card.coming-soon:hover {
+            transform: none;
+            border-color: var(--bronze-dark);
+            box-shadow: none;
+        }
+        
+        .character-card.coming-soon .card-image {
+            filter: brightness(0.7);
+        }
+        
+        .coming-soon-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(10, 9, 8, 0.9);
+            border: 2px solid var(--ancient-gold);
+            padding: 1rem 2rem;
+            z-index: 10;
+            text-align: center;
+        }
+        
+        .coming-soon-badge span {
+            display: block;
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 1.3rem;
+            color: var(--ancient-gold);
+            letter-spacing: 0.2em;
+        }
+        
+        .coming-soon-badge small {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.3rem;
+            letter-spacing: 0.1em;
+        }
         
         /* 响应式 */
         @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
-            .top-nav { padding: 0.5rem 1rem; gap: 0.8rem; }
-            .nav-link { font-size: 0.85rem; }
-            .content-section { padding: 2rem 1rem; }
-            .traits-grid { grid-template-columns: 1fr; }
+            .character-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0.5rem;
+            }
+            
+            .card-image {
+                height: 220px;
+            }
+            
+            .card-content {
+                padding: 1.2rem;
+            }
+            
+            .card-title {
+                font-size: 1.4rem;
+            }
+            
+            .card-desc {
+                font-size: 0.9rem;
+            }
+            
+            .top-nav { 
+                padding: 0.5rem 1rem; 
+                gap: 0.8rem; 
+            }
+            
+            .nav-link { 
+                font-size: 0.85rem; 
+                padding: 0.4rem 0.6rem;
+            }
+            
+            .character-selection {
+                padding: 2rem 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card-btn {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
     <nav class="top-nav" id="topNav">
         <button class="back-btn" onclick="goBack()">← 返回</button>
-        <a href="timeline.html" class="nav-link">世界时间线</a>
+        <a href="timeline.html" class="nav-link">大圣宇宙</a>
         <a href="enhanced-creator.html" class="nav-link">身份创建器</a>
     </nav>
 
     <!-- 全屏人物封面 -->
     <section class="hero-cover">
-        <img src="images/player_full.jpg" alt="角色选择">
+        <img src="images/player_full.jpg" alt="命运主角">
+        <div class="hero-content">
+            <h1 class="hero-title">选择你的命运</h1>
+            <p class="hero-subtitle">每个角色都是命运主角</p>
+        </div>
         <div class="scroll-hint">
             <div class="scroll-arrow"></div>
         </div>
     </section>
 
-    <!-- 下滑内容区域 -->
-    <section class="content-section">
-        <div class="content-container">
-            <div class="char-section">
-                <h2>卷一 背景故事</h2>
-                <div class="section-content">
-                    <p>你，只是一个普通人。来自地球，过着平凡的生活。没有显赫的身世，没有特殊的背景，每天为生活奔波，为琐事烦恼。</p>
-                    <p>直到那一天，一切都变了。</p>
-                    <p>当你的意识再次清明时，你发现自己盘坐在石阶之上。四周云雾缭绕，仙气氤氲。面前，是漫天仙佛的虚影；身后，是一个熟悉的背影——那是孙悟空，但他没有回头。</p>
-                    <p>"师弟，你终于来了。"</p>
-                </div>
+    <!-- 角色选择区域 -->
+    <section class="character-selection">
+        <div class="selection-container">
+            <div class="selection-intro">
+                <p>你选择不同身份进入不同宇宙，每一个选择都将开启一段独特的命运之旅。</p>
             </div>
-
-            <div class="char-section">
-                <h2>卷二 性格特点</h2>
-                <div class="traits-grid">
-                    <div class="trait-item">
-                        <span class="trait-icon">新</span>
-                        <span class="trait-text">现代思维 - 拥有超越时代的认知</span>
+            
+            <div class="character-grid">
+                <!-- 菩提弟子 -->
+                <div class="character-card">
+                    <div class="card-glow"></div>
+                    <img src="images/puti_portrait_vertical.jpg" alt="菩提弟子" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">菩提弟子</h3>
+                        <p class="card-desc">灵台方寸山的修行者，菩提祖师座下最小的弟子。你的选择将决定三界命运。</p>
+                        <a href="chapter1-narrative.html" class="card-btn">进入</a>
                     </div>
-                    <div class="trait-item">
-                        <span class="trait-icon">韧</span>
-                        <span class="trait-text">坚韧不拔 - 面对困境绝不放弃</span>
+                </div>
+                
+                <!-- 大圣师弟 -->
+                <div class="character-card">
+                    <div class="card-glow"></div>
+                    <img src="images/wukong_portrait_vertical.jpg" alt="大圣师弟" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">大圣师弟</h3>
+                        <p class="card-desc">穿越而来的异世之魂，被孙悟空称为"师弟"。来自现代的灵魂，踏上古老修行之路。</p>
+                        <a href="https://changdunovel.com/t/rZqNw3D2iiw/" target="_blank" class="card-btn">进入</a>
                     </div>
-                    <div class="trait-item">
-                        <span class="trait-icon">探</span>
-                        <span class="trait-text">求知若渴 - 对未知充满好奇</span>
+                </div>
+                
+                <!-- 天道巡者 -->
+                <div class="character-card coming-soon">
+                    <div class="card-glow"></div>
+                    <img src="images/universe_cosmos_0.jpg" alt="天道巡者" class="card-image">
+                    <div class="coming-soon-badge">
+                        <span>即将开放</span>
+                        <small>COMING SOON</small>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">天道巡者</h3>
+                        <p class="card-desc">游走于诸天万界之间的神秘存在，寻找失落的世界法则。</p>
+                    </div>
+                </div>
+                
+                <!-- 混沌行者 -->
+                <div class="character-card coming-soon">
+                    <div class="card-glow"></div>
+                    <img src="images/jiyuan_fortune_0.jpg" alt="混沌行者" class="card-image">
+                    <div class="coming-soon-badge">
+                        <span>即将开放</span>
+                        <small>COMING SOON</small>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">混沌行者</h3>
+                        <p class="card-desc">从虚空中诞生的意识，不属于任何宇宙，却能穿越所有宇宙。</p>
                     </div>
                 </div>
             </div>
@@ -236,10 +483,10 @@
             const scrollHint = document.querySelector('.scroll-hint');
             if (window.scrollY > 100) {
                 nav.classList.add('scrolled');
-                scrollHint.classList.add('hidden');
+                scrollHint.style.display = 'none';
             } else {
                 nav.classList.remove('scrolled');
-                scrollHint.classList.remove('hidden');
+                scrollHint.style.display = 'block';
             }
         });
     </script>
