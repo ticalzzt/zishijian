@@ -92,6 +92,30 @@
         </div>
     </section>
 
+    <!-- 穿门转场视频覆盖层 -->
+    <div id="portal-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:99999; background:#000;">
+        <video id="portal-video" src="videos/portal-transition.mp4" style="width:100vw; height:100vh; object-fit:cover;" muted playsinline></video>
+    </div>
+
+    <script>
+    // 导航穿门转场
+    document.addEventListener('click', function(e) {
+        const navItem = e.target.closest('.nav-item, .explore-btn, .wukong-entry');
+        if (navItem && navItem.href && !navItem.href.startsWith('#')) {
+            e.preventDefault();
+            const targetUrl = navItem.href;
+            const overlay = document.getElementById('portal-overlay');
+            const video = document.getElementById('portal-video');
+            overlay.style.display = 'block';
+            video.currentTime = 0;
+            video.play();
+            video.onended = function() {
+                window.location.href = targetUrl;
+            };
+        }
+    });
+    </script>
+
     <script src="js/main.js"></script>
 </body>
 </html>
