@@ -444,7 +444,7 @@
                 'scene-1': {
                     id: 'scene-1',
                     title: '一 · 起始',
-                    image: 'images/guides/kael.jpg',
+                    image: 'images/guides/kael.mp4',
                     narrative: '我第一次站到那些门中间时，还以为自己赌输了命。<br><br>那是个冬天，我记得很清楚，因为输光了最后一点钱，身上冷得像块铁。<br><br>我没想寻死，就是想找条没走过的路，结果一脚踩空，就掉进了这个不黑不白、没前没后的地方。<br><br>这什么都没有，只有门，一排排望不到头的门，安静得能听见自己的心跳。',
                     choices: [
                         { text: '继续', target: 'scene-2' }
@@ -454,7 +454,7 @@
                 'scene-2': {
                     id: 'scene-2',
                     title: '二 · 第一扇门',
-                    image: 'images/guides/kael.jpg',
+                    image: 'images/guides/kael.mp4',
                     narrative: '第一扇门跟其他的没什么两样，木头的，上面连个把手都没有。<br><br>我站了很久，久到感觉自己的胡子都长出来了。<br><br>我不是在想门后面有什么，而是在想，推开它，会不会比站在这里发霉要好一点。<br><br>说白了，就是个赌徒在押最后一把，赌注是自己。',
                     choices: [
                         { text: '继续', target: 'scene-3' }
@@ -464,7 +464,7 @@
                 'scene-3': {
                     id: 'scene-3',
                     title: '三 · 代价',
-                    image: 'images/guides/kael.jpg',
+                    image: 'images/guides/kael.mp4',
                     narrative: '代价？<br><br>你问我失去了什么。我失去了"偶然"。<br><br>我再也没办法在街角偶遇谁，没办法因为赶不上一班公交而恼火，也没办法享受一个什么都不知道的下午。<br><br>我看见所有路的尽头，却不能走上任何一条。<br><br>就像一个厨子，尝遍了天下所有的味道，却唯独不能给自己做一顿饭。',
                     choices: [
                         { text: '选择记住所有', target: 'branch-remember' },
@@ -475,7 +475,7 @@
                 'branch-remember': {
                     id: 'branch-remember',
                     title: '分支 · 选择记住所有',
-                    image: 'images/guides/kael.jpg',
+                    image: 'images/guides/kael.mp4',
                     narrative: '我试过记住所有事。<br><br>每一个选择，每一张脸，每一次心碎。我以为这是尊重，是见证。<br><br>结果呢？那些记忆在我脑子里打架，张三的悔恨混着李四的狂喜，像个馊掉的大杂烩。<br><br>你记得太多，就会开始分不清，那些眼泪到底是为谁流的。',
                     choices: [
                         { text: '继续', target: 'scene-first-person' }
@@ -485,7 +485,7 @@
                 'branch-forget': {
                     id: 'branch-forget',
                     title: '分支 · 选择遗忘',
-                    image: 'images/guides/kael.jpg',
+                    image: 'images/guides/kael.mp4',
                     narrative: '后来我学聪明了，我开始遗忘。<br><br>每送走一个人，我就清空一部分自己。这很管用，脑子清爽了，心也不那么堵了。<br><br>但问题是，你把沙子一把一把扔回海里，最后剩下的，还是那片海吗？<br><br>我不知道。有时候我看着镜子里的自己，觉得那张脸挺陌生的。',
                     choices: [
                         { text: '继续', target: 'scene-first-person' }
@@ -495,7 +495,7 @@
                 'scene-first-person': {
                     id: 'scene-first-person',
                     title: '四 · 第一个主角',
-                    image: 'images/guides/kael.jpg',
+                    image: 'images/guides/kael.mp4',
                     narrative: '我带的第一个人，是个想成为面包师的年轻人。<br><br>他没什么宏大的理想，就想开个小店，闻着麦香过一辈子。<br><br>他总问我，哪条路才是对的。我没告诉他答案，因为我也不知道。<br><br>我只是把钥匙递给他，看他笨拙地烤出了第一个歪歪扭扭的面包。那是我在这里闻到过的，最香的味道。',
                     choices: [
                         { text: '继续', target: 'scene-now' }
@@ -505,7 +505,7 @@
                 'scene-now': {
                     id: 'scene-now',
                     title: '五 · 现在的我',
-                    image: 'images/guides/kael.jpg',
+                    image: 'images/guides/kael.mp4',
                     narrative: '现在的我？<br><br>我就是个看门的。偶尔给迷路的人递杯水，指个方向。<br><br>我不再试图理解所有事，也不再为谁的结局感到难过。宇宙这么大，悲欢离合比星星还多，我管不过来。<br><br>我只管好我这一亩三分地，确保门轴没生锈，这就够了。',
                     choices: [
                         { text: '选择继续', target: 'ending-continue' },
@@ -555,7 +555,10 @@
             container.classList.add('fade-out');
             
             setTimeout(() => {
-                let html = '<div class="scene-image-wrapper"><img src="' + scene.image + '" alt="' + scene.title + '" class="scene-image"></div><h2 class="scene-title">' + scene.title + '</h2><p class="narrative-text">' + scene.narrative + '</p><div class="choices-container">';
+                let mediaHtml = scene.image.endsWith('.mp4') 
+            ? '<div class="scene-image-wrapper"><video src="' + scene.image + '" class="scene-image" autoplay loop muted playsinline></video></div>'
+            : '<div class="scene-image-wrapper"><img src="' + scene.image + '" alt="' + scene.title + '" class="scene-image"></div>';
+        let html = mediaHtml + '<h2 class="scene-title">' + scene.title + '</h2><p class="narrative-text">' + scene.narrative + '</p><div class="choices-container">';
                 
                 scene.choices.forEach(choice => {
                     html += '<button class="choice-btn" onclick="goToScene(\'' + choice.target + '\')">' + choice.text + '</button>';
