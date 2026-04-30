@@ -216,7 +216,7 @@ window.zishijianTranslations = {
     timeTraveler: 'Time Traveler',
     wukongJuniorDesc: 'A soul from another world, called "Junior Disciple" by Sun Wukong. A modern soul, on the path to becoming the Great Sage with mortal body.',
     divineGeneral: 'Divine General',
-    nezhaDesc: 'A rebellious divine general in flames. Three heads, six arms, stepping on wind and fire. Heaven's most rebellious existence, reborn in fire. Between seal and freedom—will you burn through fate, or sink into the lotus heart?',
+    nezhaDesc: 'A rebellious divine general in flames. Three heads, six arms, stepping on wind and fire. Heaven\'s most rebellious existence, reborn in fire. Between seal and freedom—will you burn through fate, or sink into the lotus heart?',
     voidWalker: 'Void Walker',
     chaosDesc: 'The ultimate existence beyond the seal. Not of Heaven, not of Earth—consciousness fragments of Chaos itself, enemy of all order, yet source of all possibilities.',
     warden: 'The Wanderer',
@@ -231,32 +231,32 @@ window.zishijianTranslations = {
     soundHint: 'So this is what having sound feels like',
     scentHint: 'So this is what having scent feels like',
     scene2_title: 'Someone Saw You',
-    scene2_narrative: 'It was an old woman who always fed cats on that bench. When she looked up for the third time, her gaze passed right through me, then froze. She narrowed her eyes, looked for a long time, and softly said: "Oh, so you're here." She wasn't afraid, as if seeing a cloud of special shape. In that moment I suddenly felt, being seen... is nice. Better than listening to wind alone.',
+    scene2_narrative: 'It was an old woman who always fed cats on that bench. When she looked up for the third time, her gaze passed right through me, then froze. She narrowed her eyes, looked for a long time, and softly said: "Oh, so you\'re here." She wasn\'t afraid, as if seeing a cloud of special shape. In that moment I suddenly felt, being seen... is nice. Better than listening to wind alone.',
     scene3_title: 'Facing a Choice',
-    scene3_narrative: 'She came every afternoon, bringing cat food and a very thick book. I floated three meters away under the locust tree. Approach, or stay here? If I approach, I don't know what will happen. But just watching like this leaves me feeling empty inside. The wind blows, I feel like I'm a cloud about to scatter.',
+    scene3_narrative: 'She came every afternoon, bringing cat food and a very thick book. I floated three meters away under the locust tree. Approach, or stay here? If I approach, I don\'t know what will happen. But just watching like this leaves me feeling empty inside. The wind blows, I feel like I\'m a cloud about to scatter.',
     approachHint: 'What happens if you take a step forward?',
     choiceApproach: 'Try moving a bit toward the bench',
-    choiceRetreat: 'Step back, into the locust tree's deeper shadow',
+    choiceRetreat: 'Step back, into the locust tree\'s deeper shadow',
     sceneA1_title: 'Approach That Person',
-    sceneA1_narrative: 'I tried moving a bit toward the bench. Very slowly, afraid of disturbing something. She looked up, smiled at me, and patted the empty space beside her. I didn't sit down, just stopped beside the bench armrest. She didn't mind, continued reading, occasionally pointing to a page saying: "This passage is truly stupid." I didn't know who she was talking to, but I felt she was talking to me.',
+    sceneA1_narrative: 'I tried moving a bit toward the bench. Very slowly, afraid of disturbing something. She looked up, smiled at me, and patted the empty space beside her. I didn\'t sit down, just stopped beside the bench armrest. She didn\'t mind, continued reading, occasionally pointing to a page saying: "This passage is truly stupid." I didn\'t know who she was talking to, but I felt she was talking to me.',
     sceneA2_title: 'Avoid',
-    sceneA2_narrative: 'I stepped back, into the locust tree's deeper shadow. She looked around, her gaze confused, finally sighed and continued flipping through her book. I watched her white hair glinting in the sunlight. After avoiding her, I seemed freer, yet seemed to have lost something. The cat rubbed against her trousers, purring. That sound was far from me.',
+    sceneA2_narrative: 'I stepped back, into the locust tree\'s deeper shadow. She looked around, her gaze confused, finally sighed and continued flipping through her book. I watched her white hair glinting in the sunlight. After avoiding her, I seemed freer, yet seemed to have lost something. The cat rubbed against her trousers, purring. That sound was far from me.',
     scene5_title: 'Can Pass Through Everything Except Loneliness',
-    scene5_narrative: 'I can pass through walls, glass, raindrops, even through a flying bird's body. But one deep night, when only streetlights and I remained on the street, that silence couldn't be passed through. It wrapped around me like water, cold and heavy. Only then did I understand, I can pass through matter, but can't pass through "no sound" and "no gaze."',
+    scene5_narrative: 'I can pass through walls, glass, raindrops, even through a flying bird\'s body. But one deep night, when only streetlights and I remained on the street, that silence couldn\'t be passed through. It wrapped around me like water, cold and heavy. Only then did I understand, I can pass through matter, but can\'t pass through "no sound" and "no gaze."',
     scene6_title: 'The Second Person Who Saw You',
-    scene6_narrative: 'It was a young man who always ran past midnight. The first time he passed me, his headphone cord swayed, he didn't stop. The second time, he slowed down. The third time, he stopped before me, panting, staring at me for ten seconds. He said: "You look... a bit sad." I didn't move. He added: "Or maybe I'm just tired from running, seeing things."',
+    scene6_narrative: 'It was a young man who always ran past midnight. The first time he passed me, his headphone cord swayed, he didn\'t stop. The second time, he slowed down. The third time, he stopped before me, panting, staring at me for ten seconds. He said: "You look... a bit sad." I didn\'t move. He added: "Or maybe I\'m just tired from running, seeing things."',
     choiceTouchGround: 'Try stopping floating, let your toes touch the ground',
     choiceFloatUp: 'Shake your head at him, float up a bit',
     sceneB1_title: 'Become Real',
-    sceneB1_narrative: 'I didn't know how to become "real." But I tried stopping floating, let my toes touch the ground. Felt strange, like stepping on cotton, but at least, I had "under my feet." He watched my gradually clearer outline, didn't run, instead smiled: "This is better, just now felt like I was talking to air." Now my shadow can finally fall on the ground.',
+    sceneB1_narrative: 'I didn\'t know how to become "real." But I tried stopping floating, let my toes touch the ground. Felt strange, like stepping on cotton, but at least, I had "under my feet." He watched my gradually clearer outline, didn\'t run, instead smiled: "This is better, just now felt like I was talking to air." Now my shadow can finally fall on the ground.',
     sceneB2_title: 'Stay Light',
-    sceneB2_narrative: 'I shook my head at him, then floated up a bit, letting the streetlight's light pass completely through my body. He paused, then understood. "That works too," he said, "This is pretty cool too, like a secret." He didn't stay longer, continued running forward. I stayed mid-air, watching his back shrink. Light has its benefits—at least, goodbyes become easy.',
+    sceneB2_narrative: 'I shook my head at him, then floated up a bit, letting the streetlight\'s light pass completely through my body. He paused, then understood. "That works too," he said, "This is pretty cool too, like a secret." He didn\'t stay longer, continued running forward. I stayed mid-air, watching his back shrink. Light has its benefits—at least, goodbyes become easy.',
     lightnessHint: 'Lightness has its own beauty',
     scene8_title: 'Ending',
-    scene8_narrative: 'Later I got used to staying by the bench, occasionally following the running boy across two streets. The old lady gave me a ginkgo leaf, tucked inside that stupid book of hers. The boy would wave at me under streetlights. I'm still semi-transparent, still don't know what I am. But seems... not so urgent to know anymore. Tonight the moon is beautiful, it's like a little light is gathered inside me.',
+    scene8_narrative: 'Later I got used to staying by the bench, occasionally following the running boy across two streets. The old lady gave me a ginkgo leaf, tucked inside that stupid book of hers. The boy would wave at me under streetlights. I\'m still semi-transparent, still don\'t know what I am. But seems... not so urgent to know anymore. Tonight the moon is beautiful, it\'s like a little light is gathered inside me.',
 
     createUniversePage: 'Create Your Universe',
-    chooseTraits: 'Choose traits, define your universe's laws',
+    chooseTraits: 'Choose traits, define your universe\'s laws',
     universeName: 'Universe Name',
     nameYourUniverse: 'Name your universe...',
     yourIdentity: 'Your Identity',
@@ -314,11 +314,11 @@ window.zishijianTranslations = {
     putiTitle: 'Patriarch Bodhi',
     putiBadge: 'Lord of Fangcun · Complete Enlightenment',
     putiDesc1: 'Master of Xiyue Sanxing Cave on Fangcun Mountain, independent of the Three Realms, beyond the Five Elements. An existence transcending time, witnessing countless universes born and die.',
-    putiDesc2: '"Your awakening, and my awakening, shall converge at destiny's end. The Jue character's serendipity belongs to none other than you."',
+    putiDesc2: '"Your awakening, and my awakening, shall converge at destiny\'s end. The Jue character\'s serendipity belongs to none other than you."',
     putiTraits: ['Mysterious Mentor', 'Fate Architect', 'All-Heavenly Arts'],
     mainUniverseNarrative: 'Main Universe · Interactive Narrative',
     chapterOne: 'Chapter 1: Gate of Seals',
-    chapterOneDesc: 'You awaken in chaos, before you is a stone door carved with runes. Push it open, you will step onto the path of cultivation at Lingtai Fangcun Mountain—here, your choices will determine fate's direction.',
+    chapterOneDesc: 'You awaken in chaos, before you is a stone door carved with runes. Push it open, you will step onto the path of cultivation at Lingtai Fangcun Mountain—here, your choices will determine fate\'s direction.',
     startExploring: 'Start Exploring',
     aboutTime: 'About 5-8 min · Multiple endings',
     timeFlow: 'Time and Space Flow · Paths of Fate',
@@ -331,18 +331,18 @@ window.zishijianTranslations = {
     stoneMonkey: 'Stone Monkey Emerges',
     stoneMonkeyDesc: 'Huaguo Mountain spirit stone conceived the Stone Monkey, innately spiritual, became Monkey King.',
     learnFromMaster: 'Study Under Master',
-    learnFromMasterDesc: 'Stone Monkey sailed across oceans to become Patriarch Bodhi's disciple, named "Wukong," in the "Wu" generation.',
+    learnFromMasterDesc: 'Stone Monkey sailed across oceans to become Patriarch Bodhi\'s disciple, named "Wukong," in the "Wu" generation.',
     havocHeaven: 'Havoc in Heaven',
     havocHeavenDesc: 'Wukong caused havoc in Dragon Palace and Underworld, titled "Great Sage Equaling Heaven," later rebelled again due to Peach Banquet.',
     wuxingMountain: 'Under Five Elements Mountain',
     wuxingMountainDesc: 'Startled Tathagata Buddha, Wukong was pressed under Five Elements Mountain for 500 years. Timeline began to change.',
     fiveHundredYearsAgo: '500 Years Ago',
     now: 'Now',
-    jueFate: 'Jue's Serendipity',
-    jueFateDesc: 'Protagonist travels to Zishijian, becomes the last person of the "Jue" generation. Sun Wukong stands before: "Junior brother, you've finally come."',
+    jueFate: 'Jue\'s Serendipity',
+    jueFateDesc: 'Protagonist travels to Zishijian, becomes the last person of the "Jue" generation. Sun Wukong stands before: "Junior brother, you\'ve finally come."',
     future: 'Future',
     worldsConverge: 'Myriad Worlds Converge',
-    worldsConvergeDesc: 'Countless worlds are merging, unveiling Zishijian's ultimate secret—everything has just begun...'
+    worldsConvergeDesc: 'Countless worlds are merging, unveiling Zishijian\'s ultimate secret—everything has just begun...'
   }
 };
 
@@ -750,7 +750,7 @@ function translateCharacterPlayerPage() {
   if (sectionSubtitle) sectionSubtitle.textContent = t('eachIdentity');
   
   // 角色卡片
-  const enTitles = ['Spirit', 'Wukong's Junior', 'Third Prince', 'Chaos', 'The Wanderer'];
+  const enTitles = ['Spirit', 'Wukong\'s Junior', 'Third Prince', 'Chaos', 'The Wanderer'];
   const zhTitles = ['灵体', '大圣师弟', '三太子', '混沌', '巡者'];
   const enDescs = [
     'A spirit consciousness awakened from a seal, memory fragments scattered across three thousand worlds. Collect memories, find yourself—this is your only mission.',
@@ -937,7 +937,7 @@ function translateTimelinePage() {
   const zhYears = ['太初', '远古', '上古', '上古', '上古', '五百年前', '现在', '未来'];
   const enYears = ['Primordial', 'Ancient', 'Ancient Era', 'Ancient Era', 'Ancient Era', '500 Years Ago', 'Now', 'Future'];
   const zhTimelineTitles = ['天地初开', '方寸山立宗', '石猴出世', '拜师学艺', '大闹天宫', '五行山下', '觉字机缘', '诸天交汇'];
-  const enTimelineTitles = ['Heaven and Earth Open', 'Fangcun Mountain Founded', 'Stone Monkey Emerges', 'Study Under Master', 'Havoc in Heaven', 'Under Five Elements Mountain', 'Jue's Serendipity', 'Myriad Worlds Converge'];
+  const enTimelineTitles = ['Heaven and Earth Open', 'Fangcun Mountain Founded', 'Stone Monkey Emerges', 'Study Under Master', 'Havoc in Heaven', 'Under Five Elements Mountain', 'Jue\'s Serendipity', 'Myriad Worlds Converge'];
   const zhTimelineContents = [
     '混沌如鸡子，鸿蒙初判。菩提老祖已存在于世外之地，独立于三界之外。',
     '菩提老祖创立斜月三星洞，门下辈分：广、大、智、慧、真、悟、如、圆、觉。洞中一日等于外界一年。',
@@ -952,11 +952,11 @@ function translateTimelinePage() {
     'Chaos was like a chicken egg, Hongmeng first judged. Patriarch Bodhi already existed beyond the world, independent of the Three Realms.',
     'Patriarch Bodhi founded Xiyue Sanxing Cave, generations: Guang, Da, Zhi, Hui, Zhen, Wu, Ru, Yuan, Jue. One day in the cave equals one year outside.',
     'Huaguo Mountain spirit stone conceived the Stone Monkey, innately spiritual, became Monkey King.',
-    'Stone Monkey sailed across oceans to become Patriarch Bodhi's disciple, named "Wukong," in the "Wu" generation.',
+    'Stone Monkey sailed across oceans to become Patriarch Bodhi\'s disciple, named "Wukong," in the "Wu" generation.',
     'Wukong caused havoc in Dragon Palace and Underworld, titled "Great Sage Equaling Heaven," later rebelled again due to Peach Banquet.',
     'Startled Tathagata Buddha, Wukong was pressed under Five Elements Mountain for 500 years. Timeline began to change.',
-    'Protagonist travels to Zishijian, becomes the last person of the "Jue" generation. Sun Wukong stands before: "Junior brother, you've finally come."',
-    'Countless worlds are merging, unveiling Zishijian's ultimate secret—everything has just begun...'
+    'Protagonist travels to Zishijian, becomes the last person of the "Jue" generation. Sun Wukong stands before: "Junior brother, you\'ve finally come."',
+    'Countless worlds are merging, unveiling Zishijian\'s ultimate secret—everything has just begun...'
   ];
   
   timelineYears.forEach((el, i) => {
