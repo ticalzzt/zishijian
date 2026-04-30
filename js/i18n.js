@@ -1013,11 +1013,11 @@ function createLangSwitcher() {
   switcher.id = 'lang-switcher';
   switcher.style.cssText = `
     position: fixed;
-    top: 6px;
+    bottom: 10px;
     right: 10px;
     z-index: 9999;
-    background: rgba(10, 9, 8, 0.85);
-    border: 1px solid rgba(201, 162, 39, 0.3);
+    background: rgba(10, 9, 8, 0.75);
+    border: 1px solid rgba(201, 162, 39, 0.25);
     border-radius: 14px;
     padding: 3px 8px;
     display: flex;
@@ -1067,21 +1067,12 @@ function createLangSwitcher() {
     switcher.appendChild(btn);
   });
   
-  // 首页居中，子页面右上角
-  if (isHomePage) {
-    switcher.style.top = '0';
-    switcher.style.right = '';
-    switcher.style.left = '50%';
-    switcher.style.transform = 'translateX(-50%)';
-    switcher.style.borderRadius = '0 0 10px 10px';
-    switcher.style.border = 'none';
-    switcher.style.borderBottom = '1px solid rgba(201, 162, 39, 0.2)';
-  }
+  // 所有页面统一右下角
   
   document.body.appendChild(switcher);
   
   if (window.innerWidth < 768) {
-    switcher.style.top = '4px';
+    switcher.style.bottom = '6px';
     switcher.style.right = '6px';
     switcher.style.padding = '4px 8px';
     switcher.querySelectorAll('.lang-btn').forEach(btn => {
