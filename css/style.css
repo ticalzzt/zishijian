@@ -1856,15 +1856,14 @@ body::before {
 /* cache bust: 1777460000 */
 
 
-/* SoulAgent 导航按钮 - 赛博数字风格 */
+/* SoulAgent 导航按钮 - 浅色技术风格 */
 .nav-item.soulagent-link {
-    background: linear-gradient(135deg, rgba(10, 79, 92, 0.4) 0%, rgba(10, 14, 26, 0.6) 100%);
-    border: 1px solid rgba(0, 240, 255, 0.4);
+    background: rgba(79, 70, 229, 0.08);
+    border: 1px solid rgba(79, 70, 229, 0.2);
 }
 
 .nav-item.soulagent-link:hover {
-    background: linear-gradient(135deg, rgba(10, 79, 92, 0.6) 0%, rgba(10, 14, 26, 0.8) 100%);
-    border-color: #00f0ff;
-    color: #00f0ff;
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+    background: rgba(79, 70, 229, 0.12);
+    border-color: rgba(79, 70, 229, 0.4);
+    color: #4f46e5;
 }
