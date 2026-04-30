@@ -100,7 +100,7 @@
     <script>
     // 导航穿门转场
     document.addEventListener('click', function(e) {
-        const navItem = e.target.closest('.nav-item, .explore-btn, .wukong-entry');
+        const navItem = e.target.closest('.nav-item[data-page="creator"], .explore-btn[href*="enhanced-creator"]');
         if (navItem && navItem.href && !navItem.href.startsWith('#')) {
             e.preventDefault();
             const targetUrl = navItem.href;
