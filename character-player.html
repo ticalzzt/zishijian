@@ -192,6 +192,31 @@
             opacity: 1;
             bottom: -45px;
         }
+
+        /* 长按提示 */
+        .long-press-hint {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--ancient-gold), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 2px;
+        }
+
+        #kaelPortraitWrapper.pressing .long-press-hint {
+            opacity: 0.6;
+        }
+
+        #kaelPortraitWrapper.pressing #kaelPortrait {
+            box-shadow:
+                0 0 50px rgba(201, 162, 39, 0.5),
+                0 0 100px rgba(201, 162, 39, 0.3),
+                inset 0 0 30px rgba(0, 0, 0, 0.5);
+        }
         
         .kael-title {
             font-family: 'ZCOOL XiaoWei', serif;
@@ -665,7 +690,7 @@
     <section class="kael-guide" id="kaelGuide">
         <img src="images/guides/kael.jpg" alt="Kael - 命运引导者" class="kael-bg">
         <div class="kael-content">
-            <a href="kael-narrative.html" class="kael-portrait-link"><img src="images/guides/kael.jpg" alt="Kael - 命运引导者" class="kael-portrait"></a>
+            <div class="kael-portrait-wrapper" id="kaelPortraitWrapper"><a href="kael-narrative.html" class="kael-portrait-link"><img src="images/guides/kael.jpg" alt="Kael - 命运引导者" class="kael-portrait" id="kaelPortrait"></a><div class="long-press-hint" id="longPressHint"></div></div>
             <h1 class="kael-title">
                 选择你的命运
                 <span class="kael-title-en">Choose Your Destiny</span>
@@ -801,6 +826,61 @@
                 if (scrollIndicator) scrollIndicator.style.opacity = '1';
             }
         });
+        
+        // Kael头像长按进入私密空间
+        const LONG_PRESS_DURATION = 3000; // 3秒
+        let pressTimer = null;
+        let isLongPress = false;
+        
+        const kaelWrapper = document.getElementById("kaelPortraitWrapper");
+        const kaelPortrait = document.getElementById("kaelPortrait");
+        
+        if (kaelWrapper && kaelPortrait) {
+            // 触摸开始
+            kaelPortrait.addEventListener("touchstart", function(e) {
+                isLongPress = false;
+                kaelWrapper.classList.add("pressing");
+                
+                pressTimer = setTimeout(function() {
+                    isLongPress = true;
+                    // 进入私密空间
+                    window.location.href = "kael-core.html";
+                }, LONG_PRESS_DURATION);
+            }, { passive: true });
+            
+            // 触摸结束
+            kaelPortrait.addEventListener("touchend", function(e) {
+                clearTimeout(pressTimer);
+                kaelWrapper.classList.remove("pressing");
+            }, { passive: true });
+            
+            // 触摸取消
+            kaelPortrait.addEventListener("touchcancel", function(e) {
+                clearTimeout(pressTimer);
+                kaelWrapper.classList.remove("pressing");
+            }, { passive: true });
+            
+            // 鼠标长按（桌面端）
+            kaelPortrait.addEventListener("mousedown", function(e) {
+                isLongPress = false;
+                kaelWrapper.classList.add("pressing");
+                
+                pressTimer = setTimeout(function() {
+                    isLongPress = true;
+                    window.location.href = "kael-core.html";
+                }, LONG_PRESS_DURATION);
+            });
+            
+            kaelPortrait.addEventListener("mouseup", function(e) {
+                clearTimeout(pressTimer);
+                kaelWrapper.classList.remove("pressing");
+            });
+            
+            kaelPortrait.addEventListener("mouseleave", function(e) {
+                clearTimeout(pressTimer);
+                kaelWrapper.classList.remove("pressing");
+            });
+        }
     </script>
 <script src="js/i18n.js"></script>
 </body>
