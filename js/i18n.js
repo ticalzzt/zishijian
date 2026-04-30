@@ -1004,19 +1004,22 @@ function switchLang(lang) {
 function createLangSwitcher() {
   if (document.getElementById('lang-switcher')) return;
   
+  const isHomePage = window.location.pathname.endsWith('index.html') || 
+                     window.location.pathname.endsWith('/') || 
+                     window.location.pathname.endsWith('/zishijian/') ||
+                     window.location.pathname.endsWith('/zishijian/index.html');
+  
   const switcher = document.createElement('div');
   switcher.id = 'lang-switcher';
   switcher.style.cssText = `
     position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 6px;
+    right: 10px;
     z-index: 9999;
     background: rgba(10, 9, 8, 0.85);
-    border: none;
-    border-bottom: 1px solid rgba(201, 162, 39, 0.2);
-    border-radius: 0 0 10px 10px;
-    padding: 4px 12px;
+    border: 1px solid rgba(201, 162, 39, 0.3);
+    border-radius: 14px;
+    padding: 3px 8px;
     display: flex;
     gap: 2px;
     backdrop-filter: blur(12px);
@@ -1064,12 +1067,22 @@ function createLangSwitcher() {
     switcher.appendChild(btn);
   });
   
+  // 首页居中，子页面右上角
+  if (isHomePage) {
+    switcher.style.top = '0';
+    switcher.style.right = '';
+    switcher.style.left = '50%';
+    switcher.style.transform = 'translateX(-50%)';
+    switcher.style.borderRadius = '0 0 10px 10px';
+    switcher.style.border = 'none';
+    switcher.style.borderBottom = '1px solid rgba(201, 162, 39, 0.2)';
+  }
+  
   document.body.appendChild(switcher);
   
   if (window.innerWidth < 768) {
-    switcher.style.top = '0';
-    switcher.style.left = '50%';
-    switcher.style.transform = 'translateX(-50%)';
+    switcher.style.top = '4px';
+    switcher.style.right = '6px';
     switcher.style.padding = '4px 8px';
     switcher.querySelectorAll('.lang-btn').forEach(btn => {
       btn.style.padding = '4px 10px';
