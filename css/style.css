@@ -168,7 +168,7 @@ body::before {
    ======================================== */
 .title-container {
     position: absolute;
-    top: 14%;
+    top: 16%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;

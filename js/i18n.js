@@ -1008,13 +1008,15 @@ function createLangSwitcher() {
   switcher.id = 'lang-switcher';
   switcher.style.cssText = `
     position: fixed;
-    top: 4px;
-    left: 8px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 9999;
-    background: linear-gradient(135deg, rgba(10, 9, 8, 0.9), rgba(20, 18, 15, 0.95));
-    border: 1px solid rgba(201, 162, 39, 0.35);
-    border-radius: 12px;
-    padding: 6px 10px;
+    background: rgba(10, 9, 8, 0.85);
+    border: none;
+    border-bottom: 1px solid rgba(201, 162, 39, 0.2);
+    border-radius: 0 0 10px 10px;
+    padding: 4px 12px;
     display: flex;
     gap: 2px;
     backdrop-filter: blur(12px);
@@ -1065,8 +1067,9 @@ function createLangSwitcher() {
   document.body.appendChild(switcher);
   
   if (window.innerWidth < 768) {
-    switcher.style.top = '4px';
-    switcher.style.left = '6px';
+    switcher.style.top = '0';
+    switcher.style.left = '50%';
+    switcher.style.transform = 'translateX(-50%)';
     switcher.style.padding = '4px 8px';
     switcher.querySelectorAll('.lang-btn').forEach(btn => {
       btn.style.padding = '4px 10px';
