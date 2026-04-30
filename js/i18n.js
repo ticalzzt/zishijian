@@ -135,6 +135,20 @@ window.zishijianTranslations = {
     returnToIntro: '返回角色介绍',
     returnHome: '← 返回首页',
 
+    // enhanced-creator.html 新增key
+    coreLaw: '核心法则',
+    cultivationPath: '修仙问道',
+    magicWorld: '魔法世界',
+    techCivilization: '科技文明',
+    chaosPrimordial: '混沌原初',
+    martialSupreme: '武道至尊',
+    supernaturalMystery: '灵异诡秘',
+    postApocalyptic: '末世废土',
+    starVoyage: '星际征途',
+    foreseeFuture: '预知未来',
+    timeTravel: '时空穿越',
+    identityPlaceholder2: '穿越者、觉醒者、轮回者...',
+
     // timeline.html
     timelineTitle: '大圣宇宙',
     timelineSubtitle: '诸天宇宙的命运流转 · 关键人物的传奇轨迹',
@@ -303,6 +317,23 @@ window.zishijianTranslations = {
     universeBorn: 'Your Universe Is Born',
     returnToIntro: 'Back to Character Intro',
     returnHome: '← Back to Home',
+
+    // enhanced-creator.html new keys
+    coreLaw: 'Core Law',
+    cultivationPath: 'Cultivation Path',
+    magicWorld: 'Magic World',
+    techCivilization: 'Tech Civilization',
+    chaosPrimordial: 'Chaos Primordial',
+    martialSupreme: 'Martial Supreme',
+    supernaturalMystery: 'Supernatural Mystery',
+    postApocalyptic: 'Post-Apocalyptic',
+    starVoyage: 'Star Voyage',
+    foreseeFuture: 'Foresee Future',
+    timeTravel: 'Time Travel',
+    identityPlaceholder2: 'Traveler, Awakener, Reincarnator...',
+    sunWukong: 'Sun Wukong',
+    patriarchBodhi: 'Patriarch Bodhi',
+    enterFate: 'Enter Fate',
 
     timelineTitle: 'Great Sage Universe',
     timelineSubtitle: 'Fate flows through myriad universes · Legendary paths of key figures',
@@ -699,7 +730,6 @@ function translateIndexPage() {
   const btnText = document.querySelector('.btn-text');
   const ctaHint = document.querySelector('.cta-hint');
   const fanqieText = document.querySelector('.fanqie-text');
-  const navTexts = document.querySelectorAll('.nav-text');
   
   if (title) {
     const text = t('mainTitle');
@@ -712,13 +742,6 @@ function translateIndexPage() {
   if (ctaHint) ctaHint.textContent = t('ctaHint');
   if (fanqieText) fanqieText.textContent = t('readOnFanqie');
   
-  navTexts.forEach(el => {
-    const text = el.textContent.trim();
-    if (text.includes('命运主角')) el.textContent = t('fatedProtagonist');
-    else if (text.includes('大圣宇宙')) el.textContent = t('greatSageUniverse');
-    else if (text.includes('创造独立宇宙')) el.textContent = t('createUniverse');
-    else if (text.includes('机缘')) el.textContent = t('serendipity');
-  });
   
   document.title = t('siteTitle');
 }
@@ -774,7 +797,7 @@ function translateCharacterPlayerPage() {
     el.textContent = currentLang === 'en' ? enDescs[i] : (currentLang === 'zh-TW' ? s2t(zhDescs[i]) : zhDescs[i]);
   });
   cardBtns.forEach(el => {
-    el.textContent = currentLang === 'en' ? 'Enter Fate' : (currentLang === 'zh-TW' ? s2t('进入命运') : '进入命运');
+    el.textContent = t('enterFate');
   });
   
   if (footerText) footerText.textContent = t('footerText');
@@ -917,10 +940,10 @@ function translateTimelinePage() {
   });
   
   // 角色信息
-  if (charNames[0]) charNames[0].textContent = currentLang === 'en' ? 'Sun Wukong' : (currentLang === 'zh-TW' ? s2t('孙悟空') : '孙悟空');
-  if (charNames[1]) charNames[1].textContent = currentLang === 'en' ? 'Patriarch Bodhi' : (currentLang === 'zh-TW' ? s2t('菩提老祖') : '菩提老祖');
-  if (charBadges[0]) charBadges[0].textContent = currentLang === 'en' ? t('greatSageTitle') : (currentLang === 'zh-TW' ? s2t('齐天大圣 · 悟字辈') : '齐天大圣 · 悟字辈');
-  if (charBadges[1]) charBadges[1].textContent = currentLang === 'en' ? t('putiBadge') : (currentLang === 'zh-TW' ? s2t('方寸之主 · 觉悟圆满') : '方寸之主 · 觉悟圆满');
+  if (charNames[0]) charNames[0].textContent = t('sunWukong');
+  if (charNames[1]) charNames[1].textContent = t('patriarchBodhi');
+  if (charBadges[0]) charBadges[0].textContent = t('greatSageTitle');
+  if (charBadges[1]) charBadges[1].textContent = t('putiBadge');
   if (charDescs[0]) charDescs[0].textContent = t('greatSageDesc1');
   if (charDescs[1]) charDescs[1].textContent = t('greatSageDesc2');
   if (charDescs[2]) charDescs[2].textContent = t('putiDesc1');
@@ -994,6 +1017,10 @@ function translateNarrativePages() {
 
 // 切换语言
 function switchLang(lang) {
+  // 验证语言参数，确保只接受有效的语言代码
+  if (!['zh', 'zh-TW', 'en'].includes(lang)) {
+    lang = 'zh';
+  }
   if (lang === currentLang) return;
   currentLang = lang;
   localStorage.setItem('zishijian-lang', lang);
@@ -1093,3 +1120,9 @@ if (document.readyState === 'loading') {
 } else {
   initTranslator();
 }
+
+// 添加缺失的简体翻译key用于timeline页面
+window.zishijianTranslations.zh.sunWukong = '孙悟空';
+window.zishijianTranslations.zh.patriarchBodhi = '菩提老祖';
+window.zishijianTranslations.zh.enterFate = '进入命运';
+window.zishijianTranslations.zh.jueFate = '觉字机缘';
