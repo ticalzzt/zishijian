@@ -1019,46 +1019,15 @@
             var scene = storyData.scenes[sceneId];
             if (!scene) return;
 
-            // 转场效果
-            sceneWrapper.classList.add('transitioning');
-
-            await new Promise(function(r) { setTimeout(r, 50); });
-
-            // 重置状态
-            sceneWrapper.classList.remove('visible', 'transitioning');
-
-            // 更新内容
+            // 立即显示内容，不被特效阻塞
             sceneTitle.textContent = scene.title;
             narrativeContainer.style.display = 'block';
+            narrativeText.textContent = '';
 
-            // 移除特殊效果类
-            var oldRunner = narrativeContainer.querySelector('.runner-container');
-            if (oldRunner) oldRunner.remove();
-            spiritCharacter.classList.remove('moonlight-effect');
-            fogOverlay.classList.remove('active');
-            mainContainer.classList.remove('scene-shake');
+            // 立即显示场景
+            sceneWrapper.classList.add('visible');
 
-            // 场景特效
-            updateBackground(scene.bgColor);
-            updateParticles(scene.particleType || 'firefly');
-
-            if (scene.showWaves) {
-                var waves = document.createElement('div');
-                waves.className = 'sound-waves';
-                waves.innerHTML = '<div class="sound-wave"></div>'.repeat(5);
-                narrativeContainer.appendChild(waves);
-            }
-
-            if (scene.shakeEffect) {
-                mainContainer.classList.add('scene-shake');
-            }
-
-            if (scene.moonlightEffect) {
-                spiritCharacter.classList.add('moonlight-effect');
-                fogOverlay.classList.add('active');
-            }
-
-            // 打字机效果
+            // 打字机效果 - 最优先
             await typeWriter(narrativeText, scene.narrative);
 
             // 进度条
@@ -1082,10 +1051,35 @@
                 }, 1500);
             }
 
-            // 显示
+            // 特效异步加载，不阻塞内容
             setTimeout(function() {
-                sceneWrapper.classList.add('visible');
-            }, 100);
+                // 移除特殊效果类
+                var oldRunner = narrativeContainer.querySelector('.runner-container');
+                if (oldRunner) oldRunner.remove();
+                spiritCharacter.classList.remove('moonlight-effect');
+                fogOverlay.classList.remove('active');
+                mainContainer.classList.remove('scene-shake');
+
+                // 场景特效
+                updateBackground(scene.bgColor);
+                updateParticles(scene.particleType || 'firefly');
+
+                if (scene.showWaves) {
+                    var waves = document.createElement('div');
+                    waves.className = 'sound-waves';
+                    waves.innerHTML = '<div class="sound-wave"></div>'.repeat(5);
+                    narrativeContainer.appendChild(waves);
+                }
+
+                if (scene.shakeEffect) {
+                    mainContainer.classList.add('scene-shake');
+                }
+
+                if (scene.moonlightEffect) {
+                    spiritCharacter.classList.add('moonlight-effect');
+                    fogOverlay.classList.add('active');
+                }
+            }, 0);
 
             currentScene = sceneId;
         }
