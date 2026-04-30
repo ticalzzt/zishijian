@@ -680,7 +680,7 @@
 </head>
 <body style="padding-top:32px">
     <nav class="top-nav" id="topNav">
-        <button class="back-btn" onclick="goBack()">← 返回</button>
+        
         <a href="index.html" class="nav-link">首页</a>
         <a href="timeline.html" class="nav-link">大圣宇宙</a>
         <a href="enhanced-creator.html" class="nav-link">身份创建</a>
@@ -803,9 +803,6 @@
     </section>
 
     <script>
-        function goBack() {
-            window.history.back() || (window.location.href = 'index.html');
-        }
         
         function scrollToSelection() {
             document.querySelector('.character-selection').scrollIntoView({ 
