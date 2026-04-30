@@ -2,674 +2,1383 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>天道巡者 - 秩序守护者 | 藏子世间</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>巡者 - MiMo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --heaven-navy: #1a2744;
-            --heaven-deep: #0d1526;
-            --heaven-gold: #d4a84b;
-            --heaven-gold-light: #e8c675;
-            --heaven-cream: #f5f0e6;
-            --heaven-warm: rgba(212, 168, 75, 0.15);
-            --heaven-glow: rgba(212, 168, 75, 0.5);
-            --ink-black: #0a0908;
-            --dark-bg: rgba(13, 21, 38, 0.98);
+            --bg-deep: #0a1628;
+            --bg-mid: #12233d;
+            --bg-light: #1a2f4d;
+            --accent-gold: #d4a853;
+            --accent-glow: #f5d799;
+            --accent-warm: #e8b86d;
+            --text-primary: #e8e4dc;
+            --text-secondary: #9ca3af;
+            --membrane: rgba(212, 168, 83, 0.15);
+            --gold-shimmer: linear-gradient(90deg, var(--accent-gold), var(--accent-glow), var(--accent-gold));
         }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background: var(--ink-black);
             font-family: 'Noto Serif SC', serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            min-height: 100vh;
             overflow-x: hidden;
-            min-height: 100vh;
+            cursor: none;
         }
-        
-        /* 导航栏 */
-        .top-nav {
+
+        /* ==================== Custom Cursor ==================== */
+        .cursor-glow {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            background: rgba(13, 21, 38, 0.92);
-            backdrop-filter: blur(12px);
-            border-bottom: 2px solid var(--heaven-gold);
-            padding: 0.8rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            box-shadow: 0 0 30px rgba(212, 168, 75, 0.15);
-        }
-        
-        .back-btn, .nav-link {
-            color: var(--heaven-gold);
-            font-family: 'ZCOOL XiaoWei', serif;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border: 1px solid transparent;
-            background: transparent;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s;
-            border-radius: 4px;
-        }
-        
-        .back-btn { border-color: rgba(212, 168, 75, 0.4); }
-        
-        .back-btn:hover, .nav-link:hover {
-            color: var(--heaven-gold-light);
-            text-shadow: 0 0 15px rgba(212, 168, 75, 0.8);
-            border-color: var(--heaven-gold-light);
-            background: rgba(212, 168, 75, 0.1);
-        }
-        
-        /* 进度指示器 */
-        .progress-bar {
-            position: fixed;
-            top: 60px;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: rgba(212, 168, 75, 0.15);
-            z-index: 99;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--heaven-gold), var(--heaven-gold-light));
-            transition: width 0.5s ease;
-            box-shadow: 0 0 10px var(--heaven-glow);
-        }
-        
-        /* 场景容器 */
-        .scene-container {
-            min-height: 100vh;
-            width: 100%;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 20px 40px;
-        }
-        
-        /* 场景背景 - 温暖宇宙感 */
-        .scene-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -1;
-            background: 
-                radial-gradient(ellipse at 30% 20%, rgba(212, 168, 75, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(212, 168, 75, 0.05) 0%, transparent 40%),
-                linear-gradient(180deg, 
-                    rgba(13, 21, 38, 0.9) 0%, 
-                    rgba(26, 39, 68, 0.85) 50%,
-                    rgba(13, 21, 38, 0.9) 100%);
-        }
-        
-        /* 全息数据流效果 */
-        .holo-stream {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -2;
-            overflow: hidden;
-            opacity: 0.03;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 168, 83, 0.5) 0%, rgba(212, 168, 83, 0.2) 40%, transparent 70%);
             pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease;
+            mix-blend-mode: screen;
         }
-        
-        .holo-line {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--heaven-gold), transparent);
-            animation: holoScroll 20s linear infinite;
-        }
-        
-        @keyframes holoScroll {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(200%); }
-        }
-        
-        /* 场景图片容器 */
-        .scene-image-wrapper {
-            width: 100%;
-            max-width: 700px;
-            margin-bottom: 2rem;
-            position: relative;
-            opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .scene-image-wrapper.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        .scene-image {
-            width: 100%;
-            height: auto;
-            border-radius: 16px;
-            box-shadow: 
-                0 0 60px rgba(212, 168, 75, 0.2),
-                0 20px 60px rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(212, 168, 75, 0.25);
-        }
-        
-        /* 温暖光晕环绕 */
-        .scene-image-wrapper::before {
+
+        .cursor-glow::before {
             content: '';
             position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
-            border-radius: 24px;
-            background: radial-gradient(ellipse at center, rgba(212, 168, 75, 0.1) 0%, transparent 70%);
+            inset: 25%;
+            border-radius: 50%;
+            background: var(--accent-glow);
+            opacity: 0.8;
+        }
+
+        .cursor-glow.hovering {
+            width: 60px;
+            height: 60px;
+        }
+
+        /* ==================== Dynamic Background ==================== */
+        .bg-gradient {
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+            background: var(--bg-deep);
+        }
+
+        .bg-layer {
+            position: absolute;
+            inset: 0;
+            opacity: 0.6;
+        }
+
+        .bg-layer-1 {
+            background: radial-gradient(ellipse at 20% 30%, rgba(212, 168, 83, 0.12) 0%, transparent 50%);
+            animation: bgFloat1 15s ease-in-out infinite;
+        }
+
+        .bg-layer-2 {
+            background: radial-gradient(ellipse at 80% 70%, rgba(232, 184, 109, 0.08) 0%, transparent 50%);
+            animation: bgFloat2 18s ease-in-out infinite;
+        }
+
+        .bg-layer-3 {
+            background: radial-gradient(ellipse at 50% 50%, rgba(212, 168, 83, 0.05) 0%, transparent 60%);
+            animation: bgPulse 6s ease-in-out infinite;
+        }
+
+        .bg-layer-4 {
+            background: linear-gradient(180deg, rgba(10, 22, 40, 0) 0%, rgba(10, 22, 40, 0.3) 100%);
+            animation: bgShift 12s ease-in-out infinite;
+        }
+
+        @keyframes bgFloat1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -20px) scale(1.1); }
+        }
+
+        @keyframes bgFloat2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-40px, 30px) scale(1.15); }
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes bgShift {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* ==================== Canvas Particle Layer ==================== */
+        #particleCanvas {
+            position: fixed;
+            inset: 0;
             z-index: -1;
+            pointer-events: none;
         }
-        
-        /* 场景标题 */
-        .scene-title {
-            font-family: 'ZCOOL XiaoWei', serif;
-            font-size: 1.8rem;
-            color: var(--heaven-gold-light);
-            text-align: center;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 20px var(--heaven-glow);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
-        }
-        
-        .scene-title.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* 叙事文字 */
-        .narrative-text {
-            max-width: 650px;
-            text-align: center;
-            color: var(--heaven-cream);
-            font-size: 1.15rem;
-            line-height: 2;
-            margin-bottom: 2.5rem;
-            padding: 1.8rem 2.2rem;
-            background: rgba(26, 39, 68, 0.5);
-            border-radius: 16px;
-            border: 1px solid rgba(212, 168, 75, 0.2);
-            box-shadow: 0 0 30px rgba(212, 168, 75, 0.08);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s;
-        }
-        
-        .narrative-text.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* 内心独白特殊样式 */
-        .inner-thought {
-            font-style: italic;
-            color: rgba(212, 168, 75, 0.85);
-            border-left: 3px solid var(--heaven-gold);
-            padding-left: 1rem;
-            margin-top: 1rem;
-            text-align: left;
-        }
-        
-        /* 选择区域 */
-        .choices-container {
+
+        /* ==================== Main Container ==================== */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 30px 80px;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            width: 100%;
-            max-width: 520px;
+        }
+
+        /* ==================== Avatar Section ==================== */
+        .avatar-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 50px;
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.6s ease 0.7s, transform 0.6s ease 0.7s;
         }
-        
-        .choices-container.visible {
-            opacity: 1;
-            transform: translateY(0);
+
+        .avatar-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
         }
-        
-        .choice-btn {
-            padding: 1.3rem 2rem;
-            background: linear-gradient(135deg, 
-                rgba(212, 168, 75, 0.12), 
-                rgba(232, 198, 117, 0.08));
-            border: 2px solid var(--heaven-gold);
-            color: var(--heaven-gold);
-            font-family: 'Noto Serif SC', serif;
-            font-size: 1.05rem;
-            cursor: pointer;
-            border-radius: 10px;
-            transition: all 0.3s;
-            text-align: left;
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2a3f5f 0%, #1a2a40 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            border: 2px solid rgba(212, 168, 83, 0.4);
             position: relative;
             overflow: hidden;
         }
-        
-        .choice-btn::before {
+
+        /* Golden Pulse Rings */
+        .avatar-pulse {
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-gold);
+            opacity: 0;
+            animation: avatarPulse 3s ease-out infinite;
+        }
+
+        .avatar-pulse:nth-child(2) { animation-delay: 1s; }
+        .avatar-pulse:nth-child(3) { animation-delay: 2s; }
+
+        @keyframes avatarPulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+
+        /* Golden Glow */
+        .avatar-glow {
+            position: absolute;
+            inset: -25px;
+            background: radial-gradient(circle, rgba(212, 168, 83, 0.25) 0%, rgba(212, 168, 83, 0.1) 40%, transparent 70%);
+            animation: glowPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* Inner shimmer effect */
+        .avatar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 40%,
+                rgba(212, 168, 83, 0.1) 50%,
+                transparent 60%
+            );
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .avatar-info h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--accent-glow);
+            margin-bottom: 8px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(212, 168, 83, 0.5);
+        }
+
+        .avatar-info p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 4px;
+        }
+
+        /* ==================== Story Content ==================== */
+        .story-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .scene {
+            background: linear-gradient(135deg, rgba(18, 35, 61, 0.85) 0%, rgba(10, 22, 40, 0.95) 100%);
+            border: 1px solid rgba(212, 168, 83, 0.25);
+            border-radius: 20px;
+            padding: 35px 40px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .scene.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Scene corner accent */
+        .scene::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at top left, rgba(212, 168, 83, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Side border glow */
+        .scene::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-gold) 0%, var(--accent-glow) 50%, transparent 100%);
+            opacity: 0.7;
+        }
+
+        .scene-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .scene-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(212, 168, 83, 0.25) 0%, rgba(212, 168, 83, 0.08) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            border: 1px solid rgba(212, 168, 83, 0.3);
+            box-shadow: 0 0 20px rgba(212, 168, 83, 0.1);
+        }
+
+        .scene-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent-gold);
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 1px;
+        }
+
+        .scene-text {
+            font-size: 17px;
+            line-height: 2.2;
+            color: var(--text-primary);
+            letter-spacing: 0.8px;
+        }
+
+        /* ==================== Highlight Keywords ==================== */
+        .scene-text .highlight {
+            color: var(--accent-glow);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0 4px;
+            border-radius: 4px;
+            background: rgba(212, 168, 83, 0.08);
+        }
+
+        .scene-text .highlight:hover {
+            text-shadow: 0 0 25px rgba(212, 168, 83, 0.9), 0 0 50px rgba(212, 168, 83, 0.5);
+            background: rgba(212, 168, 83, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .scene-text .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 80%;
+            height: 2px;
+            background: var(--gold-shimmer);
+            transform: translateX(-50%) scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .scene-text .highlight:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        /* ==================== Branch Buttons ==================== */
+        .branch-container {
+            display: flex;
+            gap: 25px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .branch-btn {
+            flex: 1;
+            min-width: 220px;
+            padding: 20px 28px;
+            background: linear-gradient(135deg, rgba(212, 168, 83, 0.12) 0%, rgba(212, 168, 83, 0.05) 100%);
+            border: 1px solid rgba(212, 168, 83, 0.35);
+            border-radius: 14px;
+            color: var(--text-primary);
+            font-family: 'Noto Serif SC', serif;
+            font-size: 15px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            backdrop-filter: blur(5px);
+        }
+
+        .branch-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(212, 168, 83, 0.4) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+            border-radius: 50%;
+        }
+
+        .branch-btn:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 50px rgba(212, 168, 83, 0.25), 0 0 30px rgba(212, 168, 83, 0.15);
+        }
+
+        .branch-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .branch-btn .btn-text {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Premium Golden Ring Effect */
+        .branch-btn .btn-glow {
+            position: absolute;
+            inset: -3px;
+            border-radius: 16px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-glow), var(--accent-gold), var(--accent-warm));
+            background-size: 300% 300%;
+            animation: gradientShift 3s ease infinite;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .branch-btn:hover .btn-glow {
+            opacity: 1;
+            animation: btnRing 1.5s ease-out infinite, gradientShift 3s ease infinite;
+        }
+
+        @keyframes btnRing {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.03); opacity: 0; }
+        }
+
+        /* ==================== Continue Button ==================== */
+        .continue-btn {
+            display: none;
+            margin: 35px auto 0;
+            padding: 18px 55px;
+            background: transparent;
+            border: 2px solid var(--accent-gold);
+            border-radius: 35px;
+            color: var(--accent-gold);
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            letter-spacing: 2px;
+        }
+
+        .continue-btn.visible {
+            display: block;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .continue-btn::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(212, 168, 75, 0.15), 
-                transparent);
-            transition: left 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.4), transparent);
+            animation: btnShine 2.5s infinite;
         }
-        
-        .choice-btn:hover {
-            background: linear-gradient(135deg, 
-                rgba(212, 168, 75, 0.28), 
-                rgba(232, 198, 117, 0.18));
-            transform: translateX(12px);
-            box-shadow: 0 0 30px rgba(212, 168, 75, 0.25);
-            border-color: var(--heaven-gold-light);
-            color: var(--heaven-gold-light);
+
+        @keyframes btnShine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
         }
-        
-        .choice-btn:hover::before {
-            left: 100%;
-        }
-        
-        /* 章节结束页面 */
-        .chapter-end {
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-        
-        .chapter-end h2 {
-            font-family: 'ZCOOL XiaoWei', serif;
-            font-size: 2.5rem;
-            color: var(--heaven-gold-light);
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 30px var(--heaven-glow);
-        }
-        
-        .chapter-end .narrative-text {
-            text-align: center;
-            max-width: 700px;
-        }
-        
-        .continue-btn {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 1.1rem 2.8rem;
-            background: linear-gradient(135deg, 
-                rgba(212, 168, 75, 0.25), 
-                rgba(232, 198, 117, 0.15));
-            border: 2px solid var(--heaven-gold-light);
-            color: var(--heaven-gold-light);
-            font-family: 'ZCOOL XiaoWei', serif;
-            font-size: 1.2rem;
-            text-decoration: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
+
         .continue-btn:hover {
-            background: linear-gradient(135deg, 
-                rgba(212, 168, 75, 0.45), 
-                rgba(232, 198, 117, 0.3));
+            background: var(--accent-gold);
+            color: var(--bg-deep);
             transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(212, 168, 75, 0.4);
+            box-shadow: 0 0 40px rgba(212, 168, 83, 0.6), 0 0 80px rgba(212, 168, 83, 0.3);
         }
-        
-        .back-link {
-            display: block;
-            margin-top: 2rem;
-            color: rgba(212, 168, 75, 0.6);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s;
+
+        /* ==================== Progress Bar ==================== */
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(212, 168, 83, 0.1);
+            z-index: 100;
+            backdrop-filter: blur(5px);
         }
-        
-        .back-link:hover {
-            color: var(--heaven-gold);
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gold-shimmer);
+            background-size: 200% 100%;
+            animation: progressFlow 2s linear infinite;
+            width: 0%;
+            transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
         }
-        
-        /* 结局徽章 */
-        .ending-badge {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            background: rgba(212, 168, 75, 0.15);
-            border: 1px solid var(--heaven-gold);
-            border-radius: 30px;
-            color: var(--heaven-gold);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.2em;
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -2px;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-glow);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--accent-glow), 0 0 30px var(--accent-gold);
+            animation: progressGlow 1s ease-in-out infinite;
         }
-        
-        /* 淡入淡出动画 */
-        .fade-out {
+
+        @keyframes progressFlow {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        @keyframes progressGlow {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        /* ==================== Scene Transition ==================== */
+        .scene-transition {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .membrane-waves {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .membrane-wave {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid var(--accent-gold);
             opacity: 0;
-            transition: opacity 0.5s ease;
         }
-        
-        .fade-in {
+
+        /* Central burst effect */
+        .membrane-burst {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        /* ==================== Ending Effect ==================== */
+        .ending-overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(10, 22, 40, 0.8) 0%, rgba(10, 22, 40, 0.98) 70%);
+            z-index: 500;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ending-overlay.active {
             opacity: 1;
-            transition: opacity 0.5s ease;
+            pointer-events: auto;
         }
-        
-        /* 响应式 */
+
+        .ending-stars {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .ending-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-glow);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-gold);
+            animation: starFlow 4s ease-out forwards;
+        }
+
+        @keyframes starFlow {
+            0% { transform: translateY(0) scale(0); opacity: 0; }
+            20% { opacity: 1; transform: translateY(-20vh) scale(1); }
+            100% { transform: translateY(-120vh) scale(0.5); opacity: 0; }
+        }
+
+        /* Restart Message */
+        .ending-message {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: var(--accent-glow);
+            font-family: 'Space Mono', monospace;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: 1s;
+        }
+
+        .ending-message h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            letter-spacing: 4px;
+            text-shadow: 0 0 30px rgba(212, 168, 83, 0.8);
+        }
+
+        .ending-message p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
+        }
+
+        /* ==================== Utility ==================== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hidden { display: none !important; }
+
+        /* ==================== Typing Cursor ==================== */
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background: var(--accent-gold);
+            margin-left: 3px;
+            animation: blink 0.7s infinite;
+            vertical-align: text-bottom;
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* ==================== Responsive ==================== */
         @media (max-width: 768px) {
-            .scene-title { font-size: 1.5rem; }
-            .narrative-text { 
-                font-size: 1rem; 
-                padding: 1.2rem 1.5rem;
-                margin: 0 0.5rem 2rem;
-            }
-            .choice-btn { 
-                font-size: 0.95rem; 
-                padding: 1.1rem 1.5rem;
-            }
-            .top-nav { 
-                padding: 0.6rem 1rem; 
-                gap: 0.8rem;
-                flex-wrap: wrap;
-            }
-            .nav-link { 
-                font-size: 0.85rem; 
-                padding: 0.4rem 0.7rem;
-            }
-            .chapter-end h2 { font-size: 2rem; }
-            .scene-image-wrapper { max-width: 95%; }
+            .container { padding: 40px 20px 60px; }
+            .avatar-section { flex-direction: column; text-align: center; }
+            .scene { padding: 28px 22px; }
+            .scene-text { font-size: 16px; line-height: 2; }
+            .branch-container { flex-direction: column; }
+            .cursor-glow { display: none; }
         }
     </style>
 </head>
 <body>
-    <nav class="top-nav">
-        <button class="back-btn" onclick="goBack()">← 返回</button>
-        <a href="character-player.html" class="nav-link">角色介绍</a>
-        <a href="index.html" class="nav-link">首页</a>
-    </nav>
+    <!-- Cursor -->
+    <div class="cursor-glow" id="cursorGlow"></div>
     
-    <div class="progress-bar">
-        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+    <!-- Dynamic Background -->
+    <div class="bg-gradient">
+        <div class="bg-layer bg-layer-1"></div>
+        <div class="bg-layer bg-layer-2"></div>
+        <div class="bg-layer bg-layer-3"></div>
+        <div class="bg-layer bg-layer-4"></div>
     </div>
     
-    <div class="scene-bg">
-        <div class="holo-stream" id="holoStream"></div>
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <div class="container">
+        <!-- Avatar -->
+        <div class="avatar-section" id="avatarSection">
+            <div class="avatar-container">
+                <div class="avatar-glow"></div>
+                <div class="avatar">
+                    <span>☉</span>
+                    <div class="avatar-pulse"></div>
+                    <div class="avatar-pulse"></div>
+                    <div class="avatar-pulse"></div>
+                </div>
+            </div>
+            <div class="avatar-info">
+                <h1>巡者</h1>
+                <p>THE WARDEN</p>
+            </div>
+        </div>
+
+        <!-- Story Content -->
+        <div class="story-section" id="storySection">
+            <!-- Scenes will be dynamically inserted here -->
+        </div>
     </div>
-    
-    <div id="sceneContent" class="scene-container">
-        <!-- 场景内容将动态加载 -->
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Scene Transition -->
+    <div class="scene-transition" id="sceneTransition">
+        <div class="membrane-waves" id="membraneWaves"></div>
+        <div class="membrane-burst" id="membraneBurst"></div>
+    </div>
+
+    <!-- Ending Overlay -->
+    <div class="ending-overlay" id="endingOverlay">
+        <div class="ending-stars" id="endingStars"></div>
+        <div class="ending-message">
+            <h2>星光重启</h2>
+            <p>下个坐标见</p>
+        </div>
     </div>
 
     <script>
-        // 天道巡者故事数据 - 8场景4分支
-        const storyData = {
-            scenes: {
-                // 场景1：维度走廊
-                'scene-1': {
-                    id: 'scene-1',
-                    title: '维度走廊',
-                    image: 'images/guides/heaven.jpg',
-                    narrative: '你走在连接无数宇宙的走廊上，脚步轻快，像是在自家后院散步。这里是维度的缝隙，时间与空间在这里交织成流光溢彩的丝线。\n\n透过走廊的窗户，你能看到不同的宇宙：浮空仙阁在云海中若隐若现，未来都市的霓虹在星际间闪烁，混沌的星云在黑暗中翻涌。\n\n一切都很平静。你享受着这份宁静——直到你感知到了一丝不和谐的震动。',
-                    choices: [
-                        { text: '停下来，仔细感受那道震动', target: 'scene-2' },
-                        { text: '继续走，等待它自然消散', target: 'scene-2' }
-                    ],
-                    progress: 12
-                },
-                
-                // 场景2：崩坏信号
-                'scene-2': {
-                    id: 'scene-2',
-                    title: '崩坏信号',
-                    image: 'images/guides/heaven.jpg',
-                    narrative: '你停下脚步，闭上眼睛。\n\n那道震动穿过无数维度传来——微弱，但确实存在。不是普通的波动，是秩序核心的裂痕。某个宇宙的根基，正在动摇。\n\n这种事你见过太多次了。星系的坍缩、维度的撕裂、因果的崩解……每一次都伴随着毁灭与重生。\n\n<span class="inner-thought">"这种程度的崩坏，我见过更糟的。会好的。"</span>',
-                    choices: [
-                        { text: '循着震动源头追溯', target: 'scene-3' },
-                        { text: '用感知探查更多细节', target: 'scene-3' }
-                    ],
-                    progress: 25
-                },
-                
-                // 场景3：抉择之桥
-                'scene-3': {
-                    id: 'scene-3',
-                    title: '抉择之桥',
-                    image: 'images/guides/heaven.jpg',
-                    narrative: '你来到一座悬浮在维度裂缝中的桥。这里是命运的交叉点——两道求救的信号在这里交汇。\n\n左边：一个古老的宇宙正在崩溃。那里的文明延续了万亿年，如今秩序核心开始碎裂。\n\n右边：一个初生的宇宙正在挣扎。它才形成数万年，连基本法则都尚未稳固，却在第一次秩序考验中摇摇欲坠。\n\n两个宇宙，都在等待。',
-                    choices: [
-                        { text: '前往深渊宇宙——修复更严重的', target: 'scene-4a' },
-                        { text: '前往初生宇宙——拯救更脆弱的', target: 'scene-4b' }
-                    ],
-                    progress: 37
-                },
-                
-                // 分支A1：深渊宇宙
-                'scene-4a': {
-                    id: 'scene-4a',
-                    title: '深渊宇宙',
-                    image: 'images/guides/heaven.jpg',
-                    narrative: '你踏入那片古老的星域。\n\n这里曾经辉煌——无数星系在有序的轨道上运转，生命在万千世界中绽放。但现在，你看到的是漂浮的残骸、熄灭的恒星、以及扭曲的空间裂隙。\n\n万亿年的文明，在最后的挣扎中。\n\n<span class="inner-thought">"没关系。我在这里。"</span>\n\n你继续深入，寻找秩序核心的位置。',
-                    choices: [
-                        { text: '直接前往秩序核心', target: 'scene-5' }
-                    ],
-                    progress: 50
-                },
-                
-                // 分支A2：初生宇宙
-                'scene-4b': {
-                    id: 'scene-4b',
-                    title: '初生宇宙',
-                    image: 'images/guides/heaven.jpg',
-                    narrative: '你踏入那片年轻的星云。\n\n这里的一切都那么稚嫩——恒星的火焰尚未稳定，行星的轨道还在调整，甚至连光速都还没有被宇宙明确定义。\n\n但你能感受到它的生命力。脆弱，却顽强。\n\n<span class="inner-thought">"让我看看……第一次秩序考验吗？有意思。"</span>\n\n你循着混乱的源头，找到了这片宇宙的核心。',
-                    choices: [
-                        { text: '前往核心观察情况', target: 'scene-5' }
-                    ],
-                    progress: 50
-                },
-                
-                // 场景5：秩序之心
-                'scene-5': {
-                    id: 'scene-5',
-                    title: '秩序之心',
-                    image: 'images/guides/heaven.jpg',
-                    narrative: '你站在秩序核心面前。\n\n那是一颗散发着柔和光芒的晶体——它是这个宇宙的根本法则的具现。在古老宇宙中，它庞大而庄严；在初生宇宙中，它微小却跳动有力。\n\n但现在，两者都出现了同样的问题：核心正在碎裂。\n\n不是外力的破坏，而是……内部的失衡。宇宙本身的意志，在质疑自己的存在。\n\n<span class="inner-thought">"原来如此。不是被打破的，是自己开始不相信自己了。"</span>',
-                    choices: [
-                        { text: '继续深入核心', target: 'scene-6' }
-                    ],
-                    progress: 62
-                },
-                
-                // 场景6：万物回响
-                'scene-6': {
-                    id: 'scene-6',
-                    title: '万物回响',
-                    image: 'images/guides/heaven.jpg',
-                    narrative: '你进入核心深处。\n\n在这里，过去与未来同时展现。你看到这个宇宙从诞生到现在的所有时刻——辉煌与衰落、爱与失去、秩序与混乱的永恒轮回。\n\n宇宙的意志在低语：\n\n"我已经存在了太久。我见证了太多毁灭。我不明白为什么还要继续。"\n\n这是一个哲学的困境，不是技术的问题。你可以选择回应它。',
-                    choices: [
-                        { text: '用自身力量重建秩序——以身铸序', target: 'scene-7a' },
-                        { text: '引导宇宙自我修复——授人以渔', target: 'scene-7b' }
-                    ],
-                    progress: 75
-                },
-                
-                // 分支B1：以身铸序
-                'scene-7a': {
-                    id: 'scene-7a',
-                    title: '以身铸序',
-                    image: 'images/guides/heaven.jpg',
-                    narrative: '你伸出手，指尖触及那颗碎裂的核心。\n\n温暖的光从你体内涌出——那是你穿越无数宇宙积累的力量，是秩序本身的记忆。\n\n"你问我为什么继续？"你对那个宇宙的意志说。\n\n"因为我见过更糟的。我见过完全的混沌，见过一切的终结。但我依然选择相信——存在本身，就是意义。"\n\n光融入核心，裂痕开始愈合。',
-                    choices: [
-                        { text: '完成修复', target: 'ending-sacrifice' }
-                    ],
-                    progress: 87
-                },
-                
-                // 分支B2：授人以渔
-                'scene-7b': {
-                    id: 'scene-7b',
-                    title: '授人以渔',
-                    image: 'images/guides/heaven.jpg',
-                    narrative: '你没有直接修复核心，而是坐了下来。\n\n"你说你见证了太多毁灭？"你平静地说，"那你现在告诉我——那些毁灭之后，发生了什么？"\n\n宇宙的意志沉默了一会儿，然后回答：\n\n"……毁灭之后，总有新生。"\n\n"没错。循环不是诅咒，是宇宙的呼吸。你不需要永恒，只需要相信——每一刻的存在，都有它的价值。"\n\n核心开始自行震颤，仿佛在思考。',
-                    choices: [
-                        { text: '等待宇宙的觉醒', target: 'ending-teach' }
-                    ],
-                    progress: 87
-                }
+        // ==================== Story Data ====================
+        const storyData = [
+            {
+                id: 'scene1',
+                icon: '🌌',
+                title: '穿过了第几个宇宙',
+                text: '又穿过一层膜。第几个了？早就不记数了。<span class="highlight">量子泡沫</span>擦过手背的感觉，像穿过温凉的瀑布。这个宇宙的重力常数小数点后第三位有点意思，比上一个调皮。',
+                isScene: true
             },
-            endings: {
-                // 结局A：以身铸序 - 新的黎明
-                'ending-sacrifice': {
-                    title: '新的黎明',
-                    badge: '秩序守护者',
-                    narrative: '光芒充盈了整个宇宙。\n\n破碎的星辰重新找到了轨道，熄灭的恒星再次燃起希望。那些挣扎的生命，在突如其来的温暖中感受到了——有人在乎。\n\n你看着这片重生的宇宙，微微笑了。\n\n这只是你守护的无数宇宙之一。但对这里的生命来说，这是全部。\n\n<span class="inner-thought">"值得的。"</span>\n\n你转身，踏入维度走廊。下一个宇宙，正在等待。',
-                    teaser: '天道巡者继续他的旅途',
-                    progress: 100
-                },
-                
-                // 结局B：授人以渔 - 永恒守望
-                'ending-teach': {
-                    title: '永恒守望',
-                    badge: '智慧导师',
-                    narrative: '核心的光芒开始变化。\n\n不是被修复，而是被理解。那些裂痕依然存在，但它们不再是伤口，而是宇宙成长的印记。\n\n"我明白了。"宇宙的意志传来新的声音，"存在不是为了永恒，而是为了此刻。"\n\n你点点头，站起身来。\n\n这个宇宙会自己走下去了。也许它还会遇到困惑，还会再次动摇——但它有了面对的勇气。\n\n<span class="inner-thought">"授人以渔，这才是守护的真谛。"</span>\n\n你踏入维度裂缝，去看看下一个需要帮助的宇宙。',
-                    teaser: '天道巡者继续他的旅途',
-                    progress: 100
-                }
+            {
+                id: 'scene2',
+                icon: '💫',
+                title: '又一个宇宙崩坏',
+                text: '远处的星系团开始坍缩，不是引力那种，是更根本的——逻辑在打结。像看一栋老房子从梁柱开始酥掉，灰尘和记忆一起往下掉。叹了口气，调转方向。',
+                isScene: true
+            },
+            {
+                id: 'scene3',
+                icon: '⚡',
+                title: '两个宇宙同时求救',
+                text: '腕上的界标同时震了两下。两个坐标，两处崩坏。<span class="highlight">左边</span>那个熵增失控，正在吞没文明；<span class="highlight">右边</span>那个基础法则开始错乱，生态系统撑不过三小时。只能去一个。',
+                isScene: true,
+                hasBranches: true,
+                branches: [
+                    { id: 'a1', text: '去更严重的', choice: 'A1' },
+                    { id: 'a2', text: '去更脆弱的', choice: 'A2' }
+                ]
+            },
+            {
+                id: 'a1_result',
+                icon: '🎯',
+                title: '去更严重的',
+                text: '选左边。熵增失控是癌症，错乱法则至少还能抢救。临走前给右边那个撒了把<span class="highlight">时间缓释种子</span>，能多撑半天——但愿够用。',
+                isScene: true,
+                condition: 'a1'
+            },
+            {
+                id: 'a2_result',
+                icon: '🛡️',
+                title: '去更脆弱的',
+                text: '去右边。基础法则错乱像地基塌了，上面再繁华也得完。左边那个体量大，还能多烧一会儿。在崩坏的星云边缘留了道<span class="highlight">警戒光幕</span>，刺眼，但能拖延点时间。',
+                isScene: true,
+                condition: 'a2'
+            },
+            {
+                id: 'scene5',
+                icon: '🔍',
+                title: '崩坏的根源',
+                text: '根源找到了。不是外敌，不是天灾。是这个宇宙自己产生了"否定倾向"——太多文明在问"存在有什么意义"，问到连<span class="highlight">物理定律</span>都开始犹豫。真是的，<span class="highlight">哲学问题</span>把现实问垮了。',
+                isScene: true
+            },
+            {
+                id: 'scene6',
+                icon: '💭',
+                title: '有人问你为什么还不累',
+                text: '在修补法则间隙时，一个刚学会跨星系通讯的文明发来信号。不是求救，是问："您穿梭这么多世界，见证这么多崩塌，<span class="highlight">不会累吗？</span>"',
+                isScene: true,
+                hasBranches: true,
+                branches: [
+                    { id: 'b1', text: '说实话', choice: 'B1' },
+                    { id: 'b2', text: '笑着说', choice: 'B2' }
+                ]
+            },
+            {
+                id: 'b1_result',
+                icon: '🌟',
+                title: '说实话',
+                text: '"累。"我对着信号源说，"但见过烟花炸开前那根引线吗？我就是点火的人，也是看烟花的人。总得有人看着，万一哪个宇宙炸出朵<span class="highlight">特别好看的</span>呢。"',
+                isScene: true,
+                condition: 'b1'
+            },
+            {
+                id: 'b2_result',
+                icon: '😊',
+                title: '笑着说',
+                text: '"累啊，"我笑出声，"但就像你明知道熬夜伤身，还是会为一场好电影撑到片尾曲。宇宙们就是我的<span class="highlight">烂片马拉松</span>——偶尔也有彩蛋。"',
+                isScene: true,
+                condition: 'b2'
+            },
+            {
+                id: 'ending',
+                icon: '✨',
+                title: '结局',
+                text: '修补完成。法则重新绷紧，像拉好的琴弦。那个问问题的文明发来一段频率，是他们的音乐——用<span class="highlight">重力波谱</span>的曲子。挺好听。星光重新开始正常流淌，我拍了拍这个宇宙的"边缘"，像告别一个老朋友。腕上又震了。下个坐标见。',
+                isScene: true,
+                isEnding: true
             }
-        };
-        
-        let currentScene = 'scene-1';
-        let visitedScenes = [];
-        
-        // 初始化全息数据流
-        function initHoloStream() {
-            const container = document.getElementById('holoStream');
-            for (let i = 0; i < 8; i++) {
-                const line = document.createElement('div');
-                line.className = 'holo-line';
-                line.style.top = (Math.random() * 100) + '%';
-                line.style.width = (30 + Math.random() * 50) + '%';
-                line.style.animationDelay = (Math.random() * 20) + 's';
-                line.style.animationDuration = (15 + Math.random() * 15) + 's';
-                container.appendChild(line);
-            }
-        }
-        
-        function goBack() {
-            window.location.href = 'character-player.html';
-        }
-        
-        function updateProgress(progress) {
-            document.getElementById('progressFill').style.width = progress + '%';
-        }
-        
-        function renderScene(sceneId) {
-            const container = document.getElementById('sceneContent');
-            const scene = storyData.scenes[sceneId];
-            
-            if (!scene) return;
-            
-            // 淡出当前内容
-            container.classList.add('fade-out');
-            
-            setTimeout(() => {
-                let html = `
-                    <div class="scene-image-wrapper">
-                        <img src="${scene.image}" alt="${scene.title}" class="scene-image">
-                    </div>
-                    <h2 class="scene-title">${scene.title}</h2>
-                    <p class="narrative-text">${scene.narrative.replace(/\n/g, '<br>')}</p>
-                    <div class="choices-container">
-                `;
-                
-                scene.choices.forEach(choice => {
-                    html += `<button class="choice-btn" onclick="goToScene('${choice.target}')">${choice.text}</button>`;
-                });
-                
-                html += '</div>';
-                
-                container.innerHTML = html;
-                container.classList.remove('fade-out');
-                container.classList.add('fade-in');
-                
-                // 更新进度
-                updateProgress(scene.progress);
-                
-                // 触发动画
-                setTimeout(() => {
-                    document.querySelectorAll('.scene-image-wrapper, .scene-title, .narrative-text, .choices-container').forEach(el => {
-                        el.classList.add('visible');
-                    });
-                }, 100);
-                
-                // 记录访问
-                if (!visitedScenes.includes(sceneId)) {
-                    visitedScenes.push(sceneId);
-                }
-            }, 500);
-        }
-        
-        function renderEnding(endingId) {
-            const container = document.getElementById('sceneContent');
-            const ending = storyData.endings[endingId];
-            
-            if (!ending) return;
-            
-            container.classList.add('fade-out');
-            
-            setTimeout(() => {
-                let html = `
-                    <div class="chapter-end">
-                        <span class="ending-badge">${ending.badge}</span>
-                        <h2>${ending.title}</h2>
-                        <p class="narrative-text">${ending.narrative.replace(/\n/g, '<br>')}</p>
-                        <p style="color: var(--heaven-gold); margin-top: 1.5rem; font-size: 1.1rem; opacity: 0.8;">
-                            ✦ ${ending.teaser} ✦
-                        </p>
-                        <a href="character-player.html" class="continue-btn">返回角色介绍</a>
-                        <a href="index.html" class="back-link">← 返回首页</a>
-                    </div>
-                `;
-                
-                container.innerHTML = html;
-                container.classList.remove('fade-out');
-                container.classList.add('fade-in');
-                
-                updateProgress(ending.progress);
-            }, 500);
-        }
-        
-        function goToScene(sceneId) {
-            if (sceneId.startsWith('ending-')) {
-                renderEnding(sceneId);
-            } else {
-                currentScene = sceneId;
-                renderScene(sceneId);
-            }
-        }
-        
-        // 初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            initHoloStream();
-            renderScene('scene-1');
+        ];
+
+        // ==================== Global State ====================
+        let currentSceneIndex = 0;
+        let userChoices = { scene3: null, scene6: null };
+        let isTyping = false;
+        let typeTimeout = null;
+
+        // ==================== DOM Elements ====================
+        const storySection = document.getElementById('storySection');
+        const progressBar = document.getElementById('progressBar');
+        const cursorGlow = document.getElementById('cursorGlow');
+        const sceneTransition = document.getElementById('sceneTransition');
+        const membraneWaves = document.getElementById('membraneWaves');
+        const membraneBurst = document.getElementById('membraneBurst');
+        const endingOverlay = document.getElementById('endingOverlay');
+        const endingStars = document.getElementById('endingStars');
+        const avatarSection = document.getElementById('avatarSection');
+
+        // ==================== Custom Cursor ====================
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
         });
+
+        // Hover effect on interactive elements
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.closest('.highlight, .branch-btn, .continue-btn, .kael-portrait')) {
+                cursorGlow.classList.add('hovering');
+            }
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.closest('.highlight, .branch-btn, .continue-btn, .kael-portrait')) {
+                cursorGlow.classList.remove('hovering');
+            }
+        });
+
+        // ==================== Particle System ====================
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let animationId;
+
+        class Particle {
+            constructor(type = 'stardust') {
+                this.type = type;
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2.5 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.6;
+                this.speedY = (Math.random() - 0.5) * 0.6;
+                this.opacity = Math.random() * 0.6 + 0.2;
+                this.life = Math.random() * 250 + 120;
+                this.maxLife = this.life;
+
+                if (this.type === 'quantum') {
+                    this.size = Math.random() * 4 + 1.5;
+                    this.hue = 35 + Math.random() * 25; // Gold tones
+                    this.saturation = 65 + Math.random() * 25;
+                    this.lightness = 55 + Math.random() * 20;
+                    this.wobble = Math.random() * Math.PI * 2;
+                    this.wobbleSpeed = 0.03 + Math.random() * 0.04;
+                } else if (this.type === 'gravity') {
+                    this.angle = Math.random() * Math.PI * 2;
+                    this.radius = Math.random() * 80 + 30;
+                    this.centerX = canvas.width / 2 + (Math.random() - 0.5) * 200;
+                    this.centerY = canvas.height / 2 + (Math.random() - 0.5) * 200;
+                    this.angleSpeed = 0.005 + Math.random() * 0.01;
+                    this.size = Math.random() * 1.5 + 0.5;
+                }
+            }
+
+            update() {
+                this.life--;
+
+                if (this.life <= 0) {
+                    this.reset();
+                    return;
+                }
+
+                if (this.type === 'stardust') {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+
+                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                } else if (this.type === 'quantum') {
+                    this.wobble += this.wobbleSpeed;
+                    this.x += Math.sin(this.wobble) * 0.8;
+                    this.y += Math.cos(this.wobble) * 0.8;
+                } else if (this.type === 'gravity') {
+                    this.angle += this.angleSpeed;
+                    this.x = this.centerX + Math.cos(this.angle) * this.radius;
+                    this.y = this.centerY + Math.sin(this.angle) * this.radius;
+                }
+            }
+
+            draw() {
+                const lifeRatio = this.life / this.maxLife;
+                const alpha = this.opacity * lifeRatio;
+
+                if (this.type === 'quantum') {
+                    // Main quantum particle with glow
+                    const gradient = ctx.createRadialGradient(
+                        this.x, this.y, 0,
+                        this.x, this.y, this.size * 3
+                    );
+                    gradient.addColorStop(0, `hsla(${this.hue}, ${this.saturation}%, ${this.lightness}%, ${alpha})`);
+                    gradient.addColorStop(0.4, `hsla(${this.hue}, ${this.saturation}%, ${this.lightness}%, ${alpha * 0.4})`);
+                    gradient.addColorStop(1, 'transparent');
+                    
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+                    ctx.fillStyle = gradient;
+                    ctx.fill();
+
+                    // Core
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * (1 + (1 - lifeRatio) * 0.5), 0, Math.PI * 2);
+                    ctx.fillStyle = `hsla(${this.hue}, ${this.saturation}%, ${this.lightness + 10}%, ${alpha})`;
+                    ctx.fill();
+                } else if (this.type === 'gravity') {
+                    // Gravity wave particle
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(212, 168, 83, ${alpha * 0.6})`;
+                    ctx.fill();
+                    
+                    // Subtle trail
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(212, 168, 83, ${alpha * 0.15})`;
+                    ctx.fill();
+                } else {
+                    // Stardust particle
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(232, 228, 220, ${alpha})`;
+                    ctx.fill();
+                }
+            }
+        }
+
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            particles = [];
+            // Create different particle types
+            for (let i = 0; i < 50; i++) particles.push(new Particle('stardust'));
+            for (let i = 0; i < 25; i++) particles.push(new Particle('quantum'));
+            for (let i = 0; i < 20; i++) particles.push(new Particle('gravity'));
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            animationId = requestAnimationFrame(animateParticles);
+        }
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles.forEach(p => {
+                if (p.type === 'gravity') {
+                    p.centerX = canvas.width / 2;
+                    p.centerY = canvas.height / 2;
+                }
+            });
+        }
+
+        // ==================== Typewriter Effect ====================
+        async function typeWriter(element, html, speed = 20, punctSpeed = 60) {
+            isTyping = true;
+            element.innerHTML = '';
+
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+            const plainText = tempDiv.textContent;
+
+            let i = 0;
+            const cursor = document.createElement('span');
+            cursor.className = 'typing-cursor';
+            element.appendChild(cursor);
+
+            return new Promise((resolve) => {
+                function type() {
+                    if (i < plainText.length) {
+                        const char = plainText[i];
+                        cursor.remove();
+
+                        const currentText = plainText.substring(0, i + 1);
+                        element.innerHTML = reconstructHTML(html, currentText);
+                        element.appendChild(cursor);
+
+                        i++;
+
+                        // Check for punctuation
+                        const delay = /[，。！？、；：""''（）【】《》]/.test(char) ? punctSpeed : speed;
+                        typeTimeout = setTimeout(type, delay);
+                    } else {
+                        cursor.remove();
+                        element.innerHTML = html;
+                        isTyping = false;
+                        resolve();
+                    }
+                }
+
+                type();
+            });
+        }
+
+        function reconstructHTML(html, visibleText) {
+            let result = '';
+            let textCount = 0;
+            let inTag = false;
+            let inHighlight = false;
+            let tagBuffer = '';
+
+            for (let i = 0; i < html.length && textCount < visibleText.length; i++) {
+                if (html[i] === '<') {
+                    inTag = true;
+                    tagBuffer = '<';
+                } else if (html[i] === '>') {
+                    inTag = false;
+                    tagBuffer += '>';
+                    if (tagBuffer.includes('class="highlight"')) inHighlight = true;
+                    if (tagBuffer === '</span>') inHighlight = false;
+                    result += tagBuffer;
+                    tagBuffer = '';
+                } else if (inTag) {
+                    tagBuffer += html[i];
+                } else {
+                    result += html[i];
+                    textCount++;
+                }
+            }
+
+            if (inHighlight) result += '</span>';
+
+            return result;
+        }
+
+        // ==================== Scene Rendering ====================
+        function createSceneElement(scene) {
+            const div = document.createElement('div');
+            div.className = 'scene';
+            div.id = scene.id;
+
+            div.innerHTML = `
+                <div class="scene-header">
+                    <div class="scene-icon">${scene.icon}</div>
+                    <div class="scene-title">${scene.title}</div>
+                </div>
+                <div class="scene-text" id="text-${scene.id}"></div>
+                ${scene.hasBranches ? `
+                    <div class="branch-container" id="branches-${scene.id}">
+                        ${scene.branches.map(b => `
+                            <button class="branch-btn" data-choice="${b.id}" data-next="${scene.id}_${b.id}">
+                                <div class="btn-glow"></div>
+                                <span class="btn-text">${b.text}</span>
+                            </button>
+                        `).join('')}
+                    </div>
+                ` : ''}
+                <button class="continue-btn" id="continue-${scene.id}">继续 →</button>
+            `;
+
+            return div;
+        }
+
+        async function renderScene(index) {
+            if (index >= storyData.length) {
+                triggerEnding();
+                return;
+            }
+
+            const scene = storyData[index];
+
+            // Check conditions for branch results
+            if (scene.condition) {
+                if (scene.condition === 'a1' && userChoices.scene3 !== 'a1') return;
+                if (scene.condition === 'a2' && userChoices.scene3 !== 'a2') return;
+                if (scene.condition === 'b1' && userChoices.scene6 !== 'b1') return;
+                if (scene.condition === 'b2' && userChoices.scene6 !== 'b2') return;
+            }
+
+            // Trigger membrane transition with delay
+            await triggerMembraneTransition();
+
+            const sceneEl = createSceneElement(scene);
+            storySection.appendChild(sceneEl);
+
+            // Update progress
+            const progress = ((index + 1) / getFilteredStoryLength()) * 100;
+            progressBar.style.width = progress + '%';
+
+            // Show scene with animation
+            setTimeout(() => {
+                sceneEl.classList.add('visible');
+            }, 100);
+
+            // Type the text
+            const textEl = document.getElementById(`text-${scene.id}`);
+            await typeWriter(textEl, scene.text);
+
+            // Show continue button or branches
+            if (scene.hasBranches) {
+                const branchesContainer = document.getElementById(`branches-${scene.id}`);
+                if (branchesContainer) {
+                    branchesContainer.style.opacity = '0';
+                    setTimeout(() => {
+                        branchesContainer.style.opacity = '1';
+                        branchesContainer.style.transition = 'opacity 0.5s ease';
+                    }, 300);
+                }
+            } else if (!scene.isEnding) {
+                const continueBtn = document.getElementById(`continue-${scene.id}`);
+                if (continueBtn) {
+                    setTimeout(() => {
+                        continueBtn.classList.add('visible');
+                    }, 300);
+                }
+            }
+
+            currentSceneIndex = index;
+            updateURL();
+        }
+
+        function getFilteredStoryLength() {
+            let count = 0;
+            for (const scene of storyData) {
+                if (scene.condition) {
+                    if (scene.condition === 'a1' || scene.condition === 'a2') {
+                        if (userChoices.scene3 === scene.condition) count++;
+                    } else if (scene.condition === 'b1' || scene.condition === 'b2') {
+                        if (userChoices.scene6 === scene.condition) count++;
+                    }
+                } else {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        // ==================== Membrane Transition ====================
+        function triggerMembraneTransition() {
+            return new Promise((resolve) => {
+                // Central burst effect
+                membraneBurst.style.opacity = '1';
+                membraneBurst.style.transform = 'translate(-50%, -50%) scale(0)';
+                membraneBurst.style.transition = 'none';
+                
+                requestAnimationFrame(() => {
+                    membraneBurst.style.transition = 'transform 0.4s ease-out, opacity 0.4s ease-out';
+                    membraneBurst.style.transform = 'translate(-50%, -50%) scale(1)';
+                });
+
+                setTimeout(() => {
+                    membraneBurst.style.opacity = '0';
+                }, 300);
+
+                // Multiple expanding waves
+                for (let i = 0; i < 3; i++) {
+                    setTimeout(() => {
+                        const wave = document.createElement('div');
+                        wave.className = 'membrane-wave';
+                        membraneWaves.appendChild(wave);
+
+                        const rect = membraneWaves.getBoundingClientRect();
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        const maxRadius = Math.max(rect.width, rect.height);
+
+                        wave.style.left = centerX + 'px';
+                        wave.style.top = centerY + 'px';
+                        wave.style.width = '0px';
+                        wave.style.height = '0px';
+                        wave.style.marginLeft = '0px';
+                        wave.style.marginTop = '0px';
+
+                        wave.animate([
+                            {
+                                width: '0px',
+                                height: '0px',
+                                marginLeft: '0px',
+                                marginTop: '0px',
+                                opacity: 0.9,
+                                borderWidth: '4px'
+                            },
+                            {
+                                width: maxRadius * 2 + 'px',
+                                height: maxRadius * 2 + 'px',
+                                marginLeft: -maxRadius + 'px',
+                                marginTop: -maxRadius + 'px',
+                                opacity: 0,
+                                borderWidth: '1px'
+                            }
+                        ], {
+                            duration: 1000,
+                            easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                        }).onfinish = () => {
+                            wave.remove();
+                        };
+                    }, i * 150);
+                }
+
+                // Resolve after transition
+                setTimeout(resolve, 50);
+            });
+        }
+
+        // ==================== Ending Effect ====================
+        function triggerEnding() {
+            endingOverlay.classList.add('active');
+
+            // Create stars with stagger
+            setTimeout(() => {
+                for (let i = 0; i < 120; i++) {
+                    setTimeout(() => {
+                        const star = document.createElement('div');
+                        star.className = 'ending-star';
+                        star.style.left = Math.random() * 100 + '%';
+                        star.style.bottom = '0';
+                        star.style.animationDelay = Math.random() * 0.5 + 's';
+                        star.style.animationDuration = (3 + Math.random() * 3) + 's';
+                        star.style.width = (2 + Math.random() * 4) + 'px';
+                        star.style.height = star.style.width;
+                        endingStars.appendChild(star);
+
+                        setTimeout(() => star.remove(), 5000);
+                    }, i * 40);
+                }
+            }, 500);
+
+            // Fade out overlay after stars
+            setTimeout(() => {
+                endingOverlay.style.opacity = '0';
+            }, 6000);
+        }
+
+        // ==================== Event Handlers ====================
+        document.addEventListener('click', async (e) => {
+            if (isTyping) {
+                clearTimeout(typeTimeout);
+                const currentScene = storyData[currentSceneIndex];
+                const textEl = document.getElementById(`text-${currentScene.id}`);
+                if (textEl) {
+                    textEl.innerHTML = currentScene.text;
+                    isTyping = false;
+                }
+                return;
+            }
+
+            // Branch button
+            if (e.target.closest('.branch-btn')) {
+                const btn = e.target.closest('.branch-btn');
+                const choiceId = btn.dataset.choice;
+                const sceneId = btn.closest('.scene').id;
+
+                if (sceneId === 'scene3') userChoices.scene3 = choiceId;
+                if (sceneId === 'scene6') userChoices.scene6 = choiceId;
+
+                // Hide all buttons
+                document.querySelectorAll('.branch-btn').forEach(b => {
+                    b.style.pointerEvents = 'none';
+                    b.style.opacity = '0.3';
+                });
+                btn.style.opacity = '1';
+                btn.style.borderColor = 'var(--accent-gold)';
+                btn.style.boxShadow = '0 0 30px rgba(212, 168, 83, 0.4)';
+
+                // Hide branch container
+                const branchesContainer = document.getElementById(`branches-${sceneId}`);
+                if (branchesContainer) {
+                    branchesContainer.style.opacity = '0';
+                }
+
+                // Continue after choice - 1.5 seconds
+                setTimeout(() => {
+                    renderScene(currentSceneIndex + 1);
+                }, 1500);
+            }
+
+            // Continue button
+            if (e.target.closest('.continue-btn')) {
+                const continueBtn = e.target.closest('.continue-btn');
+                continueBtn.style.display = 'none';
+                renderScene(currentSceneIndex + 1);
+            }
+        });
+
+        // ==================== URL State ====================
+        function updateURL() {
+            const state = {
+                index: currentSceneIndex,
+                choices: userChoices
+            };
+            history.replaceState(state, '', '#' + btoa(JSON.stringify(state)));
+        }
+
+        function loadFromURL() {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                try {
+                    const state = JSON.parse(atob(hash));
+                    currentSceneIndex = state.index || 0;
+                    userChoices = state.choices || { scene3: null, scene6: null };
+                } catch (e) {
+                    console.log('Invalid state in URL');
+                }
+            }
+        }
+
+        // ==================== Initialization ====================
+        function init() {
+            // Show avatar
+            setTimeout(() => {
+                avatarSection.style.opacity = '1';
+                avatarSection.style.transform = 'translateY(0)';
+                avatarSection.style.transition = 'all 0.8s ease';
+            }, 300);
+
+            // Initialize canvas and particles FIRST (blocking)
+            initCanvas();
+            animateParticles();
+
+            // Load state from URL if present
+            loadFromURL();
+
+            // Render first scene after delay
+            setTimeout(() => {
+                renderScene(0);
+            }, 1000);
+
+            // Handle resize
+            window.addEventListener('resize', resizeCanvas);
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === ' ' || e.key === 'Enter') {
+                    if (!isTyping) {
+                        const continueBtn = document.querySelector('.continue-btn.visible');
+                        if (continueBtn) {
+                            continueBtn.click();
+                        }
+                    }
+                }
+            });
+        }
+
+        // Start when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
     </script>
 </body>
 </html>
