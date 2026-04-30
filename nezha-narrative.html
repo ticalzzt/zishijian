@@ -1038,7 +1038,7 @@
             }
             
             // 转场效果
-            sceneTransition(() => {
+            sceneTransition(async () => {
                 let html = `
                     <div class="character-display">
                         <img src="${storyData.characterImage}" alt="三太子" class="character-image">
@@ -1100,7 +1100,7 @@
         async function renderEnding(scene) {
             const container = document.getElementById('sceneContent');
             
-            sceneTransition(() => {
+            sceneTransition(async () => {
                 let html = `
                     <div class="character-display visible">
                         <img src="${storyData.characterImage}" alt="三太子" class="character-image">
