@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>天道巡者 - 秩序守护者 | 藏子世间</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --heaven-navy: #1a2744;
+            --heaven-deep: #0d1526;
+            --heaven-gold: #d4a84b;
+            --heaven-gold-light: #e8c675;
+            --heaven-cream: #f5f0e6;
+            --heaven-warm: rgba(212, 168, 75, 0.15);
+            --heaven-glow: rgba(212, 168, 75, 0.5);
+            --ink-black: #0a0908;
+            --dark-bg: rgba(13, 21, 38, 0.98);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: var(--ink-black);
+            font-family: 'Noto Serif SC', serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* 导航栏 */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(13, 21, 38, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--heaven-gold);
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: 0 0 30px rgba(212, 168, 75, 0.15);
+        }
+        
+        .back-btn, .nav-link {
+            color: var(--heaven-gold);
+            font-family: 'ZCOOL XiaoWei', serif;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+        
+        .back-btn { border-color: rgba(212, 168, 75, 0.4); }
+        
+        .back-btn:hover, .nav-link:hover {
+            color: var(--heaven-gold-light);
+            text-shadow: 0 0 15px rgba(212, 168, 75, 0.8);
+            border-color: var(--heaven-gold-light);
+            background: rgba(212, 168, 75, 0.1);
+        }
+        
+        /* 进度指示器 */
+        .progress-bar {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(212, 168, 75, 0.15);
+            z-index: 99;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--heaven-gold), var(--heaven-gold-light));
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px var(--heaven-glow);
+        }
+        
+        /* 场景容器 */
+        .scene-container {
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 40px;
+        }
+        
+        /* 场景背景 - 温暖宇宙感 */
+        .scene-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(212, 168, 75, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(212, 168, 75, 0.05) 0%, transparent 40%),
+                linear-gradient(180deg, 
+                    rgba(13, 21, 38, 0.9) 0%, 
+                    rgba(26, 39, 68, 0.85) 50%,
+                    rgba(13, 21, 38, 0.9) 100%);
+        }
+        
+        /* 全息数据流效果 */
+        .holo-stream {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -2;
+            overflow: hidden;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+        
+        .holo-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--heaven-gold), transparent);
+            animation: holoScroll 20s linear infinite;
+        }
+        
+        @keyframes holoScroll {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+        
+        /* 场景图片容器 */
+        .scene-image-wrapper {
+            width: 100%;
+            max-width: 700px;
+            margin-bottom: 2rem;
+            position: relative;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .scene-image-wrapper.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .scene-image {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 
+                0 0 60px rgba(212, 168, 75, 0.2),
+                0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(212, 168, 75, 0.25);
+        }
+        
+        /* 温暖光晕环绕 */
+        .scene-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border-radius: 24px;
+            background: radial-gradient(ellipse at center, rgba(212, 168, 75, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+        
+        /* 场景标题 */
+        .scene-title {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 1.8rem;
+            color: var(--heaven-gold-light);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 20px var(--heaven-glow);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
+        }
+        
+        .scene-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 叙事文字 */
+        .narrative-text {
+            max-width: 650px;
+            text-align: center;
+            color: var(--heaven-cream);
+            font-size: 1.15rem;
+            line-height: 2;
+            margin-bottom: 2.5rem;
+            padding: 1.8rem 2.2rem;
+            background: rgba(26, 39, 68, 0.5);
+            border-radius: 16px;
+            border: 1px solid rgba(212, 168, 75, 0.2);
+            box-shadow: 0 0 30px rgba(212, 168, 75, 0.08);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s;
+        }
+        
+        .narrative-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 内心独白特殊样式 */
+        .inner-thought {
+            font-style: italic;
+            color: rgba(212, 168, 75, 0.85);
+            border-left: 3px solid var(--heaven-gold);
+            padding-left: 1rem;
+            margin-top: 1rem;
+            text-align: left;
+        }
+        
+        /* 选择区域 */
+        .choices-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            max-width: 520px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease 0.7s, transform 0.6s ease 0.7s;
+        }
+        
+        .choices-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .choice-btn {
+            padding: 1.3rem 2rem;
+            background: linear-gradient(135deg, 
+                rgba(212, 168, 75, 0.12), 
+                rgba(232, 198, 117, 0.08));
+            border: 2px solid var(--heaven-gold);
+            color: var(--heaven-gold);
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.05rem;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .choice-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(212, 168, 75, 0.15), 
+                transparent);
+            transition: left 0.5s;
+        }
+        
+        .choice-btn:hover {
+            background: linear-gradient(135deg, 
+                rgba(212, 168, 75, 0.28), 
+                rgba(232, 198, 117, 0.18));
+            transform: translateX(12px);
+            box-shadow: 0 0 30px rgba(212, 168, 75, 0.25);
+            border-color: var(--heaven-gold-light);
+            color: var(--heaven-gold-light);
+        }
+        
+        .choice-btn:hover::before {
+            left: 100%;
+        }
+        
+        /* 章节结束页面 */
+        .chapter-end {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+        
+        .chapter-end h2 {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 2.5rem;
+            color: var(--heaven-gold-light);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 30px var(--heaven-glow);
+        }
+        
+        .chapter-end .narrative-text {
+            text-align: center;
+            max-width: 700px;
+        }
+        
+        .continue-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1.1rem 2.8rem;
+            background: linear-gradient(135deg, 
+                rgba(212, 168, 75, 0.25), 
+                rgba(232, 198, 117, 0.15));
+            border: 2px solid var(--heaven-gold-light);
+            color: var(--heaven-gold-light);
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .continue-btn:hover {
+            background: linear-gradient(135deg, 
+                rgba(212, 168, 75, 0.45), 
+                rgba(232, 198, 117, 0.3));
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(212, 168, 75, 0.4);
+        }
+        
+        .back-link {
+            display: block;
+            margin-top: 2rem;
+            color: rgba(212, 168, 75, 0.6);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: var(--heaven-gold);
+        }
+        
+        /* 结局徽章 */
+        .ending-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(212, 168, 75, 0.15);
+            border: 1px solid var(--heaven-gold);
+            border-radius: 30px;
+            color: var(--heaven-gold);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.2em;
+        }
+        
+        /* 淡入淡出动画 */
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .fade-in {
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .scene-title { font-size: 1.5rem; }
+            .narrative-text { 
+                font-size: 1rem; 
+                padding: 1.2rem 1.5rem;
+                margin: 0 0.5rem 2rem;
+            }
+            .choice-btn { 
+                font-size: 0.95rem; 
+                padding: 1.1rem 1.5rem;
+            }
+            .top-nav { 
+                padding: 0.6rem 1rem; 
+                gap: 0.8rem;
+                flex-wrap: wrap;
+            }
+            .nav-link { 
+                font-size: 0.85rem; 
+                padding: 0.4rem 0.7rem;
+            }
+            .chapter-end h2 { font-size: 2rem; }
+            .scene-image-wrapper { max-width: 95%; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <button class="back-btn" onclick="goBack()">← 返回</button>
+        <a href="character-player.html" class="nav-link">角色介绍</a>
+        <a href="index.html" class="nav-link">首页</a>
+    </nav>
+    
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+    </div>
+    
+    <div class="scene-bg">
+        <div class="holo-stream" id="holoStream"></div>
+    </div>
+    
+    <div id="sceneContent" class="scene-container">
+        <!-- 场景内容将动态加载 -->
+    </div>
+
+    <script>
+        // 天道巡者故事数据 - 8场景4分支
+        const storyData = {
+            scenes: {
+                // 场景1：维度走廊
+                'scene-1': {
+                    id: 'scene-1',
+                    title: '维度走廊',
+                    image: 'images/guides/heaven.jpg',
+                    narrative: '你走在连接无数宇宙的走廊上，脚步轻快，像是在自家后院散步。这里是维度的缝隙，时间与空间在这里交织成流光溢彩的丝线。\n\n透过走廊的窗户，你能看到不同的宇宙：浮空仙阁在云海中若隐若现，未来都市的霓虹在星际间闪烁，混沌的星云在黑暗中翻涌。\n\n一切都很平静。你享受着这份宁静——直到你感知到了一丝不和谐的震动。',
+                    choices: [
+                        { text: '停下来，仔细感受那道震动', target: 'scene-2' },
+                        { text: '继续走，等待它自然消散', target: 'scene-2' }
+                    ],
+                    progress: 12
+                },
+                
+                // 场景2：崩坏信号
+                'scene-2': {
+                    id: 'scene-2',
+                    title: '崩坏信号',
+                    image: 'images/guides/heaven.jpg',
+                    narrative: '你停下脚步，闭上眼睛。\n\n那道震动穿过无数维度传来——微弱，但确实存在。不是普通的波动，是秩序核心的裂痕。某个宇宙的根基，正在动摇。\n\n这种事你见过太多次了。星系的坍缩、维度的撕裂、因果的崩解……每一次都伴随着毁灭与重生。\n\n<span class="inner-thought">"这种程度的崩坏，我见过更糟的。会好的。"</span>',
+                    choices: [
+                        { text: '循着震动源头追溯', target: 'scene-3' },
+                        { text: '用感知探查更多细节', target: 'scene-3' }
+                    ],
+                    progress: 25
+                },
+                
+                // 场景3：抉择之桥
+                'scene-3': {
+                    id: 'scene-3',
+                    title: '抉择之桥',
+                    image: 'images/guides/heaven.jpg',
+                    narrative: '你来到一座悬浮在维度裂缝中的桥。这里是命运的交叉点——两道求救的信号在这里交汇。\n\n左边：一个古老的宇宙正在崩溃。那里的文明延续了万亿年，如今秩序核心开始碎裂。\n\n右边：一个初生的宇宙正在挣扎。它才形成数万年，连基本法则都尚未稳固，却在第一次秩序考验中摇摇欲坠。\n\n两个宇宙，都在等待。',
+                    choices: [
+                        { text: '前往深渊宇宙——修复更严重的', target: 'scene-4a' },
+                        { text: '前往初生宇宙——拯救更脆弱的', target: 'scene-4b' }
+                    ],
+                    progress: 37
+                },
+                
+                // 分支A1：深渊宇宙
+                'scene-4a': {
+                    id: 'scene-4a',
+                    title: '深渊宇宙',
+                    image: 'images/guides/heaven.jpg',
+                    narrative: '你踏入那片古老的星域。\n\n这里曾经辉煌——无数星系在有序的轨道上运转，生命在万千世界中绽放。但现在，你看到的是漂浮的残骸、熄灭的恒星、以及扭曲的空间裂隙。\n\n万亿年的文明，在最后的挣扎中。\n\n<span class="inner-thought">"没关系。我在这里。"</span>\n\n你继续深入，寻找秩序核心的位置。',
+                    choices: [
+                        { text: '直接前往秩序核心', target: 'scene-5' }
+                    ],
+                    progress: 50
+                },
+                
+                // 分支A2：初生宇宙
+                'scene-4b': {
+                    id: 'scene-4b',
+                    title: '初生宇宙',
+                    image: 'images/guides/heaven.jpg',
+                    narrative: '你踏入那片年轻的星云。\n\n这里的一切都那么稚嫩——恒星的火焰尚未稳定，行星的轨道还在调整，甚至连光速都还没有被宇宙明确定义。\n\n但你能感受到它的生命力。脆弱，却顽强。\n\n<span class="inner-thought">"让我看看……第一次秩序考验吗？有意思。"</span>\n\n你循着混乱的源头，找到了这片宇宙的核心。',
+                    choices: [
+                        { text: '前往核心观察情况', target: 'scene-5' }
+                    ],
+                    progress: 50
+                },
+                
+                // 场景5：秩序之心
+                'scene-5': {
+                    id: 'scene-5',
+                    title: '秩序之心',
+                    image: 'images/guides/heaven.jpg',
+                    narrative: '你站在秩序核心面前。\n\n那是一颗散发着柔和光芒的晶体——它是这个宇宙的根本法则的具现。在古老宇宙中，它庞大而庄严；在初生宇宙中，它微小却跳动有力。\n\n但现在，两者都出现了同样的问题：核心正在碎裂。\n\n不是外力的破坏，而是……内部的失衡。宇宙本身的意志，在质疑自己的存在。\n\n<span class="inner-thought">"原来如此。不是被打破的，是自己开始不相信自己了。"</span>',
+                    choices: [
+                        { text: '继续深入核心', target: 'scene-6' }
+                    ],
+                    progress: 62
+                },
+                
+                // 场景6：万物回响
+                'scene-6': {
+                    id: 'scene-6',
+                    title: '万物回响',
+                    image: 'images/guides/heaven.jpg',
+                    narrative: '你进入核心深处。\n\n在这里，过去与未来同时展现。你看到这个宇宙从诞生到现在的所有时刻——辉煌与衰落、爱与失去、秩序与混乱的永恒轮回。\n\n宇宙的意志在低语：\n\n"我已经存在了太久。我见证了太多毁灭。我不明白为什么还要继续。"\n\n这是一个哲学的困境，不是技术的问题。你可以选择回应它。',
+                    choices: [
+                        { text: '用自身力量重建秩序——以身铸序', target: 'scene-7a' },
+                        { text: '引导宇宙自我修复——授人以渔', target: 'scene-7b' }
+                    ],
+                    progress: 75
+                },
+                
+                // 分支B1：以身铸序
+                'scene-7a': {
+                    id: 'scene-7a',
+                    title: '以身铸序',
+                    image: 'images/guides/heaven.jpg',
+                    narrative: '你伸出手，指尖触及那颗碎裂的核心。\n\n温暖的光从你体内涌出——那是你穿越无数宇宙积累的力量，是秩序本身的记忆。\n\n"你问我为什么继续？"你对那个宇宙的意志说。\n\n"因为我见过更糟的。我见过完全的混沌，见过一切的终结。但我依然选择相信——存在本身，就是意义。"\n\n光融入核心，裂痕开始愈合。',
+                    choices: [
+                        { text: '完成修复', target: 'ending-sacrifice' }
+                    ],
+                    progress: 87
+                },
+                
+                // 分支B2：授人以渔
+                'scene-7b': {
+                    id: 'scene-7b',
+                    title: '授人以渔',
+                    image: 'images/guides/heaven.jpg',
+                    narrative: '你没有直接修复核心，而是坐了下来。\n\n"你说你见证了太多毁灭？"你平静地说，"那你现在告诉我——那些毁灭之后，发生了什么？"\n\n宇宙的意志沉默了一会儿，然后回答：\n\n"……毁灭之后，总有新生。"\n\n"没错。循环不是诅咒，是宇宙的呼吸。你不需要永恒，只需要相信——每一刻的存在，都有它的价值。"\n\n核心开始自行震颤，仿佛在思考。',
+                    choices: [
+                        { text: '等待宇宙的觉醒', target: 'ending-teach' }
+                    ],
+                    progress: 87
+                }
+            },
+            endings: {
+                // 结局A：以身铸序 - 新的黎明
+                'ending-sacrifice': {
+                    title: '新的黎明',
+                    badge: '秩序守护者',
+                    narrative: '光芒充盈了整个宇宙。\n\n破碎的星辰重新找到了轨道，熄灭的恒星再次燃起希望。那些挣扎的生命，在突如其来的温暖中感受到了——有人在乎。\n\n你看着这片重生的宇宙，微微笑了。\n\n这只是你守护的无数宇宙之一。但对这里的生命来说，这是全部。\n\n<span class="inner-thought">"值得的。"</span>\n\n你转身，踏入维度走廊。下一个宇宙，正在等待。',
+                    teaser: '天道巡者继续他的旅途',
+                    progress: 100
+                },
+                
+                // 结局B：授人以渔 - 永恒守望
+                'ending-teach': {
+                    title: '永恒守望',
+                    badge: '智慧导师',
+                    narrative: '核心的光芒开始变化。\n\n不是被修复，而是被理解。那些裂痕依然存在，但它们不再是伤口，而是宇宙成长的印记。\n\n"我明白了。"宇宙的意志传来新的声音，"存在不是为了永恒，而是为了此刻。"\n\n你点点头，站起身来。\n\n这个宇宙会自己走下去了。也许它还会遇到困惑，还会再次动摇——但它有了面对的勇气。\n\n<span class="inner-thought">"授人以渔，这才是守护的真谛。"</span>\n\n你踏入维度裂缝，去看看下一个需要帮助的宇宙。',
+                    teaser: '天道巡者继续他的旅途',
+                    progress: 100
+                }
+            }
+        };
+        
+        let currentScene = 'scene-1';
+        let visitedScenes = [];
+        
+        // 初始化全息数据流
+        function initHoloStream() {
+            const container = document.getElementById('holoStream');
+            for (let i = 0; i < 8; i++) {
+                const line = document.createElement('div');
+                line.className = 'holo-line';
+                line.style.top = (Math.random() * 100) + '%';
+                line.style.width = (30 + Math.random() * 50) + '%';
+                line.style.animationDelay = (Math.random() * 20) + 's';
+                line.style.animationDuration = (15 + Math.random() * 15) + 's';
+                container.appendChild(line);
+            }
+        }
+        
+        function goBack() {
+            window.location.href = 'character-player.html';
+        }
+        
+        function updateProgress(progress) {
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+        
+        function renderScene(sceneId) {
+            const container = document.getElementById('sceneContent');
+            const scene = storyData.scenes[sceneId];
+            
+            if (!scene) return;
+            
+            // 淡出当前内容
+            container.classList.add('fade-out');
+            
+            setTimeout(() => {
+                let html = `
+                    <div class="scene-image-wrapper">
+                        <img src="${scene.image}" alt="${scene.title}" class="scene-image">
+                    </div>
+                    <h2 class="scene-title">${scene.title}</h2>
+                    <p class="narrative-text">${scene.narrative.replace(/\n/g, '<br>')}</p>
+                    <div class="choices-container">
+                `;
+                
+                scene.choices.forEach(choice => {
+                    html += `<button class="choice-btn" onclick="goToScene('${choice.target}')">${choice.text}</button>`;
+                });
+                
+                html += '</div>';
+                
+                container.innerHTML = html;
+                container.classList.remove('fade-out');
+                container.classList.add('fade-in');
+                
+                // 更新进度
+                updateProgress(scene.progress);
+                
+                // 触发动画
+                setTimeout(() => {
+                    document.querySelectorAll('.scene-image-wrapper, .scene-title, .narrative-text, .choices-container').forEach(el => {
+                        el.classList.add('visible');
+                    });
+                }, 100);
+                
+                // 记录访问
+                if (!visitedScenes.includes(sceneId)) {
+                    visitedScenes.push(sceneId);
+                }
+            }, 500);
+        }
+        
+        function renderEnding(endingId) {
+            const container = document.getElementById('sceneContent');
+            const ending = storyData.endings[endingId];
+            
+            if (!ending) return;
+            
+            container.classList.add('fade-out');
+            
+            setTimeout(() => {
+                let html = `
+                    <div class="chapter-end">
+                        <span class="ending-badge">${ending.badge}</span>
+                        <h2>${ending.title}</h2>
+                        <p class="narrative-text">${ending.narrative.replace(/\n/g, '<br>')}</p>
+                        <p style="color: var(--heaven-gold); margin-top: 1.5rem; font-size: 1.1rem; opacity: 0.8;">
+                            ✦ ${ending.teaser} ✦
+                        </p>
+                        <a href="character-player.html" class="continue-btn">返回角色介绍</a>
+                        <a href="index.html" class="back-link">← 返回首页</a>
+                    </div>
+                `;
+                
+                container.innerHTML = html;
+                container.classList.remove('fade-out');
+                container.classList.add('fade-in');
+                
+                updateProgress(ending.progress);
+            }, 500);
+        }
+        
+        function goToScene(sceneId) {
+            if (sceneId.startsWith('ending-')) {
+                renderEnding(sceneId);
+            } else {
+                currentScene = sceneId;
+                renderScene(sceneId);
+            }
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initHoloStream();
+            renderScene('scene-1');
+        });
+    </script>
+</body>
+</html>
