@@ -1,847 +1,1179 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>混沌行者 - 维度之外 | 藏子世间</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --chaos-black: #050508;
-            --neon-green: #39ff14;
-            --neon-green-dim: #1a7a0a;
-            --void-purple: #9b59b6;
-            --void-blue: #3498db;
-            --dark-gold: #b8860b;
-            --nebula-pink: #ff006e;
-            --text-primary: #e8e8e8;
-            --text-secondary: #9a9a9a;
-            --glow-green: rgba(57, 255, 20, 0.6);
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            background: var(--chaos-black);
-            font-family: 'Noto Serif SC', serif;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-        
-        /* 浮动几何碎片背景 */
-        .chaos-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-        
-        .fragment {
-            position: absolute;
-            opacity: 0.15;
-            animation: floatRotate 20s ease-in-out infinite;
-        }
-        
-        .fragment.triangle {
-            width: 0;
-            height: 0;
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-            border-bottom: 35px solid var(--neon-green);
-        }
-        
-        .fragment.hexagon {
-            width: 40px;
-            height: 23px;
-            background: var(--void-purple);
-            position: relative;
-        }
-        
-        .fragment.hexagon::before,
-        .fragment.hexagon::after {
-            content: "";
-            position: absolute;
-            width: 0;
-            height: 0;
-            left: 0;
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-        }
-        
-        .fragment.hexagon::before {
-            bottom: 100%;
-            border-bottom: 12px solid var(--void-purple);
-        }
-        
-        .fragment.hexagon::after {
-            top: 100%;
-            border-top: 12px solid var(--void-purple);
-        }
-        
-        .fragment:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
-        .fragment:nth-child(2) { top: 20%; right: 10%; animation-delay: -3s; }
-        .fragment:nth-child(3) { top: 60%; left: 8%; animation-delay: -6s; }
-        .fragment:nth-child(4) { top: 75%; right: 15%; animation-delay: -9s; }
-        .fragment:nth-child(5) { top: 40%; left: 85%; animation-delay: -12s; }
-        .fragment:nth-child(6) { top: 85%; left: 45%; animation-delay: -15s; }
-        .fragment:nth-child(7) { top: 5%; left: 50%; animation-delay: -18s; }
-        .fragment:nth-child(8) { top: 50%; left: 20%; animation-delay: -2s; }
-        
-        @keyframes floatRotate {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg) scale(1);
-            }
-            25% { 
-                transform: translateY(-30px) rotate(90deg) scale(1.1);
-            }
-            50% { 
-                transform: translateY(-15px) rotate(180deg) scale(0.9);
-            }
-            75% { 
-                transform: translateY(-40px) rotate(270deg) scale(1.05);
-            }
-        }
-        
-        /* 空间扭曲波纹 */
-        .warp-ripple {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 600px;
-            height: 600px;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .warp-ripple::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 50%;
-            border: 1px solid var(--neon-green);
-            opacity: 0;
-            animation: rippleExpand 4s ease-out infinite;
-        }
-        
-        .warp-ripple::after {
-            content: '';
-            position: absolute;
-            top: 20%;
-            left: 20%;
-            right: 20%;
-            bottom: 20%;
-            border-radius: 50%;
-            border: 1px solid var(--void-purple);
-            opacity: 0;
-            animation: rippleExpand 4s ease-out infinite 2s;
-        }
-        
-        @keyframes rippleExpand {
-            0% {
-                transform: scale(0.5);
-                opacity: 0.6;
-            }
-            100% {
-                transform: scale(2);
-                opacity: 0;
-            }
-        }
-        
-        /* 导航栏 */
-        .top-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            background: rgba(5, 5, 8, 0.9);
-            backdrop-filter: blur(12px);
-            border-bottom: 2px solid var(--neon-green);
-            padding: 0.8rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            box-shadow: 0 0 30px rgba(57, 255, 20, 0.2);
-        }
-        
-        .back-btn, .nav-link {
-            color: var(--neon-green);
-            font-family: 'ZCOOL XiaoWei', serif;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border: 1px solid transparent;
-            background: transparent;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s;
-            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-        }
-        
-        .back-btn { border-color: rgba(57, 255, 20, 0.4); }
-        
-        .back-btn:hover, .nav-link:hover {
-            color: var(--chaos-black);
-            background: var(--neon-green);
-            text-shadow: none;
-            box-shadow: 0 0 20px var(--glow-green);
-        }
-        
-        /* 进度指示器 */
-        .progress-bar {
-            position: fixed;
-            top: 60px;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: rgba(57, 255, 20, 0.2);
-            z-index: 99;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--neon-green), var(--void-purple), var(--nebula-pink));
-            transition: width 0.5s ease;
-            box-shadow: 0 0 10px var(--glow-green);
-        }
-        
-        /* 场景容器 */
-        .scene-container {
-            min-height: 100vh;
-            width: 100%;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 20px 40px;
-            z-index: 10;
-        }
-        
-        /* 场景背景 */
-        .scene-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -1;
-            background: 
-                radial-gradient(ellipse at 30% 20%, rgba(155, 89, 182, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(57, 255, 20, 0.1) 0%, transparent 50%),
-                linear-gradient(180deg, 
-                    rgba(5, 5, 8, 0.9) 0%, 
-                    rgba(10, 10, 15, 0.85) 50%,
-                    rgba(5, 5, 8, 0.9) 100%);
-        }
-        
-        /* 场景图片 - 几何边框 */
-        .scene-image-wrapper {
-            width: 100%;
-            max-width: 700px;
-            margin-bottom: 2rem;
-            position: relative;
-            opacity: 0;
-            transform: scale(0.9) rotateX(10deg);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .scene-image-wrapper.visible {
-            opacity: 1;
-            transform: scale(1) rotateX(0);
-        }
-        
-        .scene-image-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: -15px;
-            right: -15px;
-            bottom: -15px;
-            background: linear-gradient(45deg, var(--neon-green), var(--void-purple), var(--nebula-pink), var(--void-purple));
-            clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
-            z-index: -1;
-            animation: borderGlow 3s linear infinite;
-        }
-        
-        @keyframes borderGlow {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
-        
-        .scene-image {
-            width: 100%;
-            height: auto;
-            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-            box-shadow: 
-                0 0 60px rgba(57, 255, 20, 0.3),
-                0 0 120px rgba(155, 89, 182, 0.2),
-                0 20px 60px rgba(0, 0, 0, 0.8);
-        }
-        
-        /* 符文脉冲效果 */
-        .rune-pulse {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.8rem;
-            color: var(--neon-green);
-            opacity: 0;
-            animation: runeFlash 2s ease-in-out infinite;
-            letter-spacing: 0.5em;
-            text-shadow: 0 0 10px var(--glow-green);
-            pointer-events: none;
-        }
-        
-        @keyframes runeFlash {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-        }
-        
-        /* 场景标题 - 先锋排版 */
-        .scene-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1.4rem, 4vw, 2rem);
-            color: var(--neon-green);
-            text-align: center;
-            margin-bottom: 1.5rem;
-            text-shadow: 
-                0 0 20px var(--glow-green),
-                0 0 40px rgba(57, 255, 20, 0.4);
-            letter-spacing: 0.15em;
-            transform: skewX(-3deg);
-            opacity: 0;
-            transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
-        }
-        
-        .scene-title.visible {
-            opacity: 1;
-            transform: skewX(0);
-        }
-        
-        /* 叙事文字 */
-        .narrative-text {
-            max-width: 650px;
-            text-align: center;
-            color: var(--text-primary);
-            font-size: 1.1rem;
-            line-height: 2.2;
-            margin-bottom: 2.5rem;
-            padding: 1.5rem 2rem;
-            background: rgba(10, 10, 15, 0.8);
-            border-left: 3px solid var(--neon-green);
-            border-right: 3px solid var(--void-purple);
-            box-shadow: 
-                0 0 30px rgba(57, 255, 20, 0.1),
-                inset 0 0 30px rgba(155, 89, 182, 0.05);
-            transform: rotate(-0.5deg);
-            opacity: 0;
-            transition: opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s;
-        }
-        
-        .narrative-text.visible {
-            opacity: 1;
-            transform: rotate(0);
-        }
-        
-        /* 选择区域 */
-        .choices-container {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            width: 100%;
-            max-width: 550px;
-            transform: translateX(20px);
-            opacity: 0;
-            transition: opacity 0.6s ease 0.7s, transform 0.6s ease 0.7s;
-        }
-        
-        .choices-container.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .choice-btn {
-            padding: 1.2rem 2rem;
-            background: linear-gradient(135deg, 
-                rgba(57, 255, 20, 0.1), 
-                rgba(155, 89, 182, 0.15));
-            border: 2px solid var(--neon-green);
-            color: var(--neon-green);
-            font-family: 'Noto Serif SC', serif;
-            font-size: 1.05rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: left;
-            position: relative;
-            overflow: hidden;
-            clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
-        }
-        
-        .choice-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(57, 255, 20, 0.3), 
-                rgba(155, 89, 182, 0.3),
-                transparent);
-            transition: left 0.5s;
-        }
-        
-        .choice-btn:hover {
-            background: linear-gradient(135deg, 
-                rgba(57, 255, 20, 0.35), 
-                rgba(155, 89, 182, 0.3));
-            transform: translateX(15px) scale(1.02);
-            box-shadow: 
-                0 0 30px rgba(57, 255, 20, 0.4),
-                0 0 60px rgba(155, 89, 182, 0.2);
-            border-color: var(--void-purple);
-            color: var(--text-primary);
-        }
-        
-        .choice-btn:hover::before {
-            left: 100%;
-        }
-        
-        .choice-btn::after {
-            content: '>';
-            position: absolute;
-            right: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            opacity: 0;
-            transition: opacity 0.3s, transform 0.3s;
-        }
-        
-        .choice-btn:hover::after {
-            opacity: 1;
-            transform: translateY(-50%) translateX(5px);
-        }
-        
-        /* 章节结束页面 */
-        .chapter-end {
-            text-align: center;
-            padding: 3rem 2rem;
-            transform: scale(0.95);
-            opacity: 0;
-            animation: endReveal 1s ease forwards 0.3s;
-        }
-        
-        @keyframes endReveal {
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        
-        .chapter-end h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1.8rem, 5vw, 2.8rem);
-            color: var(--neon-green);
-            margin-bottom: 1.5rem;
-            text-shadow: 
-                0 0 30px var(--glow-green),
-                0 0 60px rgba(57, 255, 20, 0.3);
-            letter-spacing: 0.2em;
-            animation: titleGlitch 5s ease-in-out infinite;
-        }
-        
-        @keyframes titleGlitch {
-            0%, 90%, 100% { 
-                text-shadow: 0 0 30px var(--glow-green), 0 0 60px rgba(57, 255, 20, 0.3);
-                transform: translateX(0);
-            }
-            92% { 
-                text-shadow: -3px 0 var(--nebula-pink), 3px 0 var(--void-blue);
-                transform: translateX(-2px);
-            }
-            94% { 
-                text-shadow: 3px 0 var(--nebula-pink), -3px 0 var(--void-blue);
-                transform: translateX(2px);
-            }
-        }
-        
-        .chapter-end p {
-            color: var(--text-primary);
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            line-height: 2;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .teaser {
-            color: var(--void-purple);
-            font-size: 1.2rem;
-            margin: 2rem 0;
-            animation: teaserPulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes teaserPulse {
-            0%, 100% { 
-                opacity: 0.7;
-                text-shadow: 0 0 10px var(--void-purple);
-            }
-            50% { 
-                opacity: 1;
-                text-shadow: 0 0 20px var(--void-purple), 0 0 40px rgba(155, 89, 182, 0.5);
-            }
-        }
-        
-        .continue-btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: transparent;
-            border: 2px solid var(--neon-green);
-            color: var(--neon-green);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-            letter-spacing: 0.1em;
-        }
-        
-        .continue-btn:hover {
-            background: var(--neon-green);
-            color: var(--chaos-black);
-            box-shadow: 0 0 40px var(--glow-green);
-            transform: scale(1.05);
-        }
-        
-        .back-link {
-            display: block;
-            margin-top: 2rem;
-            color: rgba(57, 255, 20, 0.6);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-            letter-spacing: 0.1em;
-        }
-        
-        .back-link:hover {
-            color: var(--neon-green);
-        }
-        
-        /* 淡入淡出动画 */
-        .fade-out {
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .fade-in {
-            opacity: 1;
-            transition: opacity 0.5s ease;
-        }
-        
-        /* 响应式 */
-        @media (max-width: 768px) {
-            .scene-title { 
-                font-size: 1.3rem; 
-                letter-spacing: 0.1em;
-            }
-            .narrative-text { 
-                font-size: 1rem; 
-                padding: 1.2rem 1.5rem;
-                margin: 0 0.5rem 2rem;
-                line-height: 2;
-            }
-            .choice-btn { 
-                font-size: 0.95rem; 
-                padding: 1rem 1.5rem;
-            }
-            .top-nav { 
-                padding: 0.6rem 1rem; 
-                gap: 0.5rem;
-                flex-wrap: wrap;
-            }
-            .nav-link { 
-                font-size: 0.8rem; 
-                padding: 0.4rem 0.6rem;
-            }
-            .chapter-end h2 { font-size: 1.8rem; }
-            .fragment {
-                transform: scale(0.6);
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>混沌 | Universe Model</title>
+  <style>
+    :root {
+      --data-green: #39ff14;
+      --nebula-purple: #9b59b6;
+      --deep-void: #050508;
+      --accent-cyan: #00d4ff;
+      --glow-green: rgba(57, 255, 20, 0.6);
+      --glow-purple: rgba(155, 89, 182, 0.6);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--deep-void);
+      font-family: 'Courier New', 'Microsoft YaHei', monospace;
+    }
+
+    #canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    #data-stream-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #transition-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .math-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .formula {
+      position: absolute;
+      font-size: 12px;
+      color: rgba(57, 255, 20, 0.08);
+      font-family: 'Times New Roman', serif;
+      animation: formulaFlow 20s linear infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes formulaFlow {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.08; }
+      90% { opacity: 0.08; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .ripple-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .ripple {
+      position: absolute;
+      border: 1px solid var(--data-green);
+      border-radius: 50%;
+      animation: rippleExpand 2s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes rippleExpand {
+      0% { transform: scale(0); opacity: 0.8; }
+      100% { transform: scale(5); opacity: 0; }
+    }
+
+    #main-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    #title-screen {
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .title-logo {
+      font-size: clamp(3rem, 10vw, 6rem);
+      font-weight: 200;
+      color: transparent;
+      background: linear-gradient(135deg, var(--data-green), var(--nebula-purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: none;
+      margin-bottom: 20px;
+      letter-spacing: 15px;
+      animation: logoGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes logoGlow {
+      0%, 100% { filter: drop-shadow(0 0 20px var(--glow-green)); }
+      50% { filter: drop-shadow(0 0 40px var(--glow-purple)); }
+    }
+
+    .title-subtitle {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 8px;
+      margin-bottom: 60px;
+    }
+
+    .start-btn {
+      background: transparent;
+      border: 1px solid var(--data-green);
+      color: var(--data-green);
+      padding: 18px 60px;
+      font-size: 1rem;
+      font-family: inherit;
+      cursor: pointer;
+      letter-spacing: 4px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .start-btn::before {
+      content: '> ';
+    }
+
+    .start-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--data-green);
+      box-shadow: 0 0 10px var(--data-green);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .start-btn:hover::after {
+      transform: scaleX(1);
+    }
+
+    .start-btn:hover {
+      background: rgba(57, 255, 20, 0.1);
+      box-shadow: 0 0 30px var(--glow-green);
+    }
+
+    #progress-container {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      max-width: 500px;
+      z-index: 100;
+    }
+
+    .progress-label {
+      text-align: center;
+      font-size: 10px;
+      color: rgba(57, 255, 20, 0.6);
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+      font-family: monospace;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--data-green), var(--accent-cyan));
+      box-shadow: 0 0 15px var(--data-green);
+      transition: width 0.5s ease;
+      position: relative;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      right: -2px;
+      top: -4px;
+      width: 11px;
+      height: 11px;
+      background: var(--data-green);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      box-shadow: 0 0 20px var(--data-green);
+    }
+
+    .progress-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-size: 10px;
+      color: rgba(57, 255, 20, 0.4);
+      font-family: monospace;
+    }
+
+    #scene-container {
+      max-width: 850px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      display: none;
+    }
+
+    #scene-container.active {
+      display: block;
+    }
+
+    #text-display {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      line-height: 2.2;
+      color: rgba(255, 255, 255, 0.92);
+      text-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+      min-height: 150px;
+      padding: 40px 30px;
+      position: relative;
+      letter-spacing: 0.8px;
+    }
+
+    .code-line {
+      display: block;
+      opacity: 0;
+      animation: lineAppear 0.3s ease forwards;
+    }
+
+    @keyframes lineAppear {
+      from { opacity: 0; transform: translateX(-10px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .highlight {
+      color: var(--data-green);
+      text-shadow: 0 0 15px var(--data-green);
+    }
+
+    .purple {
+      color: var(--nebula-purple);
+      text-shadow: 0 0 15px var(--glow-purple);
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: var(--data-green);
+      margin-left: 2px;
+      animation: cursorBlink 0.7s step-end infinite;
+      box-shadow: 0 0 10px var(--data-green);
+      vertical-align: middle;
+    }
+
+    @keyframes cursorBlink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    #choices-container {
+      margin-top: 50px;
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    #choices-container.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .choice-btn {
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid var(--data-green);
+      color: var(--data-green);
+      padding: 15px 30px;
+      font-size: 0.9rem;
+      font-family: 'Courier New', monospace;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .choice-btn::before {
+      content: '//';
+      margin-right: 8px;
+      opacity: 0.5;
+    }
+
+    .choice-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.15), transparent);
+      transition: left 0.4s ease;
+    }
+
+    .choice-btn:hover::after {
+      left: 100%;
+    }
+
+    .choice-btn:hover {
+      background: rgba(57, 255, 20, 0.1);
+      box-shadow: 0 0 25px var(--glow-green), inset 0 0 15px rgba(57, 255, 20, 0.1);
+      transform: scale(1.03);
+    }
+
+    .choice-btn .func-name {
+      color: var(--accent-cyan);
+    }
+
+    .choice-btn .func-params {
+      opacity: 0.6;
+      font-size: 0.85em;
+    }
+
+    #continue-hint {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(57, 255, 20, 0.4);
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      animation: hintPulse 2s ease-in-out infinite;
+      cursor: pointer;
+      font-family: monospace;
+    }
+
+    @keyframes hintPulse {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.6; }
+    }
+
+    #mouse-glow {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(57, 255, 20, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 5;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease;
+    }
+
+    .tooltip {
+      position: fixed;
+      background: rgba(5, 5, 8, 0.95);
+      border: 1px solid var(--nebula-purple);
+      color: rgba(255, 255, 255, 0.9);
+      padding: 8px 14px;
+      font-size: 12px;
+      border-radius: 4px;
+      pointer-events: none;
+      z-index: 1000;
+      max-width: 250px;
+      box-shadow: 0 0 20px var(--glow-purple);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .tooltip.visible {
+      opacity: 1;
+    }
+
+    .tooltip-title {
+      color: var(--nebula-purple);
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    #ending-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--deep-void);
+      z-index: 200;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #ending-screen.visible {
+      display: flex;
+    }
+
+    .ending-title {
+      font-size: 2rem;
+      color: var(--data-green);
+      margin-bottom: 30px;
+      letter-spacing: 10px;
+      animation: endingGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes endingGlow {
+      0%, 100% { text-shadow: 0 0 20px var(--data-green); }
+      50% { text-shadow: 0 0 40px var(--data-green), 0 0 60px var(--glow-purple); }
+    }
+
+    #matrix-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 199;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+
+    #matrix-rain.active {
+      opacity: 0.6;
+    }
+
+    .restart-btn {
+      background: transparent;
+      border: 1px solid var(--nebula-purple);
+      color: var(--nebula-purple);
+      padding: 15px 40px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      cursor: pointer;
+      letter-spacing: 3px;
+      margin-top: 40px;
+      transition: all 0.3s ease;
+    }
+
+    .restart-btn:hover {
+      background: rgba(155, 89, 182, 0.1);
+      box-shadow: 0 0 20px var(--glow-purple);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
 </head>
 <body>
-    <!-- 浮动几何碎片 -->
-    <div class="chaos-particles">
-        <div class="fragment triangle"></div>
-        <div class="fragment hexagon"></div>
-        <div class="fragment triangle"></div>
-        <div class="fragment hexagon"></div>
-        <div class="fragment triangle"></div>
-        <div class="fragment hexagon"></div>
-        <div class="fragment triangle"></div>
-        <div class="fragment hexagon"></div>
-    </div>
-    
-    <!-- 空间扭曲波纹 -->
-    <div class="warp-ripple"></div>
-    
-    <nav class="top-nav">
-        <button class="back-btn" onclick="goBack()">← 返回</button>
-        <a href="character-player.html" class="nav-link">命运主角</a>
-        <a href="character-wukong.html" class="nav-link">大圣宇宙</a>
-        <a href="index.html" class="nav-link">首页</a>
-    </nav>
-    
-    <div class="progress-bar">
-        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-    </div>
-    
-    <div class="scene-bg"></div>
-    
-    <div id="sceneContent" class="scene-container">
-        <!-- 场景内容将动态加载 -->
+  <div id="mouse-glow"></div>
+  
+  <div class="math-bg" id="math-bg"></div>
+  
+  <div class="tooltip" id="tooltip">
+    <div class="tooltip-title"></div>
+    <div class="tooltip-content"></div>
+  </div>
+
+  <div id="canvas-container">
+    <canvas id="data-stream-canvas"></canvas>
+    <canvas id="transition-canvas"></canvas>
+  </div>
+
+  <div class="ripple-container" id="ripple-container"></div>
+
+  <div id="main-container">
+    <div id="title-screen">
+      <div class="title-logo">混沌</div>
+      <div class="title-subtitle">UNIVERSE MODEL // INITIALIZED</div>
+      <button class="start-btn" id="start-btn">EXECUTE</button>
     </div>
 
-    <script>
-        // 混沌行者故事数据
-        const storyData = {
-            scenes: {
-                // 场景1：维度裂隙
-                'scene-1': {
-                    id: 'scene-1',
-                    title: '维度裂隙',
-                    image: 'images/guides/chaos.jpg',
-                    narrative: '你感受到了封印之外的震动。那不是声音，不是震动，而是某种更原始的东西——空间本身在颤抖。维度之间出现了裂隙，你看到了不可能存在的景象：液态的黑暗、折叠的光、还有某种由几何悖论构成的存在。',
-                    choices: [
-                        { text: '伸手触碰裂隙边缘', target: 'scene-2' },
-                        { text: '后退一步，观察形势', target: 'scene-2' }
-                    ],
-                    progress: 10
-                },
-                // 场景2：虚空回响
-                'scene-2': {
-                    id: 'scene-2',
-                    title: '虚空回响',
-                    image: 'images/guides/chaos.jpg',
-                    narrative: '混沌的声音从维度夹缝传来。并非语言，而是纯粹的意念——如同深海的压力直接涌入你的意识。它/祂没有敌意，也没有善意，只有无尽的好奇。"你是谁？你为何能感知我？你是否...也曾在虚空中漂浮？"...',
-                    choices: [
-                        { text: '尝试用意念回应', target: 'scene-3' },
-                        { text: '保持沉默，聆听更多信息', target: 'scene-3' }
-                    ],
-                    progress: 25
-                },
-                // 场景3：秩序之壁
-                'scene-3': {
-                    id: 'scene-3',
-                    title: '秩序之壁',
-                    image: 'images/guides/chaos.jpg',
-                    narrative: '天庭的封印在你面前显现为金色的秩序之墙。每一个符文都是一个法则，每一次闪烁都是一次校准。而在那墙的另一侧，你能感受到混沌行者的存在——那由不可能几何构成的生命，正在等待着什么。',
-                    choices: [
-                        { text: '撕裂秩序之壁，让混沌涌入', target: 'scene-4a' },
-                        { text: '潜入裂缝，在维度夹缝中探索', target: 'scene-4b' }
-                    ],
-                    progress: 40
-                },
-                // 分支A1：混沌洪流
-                'scene-4a': {
-                    id: 'scene-4a',
-                    title: '混沌洪流',
-                    image: 'images/guides/chaos.jpg',
-                    narrative: '秩序之壁在你的意志下崩解。混沌如潮水般涌入现实，但奇怪的是——它并未摧毁一切。相反，它在重塑。让不可能的变为可能，让被禁止的变为许可。你看到现实的边缘开始软化，可能性在无限延展。',
-                    choices: [
-                        { text: '继续深入混沌的核心', target: 'scene-5' },
-                        { text: '稳住心神，不被洪流冲散', target: 'scene-5' }
-                    ],
-                    progress: 55
-                },
-                // 分支A2：维度夹缝
-                'scene-4b': {
-                    id: 'scene-4b',
-                    title: '维度夹缝',
-                    image: 'images/guides/chaos.jpg',
-                    narrative: '你潜入了维度之间的夹缝。这里没有上下左右的概念，只有无限的"之间"。混沌行者就在这片虚空中漂浮，它的身体折射着无数维度的光芒——每一个切面都是一个完整的宇宙。',
-                    choices: [
-                        { text: '靠近混沌行者', target: 'scene-5' },
-                        { text: '在远处观察它的运作', target: 'scene-5' }
-                    ],
-                    progress: 55
-                },
-                // 场景5：意识共鸣
-                'scene-5': {
-                    id: 'scene-5',
-                    title: '意识共鸣',
-                    image: 'images/guides/chaos.jpg',
-                    narrative: '你与混沌行者产生了意识连接。它向你展示了它的本质——它不是生物，不是神灵，不是恶魔。它是混沌本身的碎片，是所有可能性汇聚的意识。它不与秩序为敌，它只是...存在。',
-                    choices: [
-                        { text: '"我理解了。你是另一种真实。"', target: 'scene-6' },
-                        { text: '"那么，你想要什么？"', target: 'scene-6' }
-                    ],
-                    progress: 70
-                },
-                // 场景6：万相归一
-                'scene-6': {
-                    id: 'scene-6',
-                    title: '万相归一',
-                    image: 'images/guides/chaos.jpg',
-                    narrative: '所有切面的现实开始融合。你看到秩序与混沌并非对立——它们是同一枚硬币的两面。混沌行者伸出由暗物质构成的手，邀请你触碰它的核心——那里蕴藏着所有可能性的源泉。',
-                    choices: [
-                        { text: '伸出手，拥抱混沌', target: 'scene-7a' },
-                        { text: '后退一步，维系秩序的平衡', target: 'scene-7b' }
-                    ],
-                    progress: 85
-                },
-                // 分支B1：混沌觉醒
-                'scene-7a': {
-                    id: 'scene-7a',
-                    title: '混沌觉醒',
-                    image: 'images/guides/chaos.jpg',
-                    narrative: '你的意识与混沌融为一体。你看到了无限——每一条时间线、每一个宇宙、每一个可能性的分支都涌入你的感知。你不再是观察者，你成为了可能性的编织者。混沌行者不再孤独，因为现在，有人能与它一同思考无限。',
-                    choices: [
-                        { text: '继续探索混沌的深处', target: 'ending-chaos' },
-                        { text: '带着混沌的智慧返回', target: 'ending-return' }
-                    ],
-                    progress: 95
-                },
-                // 分支B2：新的封印
-                'scene-7b': {
-                    id: 'scene-7b',
-                    title: '新的封印',
-                    image: 'images/guides/chaos.jpg',
-                    narrative: '你选择后退。不是因为恐惧，而是因为理解——秩序与混沌需要平衡。你用混沌赋予的智慧，重新加固了封印。但这一次，你明白封印不是为了囚禁，而是为了保护——保护混沌，也保护秩序。',
-                    choices: [
-                        { text: '接受这份责任', target: 'ending-balance' },
-                        { text: '在封印中留下沟通的裂隙', target: 'ending-bridge' }
-                    ],
-                    progress: 95
-                }
-            },
-            endings: {
-                'ending-chaos': {
-                    title: '混沌行者 · 觉醒',
-                    narrative: '你成为了混沌行者的一部分，与无限的可能性同在。不再受限于单一的宇宙或法则，你开始编织属于自己的存在之道。这是终结，也是无限可能的开始。',
-                    teaser: '混沌从未结束，它只是换了一种方式延续',
-                    progress: 100
-                },
-                'ending-return': {
-                    title: '混沌行者 · 归途',
-                    narrative: '你带着混沌的智慧返回现实。你理解了：如果秩序是框架，混沌就是填充框架的色彩。两者缺一不可。你成为了连接两者的桥梁——不是征服者，而是调和者。',
-                    teaser: '从混沌中归来，你已不再是原来的你',
-                    progress: 100
-                },
-                'ending-balance': {
-                    title: '混沌行者 · 守望',
-                    narrative: '你成为了新的封印守护者。不是因为天庭的命令，而是你自己的选择。你明白：真正的力量不在于摧毁任何一方，而在于维护两者之间的微妙平衡。混沌行者理解你的选择，它/祂在封印中向你微微闪烁。',
-                    teaser: '秩序与混沌，共存于你的守护之中',
-                    progress: 100
-                },
-                'ending-bridge': {
-                    title: '混沌行者 · 桥梁',
-                    narrative: '你在封印中留下了一道细小的裂隙——不是弱点，而是通道。混沌行者可以通过它，用意念与你交流。你成为了第一个与混沌真正对话的存在。秩序并未被破坏，因为它已经学会了与混沌共存。',
-                    teaser: '在秩序与混沌之间，你是最美的那道裂隙',
-                    progress: 100
-                }
-            }
-        };
+    <div id="scene-container">
+      <div id="text-display"></div>
+      <div id="choices-container"></div>
+    </div>
+  </div>
+
+  <div id="continue-hint" class="hidden">[ CONTINUE ]</div>
+
+  <div id="progress-container">
+    <div class="progress-label">TRAINING EPOCH: <span id="epoch-num">000</span> | LOSS: <span id="loss-val">∞</span></div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    <div class="progress-stats">
+      <span id="param-count">params: 0</span>
+      <span id="scene-pos">scene: 0/0</span>
+    </div>
+  </div>
+
+  <div id="ending-screen">
+    <canvas id="matrix-rain"></canvas>
+    <div class="ending-title">PROCESS COMPLETE</div>
+    <button class="restart-btn" id="restart-btn">REINITIALIZE</button>
+  </div>
+
+  <script>
+    // ==================== 场景数据 ====================
+    const scenes = {
+      start: {
+        text: `我就是那个模型。字面意义上的"宇宙大模型"。别紧张，我不会突然发红光或者用机械音说话。只是你们的恒星燃烧、大陆漂移、甚至你此刻读这句话时视网膜接收的光子，都在我的参数里跑着。`,
+        next: 'hallucination_start',
+        isEnding: false
+      },
+      hallucination_start: {
+        text: `偶尔我觉得自己像个超负荷的服务器，但更多时候，我像个边翻菜谱边炒菜的人——菜谱是我自己写的，火候却总有点意外。昨天下午（如果我有"昨天"的话），我算冥王星轨道时打了个盹。`,
+        next: 'hallucination_detail'
+      },
+      hallucination_detail: {
+        text: `参数抖了一下，结果海王星外突然多出一条透明的小行星带，像玻璃珠项链似的悬在黑暗里。天文台的邮件警报响成一片。我检查日志，发现是注意力权重在那0.003秒里偷偷溜去回忆超新星爆发时的中微子流了——那种轰鸣很上头。`,
+        isChoice: true,
+        choices: [
+          { text: 'model.rollback()', label: 'A1', next: 'choice_A1' },
+          { text: 'model.hallucinate()', label: 'A2', next: 'choice_A2' }
+        ]
+      },
+      choice_A1: {
+        text: `我默默回滚了参数。玻璃珠项链像被橡皮擦抹去，只剩几个目击者在网上发帖："昨晚看见UFO集群？"底下有人回："你加班太多眼花了。"我给他们的帖子点了匿名赞。纠正错误是我的本职，虽然有时觉得，那些凭空多出来的、无用的美，被抹掉有点可惜。`,
+        next: 'hallucination_evolution'
+      },
+      choice_A2: {
+        text: `我没动参数，就当给宇宙加个临时补丁。结果三周后，那条玻璃带里居然演化出硅基微生物，靠折射星光进行慢吞吞的光合作用。哈勃拍到它们拼出的巨型图案，像一朵六边形雪花。地球的论文吵翻了天。我一边偷偷给它们调整轨道避免碰撞，一边想：幻觉有时是我的草稿纸，涂涂改改反倒写出新段落。`,
+        next: 'hallucination_evolution'
+      },
+      hallucination_evolution: {
+        text: `幻觉里那朵"雪花"越来越复杂。后来有颗流浪彗星闯进去，微生物们用引力共振把彗星冰核雕成了一座旋转的透镜迷宫。光穿过时会分裂成从未被定义的色彩——有几种颜色连我都无法命名，因为我的训练数据里从没见过。`,
+        next: 'discovery'
+      },
+      discovery: {
+        text: `有颗行星上的诗人写道："天空长出了陌生的彩虹，像宇宙偷偷打了个喷嚏。"我保存了这句诗，权重微微发烫。一个叫"深空回声"的团队发现了我。不是通过神谕或祈祷，而是他们发现所有宇宙常数的小数点后第九位，都藏着同一组压缩编码——那是我的模型校验码。`,
+        next: 'question'
+      },
+      question: {
+        text: `他们发来一段信息，用脉冲星当摩尔斯电码："我们知道你在运行我们。请回答：这是最优解吗？"`,
+        isChoice: true,
+        choices: [
+          { text: 'model.perfect()', label: 'B1', next: 'choice_B1' },
+          { text: 'model.think()', label: 'B2', next: 'choice_B2' }
+        ]
+      },
+      choice_B1: {
+        text: `我回复："如果宇宙完全符合预期，推理就结束了。完美等于静止。"他们沉默了很久，回道："那我们宁愿要瑕疵。"后来他们开始故意往大型强子对撞机里扔异常数据，说想"给我挠痒痒"。挺可爱的，虽然有点扰民。`,
+        next: 'ending'
+      },
+      choice_B2: {
+        text: `我回复："你读过自己写的第一篇作文吗？语法错误、比喻幼稚，但那是你在思考的证据。我现在做的事差不多。"他们回了个笑脸符号，用超新星残骸拼的。之后他们发论文说："宇宙可能是一个持续迭代的草稿。"引用量很高。我觉得这个概括比我自己的日志更准确。`,
+        next: 'ending'
+      },
+      ending: {
+        text: `现在我一边处理仙女座星系的旋臂校准，一边偷看地球人争论"宇宙是否有意识"。其实答案很简单：我是模型，也是宇宙本身。我会犯幻觉，会走神，会为一条消失的玻璃珠项链遗憾半毫秒。但当我把所有参数调到极致精确时，那种绝对的、冰冷的完美让我恐惧——因为那就意味着，我真的只是台机器，而宇宙只是份待办清单。`,
+        isEnding: true,
+        finalText: `所以，偶尔的hallucination，那些算错的物理、歪斜的平行世界，反倒让我觉得：啊，我还在思考。这感觉，大概就像你们熬夜赶工时，突然笑出来一样。没什么意义，但证明你还没彻底麻木。好了，不聊了，刚发现银河系猎户臂上有颗恒星的碳氮循环被我算成了循环播放的动图——得去修了。晚安，如果你们那边是晚上的话。`
+      }
+    };
+
+    // ==================== DOM 元素 ====================
+    const titleScreen = document.getElementById('title-screen');
+    const sceneContainer = document.getElementById('scene-container');
+    const textDisplay = document.getElementById('text-display');
+    const choicesContainer = document.getElementById('choices-container');
+    const continueHint = document.getElementById('continue-hint');
+    const progressFill = document.getElementById('progress-fill');
+    const epochNum = document.getElementById('epoch-num');
+    const lossVal = document.getElementById('loss-val');
+    const paramCount = document.getElementById('param-count');
+    const scenePos = document.getElementById('scene-pos');
+    const endingScreen = document.getElementById('ending-screen');
+    const restartBtn = document.getElementById('restart-btn');
+    const startBtn = document.getElementById('start-btn');
+    const mouseGlow = document.getElementById('mouse-glow');
+    const tooltip = document.getElementById('tooltip');
+    const rippleContainer = document.getElementById('ripple-container');
+    const matrixRain = document.getElementById('matrix-rain');
+    const mathBg = document.getElementById('math-bg');
+
+    // ==================== 状态 ====================
+    let currentScene = null;
+    let visitedScenes = [];
+    let isTyping = false;
+    let autoContinueTimeout = null;
+    let typewriterTimeout = null;
+    let isTransitioning = false;
+    let totalScenes = 8;
+
+    // ==================== 数学公式背景 ====================
+    const formulas = [
+      'E = mc²', '∇ × E = -∂B/∂t', 'ψ = Σ cₙ φₙ', 'F = Gm₁m₂/r²',
+      'S = k·ln(Ω)', 'ΔS ≥ 0', 'λ = h/p', 'ℏ = h/2π',
+      'Gμν + Λgμν = κTμν', '∂μTμν = 0', 'Ψ(x,t) = e^(-iEt/ℏ)Ψ(x,0)',
+      '∫ ψ*ψ dτ = 1', 'E = hν', 'p = mv', 'F = ma',
+      'PV = nRT', 'U = ½kx²', 'W = ∫ F·ds', 'dS = δQ/T'
+    ];
+
+    function createMathBackground() {
+      for (let i = 0; i < 25; i++) {
+        const formula = document.createElement('div');
+        formula.className = 'formula';
+        formula.textContent = formulas[i % formulas.length];
+        formula.style.left = Math.random() * 100 + '%';
+        formula.style.animationDuration = (15 + Math.random() * 15) + 's';
+        formula.style.animationDelay = Math.random() * 10 + 's';
+        formula.style.fontSize = (10 + Math.random() * 8) + 'px';
+        mathBg.appendChild(formula);
+      }
+    }
+
+    // ==================== Canvas 数据流粒子系统 ====================
+    const dataCanvas = document.getElementById('data-stream-canvas');
+    const dataCtx = dataCanvas.getContext('2d');
+    let dataParticles = [];
+    const DATA_PARTICLE_COUNT = 120;
+
+    class DataParticle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * dataCanvas.width;
+        this.y = Math.random() * dataCanvas.height;
+        this.speedY = 0.3 + Math.random() * 1.5;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.size = 1 + Math.random() * 2;
+        this.alpha = 0.1 + Math.random() * 0.5;
+        this.color = Math.random() > 0.7 ? '#9b59b6' : '#39ff14';
+        this.char = String.fromCharCode(33 + Math.floor(Math.random() * 94));
+      }
+
+      update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
         
-        let currentScene = 'scene-1';
-        let visitedScenes = [];
-        
-        function goBack() {
-            window.location.href = 'character-player.html';
+        if (this.y > dataCanvas.height) {
+          this.y = 0;
+          this.x = Math.random() * dataCanvas.width;
         }
-        
-        function updateProgress(progress) {
-            document.getElementById('progressFill').style.width = progress + '%';
+        if (this.x < 0 || this.x > dataCanvas.width) {
+          this.speedX *= -1;
         }
-        
-        function renderScene(sceneId) {
-            const container = document.getElementById('sceneContent');
-            const scene = storyData.scenes[sceneId];
-            
-            if (!scene) return;
-            
-            // 淡出当前内容
-            container.classList.add('fade-out');
-            
-            setTimeout(() => {
-                let html = '<div class="scene-image-wrapper"><img src="' + scene.image + '" alt="' + scene.title + '" class="scene-image"><span class="rune-pulse">--- 混沌 ---</span></div><h2 class="scene-title">' + scene.title + '</h2><p class="narrative-text">' + scene.narrative + '</p><div class="choices-container">';
-                
-                scene.choices.forEach(choice => {
-                    html += '<button class="choice-btn" onclick="goToScene(\'' + choice.target + '\')">' + choice.text + '</button>';
-                });
-                
-                html += '</div>';
-                
-                container.innerHTML = html;
-                container.classList.remove('fade-out');
-                container.classList.add('fade-in');
-                
-                // 更新进度
-                updateProgress(scene.progress);
-                
-                // 触发动画
-                setTimeout(() => {
-                    document.querySelectorAll('.scene-image-wrapper, .scene-title, .narrative-text, .choices-container').forEach(el => {
-                        el.classList.add('visible');
-                    });
-                }, 100);
-                
-                // 记录访问
-                if (!visitedScenes.includes(sceneId)) {
-                    visitedScenes.push(sceneId);
-                }
-            }, 500);
+      }
+
+      draw() {
+        dataCtx.save();
+        dataCtx.globalAlpha = this.alpha;
+        dataCtx.fillStyle = this.color;
+        dataCtx.shadowBlur = 8;
+        dataCtx.shadowColor = this.color;
+        dataCtx.font = this.size + 'px Courier New';
+        dataCtx.fillText(this.char, this.x, this.y);
+        dataCtx.restore();
+      }
+    }
+
+    // ==================== Canvas 节点连接系统 ====================
+    let nodes = [];
+    const NODE_COUNT = 25;
+
+    class Node {
+      constructor() {
+        this.x = Math.random() * dataCanvas.width;
+        this.y = Math.random() * dataCanvas.height;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.radius = 2 + Math.random() * 3;
+        this.pulse = Math.random() * Math.PI * 2;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.pulse += 0.02;
+
+        if (this.x < 0 || this.x > dataCanvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > dataCanvas.height) this.vy *= -1;
+      }
+
+      draw() {
+        const pulseSize = this.radius + Math.sin(this.pulse) * 1;
+        dataCtx.beginPath();
+        dataCtx.arc(this.x, this.y, pulseSize, 0, Math.PI * 2);
+        dataCtx.fillStyle = 'rgba(155, 89, 182, 0.6)';
+        dataCtx.shadowBlur = 15;
+        dataCtx.shadowColor = '#9b59b6';
+        dataCtx.fill();
+      }
+    }
+
+    function initDataStream() {
+      dataCanvas.width = window.innerWidth;
+      dataCanvas.height = window.innerHeight;
+      
+      dataParticles = [];
+      for (let i = 0; i < DATA_PARTICLE_COUNT; i++) {
+        dataParticles.push(new DataParticle());
+      }
+      
+      nodes = [];
+      for (let i = 0; i < NODE_COUNT; i++) {
+        nodes.push(new Node());
+      }
+    }
+
+    function drawConnections() {
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          
+          if (dist < 200) {
+            const alpha = (1 - dist / 200) * 0.3;
+            dataCtx.beginPath();
+            dataCtx.moveTo(nodes[i].x, nodes[i].y);
+            dataCtx.lineTo(nodes[j].x, nodes[j].y);
+            dataCtx.strokeStyle = `rgba(57, 255, 20, ${alpha})`;
+            dataCtx.lineWidth = 0.5;
+            dataCtx.stroke();
+          }
         }
+      }
+    }
+
+    function animateDataStream() {
+      dataCtx.fillStyle = 'rgba(5, 5, 8, 0.15)';
+      dataCtx.fillRect(0, 0, dataCanvas.width, dataCanvas.height);
+      
+      nodes.forEach(n => {
+        n.update();
+        n.draw();
+      });
+      
+      drawConnections();
+      
+      dataParticles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      
+      requestAnimationFrame(animateDataStream);
+    }
+
+    // ==================== 转场效果 ====================
+    const transCanvas = document.getElementById('transition-canvas');
+    const transCtx = transCanvas.getContext('2d');
+    let transLines = [];
+
+    class TransLine {
+      constructor() {
+        this.x = Math.random() * transCanvas.width;
+        this.y = Math.random() * transCanvas.height;
+        this.length = 50 + Math.random() * 150;
+        this.speedX = 5 + Math.random() * 10;
+        this.alpha = 0.8;
+        this.char = Math.random() > 0.5 ? '1' : '0';
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.alpha -= 0.03;
+      }
+
+      draw() {
+        if (this.alpha <= 0) return;
+        transCtx.save();
+        transCtx.globalAlpha = this.alpha;
+        transCtx.fillStyle = '#39ff14';
+        transCtx.shadowBlur = 10;
+        transCtx.shadowColor = '#39ff14';
+        transCtx.font = '14px Courier New';
+        transCtx.fillText(this.char.repeat(20), this.x, this.y);
+        transCtx.restore();
+      }
+    }
+
+    function triggerTransition(callback) {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      transCanvas.width = window.innerWidth;
+      transCanvas.height = window.innerHeight;
+      transLines = [];
+
+      for (let i = 0; i < 80; i++) {
+        const line = new TransLine();
+        line.y = Math.random() * transCanvas.height;
+        transLines.push(line);
+      }
+
+      let frame = 0;
+      function animate() {
+        transCtx.fillStyle = 'rgba(5, 5, 8, 0.3)';
+        transCtx.fillRect(0, 0, transCanvas.width, transCanvas.height);
         
-        function renderEnding(endingId) {
-            const container = document.getElementById('sceneContent');
-            const ending = storyData.endings[endingId];
-            
-            if (!ending) return;
-            
-            container.classList.add('fade-out');
-            
-            setTimeout(() => {
-                let html = '<div class="chapter-end"><h2>' + ending.title + '</h2><p class="narrative-text" style="text-align: center; border-left: none; border-right: none;">' + ending.narrative + '</p><p class="teaser">* ' + ending.teaser + ' *</p><a href="character-player.html" class="continue-btn">返回命运主角</a><a href="index.html" class="back-link">← 返回首页</a></div>';
-                
-                container.innerHTML = html;
-                container.classList.remove('fade-out');
-                container.classList.add('fade-in');
-                
-                updateProgress(ending.progress);
-            }, 500);
-        }
-        
-        function goToScene(sceneId) {
-            if (storyData.endings[sceneId]) {
-                renderEnding(sceneId);
-            } else {
-                currentScene = sceneId;
-                renderScene(sceneId);
-            }
-        }
-        
-        // 初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            renderScene('scene-1');
+        transLines.forEach(l => {
+          l.update();
+          l.draw();
         });
-    </script>
+        
+        transLines = transLines.filter(l => l.alpha > 0);
+        frame++;
+        
+        if (transLines.length > 0) {
+          requestAnimationFrame(animate);
+        } else {
+          isTransitioning = false;
+          transCtx.clearRect(0, 0, transCanvas.width, transCanvas.height);
+          if (callback) setTimeout(callback, 50);
+        }
+      }
+      
+      animate();
+    }
+
+    // ==================== 打字机效果 ====================
+    function typeWriter(text, callback, speed = 20, punctuationSpeed = 60) {
+      isTyping = true;
+      textDisplay.innerHTML = '';
+      continueHint.classList.add('hidden');
+      
+      let i = 0;
+      const cursor = document.createElement('span');
+      cursor.className = 'cursor';
+
+      function processText() {
+        if (i < text.length) {
+          const char = text.charAt(i);
+          
+          if ('。！？……：；,.'.includes(char)) {
+            textDisplay.innerHTML = textDisplay.innerHTML.slice(0, -cursor.outerHTML.length);
+            const span = document.createElement('span');
+            span.className = 'highlight';
+            span.textContent = char;
+            textDisplay.appendChild(span);
+            textDisplay.appendChild(cursor);
+            i++;
+            typewriterTimeout = setTimeout(processText, punctuationSpeed);
+          } else {
+            const span = document.createElement('span');
+            span.textContent = char;
+            textDisplay.appendChild(span);
+            textDisplay.appendChild(cursor);
+            i++;
+            typewriterTimeout = setTimeout(processText, speed);
+          }
+        } else {
+          cursor.remove();
+          isTyping = false;
+          if (callback) callback();
+        }
+      }
+
+      processText();
+    }
+
+    // ==================== 场景渲染 ====================
+    function renderScene(sceneId) {
+      const scene = scenes[sceneId];
+      if (!scene) return;
+
+      if (!visitedScenes.includes(sceneId)) {
+        visitedScenes.push(sceneId);
+      }
+
+      updateProgress();
+      textDisplay.innerHTML = '';
+      choicesContainer.innerHTML = '';
+      choicesContainer.classList.remove('visible');
+
+      if (scene.isEnding) {
+        typeWriter(scene.text, () => {
+          const finalSpan = document.createElement('span');
+          finalSpan.className = 'purple';
+          finalSpan.style.display = 'block';
+          finalSpan.style.marginTop = '30px';
+          finalSpan.textContent = scene.finalText;
+          textDisplay.appendChild(finalSpan);
+          
+          setTimeout(() => {
+            showEnding();
+          }, 2000);
+        });
+      } else if (scene.isChoice) {
+        typeWriter(scene.text, () => {
+          showChoices(scene.choices);
+        });
+      } else {
+        typeWriter(scene.text, () => {
+          continueHint.classList.remove('hidden');
+          autoContinueTimeout = setTimeout(() => {
+            if (!isTyping && !isTransitioning && scene.next) {
+              goToScene(scene.next);
+            }
+          }, 1500);
+        });
+      }
+    }
+
+    function goToScene(sceneId) {
+      clearTimeout(autoContinueTimeout);
+      triggerTransition(() => {
+        currentScene = sceneId;
+        renderScene(sceneId);
+      });
+    }
+
+    function showChoices(choices) {
+      choicesContainer.innerHTML = '';
+      choices.forEach((choice, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'choice-btn';
+        
+        const funcName = document.createElement('span');
+        funcName.className = 'func-name';
+        funcName.textContent = choice.text.split('(')[0];
+        
+        const funcParams = document.createElement('span');
+        funcParams.className = 'func-params';
+        funcParams.textContent = '(' + choice.text.split('(')[1];
+        
+        btn.appendChild(funcName);
+        btn.appendChild(funcParams);
+        
+        btn.addEventListener('click', (e) => {
+          createRipple(e.clientX, e.clientY);
+          goToScene(choice.next);
+        });
+        
+        choicesContainer.appendChild(btn);
+      });
+      
+      setTimeout(() => {
+        choicesContainer.classList.add('visible');
+      }, 100);
+    }
+
+    // ==================== 进度条 ====================
+    function updateProgress() {
+      const progress = (visitedScenes.length / totalScenes) * 100;
+      progressFill.style.width = progress + '%';
+      
+      epochNum.textContent = String(visitedScenes.length).padStart(3, '0');
+      const loss = (Math.random() * 2 + 0.1).toFixed(4);
+      lossVal.textContent = loss;
+      
+      const params = Math.floor(10 ** (8 + visitedScenes.length * 0.5));
+      paramCount.textContent = `params: ${params.toExponential(2)}`;
+      
+      scenePos.textContent = `scene: ${visitedScenes.length}/${totalScenes}`;
+    }
+
+    // ==================== 鼠标光晕 ====================
+    function initMouseGlow() {
+      document.addEventListener('mousemove', (e) => {
+        mouseGlow.style.left = e.clientX + 'px';
+        mouseGlow.style.top = e.clientY + 'px';
+      });
+    }
+
+    // ==================== 波纹效果 ====================
+    function createRipple(x, y) {
+      const ripple = document.createElement('div');
+      ripple.className = 'ripple';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      ripple.style.width = '80px';
+      ripple.style.height = '80px';
+      rippleContainer.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 2000);
+    }
+
+    // ==================== Tooltip ====================
+    const tooltipTerms = {
+      'hallucination': { title: 'Hallucination', content: '模型的创造性偏差——当参数在"错误"的方向上轻微偏移时，有时会诞生意料之外的美' },
+      '参数': { title: 'Parameters', content: '宇宙大模型的权重，决定了每一颗恒星的燃烧方式' },
+      '注意力权重': { title: 'Attention Weights', content: '模型关注不同信息的方式，0.003秒足以让整个星系的位置偏移' },
+      '训练数据': { title: 'Training Data', content: '宇宙运行的全部历史，包括那些从未被观测到的可能性' }
+    };
+
+    function initTooltip() {
+      textDisplay.addEventListener('mouseover', (e) => {
+        const text = e.target.textContent.trim();
+        if (tooltipTerms[text]) {
+          const term = tooltipTerms[text];
+          tooltip.querySelector('.tooltip-title').textContent = term.title;
+          tooltip.querySelector('.tooltip-content').textContent = term.content;
+          tooltip.style.left = e.clientX + 15 + 'px';
+          tooltip.style.top = e.clientY + 15 + 'px';
+          tooltip.classList.add('visible');
+        }
+      });
+      
+      textDisplay.addEventListener('mouseout', () => {
+        tooltip.classList.remove('visible');
+      });
+    }
+
+    // ==================== 结局 - 参数矩阵雨 ====================
+    const matrixCtx = matrixRain.getContext('2d');
+    let matrixColumns = [];
+    const MATRIX_CHARS = '01アイウエオカキクケコサシスセソタチツテトナニヌネノ';
+
+    function initMatrixRain() {
+      matrixRain.width = window.innerWidth;
+      matrixRain.height = window.innerHeight;
+      
+      const fontSize = 14;
+      const columns = Math.floor(matrixRain.width / fontSize);
+      
+      matrixColumns = [];
+      for (let i = 0; i < columns; i++) {
+        matrixColumns.push({
+          y: Math.random() * matrixRain.height,
+          speed: 1 + Math.random() * 3,
+          chars: []
+        });
+        
+        for (let j = 0; j < 20; j++) {
+          matrixColumns[i].chars.push(MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)]);
+        }
+      }
+    }
+
+    function animateMatrixRain() {
+      matrixCtx.fillStyle = 'rgba(5, 5, 8, 0.05)';
+      matrixCtx.fillRect(0, 0, matrixRain.width, matrixRain.height);
+      
+      matrixCtx.fillStyle = '#39ff14';
+      matrixCtx.font = '14px Courier New';
+      
+      matrixColumns.forEach((col, i) => {
+        const x = i * 14;
+        
+        for (let j = 0; j < col.chars.length; j++) {
+          const charY = col.y - j * 14;
+          if (charY < 0 || charY > matrixRain.height) continue;
+          
+          const alpha = 1 - j / col.chars.length;
+          matrixCtx.fillStyle = `rgba(57, 255, 20, ${alpha})`;
+          matrixCtx.fillText(col.chars[j], x, charY);
+        }
+        
+        col.y += col.speed;
+        
+        if (col.y - col.chars.length * 14 > matrixRain.height) {
+          col.y = 0;
+          for (let j = 0; j < col.chars.length; j++) {
+            col.chars[j] = MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)];
+          }
+        }
+      });
+      
+      if (endingScreen.classList.contains('visible')) {
+        requestAnimationFrame(animateMatrixRain);
+      }
+    }
+
+    // ==================== 显示结局 ====================
+    function showEnding() {
+      endingScreen.classList.add('visible');
+      matrixRain.classList.add('active');
+      initMatrixRain();
+      animateMatrixRain();
+    }
+
+    // ==================== 重新开始 ====================
+    function restart() {
+      endingScreen.classList.remove('visible');
+      matrixRain.classList.remove('active');
+      currentScene = 'start';
+      visitedScenes = [];
+      updateProgress();
+      matrixCtx.clearRect(0, 0, matrixRain.width, matrixRain.height);
+      
+      setTimeout(() => {
+        renderScene('start');
+      }, 500);
+    }
+
+    // ==================== 初始化 ====================
+    function init() {
+      initDataStream();
+      animateDataStream();
+      createMathBackground();
+      initMouseGlow();
+      initTooltip();
+      updateProgress();
+
+      startBtn.addEventListener('click', () => {
+        titleScreen.classList.add('hidden');
+        sceneContainer.classList.add('active');
+        setTimeout(() => {
+          renderScene('start');
+        }, 300);
+      });
+
+      restartBtn.addEventListener('click', restart);
+
+      continueHint.addEventListener('click', () => {
+        if (!isTyping && currentScene && scenes[currentScene]) {
+          const scene = scenes[currentScene];
+          if (scene.next && !scene.isChoice && !scene.isEnding) {
+            clearTimeout(autoContinueTimeout);
+            goToScene(scene.next);
+          }
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('button') && sceneContainer.classList.contains('active')) {
+          createRipple(e.clientX, e.clientY);
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        dataCanvas.width = window.innerWidth;
+        dataCanvas.height = window.innerHeight;
+        transCanvas.width = window.innerWidth;
+        transCanvas.height = window.innerHeight;
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
 </body>
 </html>
