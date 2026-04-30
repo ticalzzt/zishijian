@@ -168,14 +168,18 @@
         }
         
         .scene-image {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100vw;
+            min-height: 100vh;
             width: auto;
-            max-width: 100%;
-            max-height: 50vh;
-            border-radius: 12px;
-            box-shadow: 
-                0 0 40px rgba(212, 168, 75, 0.15);
-            display: block;
-            margin: 0 auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.35;
+            filter: blur(1px);
         }
         
         /* 场景标题 */
@@ -389,7 +393,8 @@
                 padding: 1.1rem 1.5rem;
             }
             .scene-image {
-                max-height: 40vh;
+                min-width: 100vw;
+                min-height: 100vh;
             }
             .top-nav { 
                 padding: 0.6rem 1rem; 
@@ -559,7 +564,7 @@
             
             setTimeout(() => {
                 let mediaHtml = scene.image.endsWith('.mp4') 
-            ? '<div class="scene-image-wrapper"><video src="' + scene.image + '" class="scene-image" autoplay loop muted playsinline></video></div>'
+            ? '<video src="' + scene.image + '" class="scene-image" autoplay loop muted playsinline></video>'
             : '<div class="scene-image-wrapper"><img src="' + scene.image + '" alt="' + scene.title + '" class="scene-image"></div>';
         let html = mediaHtml + '<h2 class="scene-title">' + scene.title + '</h2><p class="narrative-text">' + scene.narrative + '</p><div class="choices-container">';
                 
