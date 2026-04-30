@@ -1008,7 +1008,7 @@ function createLangSwitcher() {
   switcher.id = 'lang-switcher';
   switcher.style.cssText = `
     position: fixed;
-    top: 70px;
+    top: 15px;
     right: 15px;
     z-index: 9999;
     background: linear-gradient(135deg, rgba(10, 9, 8, 0.9), rgba(20, 18, 15, 0.95));
@@ -1036,10 +1036,10 @@ function createLangSwitcher() {
       background: transparent;
       border: 1px solid transparent;
       color: ${opt.code === currentLang ? '#c9a227' : '#9a958a'};
-      padding: 5px 12px;
+      padding: 6px 14px;
       border-radius: 14px;
       cursor: pointer;
-      font-size: 12px;
+      font-size: 14px; font-family: 'Inter', sans-serif;
       font-weight: ${opt.code === currentLang ? '600' : '400'};
       transition: all 0.3s ease;
       opacity: ${opt.code === currentLang ? '1' : '0.7'};
