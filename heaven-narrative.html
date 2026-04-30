@@ -1101,12 +1101,17 @@
 
             const scene = storyData[index];
 
-            // Check conditions for branch results
+            // Check conditions for branch results - skip non-matching, continue to next
             if (scene.condition) {
-                if (scene.condition === 'a1' && userChoices.scene3 !== 'a1') return;
-                if (scene.condition === 'a2' && userChoices.scene3 !== 'a2') return;
-                if (scene.condition === 'b1' && userChoices.scene6 !== 'b1') return;
-                if (scene.condition === 'b2' && userChoices.scene6 !== 'b2') return;
+                let shouldSkip = false;
+                if (scene.condition === 'a1' && userChoices.scene3 !== 'a1') shouldSkip = true;
+                if (scene.condition === 'a2' && userChoices.scene3 !== 'a2') shouldSkip = true;
+                if (scene.condition === 'b1' && userChoices.scene6 !== 'b1') shouldSkip = true;
+                if (scene.condition === 'b2' && userChoices.scene6 !== 'b2') shouldSkip = true;
+                if (shouldSkip) {
+                    renderScene(index + 1);
+                    return;
+                }
             }
 
             // Trigger membrane transition with delay
